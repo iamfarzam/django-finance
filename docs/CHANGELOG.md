@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
-#### 2026-02-08 - Phase 6 Real-time Features In Progress
+#### 2026-02-08 - Phase 6 Real-time Features Complete
 - Created WebSocket consumers with JWT authentication:
   - `AuthenticatedConsumer`: Base consumer with JWT auth from query string
   - `FinanceConsumer`: Real-time finance updates (balance, transactions, net worth)

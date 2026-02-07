@@ -3,6 +3,8 @@
 This module provides middleware for:
 - Correlation ID tracking across requests
 - Tenant context propagation
+- Request logging
+- Audit logging for API operations
 """
 
 from __future__ import annotations
@@ -260,3 +262,252 @@ class RequestLoggingMiddleware:
         )
 
         return response
+
+
+class AuditLoggingMiddleware:
+    """Middleware to log API operations for audit trail.
+
+    This middleware automatically logs write operations (POST, PUT, PATCH, DELETE)
+    on finance-related endpoints. It captures:
+    - The action performed
+    - User and tenant context
+    - Request details
+    - Response status
+
+    Usage:
+        Add to MIDDLEWARE in settings:
+        'shared.middleware.AuditLoggingMiddleware'
+    """
+
+    # Paths to audit (finance operations)
+    AUDITABLE_PATH_PREFIXES = (
+        "/api/v1/finance/",
+        "/api/v1/accounts/",
+        "/api/v1/auth/",
+    )
+
+    # Methods that trigger audit logging
+    AUDITABLE_METHODS = ("POST", "PUT", "PATCH", "DELETE")
+
+    def __init__(self, get_response: Callable[[HttpRequest], HttpResponse]) -> None:
+        """Initialize the middleware.
+
+        Args:
+            get_response: The next middleware or view in the chain.
+        """
+        self.get_response = get_response
+
+    def __call__(self, request: HttpRequest) -> HttpResponse:
+        """Process the request with audit logging.
+
+        Args:
+            request: The incoming HTTP request.
+
+        Returns:
+            The HTTP response.
+        """
+        # Skip if not an auditable request
+        if not self._should_audit(request):
+            return self.get_response(request)
+
+        import structlog
+
+        from shared.audit import AuditAction, audit_logger
+
+        logger = structlog.get_logger()
+
+        # Process the request
+        response = self.get_response(request)
+
+        # Log audit event for successful write operations
+        if response.status_code < 400:
+            try:
+                self._log_audit_event(request, response)
+            except Exception as e:
+                logger.warning(
+                    "audit_logging_failed",
+                    error=str(e),
+                    path=request.path,
+                    method=request.method,
+                )
+
+        return response
+
+    def _should_audit(self, request: HttpRequest) -> bool:
+        """Check if request should be audited.
+
+        Args:
+            request: The HTTP request.
+
+        Returns:
+            True if request should be audited.
+        """
+        # Only audit write methods
+        if request.method not in self.AUDITABLE_METHODS:
+            return False
+
+        # Only audit specific paths
+        return any(
+            request.path.startswith(prefix)
+            for prefix in self.AUDITABLE_PATH_PREFIXES
+        )
+
+    def _log_audit_event(
+        self, request: HttpRequest, response: HttpResponse
+    ) -> None:
+        """Log audit event for the request.
+
+        Args:
+            request: The HTTP request.
+            response: The HTTP response.
+        """
+        from shared.audit import AuditAction, audit_logger
+
+        # Determine action from request
+        action = self._determine_action(request)
+        if not action:
+            return
+
+        # Get user info
+        user_id = None
+        tenant_id = None
+        if hasattr(request, "user") and request.user.is_authenticated:
+            user_id = getattr(request.user, "id", None)
+            tenant_id = getattr(request.user, "tenant_id", None)
+
+        # Extract resource info from path
+        resource_type, resource_id = self._extract_resource_info(request.path)
+
+        # Log the event
+        audit_logger.log_action(
+            action=action,
+            tenant_id=tenant_id,
+            user_id=user_id,
+            resource_type=resource_type,
+            resource_id=resource_id,
+            request=request,
+            details={
+                "response_status": response.status_code,
+                "method": request.method,
+            },
+        )
+
+    def _determine_action(self, request: HttpRequest) -> "AuditAction | None":
+        """Determine audit action from request.
+
+        Args:
+            request: The HTTP request.
+
+        Returns:
+            Appropriate AuditAction or None.
+        """
+        from shared.audit import AuditAction
+
+        path = request.path.lower()
+        method = request.method
+
+        # Finance actions
+        if "/accounts/" in path:
+            if method == "POST":
+                if "/close" in path:
+                    return AuditAction.ACCOUNT_CLOSE
+                if "/reopen" in path:
+                    return AuditAction.ACCOUNT_REOPEN
+                return AuditAction.ACCOUNT_CREATE
+            if method in ("PUT", "PATCH"):
+                return AuditAction.ACCOUNT_UPDATE
+            if method == "DELETE":
+                return AuditAction.ACCOUNT_DELETE
+
+        if "/transactions/" in path:
+            if method == "POST":
+                if "/post" in path:
+                    return AuditAction.TRANSACTION_POST
+                if "/void" in path:
+                    return AuditAction.TRANSACTION_VOID
+                return AuditAction.TRANSACTION_CREATE
+
+        if "/transfers/" in path:
+            if method == "POST":
+                return AuditAction.TRANSFER_CREATE
+
+        if "/assets/" in path:
+            if method == "POST":
+                if "/update-value" in path:
+                    return AuditAction.ASSET_VALUE_UPDATE
+                return AuditAction.ASSET_CREATE
+            if method in ("PUT", "PATCH"):
+                return AuditAction.ASSET_UPDATE
+            if method == "DELETE":
+                return AuditAction.ASSET_DELETE
+
+        if "/liabilities/" in path:
+            if method == "POST":
+                return AuditAction.LIABILITY_CREATE
+            if method in ("PUT", "PATCH"):
+                return AuditAction.LIABILITY_UPDATE
+            if method == "DELETE":
+                return AuditAction.LIABILITY_DELETE
+
+        if "/loans/" in path:
+            if method == "POST":
+                if "/record-payment" in path:
+                    return AuditAction.LOAN_PAYMENT
+                return AuditAction.LOAN_CREATE
+            if method in ("PUT", "PATCH"):
+                return AuditAction.LOAN_UPDATE
+            if method == "DELETE":
+                return AuditAction.LOAN_DELETE
+
+        # Auth actions
+        if "/auth/" in path:
+            if "/login" in path or "/token" in path:
+                return AuditAction.USER_LOGIN
+            if "/logout" in path:
+                return AuditAction.USER_LOGOUT
+            if "/password" in path:
+                if "reset" in path:
+                    return AuditAction.USER_PASSWORD_RESET
+                return AuditAction.USER_PASSWORD_CHANGE
+            if "/verify" in path:
+                return AuditAction.USER_EMAIL_VERIFY
+
+        return None
+
+    def _extract_resource_info(self, path: str) -> tuple[str, str | None]:
+        """Extract resource type and ID from path.
+
+        Args:
+            path: Request path.
+
+        Returns:
+            Tuple of (resource_type, resource_id).
+        """
+        parts = path.strip("/").split("/")
+
+        # Find resource type and ID
+        resource_type = "unknown"
+        resource_id = None
+
+        for i, part in enumerate(parts):
+            if part in (
+                "accounts",
+                "transactions",
+                "transfers",
+                "assets",
+                "liabilities",
+                "loans",
+                "categories",
+            ):
+                resource_type = part.rstrip("s")  # Singularize
+                # Check if next part is a UUID
+                if i + 1 < len(parts):
+                    next_part = parts[i + 1]
+                    try:
+                        uuid.UUID(next_part)
+                        resource_id = next_part
+                    except ValueError:
+                        pass
+                break
+
+        return resource_type, resource_id

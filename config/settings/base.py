@@ -91,6 +91,7 @@ MIDDLEWARE = [
     # Custom middleware
     "shared.middleware.CorrelationIdMiddleware",
     "shared.middleware.TenantContextMiddleware",
+    "shared.middleware.AuditLoggingMiddleware",
 ]
 
 # =============================================================================
@@ -283,6 +284,15 @@ REST_FRAMEWORK = {
         "verify_email": "10/minute",
         "change_password": "5/hour",
         "resend_verification": "3/hour",
+        # Finance API throttle rates
+        "finance_user": "200/hour",
+        "transaction_create": "100/hour",
+        "transfer_create": "50/hour",
+        "account_create": "10/hour",
+        "report_generate": "30/hour",
+        "bulk_operation": "10/hour",
+        "premium_finance": "1000/hour",
+        "finance_write": "100/hour",
     },
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "EXCEPTION_HANDLER": "shared.exceptions.custom_exception_handler",
@@ -315,15 +325,100 @@ SIMPLE_JWT = {
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "Django Finance API",
-    "DESCRIPTION": "Finance management platform API for tracking cash flow, loans, assets, and liabilities.",
+    "DESCRIPTION": """
+# Django Finance API
+
+A comprehensive finance management platform API for tracking:
+- **Cash Flow**: Income and expenses across multiple accounts
+- **Accounts**: Bank accounts, credit cards, cash, investments
+- **Transactions**: Credits, debits, and transfers
+- **Assets**: Real estate, vehicles, investments, collectibles
+- **Liabilities**: Credit cards, mortgages, loans
+- **Net Worth**: Calculated from all financial data
+
+## Authentication
+
+This API uses JWT (JSON Web Token) for authentication.
+
+1. Obtain tokens via `POST /api/v1/auth/token/`
+2. Include the access token in the `Authorization` header:
+   ```
+   Authorization: Bearer <access_token>
+   ```
+3. Refresh tokens via `POST /api/v1/auth/token/refresh/`
+
+## Rate Limiting
+
+- Anonymous: 100 requests/hour
+- Authenticated users: 1000 requests/hour
+- Premium users: Higher limits on finance endpoints
+
+## Multi-Tenancy
+
+All financial data is tenant-scoped. Each user has their own tenant,
+and data is automatically isolated per tenant.
+
+## Currencies
+
+Supported currencies: USD, EUR, GBP, CAD, AUD, JPY, INR
+""",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
     "SCHEMA_PATH_PREFIX": r"/api/v[0-9]",
     "COMPONENT_SPLIT_REQUEST": True,
+    # Security scheme for JWT
+    "SECURITY": [{"Bearer": []}],
+    "APPEND_COMPONENTS": {
+        "securitySchemes": {
+            "Bearer": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "description": "JWT access token obtained from /api/v1/auth/token/",
+            }
+        }
+    },
+    # Tags for organizing endpoints
+    "TAGS": [
+        {"name": "Authentication", "description": "User authentication and token management"},
+        {"name": "Accounts", "description": "Bank accounts, wallets, and account management"},
+        {"name": "Transactions", "description": "Income, expenses, and transaction management"},
+        {"name": "Transfers", "description": "Money transfers between accounts"},
+        {"name": "Assets", "description": "Asset tracking and valuation"},
+        {"name": "Liabilities", "description": "Debt and liability management"},
+        {"name": "Loans", "description": "Loan tracking and payment management"},
+        {"name": "Categories", "description": "Transaction categorization"},
+        {"name": "Reports", "description": "Financial reports and analytics"},
+    ],
     "SWAGGER_UI_SETTINGS": {
         "deepLinking": True,
         "persistAuthorization": True,
+        "displayOperationId": False,
+        "filter": True,
+        "showExtensions": True,
+        "showCommonExtensions": True,
     },
+    "REDOC_UI_SETTINGS": {
+        "hideDownloadButton": False,
+        "disableSearch": False,
+    },
+    # External documentation
+    "EXTERNAL_DOCS": {
+        "description": "Project Documentation",
+        "url": "https://github.com/your-org/django-finance",
+    },
+    # Contact information
+    "CONTACT": {
+        "name": "Django Finance Support",
+        "email": "support@djangofinance.dev",
+    },
+    # License
+    "LICENSE": {
+        "name": "MIT",
+    },
+    # Preprocessing hooks
+    "PREPROCESSING_HOOKS": [],
+    "POSTPROCESSING_HOOKS": [],
 }
 
 # =============================================================================

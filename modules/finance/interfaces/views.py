@@ -4,10 +4,13 @@ Views handle HTTP requests and delegate to use cases.
 They translate between HTTP and application layer DTOs.
 """
 
+from drf_spectacular.utils import OpenApiParameter, OpenApiResponse, extend_schema, extend_schema_view
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+
+from shared.permissions import CanCreateAccount, IsOwner, TenantIsolation
 
 from modules.finance.infrastructure.models import (
     Account,
@@ -45,7 +48,7 @@ from modules.finance.interfaces.serializers import (
 class TenantScopedViewSet(viewsets.ModelViewSet):
     """Base viewset that scopes queries to the current tenant."""
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, TenantIsolation]
 
     def get_queryset(self):
         """Filter queryset by tenant."""
@@ -61,6 +64,38 @@ class TenantScopedViewSet(viewsets.ModelViewSet):
         serializer.save(tenant_id=tenant_id)
 
 
+@extend_schema_view(
+    list=extend_schema(
+        tags=["Categories"],
+        summary="List categories",
+        description="Returns all categories for the authenticated user's tenant.",
+    ),
+    create=extend_schema(
+        tags=["Categories"],
+        summary="Create category",
+        description="Create a new transaction category.",
+    ),
+    retrieve=extend_schema(
+        tags=["Categories"],
+        summary="Get category",
+        description="Retrieve a specific category by ID.",
+    ),
+    update=extend_schema(
+        tags=["Categories"],
+        summary="Update category",
+        description="Update a category.",
+    ),
+    partial_update=extend_schema(
+        tags=["Categories"],
+        summary="Partial update category",
+        description="Partially update a category.",
+    ),
+    destroy=extend_schema(
+        tags=["Categories"],
+        summary="Delete category",
+        description="Delete a category.",
+    ),
+)
 class CategoryViewSet(TenantScopedViewSet):
     """ViewSet for Category management."""
 
@@ -73,11 +108,49 @@ class CategoryViewSet(TenantScopedViewSet):
         return CategorySerializer
 
 
+@extend_schema_view(
+    list=extend_schema(
+        tags=["Accounts"],
+        summary="List accounts",
+        description="Returns all accounts for the authenticated user's tenant.",
+    ),
+    create=extend_schema(
+        tags=["Accounts"],
+        summary="Create account",
+        description="Create a new financial account (checking, savings, credit card, etc.).",
+    ),
+    retrieve=extend_schema(
+        tags=["Accounts"],
+        summary="Get account",
+        description="Retrieve a specific account by ID.",
+    ),
+    update=extend_schema(
+        tags=["Accounts"],
+        summary="Update account",
+        description="Update an account.",
+    ),
+    partial_update=extend_schema(
+        tags=["Accounts"],
+        summary="Partial update account",
+        description="Partially update an account.",
+    ),
+    destroy=extend_schema(
+        tags=["Accounts"],
+        summary="Delete account",
+        description="Delete an account.",
+    ),
+)
 class AccountViewSet(TenantScopedViewSet):
     """ViewSet for Account management."""
 
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
+
+    def get_permissions(self):
+        """Add account creation limit check."""
+        if self.action == "create":
+            return [IsAuthenticated(), TenantIsolation(), CanCreateAccount()]
+        return super().get_permissions()
 
     def get_serializer_class(self):
         if self.action == "create":
@@ -88,6 +161,12 @@ class AccountViewSet(TenantScopedViewSet):
             return AccountBalanceSerializer
         return AccountSerializer
 
+    @extend_schema(
+        tags=["Accounts"],
+        summary="Get account balance",
+        description="Calculate and return the account balance from posted transactions.",
+        responses={200: AccountBalanceSerializer},
+    )
     @action(detail=True, methods=["get"])
     def balance(self, request, pk=None):
         """Get account balance.
@@ -127,6 +206,12 @@ class AccountViewSet(TenantScopedViewSet):
         serializer = AccountBalanceSerializer(data)
         return Response(serializer.data)
 
+    @extend_schema(
+        tags=["Accounts"],
+        summary="Close account",
+        description="Close an active account. Closed accounts cannot receive new transactions.",
+        responses={200: AccountSerializer},
+    )
     @action(detail=True, methods=["post"])
     def close(self, request, pk=None):
         """Close an account."""
@@ -136,6 +221,12 @@ class AccountViewSet(TenantScopedViewSet):
         serializer = AccountSerializer(account)
         return Response(serializer.data)
 
+    @extend_schema(
+        tags=["Accounts"],
+        summary="Reopen account",
+        description="Reopen a previously closed account.",
+        responses={200: AccountSerializer},
+    )
     @action(detail=True, methods=["post"])
     def reopen(self, request, pk=None):
         """Reopen a closed account."""
@@ -146,6 +237,46 @@ class AccountViewSet(TenantScopedViewSet):
         return Response(serializer.data)
 
 
+@extend_schema_view(
+    list=extend_schema(
+        tags=["Transactions"],
+        summary="List transactions",
+        description="Returns all transactions for the authenticated user's tenant.",
+        parameters=[
+            OpenApiParameter(
+                name="account_id",
+                description="Filter by account UUID",
+                required=False,
+                type=str,
+            ),
+        ],
+    ),
+    create=extend_schema(
+        tags=["Transactions"],
+        summary="Create transaction",
+        description="Create a new transaction (credit or debit).",
+    ),
+    retrieve=extend_schema(
+        tags=["Transactions"],
+        summary="Get transaction",
+        description="Retrieve a specific transaction by ID.",
+    ),
+    update=extend_schema(
+        tags=["Transactions"],
+        summary="Update transaction",
+        description="Update a transaction.",
+    ),
+    partial_update=extend_schema(
+        tags=["Transactions"],
+        summary="Partial update transaction",
+        description="Partially update a transaction.",
+    ),
+    destroy=extend_schema(
+        tags=["Transactions"],
+        summary="Delete transaction",
+        description="Delete a transaction.",
+    ),
+)
 class TransactionViewSet(TenantScopedViewSet):
     """ViewSet for Transaction management."""
 
@@ -167,6 +298,12 @@ class TransactionViewSet(TenantScopedViewSet):
             queryset = queryset.filter(account_id=account_id)
         return queryset.select_related("account", "category")
 
+    @extend_schema(
+        tags=["Transactions"],
+        summary="Post transaction",
+        description="Post a pending transaction to make it final.",
+        responses={200: TransactionSerializer, 400: OpenApiResponse(description="Transaction is not pending")},
+    )
     @action(detail=True, methods=["post"])
     def post(self, request, pk=None):
         """Post a pending transaction."""
@@ -184,6 +321,13 @@ class TransactionViewSet(TenantScopedViewSet):
         serializer = TransactionSerializer(transaction)
         return Response(serializer.data)
 
+    @extend_schema(
+        tags=["Transactions"],
+        summary="Void transaction",
+        description="Void a transaction. This cannot be undone.",
+        request=VoidTransactionSerializer,
+        responses={200: TransactionSerializer, 400: OpenApiResponse(description="Transaction is already voided")},
+    )
     @action(detail=True, methods=["post"])
     def void(self, request, pk=None):
         """Void a transaction."""
@@ -199,6 +343,23 @@ class TransactionViewSet(TenantScopedViewSet):
         return Response(serializer.data)
 
 
+@extend_schema_view(
+    list=extend_schema(
+        tags=["Transfers"],
+        summary="List transfers",
+        description="Returns all transfers for the authenticated user's tenant.",
+    ),
+    create=extend_schema(
+        tags=["Transfers"],
+        summary="Create transfer",
+        description="Create a transfer between two accounts. This creates linked debit and credit transactions.",
+    ),
+    retrieve=extend_schema(
+        tags=["Transfers"],
+        summary="Get transfer",
+        description="Retrieve a specific transfer by ID.",
+    ),
+)
 class TransferViewSet(TenantScopedViewSet):
     """ViewSet for Transfer management."""
 
@@ -216,6 +377,38 @@ class TransferViewSet(TenantScopedViewSet):
         )
 
 
+@extend_schema_view(
+    list=extend_schema(
+        tags=["Assets"],
+        summary="List assets",
+        description="Returns all assets for the authenticated user's tenant.",
+    ),
+    create=extend_schema(
+        tags=["Assets"],
+        summary="Create asset",
+        description="Create a new asset (real estate, investment, vehicle, etc.).",
+    ),
+    retrieve=extend_schema(
+        tags=["Assets"],
+        summary="Get asset",
+        description="Retrieve a specific asset by ID.",
+    ),
+    update=extend_schema(
+        tags=["Assets"],
+        summary="Update asset",
+        description="Update an asset.",
+    ),
+    partial_update=extend_schema(
+        tags=["Assets"],
+        summary="Partial update asset",
+        description="Partially update an asset.",
+    ),
+    destroy=extend_schema(
+        tags=["Assets"],
+        summary="Delete asset",
+        description="Delete an asset.",
+    ),
+)
 class AssetViewSet(TenantScopedViewSet):
     """ViewSet for Asset management."""
 
@@ -229,6 +422,13 @@ class AssetViewSet(TenantScopedViewSet):
             return UpdateAssetValueSerializer
         return AssetSerializer
 
+    @extend_schema(
+        tags=["Assets"],
+        summary="Update asset value",
+        description="Update the current market value of an asset.",
+        request=UpdateAssetValueSerializer,
+        responses={200: AssetSerializer},
+    )
     @action(detail=True, methods=["post"], url_path="update-value")
     def update_value(self, request, pk=None):
         """Update an asset's current value."""
@@ -240,6 +440,38 @@ class AssetViewSet(TenantScopedViewSet):
         return Response(AssetSerializer(asset).data)
 
 
+@extend_schema_view(
+    list=extend_schema(
+        tags=["Liabilities"],
+        summary="List liabilities",
+        description="Returns all liabilities for the authenticated user's tenant.",
+    ),
+    create=extend_schema(
+        tags=["Liabilities"],
+        summary="Create liability",
+        description="Create a new liability (credit card, mortgage, etc.).",
+    ),
+    retrieve=extend_schema(
+        tags=["Liabilities"],
+        summary="Get liability",
+        description="Retrieve a specific liability by ID.",
+    ),
+    update=extend_schema(
+        tags=["Liabilities"],
+        summary="Update liability",
+        description="Update a liability.",
+    ),
+    partial_update=extend_schema(
+        tags=["Liabilities"],
+        summary="Partial update liability",
+        description="Partially update a liability.",
+    ),
+    destroy=extend_schema(
+        tags=["Liabilities"],
+        summary="Delete liability",
+        description="Delete a liability.",
+    ),
+)
 class LiabilityViewSet(TenantScopedViewSet):
     """ViewSet for Liability management."""
 
@@ -252,6 +484,38 @@ class LiabilityViewSet(TenantScopedViewSet):
         return LiabilitySerializer
 
 
+@extend_schema_view(
+    list=extend_schema(
+        tags=["Loans"],
+        summary="List loans",
+        description="Returns all loans for the authenticated user's tenant.",
+    ),
+    create=extend_schema(
+        tags=["Loans"],
+        summary="Create loan",
+        description="Create a new loan with payment schedule.",
+    ),
+    retrieve=extend_schema(
+        tags=["Loans"],
+        summary="Get loan",
+        description="Retrieve a specific loan by ID.",
+    ),
+    update=extend_schema(
+        tags=["Loans"],
+        summary="Update loan",
+        description="Update a loan.",
+    ),
+    partial_update=extend_schema(
+        tags=["Loans"],
+        summary="Partial update loan",
+        description="Partially update a loan.",
+    ),
+    destroy=extend_schema(
+        tags=["Loans"],
+        summary="Delete loan",
+        description="Delete a loan.",
+    ),
+)
 class LoanViewSet(TenantScopedViewSet):
     """ViewSet for Loan management."""
 
@@ -265,6 +529,13 @@ class LoanViewSet(TenantScopedViewSet):
             return RecordLoanPaymentSerializer
         return LoanSerializer
 
+    @extend_schema(
+        tags=["Loans"],
+        summary="Record loan payment",
+        description="Record a payment against a loan, reducing the principal balance.",
+        request=RecordLoanPaymentSerializer,
+        responses={200: LoanSerializer, 400: OpenApiResponse(description="Loan is already paid off")},
+    )
     @action(detail=True, methods=["post"], url_path="record-payment")
     def record_payment(self, request, pk=None):
         """Record a loan payment."""
@@ -294,6 +565,20 @@ class ReportsViewSet(viewsets.ViewSet):
 
     permission_classes = [IsAuthenticated]
 
+    @extend_schema(
+        tags=["Reports"],
+        summary="Calculate net worth",
+        description="Calculate the total net worth for the authenticated user, including all accounts, assets, and liabilities.",
+        parameters=[
+            OpenApiParameter(
+                name="currency",
+                description="Base currency for calculation (default: USD)",
+                required=False,
+                type=str,
+            ),
+        ],
+        responses={200: NetWorthSerializer, 400: OpenApiResponse(description="No tenant context")},
+    )
     @action(detail=False, methods=["get"], url_path="net-worth")
     def net_worth(self, request):
         """Calculate net worth for the current tenant."""

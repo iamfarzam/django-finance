@@ -7,6 +7,53 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+#### 2026-02-08 - Phase 4 API and Integrations Complete
+- Created role-based permission classes in `shared/permissions.py`:
+  - `IsActiveUser`: Requires active status and verified email
+  - `IsPremiumUser`: Premium subscription check
+  - `IsSuperAdmin`: Superadmin role check
+  - `IsOwner`, `IsOwnerOrReadOnly`: Object-level ownership
+  - `TenantIsolation`: Cross-tenant access prevention
+  - `CanCreateAccount`: Account limit enforcement (3 for basic users)
+- Implemented audit logging system in `shared/audit.py`:
+  - `AuditAction` enum with 30+ auditable actions
+  - `AuditCategory` for retention classification (financial: 7y, security: 2y)
+  - `AuditEvent` dataclass with correlation and context tracking
+  - `AuditLogger` singleton for structured audit logging
+  - Sensitive field masking for security
+- Added `AuditLoggingMiddleware` for automatic API audit logging
+- Created finance-specific throttle classes in `modules/finance/interfaces/throttling.py`:
+  - `FinanceUserRateThrottle`: 200/hour for regular users
+  - `TransactionRateThrottle`: 100/hour for transaction creation
+  - `TransferRateThrottle`: 50/hour for transfers
+  - `AccountCreationRateThrottle`: 10/hour for account creation
+  - `ReportGenerationRateThrottle`: 30/hour for reports
+  - `PremiumFinanceRateThrottle`: 1000/hour for premium users
+- Enhanced drf-spectacular OpenAPI configuration:
+  - Comprehensive API description with authentication guide
+  - JWT Bearer security scheme
+  - Organized endpoint tags
+  - Swagger UI and ReDoc customization
+- Added OpenAPI decorators to all finance viewsets with proper tagging
+- Created comprehensive API documentation at `docs/api-documentation.md`:
+  - Authentication flow documentation
+  - Rate limiting documentation
+  - All endpoint documentation with examples
+  - Mobile client integration guide
+  - WebSocket connection guide
+  - Idempotency key usage
+- Created integration tests in `tests/integration/test_finance_api.py`:
+  - Account API tests (CRUD, balance, close/reopen, tenant isolation)
+  - Transaction API tests (CRUD, post, void, filtering)
+  - Transfer API tests with validation
+  - Asset, Liability, Loan API tests
+  - Reports API tests (net worth calculation)
+  - Category API tests
+- Added test fixtures to `tests/conftest.py`:
+  - User fixtures (standard, premium, superadmin)
+  - Authenticated client fixtures
+  - Finance model fixtures (account, category, transaction)
+
 #### 2026-02-08 - Phase 3 Core Domain Modeling Complete
 - Created finance module with clean/hexagonal architecture
 - Implemented domain entities: Account, Transaction, Transfer, Asset, Liability, Loan, Category

@@ -64,6 +64,10 @@ class InvalidSettlementAmountError(DebtError):
         self.remaining = remaining
 
 
+# Alias for backwards compatibility
+InsufficientSettlementAmountError = InvalidSettlementAmountError
+
+
 class ExpenseError(SocialFinanceError):
     """Error related to group expense operations."""
 
@@ -86,6 +90,10 @@ class ExpenseNotFoundError(ExpenseError):
         self.expense_id = expense_id
 
 
+# Alias for backwards compatibility
+GroupExpenseNotFoundError = ExpenseNotFoundError
+
+
 class InvalidSplitError(ExpenseError):
     """Split configuration is invalid."""
 
@@ -99,6 +107,10 @@ class SplitSumMismatchError(InvalidSplitError):
         super().__init__(f"Split total {actual} doesn't match expense total {expected}")
         self.expected = expected
         self.actual = actual
+
+
+# Alias for backwards compatibility
+InvalidSplitTotalError = SplitSumMismatchError
 
 
 class SettlementError(SocialFinanceError):

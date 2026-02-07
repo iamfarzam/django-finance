@@ -99,14 +99,18 @@ MIDDLEWARE = [
 # Database
 # =============================================================================
 
+# Parse database URL (Pydantic 2.x MultiHostUrl format)
+_db_hosts = env.database_url.hosts()
+_db_host = _db_hosts[0] if _db_hosts else {}
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": env.database_url.path.lstrip("/") if env.database_url.path else "",
-        "USER": env.database_url.username or "",
-        "PASSWORD": env.database_url.password or "",
-        "HOST": env.database_url.host or "localhost",
-        "PORT": env.database_url.port or 5432,
+        "USER": _db_host.get("username") or "",
+        "PASSWORD": _db_host.get("password") or "",
+        "HOST": _db_host.get("host") or "localhost",
+        "PORT": _db_host.get("port") or 5432,
         "CONN_MAX_AGE": 60,
         "CONN_HEALTH_CHECKS": True,
         "OPTIONS": {

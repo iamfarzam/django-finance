@@ -7,6 +7,45 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+#### 2026-02-08 - Permission-Based Access Control with Monetization
+- Created subscriptions module (`modules/subscriptions/`) with clean architecture:
+  - Domain layer: `TierCode`, `SubscriptionStatus`, `FeatureCode`, `LimitKey` enums
+  - Domain services: `PermissionService` (cached), `UsageLimitService`
+  - Infrastructure: `SubscriptionTier`, `Subscription`, `UsageRecord` models
+  - Stripe-ready fields (`external_id`, `external_customer_id`, `payment_provider`)
+- Implemented subscription tiers with feature gating:
+  - FREE: 3 accounts, 500 txn/month, 10 contacts, 2 expense groups, CSV export
+  - PREMIUM: Unlimited resources, advanced reports, PDF/JSON export, API access
+  - ENTERPRISE: Team features, priority support (future)
+- Added permission classes in `shared/permissions.py`:
+  - `HasFeature`: Check subscription tier includes feature
+  - `WithinUsageLimit`: Enforce usage limits on create actions
+  - `HasApiAccess`: Premium-only API access (web sessions always allowed)
+  - `CanExport`: Format-based export permissions (CSV free, PDF/JSON premium)
+- Implemented `FieldPermissionMixin` in `shared/serializers.py`:
+  - Field-level permissions with masking for non-premium users
+  - Support for hiding fields entirely or showing masked values
+  - Per-field feature code mapping
+- Added middleware in `shared/middleware.py`:
+  - `SubscriptionContextMiddleware`: Attach permission context to requests
+  - `UsageTrackingMiddleware`: Track API calls for usage limits
+  - Context variable for accessing subscription context anywhere
+- Integrated with finance module:
+  - `AccountViewSet`: `accounts_max` limit on create
+  - `TransactionViewSet`: `transactions_monthly` limit on create
+  - Field masking for `account_number_masked`, `notes`, `reference_number`
+- Integrated with social module:
+  - `ContactViewSet`: `contacts_max` limit on create
+  - `ExpenseGroupViewSet`: `expense_groups_max` limit on create
+  - Field masking for `email`, `phone`, `notes`
+- Added audit actions for subscription events:
+  - `SUBSCRIPTION_CREATED`, `SUBSCRIPTION_UPGRADED`, `SUBSCRIPTION_DOWNGRADED`
+  - `SUBSCRIPTION_CANCELED`, `USAGE_LIMIT_EXCEEDED`
+- Data migration creates default tiers and migrates existing users:
+  - Users with PREMIUM role → premium tier subscription
+  - All other users → free tier subscription
+- Added 51 unit tests for subscription services, permissions, and serializers
+
 #### 2026-02-08 - Test Suite and Serializer Fixes
 - Fixed DRF serializers to implement `create()` methods correctly:
   - All Create*Serializers now properly create model instances

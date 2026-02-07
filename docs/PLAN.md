@@ -45,7 +45,7 @@ The platform supports web, mobile, and real-time features while keeping SEO and 
 | 3 | Core Domain Modeling (Personal Finance) | **Done** |
 | 4 | API and Integrations | **Done** |
 | 5 | Social Finance Domain | **Done** |
-| 6 | Real-time Features | Not started |
+| 6 | Real-time Features | **In progress** |
 | 7 | Web UI | Not started |
 | 8 | Admin Modernization | Not started |
 | 9 | Optional React SSR Web | Not started |
@@ -407,22 +407,58 @@ The platform supports web, mobile, and real-time features while keeping SEO and 
 ---
 
 ## Phase 6: Real-time Features
-**Status**: Not started
+**Status**: In progress
+**Started**: 2026-02-08
 
 ### Prerequisites
 - Phase 5 complete
 
 ### Deliverables
-- [ ] Channels consumer implementation
-- [ ] Event routing and groups
-- [ ] WebSocket authentication
-- [ ] Real-time balance updates (personal and social)
-- [ ] Transaction notifications
-- [ ] Debt/expense notifications (when shared)
-- [ ] Settlement notifications
-- [ ] Backpressure handling
-- [ ] Connection health monitoring
-- [ ] Integration tests for WebSocket flows
+- [x] Channels consumer implementation
+  - [x] Base AuthenticatedConsumer with JWT authentication
+  - [x] FinanceConsumer for finance domain updates
+  - [x] SocialConsumer for social finance updates
+- [x] Event routing and groups
+  - [x] WebSocket URL routing updated
+  - [x] NotificationChannel enum with all channels
+- [x] WebSocket authentication
+  - [x] JWT token validation in query string
+  - [x] User ID and tenant ID extraction
+- [x] Notification service
+  - [x] NotificationPayload dataclass
+  - [x] NotificationType enum with all notification types
+  - [x] NotificationService for sending to channel groups
+- [x] Real-time balance updates (personal and social)
+- [x] Transaction notifications
+- [x] Debt/expense notifications (when shared)
+- [x] Settlement notifications
+- [x] Backpressure handling
+  - [x] BackpressureHandler class
+  - [x] Message queue management
+  - [x] Priority-based message handling
+- [x] Connection health monitoring
+  - [x] ConnectionState tracking
+  - [x] HealthMonitor with ping/pong heartbeat
+  - [x] Latency measurement
+  - [x] Unhealthy connection detection
+- [x] Event handlers for domain events
+  - [x] FinanceEventHandler
+  - [x] SocialEventHandler
+- [x] Integration tests for WebSocket flows
+
+### Key Components Created
+- `shared/consumers/` - WebSocket consumers
+  - `base.py` - AuthenticatedConsumer with JWT auth
+  - `finance.py` - FinanceConsumer for finance updates
+  - `social.py` - SocialConsumer for social updates
+  - `health.py` - HealthMonitor, BackpressureHandler, ConnectionState
+- `shared/notifications/` - Notification service
+  - `types.py` - NotificationType and NotificationChannel enums
+  - `service.py` - NotificationService for sending updates
+- `shared/events/` - Event handlers
+  - `handlers.py` - FinanceEventHandler, SocialEventHandler
+- `shared/routing.py` - WebSocket URL patterns (updated)
+- `tests/integration/test_websocket.py` - Integration tests
 
 ---
 

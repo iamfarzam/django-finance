@@ -7,6 +7,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+#### 2026-02-08 - Phase 6 Real-time Features In Progress
+- Created WebSocket consumers with JWT authentication:
+  - `AuthenticatedConsumer`: Base consumer with JWT auth from query string
+  - `FinanceConsumer`: Real-time finance updates (balance, transactions, net worth)
+  - `SocialConsumer`: Real-time social updates (peer debts, expenses, settlements)
+- Implemented notification service in `shared/notifications/`:
+  - `NotificationType` enum with 20+ notification types
+  - `NotificationChannel` enum for channel layer groups
+  - `NotificationPayload` dataclass for message structure
+  - `NotificationService` for sending updates to users/groups
+- Created connection health monitoring in `shared/consumers/health.py`:
+  - `ConnectionState`: Track connection metrics (messages, bytes, latency)
+  - `HealthMonitor`: Ping/pong heartbeat with configurable intervals
+  - `BackpressureHandler`: Queue-based message sending with priority support
+- Implemented event handlers in `shared/events/`:
+  - `FinanceEventHandler`: Converts finance domain events to notifications
+  - `SocialEventHandler`: Converts social domain events to notifications
+- Updated WebSocket routing to include new consumers:
+  - `/ws/finance/` - Finance domain real-time updates
+  - `/ws/social/` - Social finance real-time updates
+- Created integration tests for WebSocket functionality:
+  - Health monitoring tests
+  - Backpressure handling tests
+  - Consumer message handler tests
+  - Notification service tests
+
 #### 2026-02-08 - Phase 5 Social Finance Domain Complete
 - Created social finance module with clean/hexagonal architecture
 - Implemented domain entities:

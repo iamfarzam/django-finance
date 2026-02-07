@@ -1,0 +1,80 @@
+{% extends "base/app.html" %}
+
+{% block title %}Balance Summary{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="mb-8">
+        <h1 class="text-2xl font-bold text-gray-900">Balance Summary</h1>
+        <p class="mt-1 text-sm text-gray-500">See who owes you and who you owe.</p>
+    </div>
+
+    {% if balances %}
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- They owe you -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+            <div class="p-6 border-b border-gray-200 bg-success-50">
+                <h2 class="text-lg font-semibold text-success-800">They Owe You</h2>
+            </div>
+            <div class="divide-y divide-gray-200">
+                {% for balance in balances %}
+                    {% if balance.direction == 'they_owe' %}
+                    <div class="p-4 flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="h-10 w-10 rounded-full bg-success-100 flex items-center justify-center">
+                                <span class="text-sm font-medium text-success-600">{{ balance.contact.name|slice:":1"|upper }}</span>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-900">{{ balance.contact.name }}</p>
+                            </div>
+                        </div>
+                        <span class="text-sm font-medium text-success-600">{{ balance.amount }}</span>
+                    </div>
+                    {% endif %}
+                {% empty %}
+                <div class="p-8 text-center text-gray-500">
+                    No one owes you money.
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- You owe them -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+            <div class="p-6 border-b border-gray-200 bg-danger-50">
+                <h2 class="text-lg font-semibold text-danger-800">You Owe Them</h2>
+            </div>
+            <div class="divide-y divide-gray-200">
+                {% for balance in balances %}
+                    {% if balance.direction == 'you_owe' %}
+                    <div class="p-4 flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="h-10 w-10 rounded-full bg-danger-100 flex items-center justify-center">
+                                <span class="text-sm font-medium text-danger-600">{{ balance.contact.name|slice:":1"|upper }}</span>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-900">{{ balance.contact.name }}</p>
+                            </div>
+                        </div>
+                        <span class="text-sm font-medium text-danger-600">{{ balance.amount }}</span>
+                    </div>
+                    {% endif %}
+                {% empty %}
+                <div class="p-8 text-center text-gray-500">
+                    You don't owe anyone money.
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center py-12 bg-white rounded-lg shadow-sm border border-gray-200">
+        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <h3 class="mt-2 text-sm font-medium text-gray-900">All settled up!</h3>
+        <p class="mt-1 text-sm text-gray-500">You have no outstanding balances with anyone.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

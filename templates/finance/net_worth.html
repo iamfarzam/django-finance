@@ -1,0 +1,78 @@
+{% extends "base/app.html" %}
+
+{% block title %}Net Worth{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="mb-8">
+        <h1 class="text-2xl font-bold text-gray-900">Net Worth</h1>
+        <p class="mt-1 text-sm text-gray-500">Overview of your assets and liabilities.</p>
+    </div>
+
+    <!-- Summary -->
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div>
+                <p class="text-sm text-gray-500">Total Assets</p>
+                <p class="text-3xl font-bold text-success-600">${{ total_assets|floatformat:2 }}</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500">Total Liabilities</p>
+                <p class="text-3xl font-bold text-danger-600">${{ total_liabilities|floatformat:2 }}</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500">Net Worth</p>
+                <p class="text-3xl font-bold {% if net_worth >= 0 %}text-primary-600{% else %}text-danger-600{% endif %}">
+                    ${{ net_worth|floatformat:2 }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Assets -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+            <div class="p-6 border-b border-gray-200 bg-success-50">
+                <h2 class="text-lg font-semibold text-success-800">Assets</h2>
+            </div>
+            <div class="divide-y divide-gray-200">
+                {% for asset in assets %}
+                <div class="p-4 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-900">{{ asset.name }}</p>
+                        <p class="text-xs text-gray-500">{{ asset.type|title }}</p>
+                    </div>
+                    <span class="text-sm font-medium text-success-600">{{ asset.formatted }}</span>
+                </div>
+                {% empty %}
+                <div class="p-8 text-center text-gray-500">
+                    No assets yet.
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Liabilities -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+            <div class="p-6 border-b border-gray-200 bg-danger-50">
+                <h2 class="text-lg font-semibold text-danger-800">Liabilities</h2>
+            </div>
+            <div class="divide-y divide-gray-200">
+                {% for liability in liabilities %}
+                <div class="p-4 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-900">{{ liability.name }}</p>
+                        <p class="text-xs text-gray-500">{{ liability.type|title }}</p>
+                    </div>
+                    <span class="text-sm font-medium text-danger-600">{{ liability.formatted }}</span>
+                </div>
+                {% empty %}
+                <div class="p-8 text-center text-gray-500">
+                    No liabilities.
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

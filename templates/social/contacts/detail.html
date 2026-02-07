@@ -1,0 +1,71 @@
+{% extends "base/app.html" %}
+
+{% block title %}{{ contact.name }}{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <nav class="mb-4" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2 text-sm text-gray-500">
+            <li><a href="{% url 'web:contacts_list' %}" class="hover:text-gray-700">Contacts</a></li>
+            <li><span class="mx-2">/</span></li>
+            <li class="text-gray-900">{{ contact.name }}</li>
+        </ol>
+    </nav>
+
+    <div class="bg-white shadow-sm rounded-lg border border-gray-200">
+        <div class="p-6 border-b border-gray-200">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="h-16 w-16 rounded-full bg-gray-100 flex items-center justify-center">
+                        <span class="text-2xl font-medium text-gray-600">{{ contact.name|slice:":1"|upper }}</span>
+                    </div>
+                    <div class="ml-4">
+                        <h1 class="text-xl font-bold text-gray-900">{{ contact.name }}</h1>
+                        <p class="text-sm text-gray-500">{{ contact.email|default:"No email" }}</p>
+                    </div>
+                </div>
+                <a href="{% url 'web:contact_update' contact.pk %}" class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                    Edit
+                </a>
+            </div>
+        </div>
+
+        <dl class="p-6 space-y-4">
+            {% if contact.phone %}
+            <div class="flex justify-between">
+                <dt class="text-sm text-gray-500">Phone</dt>
+                <dd class="text-sm font-medium text-gray-900">{{ contact.phone }}</dd>
+            </div>
+            {% endif %}
+            {% if contact.notes %}
+            <div>
+                <dt class="text-sm text-gray-500 mb-1">Notes</dt>
+                <dd class="text-sm text-gray-900">{{ contact.notes }}</dd>
+            </div>
+            {% endif %}
+        </dl>
+    </div>
+
+    <!-- Debts with this contact -->
+    {% if debts %}
+    <div class="mt-8 bg-white rounded-lg shadow-sm border border-gray-200">
+        <div class="p-6 border-b border-gray-200">
+            <h2 class="text-lg font-semibold text-gray-900">Debts</h2>
+        </div>
+        <div class="divide-y divide-gray-200">
+            {% for debt in debts %}
+            <div class="p-4 flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-gray-900">{{ debt.reason|default:"Debt" }}</p>
+                    <p class="text-xs text-gray-500">{{ debt.debt_date|date:"M d, Y" }}</p>
+                </div>
+                <span class="text-sm font-medium {% if debt.direction == 'lent' %}text-success-600{% else %}text-danger-600{% endif %}">
+                    {% if debt.direction == 'lent' %}They owe{% else %}You owe{% endif %} ${{ debt.remaining_amount|floatformat:2 }}
+                </span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

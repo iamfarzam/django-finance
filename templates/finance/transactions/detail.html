@@ -1,0 +1,54 @@
+{% extends "base/app.html" %}
+
+{% block title %}Transaction Details{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <nav class="mb-4" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2 text-sm text-gray-500">
+            <li><a href="{% url 'web:transactions_list' %}" class="hover:text-gray-700">Transactions</a></li>
+            <li><span class="mx-2">/</span></li>
+            <li class="text-gray-900">Details</li>
+        </ol>
+    </nav>
+
+    <div class="bg-white shadow-sm rounded-lg border border-gray-200">
+        <div class="p-6 border-b border-gray-200">
+            <div class="flex items-center justify-between">
+                <h1 class="text-xl font-bold text-gray-900">{{ transaction.description|default:"Transaction" }}</h1>
+                <span class="text-2xl font-bold {% if transaction.transaction_type == 'credit' %}text-success-600{% else %}text-danger-600{% endif %}">
+                    {% if transaction.transaction_type == 'credit' %}+{% else %}-{% endif %}${{ transaction.amount|floatformat:2 }}
+                </span>
+            </div>
+        </div>
+        <dl class="p-6 space-y-4">
+            <div class="flex justify-between">
+                <dt class="text-sm text-gray-500">Date</dt>
+                <dd class="text-sm font-medium text-gray-900">{{ transaction.transaction_date|date:"F d, Y" }}</dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-sm text-gray-500">Account</dt>
+                <dd class="text-sm font-medium text-gray-900">{{ transaction.account.name }}</dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-sm text-gray-500">Type</dt>
+                <dd class="text-sm font-medium text-gray-900">{{ transaction.transaction_type|title }}</dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-sm text-gray-500">Category</dt>
+                <dd class="text-sm font-medium text-gray-900">{{ transaction.category.name|default:"Uncategorized" }}</dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-sm text-gray-500">Status</dt>
+                <dd class="text-sm font-medium text-gray-900">{{ transaction.status|title }}</dd>
+            </div>
+        </dl>
+    </div>
+
+    <div class="mt-6 flex justify-end">
+        <a href="{% url 'web:transactions_list' %}" class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+            Back to Transactions
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base/app.html" %}
+
+{% block title %}Debt Details{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <nav class="mb-4" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2 text-sm text-gray-500">
+            <li><a href="{% url 'web:debts_list' %}" class="hover:text-gray-700">Debts</a></li>
+            <li><span class="mx-2">/</span></li>
+            <li class="text-gray-900">{{ debt.contact.name }}</li>
+        </ol>
+    </nav>
+
+    <div class="bg-white shadow-sm rounded-lg border border-gray-200">
+        <div class="p-6 border-b border-gray-200 {% if debt.direction == 'lent' %}bg-success-50{% else %}bg-danger-50{% endif %}">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm {% if debt.direction == 'lent' %}text-success-600{% else %}text-danger-600{% endif %}">
+                        {% if debt.direction == 'lent' %}They owe you{% else %}You owe them{% endif %}
+                    </p>
+                    <p class="text-3xl font-bold {% if debt.direction == 'lent' %}text-success-800{% else %}text-danger-800{% endif %}">
+                        ${{ debt.remaining_amount|floatformat:2 }}
+                    </p>
+                </div>
+                <span class="px-3 py-1 rounded-full text-sm font-medium {% if debt.status == 'active' %}bg-yellow-100 text-yellow-800{% elif debt.status == 'settled' %}bg-green-100 text-green-800{% else %}bg-gray-100 text-gray-800{% endif %}">
+                    {{ debt.status|title }}
+                </span>
+            </div>
+        </div>
+
+        <dl class="p-6 space-y-4">
+            <div class="flex justify-between">
+                <dt class="text-sm text-gray-500">Contact</dt>
+                <dd class="text-sm font-medium text-gray-900">{{ debt.contact.name }}</dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-sm text-gray-500">Original Amount</dt>
+                <dd class="text-sm font-medium text-gray-900">${{ debt.amount|floatformat:2 }} {{ debt.currency_code }}</dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-sm text-gray-500">Date</dt>
+                <dd class="text-sm font-medium text-gray-900">{{ debt.debt_date|date:"F d, Y" }}</dd>
+            </div>
+            {% if debt.reason %}
+            <div>
+                <dt class="text-sm text-gray-500 mb-1">Reason</dt>
+                <dd class="text-sm text-gray-900">{{ debt.reason }}</dd>
+            </div>
+            {% endif %}
+        </dl>
+
+        {% if debt.status == 'active' %}
+        <div class="p-6 border-t border-gray-200 flex justify-end space-x-3">
+            <a href="{% url 'web:settlement_create' %}?debt={{ debt.pk }}" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700">
+                Record Settlement
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

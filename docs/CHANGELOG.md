@@ -7,6 +7,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+#### 2026-02-08 - Phase 3 Core Domain Modeling Complete
+- Created finance module with clean/hexagonal architecture
+- Implemented domain entities: Account, Transaction, Transfer, Asset, Liability, Loan, Category
+- Created value objects: Money, Currency, IdempotencyKey, ExchangeRate
+- Implemented domain services: BalanceCalculator, NetWorthCalculator, CashFlowAnalyzer, TransactionValidator
+- Added domain events for all entities (AccountCreated, TransactionPosted, etc.)
+- Implemented single-entry accounting model (balance = credits - debits)
+- Added monetary precision with Decimal and per-currency decimal places
+- Implemented ROUND_HALF_UP rounding policy for financial calculations
+- Added immutable transaction support with adjustment workflow
+- Implemented idempotency key support for financial writes
+- Created tenant-scoped Django ORM models with proper indexes and constraints
+- Added Django admin configuration for all finance models
+- Created DRF serializers with currency validation
+- Implemented API viewsets for accounts, transactions, transfers, assets, liabilities, loans
+- Added net worth calculation endpoint
+- Created comprehensive unit tests for domain logic (value objects, entities, services)
+- Supported currencies: USD, EUR, GBP, CAD, AUD, JPY, INR
+
 #### 2026-02-08 - Phase 2 Foundations Complete
 - Created Django project structure with ASGI/Channels/Daphne support
 - Implemented settings split by environment (local, test, production)

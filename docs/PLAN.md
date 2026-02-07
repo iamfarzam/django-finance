@@ -1,7 +1,7 @@
 # Project Plan
 
 Created: 2026-02-07
-Last Updated: 2026-02-07
+Last Updated: 2026-02-08
 Status: Active
 
 ## How to Use This Plan
@@ -33,7 +33,7 @@ Build a production-ready, async-first finance management platform with a decoupl
 | 0 | Discovery and Requirements | **Done** |
 | 1 | Architecture and Baseline Standards | **Done** |
 | 2 | Foundations | **Done** |
-| 3 | Core Domain Modeling | Not started |
+| 3 | Core Domain Modeling | **Done** |
 | 4 | API and Integrations | Not started |
 | 5 | Real-time Features | Not started |
 | 6 | Web UI | Not started |
@@ -165,27 +165,58 @@ Build a production-ready, async-first finance management platform with a decoupl
 ---
 
 ## Phase 3: Core Domain Modeling
-**Status**: Not started
+**Status**: Done
+**Completed**: 2026-02-08
 
 ### Prerequisites
 - Phase 2 complete
 
 ### Deliverables
-- [ ] Core domain entities:
-  - [ ] Account/Wallet
-  - [ ] Transaction (inflow/outflow)
-  - [ ] Asset
-  - [ ] Liability
-  - [ ] Loan
-- [ ] Domain services and validation rules
-- [ ] Monetary precision and currency handling
-- [ ] Rounding policies documented
-- [ ] Accounting model implementation (single-entry or ledger)
-- [ ] Immutable financial records with adjustment workflows
-- [ ] Tenant scoping on all domain models
-- [ ] Idempotency key support for financial writes
-- [ ] Migration strategy and data integrity checks
-- [ ] Unit tests for domain logic
+- [x] Core domain entities:
+  - [x] Account/Wallet
+  - [x] Transaction (inflow/outflow)
+  - [x] Asset
+  - [x] Liability
+  - [x] Loan
+  - [x] Transfer (between accounts)
+  - [x] Category (transaction classification)
+- [x] Domain services and validation rules
+- [x] Monetary precision and currency handling
+- [x] Rounding policies documented
+- [x] Accounting model implementation (single-entry)
+- [x] Immutable financial records with adjustment workflows
+- [x] Tenant scoping on all domain models
+- [x] Idempotency key support for financial writes
+- [x] Migration strategy and data integrity checks
+- [x] Unit tests for domain logic
+
+### Key Components Created
+- `modules/finance/domain/` - Pure Python domain layer
+  - `enums.py` - Transaction types, account types, asset types, etc.
+  - `value_objects.py` - Money, Currency, IdempotencyKey, ExchangeRate
+  - `entities.py` - Account, Transaction, Transfer, Asset, Liability, Loan, Category
+  - `services.py` - BalanceCalculator, NetWorthCalculator, CashFlowAnalyzer
+  - `events.py` - Domain events for all entities
+  - `exceptions.py` - Domain-specific exceptions
+- `modules/finance/application/` - Use cases and interfaces
+  - `dto.py` - Data transfer objects for all entities
+  - `interfaces.py` - Repository interfaces
+  - `use_cases.py` - Application use cases
+- `modules/finance/infrastructure/` - Django ORM layer
+  - `models.py` - Django models with tenant scoping
+  - `admin.py` - Django admin configuration
+- `modules/finance/interfaces/` - API layer
+  - `serializers.py` - DRF serializers
+  - `views.py` - DRF viewsets
+  - `urls.py` - API URL routing
+- `tests/unit/finance/` - Unit tests for domain logic
+
+### Technical Decisions
+- Single-entry accounting (Amount positive, type determines direction)
+- Currency support: USD, EUR, GBP, CAD, AUD, JPY, INR
+- Decimal precision: 4 decimal places for storage, rounded per currency
+- Rounding: ROUND_HALF_UP (banker's rounding)
+- Balance calculated from transactions, not stored
 
 ---
 

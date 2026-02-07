@@ -66,7 +66,7 @@ PROJECT_APPS = [
     # Feature modules (infrastructure layer for Django)
     "modules.accounts.infrastructure",
     "modules.demo.infrastructure",
-    # "modules.finance.infrastructure",
+    "modules.finance.infrastructure",
     # "modules.notifications.infrastructure",
 ]
 

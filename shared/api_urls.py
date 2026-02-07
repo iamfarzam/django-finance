@@ -12,6 +12,6 @@ urlpatterns = [
     path("auth/", include("modules.accounts.interfaces.urls", namespace="accounts")),
     # Demo module
     path("demo/", include("modules.demo.interfaces.urls", namespace="demo")),
-    # Future modules:
-    # path("finance/", include("modules.finance.interfaces.urls")),
+    # Finance module
+    path("finance/", include("modules.finance.interfaces.urls", namespace="finance")),
 ]

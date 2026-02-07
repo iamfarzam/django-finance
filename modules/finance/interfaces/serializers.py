@@ -49,6 +49,8 @@ class MoneyField(serializers.DecimalField):
 class CategorySerializer(serializers.ModelSerializer):
     """Serializer for Category model."""
 
+    parent = serializers.SerializerMethodField()
+
     class Meta:
         model = Category
         fields = [
@@ -64,6 +66,12 @@ class CategorySerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ["id", "is_system", "created_at", "updated_at"]
 
+    def get_parent(self, obj):
+        """Return parent ID as string."""
+        if obj.parent_id:
+            return str(obj.parent_id)
+        return None
+
 
 class CreateCategorySerializer(serializers.Serializer):
     """Serializer for creating a category."""
@@ -73,6 +81,13 @@ class CreateCategorySerializer(serializers.Serializer):
     icon = serializers.CharField(max_length=50, required=False, allow_null=True)
     color = serializers.CharField(max_length=7, required=False, allow_null=True)
     is_income = serializers.BooleanField(default=False)
+
+    def create(self, validated_data):
+        """Create a new category."""
+        parent_id = validated_data.pop("parent_id", None)
+        if parent_id:
+            validated_data["parent_id"] = parent_id
+        return Category.objects.create(**validated_data)
 
 
 # =============================================================================
@@ -119,6 +134,11 @@ class CreateAccountSerializer(serializers.Serializer):
     account_number_masked = serializers.CharField(max_length=50, required=False, allow_null=True)
     notes = serializers.CharField(required=False, allow_null=True)
     initial_balance = MoneyField(required=False, allow_null=True)
+
+    def create(self, validated_data):
+        """Create a new account."""
+        validated_data.pop("initial_balance", None)  # Handle separately if needed
+        return Account.objects.create(**validated_data)
 
 
 class UpdateAccountSerializer(serializers.Serializer):
@@ -206,6 +226,17 @@ class CreateTransactionSerializer(serializers.Serializer):
     idempotency_key = serializers.CharField(max_length=255, required=False, allow_null=True)
     auto_post = serializers.BooleanField(default=True)
 
+    def create(self, validated_data):
+        """Create a new transaction."""
+        from datetime import date
+
+        validated_data.pop("idempotency_key", None)
+        validated_data.pop("auto_post", None)
+        validated_data["account_id"] = validated_data.pop("account_id")
+        if "transaction_date" not in validated_data:
+            validated_data["transaction_date"] = date.today()
+        return Transaction.objects.create(**validated_data)
+
 
 class VoidTransactionSerializer(serializers.Serializer):
     """Serializer for voiding a transaction."""
@@ -258,6 +289,15 @@ class CreateTransferSerializer(serializers.Serializer):
                 {"to_account_id": "Cannot transfer to the same account"}
             )
         return data
+
+    def create(self, validated_data):
+        """Create a new transfer."""
+        from datetime import date
+
+        validated_data.pop("idempotency_key", None)
+        if "transfer_date" not in validated_data:
+            validated_data["transfer_date"] = date.today()
+        return Transfer.objects.create(**validated_data)
 
 
 # =============================================================================
@@ -314,6 +354,10 @@ class CreateAssetSerializer(serializers.Serializer):
     purchase_price = MoneyField(required=False, allow_null=True)
     description = serializers.CharField(required=False, allow_null=True)
     notes = serializers.CharField(required=False, allow_null=True)
+
+    def create(self, validated_data):
+        """Create a new asset."""
+        return Asset.objects.create(**validated_data)
 
 
 class UpdateAssetValueSerializer(serializers.Serializer):
@@ -374,6 +418,10 @@ class CreateLiabilitySerializer(serializers.Serializer):
     creditor = serializers.CharField(max_length=100, required=False, allow_null=True)
     account_number_masked = serializers.CharField(max_length=50, required=False, allow_null=True)
     notes = serializers.CharField(required=False, allow_null=True)
+
+    def create(self, validated_data):
+        """Create a new liability."""
+        return Liability.objects.create(**validated_data)
 
 
 # =============================================================================
@@ -451,6 +499,13 @@ class CreateLoanSerializer(serializers.Serializer):
     account_number_masked = serializers.CharField(max_length=50, required=False, allow_null=True)
     notes = serializers.CharField(required=False, allow_null=True)
     linked_account_id = serializers.UUIDField(required=False, allow_null=True)
+
+    def create(self, validated_data):
+        """Create a new loan."""
+        principal = validated_data.pop("principal")
+        validated_data["original_principal"] = principal
+        validated_data["current_balance"] = principal
+        return Loan.objects.create(**validated_data)
 
 
 class RecordLoanPaymentSerializer(serializers.Serializer):

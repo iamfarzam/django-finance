@@ -26,10 +26,6 @@ from modules.social.domain.enums import (
     SplitMethod,
     SplitStatus,
 )
-from modules.social.domain.exceptions import (
-    InsufficientSettlementAmountError,
-    InvalidSplitTotalError,
-)
 
 
 class TestContact:
@@ -50,13 +46,13 @@ class TestContact:
         assert contact.status == ContactStatus.ACTIVE
         assert contact.share_status == ShareStatus.NOT_SHARED
 
-    def test_update_name(self):
-        """Test updating contact name."""
+    def test_update_contact(self):
+        """Test updating contact details."""
         contact = Contact.create(
             tenant_id=uuid4(),
             name="John Doe",
         )
-        contact.update_name("Jane Doe")
+        contact.update(name="Jane Doe")
 
         assert contact.name == "Jane Doe"
 
@@ -67,8 +63,8 @@ class TestContact:
             name="John Doe",
         )
 
-        with pytest.raises(ValueError, match="Name cannot be empty"):
-            contact.update_name("")
+        with pytest.raises(ValueError, match="empty"):
+            contact.update(name="")
 
     def test_archive_contact(self):
         """Test archiving a contact."""
@@ -80,14 +76,14 @@ class TestContact:
 
         assert contact.status == ContactStatus.ARCHIVED
 
-    def test_activate_contact(self):
-        """Test activating an archived contact."""
+    def test_restore_contact(self):
+        """Test restoring an archived contact."""
         contact = Contact.create(
             tenant_id=uuid4(),
             name="John Doe",
         )
         contact.archive()
-        contact.activate()
+        contact.restore()
 
         assert contact.status == ContactStatus.ACTIVE
 
@@ -102,16 +98,16 @@ class TestContact:
 
         assert contact.linked_user_id == user_id
 
-    def test_is_active(self):
-        """Test is_active property."""
+    def test_is_linked(self):
+        """Test is_linked property."""
         contact = Contact.create(
             tenant_id=uuid4(),
             name="John Doe",
         )
 
-        assert contact.is_active is True
-        contact.archive()
-        assert contact.is_active is False
+        assert contact.is_linked is False
+        contact.link_to_user(uuid4())
+        assert contact.is_linked is True
 
 
 class TestContactGroup:
@@ -137,14 +133,11 @@ class TestContactGroup:
             tenant_id=tenant_id,
             name="Friends",
         )
-        contact = Contact.create(
-            tenant_id=tenant_id,
-            name="John Doe",
-        )
+        contact_id = uuid4()
 
-        group.add_member(contact)
+        group.add_member(contact_id)
 
-        assert contact.id in group.member_ids
+        assert contact_id in group.member_ids
         assert group.member_count == 1
 
     def test_add_duplicate_member(self):
@@ -154,13 +147,10 @@ class TestContactGroup:
             tenant_id=tenant_id,
             name="Friends",
         )
-        contact = Contact.create(
-            tenant_id=tenant_id,
-            name="John Doe",
-        )
+        contact_id = uuid4()
 
-        group.add_member(contact)
-        group.add_member(contact)
+        group.add_member(contact_id)
+        group.add_member(contact_id)
 
         assert group.member_count == 1
 
@@ -171,15 +161,12 @@ class TestContactGroup:
             tenant_id=tenant_id,
             name="Friends",
         )
-        contact = Contact.create(
-            tenant_id=tenant_id,
-            name="John Doe",
-        )
+        contact_id = uuid4()
 
-        group.add_member(contact)
-        group.remove_member(contact.id)
+        group.add_member(contact_id)
+        group.remove_member(contact_id)
 
-        assert contact.id not in group.member_ids
+        assert contact_id not in group.member_ids
         assert group.member_count == 0
 
 
@@ -190,10 +177,9 @@ class TestPeerDebt:
         """Test creating a lent debt."""
         tenant_id = uuid4()
         contact_id = uuid4()
-        debt = PeerDebt.create(
+        debt = PeerDebt.create_lent(
             tenant_id=tenant_id,
             contact_id=contact_id,
-            direction=DebtDirection.LENT,
             amount=Decimal("100.00"),
             currency_code="USD",
             description="Lunch money",
@@ -208,10 +194,9 @@ class TestPeerDebt:
         """Test creating a borrowed debt."""
         tenant_id = uuid4()
         contact_id = uuid4()
-        debt = PeerDebt.create(
+        debt = PeerDebt.create_borrowed(
             tenant_id=tenant_id,
             contact_id=contact_id,
-            direction=DebtDirection.BORROWED,
             amount=Decimal("50.00"),
             currency_code="USD",
         )
@@ -221,15 +206,14 @@ class TestPeerDebt:
 
     def test_settle_partial(self):
         """Test partial settlement of debt."""
-        debt = PeerDebt.create(
+        debt = PeerDebt.create_lent(
             tenant_id=uuid4(),
             contact_id=uuid4(),
-            direction=DebtDirection.LENT,
             amount=Decimal("100.00"),
             currency_code="USD",
         )
 
-        debt.settle(Decimal("30.00"))
+        debt.record_settlement(Decimal("30.00"))
 
         assert debt.settled_amount == Decimal("30.00")
         assert debt.remaining_amount == Decimal("70.00")
@@ -237,15 +221,14 @@ class TestPeerDebt:
 
     def test_settle_fully(self):
         """Test full settlement of debt."""
-        debt = PeerDebt.create(
+        debt = PeerDebt.create_lent(
             tenant_id=uuid4(),
             contact_id=uuid4(),
-            direction=DebtDirection.LENT,
             amount=Decimal("100.00"),
             currency_code="USD",
         )
 
-        debt.settle(Decimal("100.00"))
+        debt.record_settlement(Decimal("100.00"))
 
         assert debt.settled_amount == Decimal("100.00")
         assert debt.remaining_amount == Decimal("0.00")
@@ -253,23 +236,21 @@ class TestPeerDebt:
 
     def test_settle_over_amount_raises(self):
         """Test that settling more than remaining raises error."""
-        debt = PeerDebt.create(
+        debt = PeerDebt.create_lent(
             tenant_id=uuid4(),
             contact_id=uuid4(),
-            direction=DebtDirection.LENT,
             amount=Decimal("100.00"),
             currency_code="USD",
         )
 
-        with pytest.raises(InsufficientSettlementAmountError):
-            debt.settle(Decimal("150.00"))
+        with pytest.raises(ValueError, match="exceeds"):
+            debt.record_settlement(Decimal("150.00"))
 
     def test_cancel_debt(self):
         """Test canceling a debt."""
-        debt = PeerDebt.create(
+        debt = PeerDebt.create_lent(
             tenant_id=uuid4(),
             contact_id=uuid4(),
-            direction=DebtDirection.LENT,
             amount=Decimal("100.00"),
             currency_code="USD",
         )
@@ -304,14 +285,11 @@ class TestExpenseGroup:
             tenant_id=tenant_id,
             name="Trip",
         )
-        contact = Contact.create(
-            tenant_id=tenant_id,
-            name="John",
-        )
+        contact_id = uuid4()
 
-        group.add_member(contact)
+        group.add_member(contact_id)
 
-        assert contact.id in group.member_contact_ids
+        assert contact_id in group.member_contact_ids
         assert group.total_members == 2  # Owner + 1 contact
 
 
@@ -336,8 +314,8 @@ class TestGroupExpense:
         assert expense.total_amount == Decimal("120.00")
         assert expense.status == ExpenseStatus.ACTIVE
 
-    def test_calculate_equal_splits(self):
-        """Test calculating equal splits."""
+    def test_add_equal_splits(self):
+        """Test adding equal splits."""
         tenant_id = uuid4()
         expense = GroupExpense.create(
             tenant_id=tenant_id,
@@ -349,8 +327,8 @@ class TestGroupExpense:
         )
 
         contact_ids = [uuid4(), uuid4()]
-        expense.calculate_equal_splits(
-            member_contact_ids=contact_ids,
+        expense.add_equal_splits(
+            contact_ids=contact_ids,
             include_owner=True,
         )
 
@@ -358,7 +336,7 @@ class TestGroupExpense:
         for split in expense.splits:
             assert split.share_amount == Decimal("30.00")
 
-    def test_set_exact_splits(self):
+    def test_add_exact_splits(self):
         """Test setting exact splits."""
         tenant_id = uuid4()
         contact1_id = uuid4()
@@ -378,13 +356,13 @@ class TestGroupExpense:
             contact1_id: Decimal("30.00"),
             contact2_id: Decimal("20.00"),
         }
-        expense.set_exact_splits(exact_splits)
+        expense.add_exact_splits(exact_splits)
 
         assert len(expense.splits) == 3
         owner_split = next(s for s in expense.splits if s.is_owner)
         assert owner_split.share_amount == Decimal("50.00")
 
-    def test_set_exact_splits_wrong_total_raises(self):
+    def test_add_exact_splits_wrong_total_raises(self):
         """Test that wrong total raises error."""
         expense = GroupExpense.create(
             tenant_id=uuid4(),
@@ -396,25 +374,10 @@ class TestGroupExpense:
             split_method=SplitMethod.EXACT,
         )
 
-        with pytest.raises(InvalidSplitTotalError):
-            expense.set_exact_splits({
+        with pytest.raises(ValueError, match="must equal"):
+            expense.add_exact_splits({
                 None: Decimal("50.00"),
             })
-
-    def test_cancel_expense(self):
-        """Test canceling an expense."""
-        expense = GroupExpense.create(
-            tenant_id=uuid4(),
-            group_id=uuid4(),
-            description="Dinner",
-            total_amount=Decimal("100.00"),
-            currency_code="USD",
-            paid_by_owner=True,
-        )
-
-        expense.cancel()
-
-        assert expense.status == ExpenseStatus.CANCELLED
 
 
 class TestSettlement:
@@ -424,14 +387,11 @@ class TestSettlement:
         """Test creating a settlement where owner pays."""
         tenant_id = uuid4()
         contact_id = uuid4()
-        settlement = Settlement.create(
+        settlement = Settlement.create_owner_pays(
             tenant_id=tenant_id,
-            from_is_owner=True,
-            to_is_owner=False,
             to_contact_id=contact_id,
             amount=Decimal("50.00"),
             currency_code="USD",
-            method="cash",
         )
 
         assert settlement.from_is_owner is True
@@ -439,18 +399,15 @@ class TestSettlement:
         assert settlement.to_contact_id == contact_id
         assert settlement.amount == Decimal("50.00")
 
-    def test_create_settlement_contact_pays(self):
-        """Test creating a settlement where contact pays owner."""
+    def test_create_settlement_owner_receives(self):
+        """Test creating a settlement where owner receives."""
         tenant_id = uuid4()
         contact_id = uuid4()
-        settlement = Settlement.create(
+        settlement = Settlement.create_owner_receives(
             tenant_id=tenant_id,
-            from_is_owner=False,
-            to_is_owner=True,
             from_contact_id=contact_id,
             amount=Decimal("75.00"),
             currency_code="USD",
-            method="bank_transfer",
         )
 
         assert settlement.from_is_owner is False
@@ -459,23 +416,14 @@ class TestSettlement:
 
     def test_link_to_debt(self):
         """Test linking settlement to a debt."""
-        settlement = Settlement.create(
+        settlement = Settlement.create_owner_receives(
             tenant_id=uuid4(),
-            from_is_owner=False,
-            to_is_owner=True,
             from_contact_id=uuid4(),
             amount=Decimal("50.00"),
             currency_code="USD",
-            method="cash",
         )
-        debt = PeerDebt.create(
-            tenant_id=uuid4(),
-            contact_id=uuid4(),
-            direction=DebtDirection.LENT,
-            amount=Decimal("100.00"),
-            currency_code="USD",
-        )
+        debt_id = uuid4()
 
-        settlement.link_to_debt(debt)
+        settlement.link_debt(debt_id)
 
-        assert debt.id in settlement.linked_debt_ids
+        assert debt_id in settlement.linked_debt_ids

@@ -49,6 +49,7 @@ class TenantScopedViewSet(viewsets.ModelViewSet):
     """Base viewset that scopes queries to the current tenant."""
 
     permission_classes = [IsAuthenticated, TenantIsolation]
+    ordering = ["-created_at"]
 
     def get_queryset(self):
         """Filter queryset by tenant."""
@@ -107,6 +108,16 @@ class CategoryViewSet(TenantScopedViewSet):
             return CreateCategorySerializer
         return CategorySerializer
 
+    def create(self, request, *args, **kwargs):
+        """Create category and return with read serializer."""
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        # Return with read serializer
+        read_serializer = CategorySerializer(serializer.instance)
+        headers = self.get_success_headers(read_serializer.data)
+        return Response(read_serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
 
 @extend_schema_view(
     list=extend_schema(
@@ -160,6 +171,15 @@ class AccountViewSet(TenantScopedViewSet):
         if self.action == "balance":
             return AccountBalanceSerializer
         return AccountSerializer
+
+    def create(self, request, *args, **kwargs):
+        """Create account and return with read serializer."""
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        read_serializer = AccountSerializer(serializer.instance)
+        headers = self.get_success_headers(read_serializer.data)
+        return Response(read_serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     @extend_schema(
         tags=["Accounts"],
@@ -298,6 +318,15 @@ class TransactionViewSet(TenantScopedViewSet):
             queryset = queryset.filter(account_id=account_id)
         return queryset.select_related("account", "category")
 
+    def create(self, request, *args, **kwargs):
+        """Create transaction and return with read serializer."""
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        read_serializer = TransactionSerializer(serializer.instance)
+        headers = self.get_success_headers(read_serializer.data)
+        return Response(read_serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
     @extend_schema(
         tags=["Transactions"],
         summary="Post transaction",
@@ -376,6 +405,15 @@ class TransferViewSet(TenantScopedViewSet):
             "from_account", "to_account", "from_transaction", "to_transaction"
         )
 
+    def create(self, request, *args, **kwargs):
+        """Create transfer and return with read serializer."""
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        read_serializer = TransferSerializer(serializer.instance)
+        headers = self.get_success_headers(read_serializer.data)
+        return Response(read_serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
 
 @extend_schema_view(
     list=extend_schema(
@@ -421,6 +459,15 @@ class AssetViewSet(TenantScopedViewSet):
         if self.action == "update_value":
             return UpdateAssetValueSerializer
         return AssetSerializer
+
+    def create(self, request, *args, **kwargs):
+        """Create asset and return with read serializer."""
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        read_serializer = AssetSerializer(serializer.instance)
+        headers = self.get_success_headers(read_serializer.data)
+        return Response(read_serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     @extend_schema(
         tags=["Assets"],
@@ -483,6 +530,15 @@ class LiabilityViewSet(TenantScopedViewSet):
             return CreateLiabilitySerializer
         return LiabilitySerializer
 
+    def create(self, request, *args, **kwargs):
+        """Create liability and return with read serializer."""
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        read_serializer = LiabilitySerializer(serializer.instance)
+        headers = self.get_success_headers(read_serializer.data)
+        return Response(read_serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
 
 @extend_schema_view(
     list=extend_schema(
@@ -528,6 +584,15 @@ class LoanViewSet(TenantScopedViewSet):
         if self.action == "record_payment":
             return RecordLoanPaymentSerializer
         return LoanSerializer
+
+    def create(self, request, *args, **kwargs):
+        """Create loan and return with read serializer."""
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        read_serializer = LoanSerializer(serializer.instance)
+        headers = self.get_success_headers(read_serializer.data)
+        return Response(read_serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     @extend_schema(
         tags=["Loans"],

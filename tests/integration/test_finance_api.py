@@ -7,6 +7,7 @@ including authentication, serialization, database operations, and response forma
 from __future__ import annotations
 
 import uuid
+from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -104,7 +105,9 @@ class TestAccountAPI:
         response = authenticated_client.post(url, data, format="json")
 
         assert response.status_code == status.HTTP_400_BAD_REQUEST
-        assert "currency_code" in response.data
+        # Error is wrapped in custom error format
+        assert "error" in response.data
+        assert "currency_code" in str(response.data["error"]["message"])
 
     def test_list_accounts(self, authenticated_client: "APIClient", user: "User"):
         """Test listing accounts for current tenant."""
@@ -177,6 +180,7 @@ class TestAccountAPI:
             amount=Decimal("1000.00"),
             currency_code="USD",
             status="posted",
+            transaction_date=date.today(),
         )
         Transaction.objects.create(
             tenant_id=user.tenant_id,
@@ -185,6 +189,7 @@ class TestAccountAPI:
             amount=Decimal("250.00"),
             currency_code="USD",
             status="posted",
+            transaction_date=date.today(),
         )
 
         url = reverse("api-v1:finance:account-balance", kwargs={"pk": account.id})
@@ -281,6 +286,7 @@ class TestTransactionAPI:
             amount=Decimal("100.00"),
             currency_code="USD",
             status="posted",
+            transaction_date=date.today(),
         )
         Transaction.objects.create(
             tenant_id=user.tenant_id,
@@ -289,6 +295,7 @@ class TestTransactionAPI:
             amount=Decimal("50.00"),
             currency_code="USD",
             status="posted",
+            transaction_date=date.today(),
         )
 
         url = reverse("api-v1:finance:transaction-list")
@@ -316,6 +323,7 @@ class TestTransactionAPI:
             transaction_type="credit",
             amount=Decimal("100.00"),
             currency_code="USD",
+            transaction_date=date.today(),
         )
         Transaction.objects.create(
             tenant_id=user.tenant_id,
@@ -323,6 +331,7 @@ class TestTransactionAPI:
             transaction_type="credit",
             amount=Decimal("200.00"),
             currency_code="USD",
+            transaction_date=date.today(),
         )
 
         url = f"{reverse('api-v1:finance:transaction-list')}?account_id={account.id}"
@@ -344,6 +353,7 @@ class TestTransactionAPI:
             amount=Decimal("100.00"),
             currency_code="USD",
             status="pending",
+            transaction_date=date.today(),
         )
 
         url = reverse("api-v1:finance:transaction-post", kwargs={"pk": transaction.id})
@@ -366,6 +376,7 @@ class TestTransactionAPI:
             amount=Decimal("100.00"),
             currency_code="USD",
             status="posted",
+            transaction_date=date.today(),
         )
 
         url = reverse("api-v1:finance:transaction-void", kwargs={"pk": transaction.id})
@@ -565,6 +576,7 @@ class TestReportsAPI:
             amount=Decimal("5000.00"),
             currency_code="USD",
             status="posted",
+            transaction_date=date.today(),
         )
 
         # Create asset
@@ -587,7 +599,7 @@ class TestReportsAPI:
             is_included_in_net_worth=True,
         )
 
-        url = reverse("api-v1:finance:reports-net-worth")
+        url = reverse("api-v1:finance:report-net-worth")
         response = authenticated_client.get(url)
 
         assert response.status_code == status.HTTP_200_OK

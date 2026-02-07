@@ -7,6 +7,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+#### 2026-02-08 - Test Suite and Serializer Fixes
+- Fixed DRF serializers to implement `create()` methods correctly:
+  - All Create*Serializers now properly create model instances
+  - ViewSets return read serializers after create operations
+- Fixed CategorySerializer to return parent UUID as string
+- Added default ordering (`-created_at`) to TenantScopedViewSet for CursorPagination
+- Fixed integration tests:
+  - Added `transaction_date` to all Transaction.objects.create() calls
+  - Corrected URL name for reports API (`report-net-worth`)
+  - Updated error response assertions to match custom exception handler format
+- Fixed social entity tests to use correct method signatures:
+  - `update()` instead of `update_name()`
+  - `restore()` instead of `activate()`
+  - `record_settlement()` instead of `settle()`
+  - Factory methods: `create_lent()`, `create_borrowed()`, `create_owner_pays()`, `create_owner_receives()`
+- All 197 tests now pass
+
 #### 2026-02-08 - Phase 8 Admin Modernization Complete
 - Created custom admin site with branding in `shared/admin/`:
   - `FinanceAdminSite`: Custom admin with finance-themed styling

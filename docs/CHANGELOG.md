@@ -7,6 +7,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+#### 2026-02-07 - Phase 0 Discovery Complete
+- Defined user roles and permissions (Anonymous, User, Premium, SuperAdmin)
+- Specified tenant context source (JWT claim for API, session for web)
+- Selected single-entry accounting model for B2C personal finance
+- Defined currency scope with 7 initial currencies (USD, EUR, GBP, CAD, AUD, JPY, INR)
+- Established audit log retention policy (7 years financial, 2 years security)
+- Defined audit access control per role
+
 #### 2026-02-07 - Baseline Completion
 - Added internationalization (i18n) requirements and rules
 - Added accessibility (a11y) requirements with WCAG 2.1 AA compliance

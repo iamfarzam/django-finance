@@ -89,12 +89,67 @@ This document defines the baseline standards for architecture, coding practices,
 
 Full dependency list: [`pyproject.toml`](../pyproject.toml)
 
+## User Roles and Permissions
+
+### Role Definitions
+
+| Role | Description | Access Level |
+|------|-------------|--------------|
+| **Anonymous** | Unauthenticated visitor | Public pages only |
+| **User** | Registered free account | Own data, basic features |
+| **Premium** | Paid subscriber | Own data, all features |
+| **SuperAdmin** | Internal staff | All tenants, admin panel |
+
+### Permission Matrix
+
+| Permission | Anonymous | User | Premium | SuperAdmin |
+|------------|-----------|------|---------|------------|
+| View public pages | ✓ | ✓ | ✓ | ✓ |
+| Register/Login | ✓ | - | - | - |
+| View own dashboard | - | ✓ | ✓ | ✓ |
+| Manage transactions | - | ✓ | ✓ | ✓ |
+| Manage accounts | - | ✓ (limit 3) | ✓ (unlimited) | ✓ |
+| View reports | - | ✓ (basic) | ✓ (advanced) | ✓ |
+| Export data | - | ✓ (CSV) | ✓ (CSV, JSON, PDF) | ✓ |
+| API access | - | - | ✓ | ✓ |
+| Delete account | - | ✓ | ✓ | - |
+| Access admin panel | - | - | - | ✓ |
+| View other tenants | - | - | - | ✓ |
+
+### Implementation
+- Permissions enforced via Django's permission system
+- Role stored on User model as `role` field (TextChoices)
+- Premium status derived from active subscription
+- SuperAdmin is Django's `is_staff=True`
+
 ## Multi-Tenancy (B2C)
 
 ### Design
 - Single database with `tenant_id` on all tenant-owned tables
 - Each customer account is a tenant
 - Tenant context derived from authenticated user's account
+
+### Tenant Context Source
+
+| Surface | Context Source | Implementation |
+|---------|----------------|----------------|
+| **Web UI** | Session | `request.user.tenant_id` from authenticated session |
+| **API** | JWT claim | `tenant_id` claim in access token payload |
+| **WebSocket** | JWT on connect | Validate token, extract `tenant_id` on handshake |
+| **Celery** | Task payload | `tenant_id` passed explicitly, re-validated on execution |
+| **Admin** | Session + filter | SuperAdmin sees all; filter by selected tenant |
+
+### Token Structure (JWT)
+```python
+{
+    "user_id": "uuid",
+    "tenant_id": "uuid",      # Primary tenant identifier
+    "email": "user@example.com",
+    "role": "user",           # user | premium | superadmin
+    "exp": 1234567890,
+    "iat": 1234567890,
+}
+```
 
 ### Enforcement Rules
 1. Every tenant-owned model includes `tenant_id` foreign key
@@ -197,6 +252,51 @@ Document any sync-only exceptions with justification.
 | Immutability | Financial records are append-only |
 | Corrections | Via adjustment transactions only |
 | Idempotency | Required for all write APIs |
+
+### Accounting Model
+
+**Decision: Single-Entry Accounting**
+
+| Aspect | Choice | Rationale |
+|--------|--------|-----------|
+| Model | Single-entry | Simpler for personal finance; B2C users don't need double-entry |
+| Balance | Calculated | Sum of transactions, not stored separately |
+| Sign convention | Amount always positive | Transaction type (credit/debit) determines direction |
+
+### How It Works
+
+```
+Account Balance = SUM(credits) - SUM(debits)
+
+Transaction:
+- amount: Decimal (always positive)
+- type: credit | debit
+- account_id: FK to Account
+```
+
+### Currency Scope
+
+| Aspect | Decision |
+|--------|----------|
+| Base currency | USD (configurable per tenant) |
+| Multi-currency | Supported per account |
+| Exchange rates | Stored at transaction time |
+| Display currency | User preference |
+| Reporting currency | Tenant's base currency |
+
+### Supported Currencies (Initial)
+
+| Code | Name | Decimal Places |
+|------|------|----------------|
+| USD | US Dollar | 2 |
+| EUR | Euro | 2 |
+| GBP | British Pound | 2 |
+| CAD | Canadian Dollar | 2 |
+| AUD | Australian Dollar | 2 |
+| JPY | Japanese Yen | 0 |
+| INR | Indian Rupee | 2 |
+
+Additional currencies added based on user demand.
 
 ## API Standards (DRF)
 
@@ -402,8 +502,41 @@ locale/
 
 ### Audit
 - `AuditEvent` model: append-only, access-controlled
-- Retention policy defined per data type
 - User data export/delete support (B2C compliance)
+
+### Audit Log Retention Policy
+
+| Event Category | Retention Period | Rationale |
+|----------------|------------------|-----------|
+| **Authentication** | 2 years | Security compliance |
+| Login, logout, failed attempts | | |
+| **Financial Transactions** | 7 years | Tax/legal requirements |
+| Transaction CRUD, balance changes | | |
+| **Account Changes** | 7 years | Regulatory compliance |
+| Profile updates, email changes | | |
+| **Security Events** | 2 years | Security forensics |
+| Password changes, MFA, lockouts | | |
+| **Admin Actions** | 7 years | Accountability |
+| All SuperAdmin operations | | |
+| **Data Export/Delete** | 7 years | GDPR compliance proof |
+| User data requests | | |
+| **API Access** | 90 days | Debugging, rate limit |
+| API calls (aggregated) | | |
+
+### Audit Access Control
+
+| Role | Access Level |
+|------|--------------|
+| User | Own audit events only (limited fields) |
+| Premium | Own audit events only (limited fields) |
+| SuperAdmin | All audit events (full fields) |
+| System | Write-only (append) |
+
+### Audit Data Handling
+- Audit logs are **never deleted** before retention period
+- User account deletion: audit logs anonymized, not deleted
+- Audit logs stored in separate table with restricted access
+- Audit logs included in backups with same retention
 
 ## Error Handling
 

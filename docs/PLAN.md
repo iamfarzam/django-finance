@@ -30,7 +30,7 @@ Build a production-ready, async-first finance management platform with a decoupl
 
 | Phase | Name | Status |
 |-------|------|--------|
-| 0 | Discovery and Requirements | Not started |
+| 0 | Discovery and Requirements | **Done** |
 | 1 | Architecture and Baseline Standards | **Done** |
 | 2 | Foundations | Not started |
 | 3 | Core Domain Modeling | Not started |
@@ -45,21 +45,28 @@ Build a production-ready, async-first finance management platform with a decoupl
 ---
 
 ## Phase 0: Discovery and Requirements
-**Status**: Not started
+**Status**: Done
+**Completed**: 2026-02-07
 
 ### Deliverables
-- [ ] Finalize the domain glossary and bounded contexts
-- [ ] Define user roles, permissions, and audit requirements
-- [ ] Finalize the account model and tenant boundaries (B2C)
-- [ ] Finalize multi-tenancy design (single database with tenant scoping)
-- [ ] Define the tenant context source (account ID, subdomain, or header)
-- [ ] Select and document infrastructure choices (database, cache/broker, object storage)
-- [ ] Finalize the authentication approach (no OAuth before first release)
-- [ ] Finalize data retention and privacy requirements
-- [ ] Finalize password policy and account recovery requirements
-- [ ] Finalize the accounting model and currency scope
-- [ ] Finalize data export/delete expectations (B2C)
-- [ ] Finalize audit log retention and access policies
+- [x] Finalize the domain glossary and bounded contexts
+- [x] Define user roles, permissions, and audit requirements
+- [x] Finalize the account model and tenant boundaries (B2C)
+- [x] Finalize multi-tenancy design (single database with tenant scoping)
+- [x] Define the tenant context source (account ID, subdomain, or header)
+- [x] Select and document infrastructure choices (database, cache/broker, object storage)
+- [x] Finalize the authentication approach (no OAuth before first release)
+- [x] Finalize data retention and privacy requirements
+- [x] Finalize password policy and account recovery requirements
+- [x] Finalize the accounting model and currency scope
+- [x] Finalize data export/delete expectations (B2C)
+- [x] Finalize audit log retention and access policies
+
+### Key Decisions
+- **User Roles**: Anonymous, User, Premium, SuperAdmin
+- **Tenant Context**: JWT claim for API, session for web
+- **Accounting Model**: Single-entry (simpler for B2C personal finance)
+- **Audit Retention**: 7 years for financial/account, 2 years for security
 
 ---
 

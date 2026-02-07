@@ -1,0 +1,169 @@
+{% extends "admin/index.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    .finance-dashboard {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    .stat-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 12px;
+        padding: 1.5rem;
+        color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .stat-card.success {
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    }
+    .stat-card.warning {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    .stat-card.info {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+    .stat-card h3 {
+        font-size: 0.875rem;
+        font-weight: 500;
+        opacity: 0.9;
+        margin: 0 0 0.5rem 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .stat-card .value {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0;
+    }
+    .stat-card .subtitle {
+        font-size: 0.75rem;
+        opacity: 0.8;
+        margin-top: 0.5rem;
+    }
+    .quick-links {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    .quick-links h2 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #333;
+        margin: 0 0 1rem 0;
+    }
+    .quick-links-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+    .quick-link {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        background: white;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        border: 1px solid #e9ecef;
+    }
+    .quick-link:hover {
+        background: #667eea;
+        color: white;
+        border-color: #667eea;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+    .quick-link svg {
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-right: 0.75rem;
+    }
+    #header {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+    #branding h1 {
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <!-- Dashboard Stats -->
+    <div class="finance-dashboard">
+        <div class="stat-card">
+            <h3>{% trans "Total Users" %}</h3>
+            <p class="value">{{ user_count|default:"--" }}</p>
+            <p class="subtitle">{% trans "Registered accounts" %}</p>
+        </div>
+        <div class="stat-card success">
+            <h3>{% trans "Active Sessions" %}</h3>
+            <p class="value">{{ session_count|default:"--" }}</p>
+            <p class="subtitle">{% trans "Current active sessions" %}</p>
+        </div>
+        <div class="stat-card warning">
+            <h3>{% trans "Pending Tasks" %}</h3>
+            <p class="value">{{ task_count|default:"--" }}</p>
+            <p class="subtitle">{% trans "Background tasks" %}</p>
+        </div>
+        <div class="stat-card info">
+            <h3>{% trans "System Health" %}</h3>
+            <p class="value">{% trans "OK" %}</p>
+            <p class="subtitle">{% trans "All systems operational" %}</p>
+        </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="quick-links">
+        <h2>{% trans "Quick Actions" %}</h2>
+        <div class="quick-links-grid">
+            <a href="{% url 'admin:accounts_user_changelist' %}" class="quick-link">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                </svg>
+                {% trans "Manage Users" %}
+            </a>
+            <a href="{% url 'admin:finance_account_changelist' %}" class="quick-link">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                </svg>
+                {% trans "View Accounts" %}
+            </a>
+            <a href="{% url 'admin:finance_transaction_changelist' %}" class="quick-link">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                </svg>
+                {% trans "Transactions" %}
+            </a>
+            <a href="{% url 'admin:social_contact_changelist' %}" class="quick-link">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                {% trans "Contacts" %}
+            </a>
+            <a href="{% url 'admin:social_peerdebt_changelist' %}" class="quick-link">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                {% trans "Peer Debts" %}
+            </a>
+            <a href="{% url 'admin:social_settlement_changelist' %}" class="quick-link">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                {% trans "Settlements" %}
+            </a>
+        </div>
+    </div>
+
+    <!-- Default app list -->
+    {{ block.super }}
+</div>
+{% endblock %}

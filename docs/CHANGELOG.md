@@ -7,6 +7,50 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+#### 2026-02-08 - Phase 8 Admin Modernization Complete
+- Created custom admin site with branding in `shared/admin/`:
+  - `FinanceAdminSite`: Custom admin with finance-themed styling
+  - Dashboard statistics view with financial summaries
+  - Audit log visibility page
+- Implemented base admin classes and mixins:
+  - `TenantScopedAdmin`: Base class with automatic tenant filtering
+  - `AuditLogMixin`: Automatic audit logging for admin actions
+  - `ExportMixin`: CSV export action for all models
+  - `ReadOnlyAdminMixin`: For read-only admin views
+  - `SoftDeleteMixin`: For soft delete/restore actions
+- Enhanced Accounts admin:
+  - Role and status badges with color coding
+  - Email verification status display
+  - Lock status with visual indicators
+  - Actions: Activate, suspend, verify emails, unlock, premium upgrade/revoke
+  - Token cleanup actions for expired verification/reset tokens
+- Enhanced Finance admin:
+  - Transaction inline on accounts for recent activity
+  - Status badges (active/closed, pending/posted/voided)
+  - Amount displays with color coding (green for credits, red for debits)
+  - Progress bars for loan repayment visualization
+  - Actions: Activate/close accounts, post/void transactions, include/exclude net worth
+  - Gain/loss display for assets
+- Enhanced Social admin:
+  - Debt inline on contacts for quick balance view
+  - Direction badges (lent/borrowed with arrows)
+  - Remaining amount highlighting
+  - Overdue date warnings for pending debts
+  - Settlement display with from→to arrows
+  - Payment method badges with colors
+  - Actions: Settle debts, mark partial payment, activate/deactivate contacts
+- Created custom admin templates:
+  - `admin/finance_index.html`: Custom dashboard with quick stats and links
+  - `admin/dashboard_stats.html`: Detailed financial statistics page
+  - `admin/audit_logs.html`: Audit log information and access guide
+- Created admin documentation at `docs/admin.md`:
+  - Feature overview and access levels
+  - Module-specific admin documentation
+  - Bulk actions reference
+  - Audit logging guide
+  - Security best practices
+  - Customization examples
+
 #### 2026-02-08 - Phase 7 Web UI Complete
 - Created base template system with TailwindCSS and Alpine.js:
   - `base.html`: Root template with full SEO meta tags, accessibility features

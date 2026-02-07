@@ -14,4 +14,6 @@ urlpatterns = [
     path("demo/", include("modules.demo.interfaces.urls", namespace="demo")),
     # Finance module
     path("finance/", include("modules.finance.interfaces.urls", namespace="finance")),
+    # Social finance module
+    path("social/", include("modules.social.interfaces.urls", namespace="social")),
 ]

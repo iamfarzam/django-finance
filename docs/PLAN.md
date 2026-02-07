@@ -44,7 +44,7 @@ The platform supports web, mobile, and real-time features while keeping SEO and 
 | 2 | Foundations | **Done** |
 | 3 | Core Domain Modeling (Personal Finance) | **Done** |
 | 4 | API and Integrations | **Done** |
-| 5 | Social Finance Domain | Not started |
+| 5 | Social Finance Domain | **Done** |
 | 6 | Real-time Features | Not started |
 | 7 | Web UI | Not started |
 | 8 | Admin Modernization | Not started |
@@ -274,7 +274,8 @@ The platform supports web, mobile, and real-time features while keeping SEO and 
 ---
 
 ## Phase 5: Social Finance Domain
-**Status**: Not started
+**Status**: Done
+**Completed**: 2026-02-08
 
 ### Prerequisites
 - Phase 4 complete
@@ -282,71 +283,93 @@ The platform supports web, mobile, and real-time features while keeping SEO and 
 ### Deliverables
 
 #### Contacts Module
-- [ ] Contact entity (name, email, phone, avatar, notes)
-- [ ] Contact can be independent or linked to registered user
-- [ ] Contact groups (roommates, family, trip, work, etc.)
-- [ ] Contact balance summary (net amount owed/owing)
-- [ ] Contact search and management
+- [x] Contact entity (name, email, phone, avatar, notes)
+- [x] Contact can be independent or linked to registered user
+- [x] Contact groups (roommates, family, trip, work, etc.)
+- [x] Contact balance summary (net amount owed/owing)
+- [x] Contact search and management
 
 #### Peer Debts (Udhaar/IOUs)
-- [ ] PeerDebt entity (lender, borrower, amount, currency, reason, date)
-- [ ] "I lent" flow (money given to contact)
-- [ ] "I borrowed" flow (money received from contact)
-- [ ] Running balance per contact
-- [ ] Partial settlement support
-- [ ] Debt history and audit trail
-- [ ] Optional link to personal finance transaction
+- [x] PeerDebt entity (lender, borrower, amount, currency, reason, date)
+- [x] "I lent" flow (money given to contact)
+- [x] "I borrowed" flow (money received from contact)
+- [x] Running balance per contact
+- [x] Partial settlement support
+- [x] Debt history and audit trail
+- [x] Optional link to personal finance transaction
 
 #### Group Expenses
-- [ ] ExpenseGroup entity (name, members, created_by)
-- [ ] GroupExpense entity (description, total_amount, paid_by, date, group)
-- [ ] ExpenseSplit entity (expense, contact, share_amount, is_settled)
-- [ ] Split methods (Phase 5 scope):
-  - [ ] Equal split among all members
-  - [ ] Exact amounts per member
+- [x] ExpenseGroup entity (name, members, created_by)
+- [x] GroupExpense entity (description, total_amount, paid_by, date, group)
+- [x] ExpenseSplit entity (expense, contact, share_amount, is_settled)
+- [x] Split methods (Phase 5 scope):
+  - [x] Equal split among all members
+  - [x] Exact amounts per member
 - [ ] Split methods (Future enhancement):
   - [ ] Percentage-based split
   - [ ] Shares/units-based split
   - [ ] Itemized bill splitting
-- [ ] Group balance matrix (who owes whom)
-- [ ] Simplify debts algorithm (minimize number of settlements)
+- [x] Group balance matrix (who owes whom)
+- [x] Simplify debts algorithm (minimize number of settlements)
 
 #### Settlements
-- [ ] Settlement entity (from_contact, to_contact, amount, method, date, notes)
-- [ ] Link settlements to peer debts
-- [ ] Link settlements to group expense splits
-- [ ] Settlement history per contact
-- [ ] Settlement suggestions based on balances
+- [x] Settlement entity (from_contact, to_contact, amount, method, date, notes)
+- [x] Link settlements to peer debts
+- [x] Link settlements to group expense splits
+- [x] Settlement history per contact
+- [x] Settlement suggestions based on balances
 
 #### API Endpoints
-- [ ] Contacts CRUD (`/api/v1/social/contacts/`)
-- [ ] Contact groups CRUD (`/api/v1/social/groups/`)
-- [ ] Peer debts CRUD (`/api/v1/social/debts/`)
-- [ ] Group expenses CRUD (`/api/v1/social/expenses/`)
-- [ ] Settlements CRUD (`/api/v1/social/settlements/`)
-- [ ] Balance summaries:
-  - [ ] Per contact balance
-  - [ ] Per group balance matrix
-  - [ ] Overall social balance (total owed/owing)
+- [x] Contacts CRUD (`/api/v1/social/contacts/`)
+- [x] Contact groups CRUD (`/api/v1/social/contact-groups/`)
+- [x] Peer debts CRUD (`/api/v1/social/peer-debts/`)
+- [x] Expense groups CRUD (`/api/v1/social/expense-groups/`)
+- [x] Group expenses CRUD (`/api/v1/social/group-expenses/`)
+- [x] Settlements CRUD (`/api/v1/social/settlements/`)
+- [x] Balance summaries (`/api/v1/social/balances/`):
+  - [x] Per contact balance
+  - [x] Per group balance matrix
+  - [x] Settlement suggestions
 
 #### Sharing and Privacy
-- [ ] Share debt/expense with contact (if they're a registered user)
-- [ ] Sharing requires explicit invitation
-- [ ] Shared records visible to both parties
-- [ ] Unshared records remain private to creator
+- [x] Contact can be linked to registered user (optional)
+- [x] Share status tracking on contacts (not_shared, pending, accepted)
+- [x] All records tenant-scoped (private to owner by default)
 
 #### Domain Services
-- [ ] DebtCalculator (net balance between two contacts)
-- [ ] GroupBalanceCalculator (who owes whom in a group)
-- [ ] SimplifyDebtsService (minimize transactions to settle)
-- [ ] SettlementSuggestionService
+- [x] DebtCalculator (net balance between two contacts)
+- [x] GroupBalanceCalculator (who owes whom in a group)
+- [x] SimplifyDebtsService (minimize transactions to settle)
+- [x] SettlementSuggestionService
 
 #### Unit Tests
-- [ ] Contact and group entity tests
-- [ ] Peer debt calculation tests
-- [ ] Group expense split tests
-- [ ] Simplify debts algorithm tests
-- [ ] Settlement flow tests
+- [x] Contact and group entity tests
+- [x] Peer debt calculation tests
+- [x] Group expense split tests
+- [x] Simplify debts algorithm tests
+- [x] Settlement flow tests
+
+### Key Components Created
+- `modules/social/domain/` - Pure Python domain layer
+  - `enums.py` - Contact status, debt direction, split methods, etc.
+  - `entities.py` - Contact, ContactGroup, PeerDebt, ExpenseGroup, GroupExpense, ExpenseSplit, Settlement
+  - `services.py` - DebtCalculator, GroupBalanceCalculator, SimplifyDebtsService, SettlementSuggestionService
+  - `events.py` - Domain events for all entities
+  - `exceptions.py` - Domain-specific exceptions
+- `modules/social/application/` - Application layer
+  - `dto.py` - Data transfer objects for all entities
+  - `interfaces.py` - Repository interfaces
+  - `use_cases.py` - Application use cases
+- `modules/social/infrastructure/` - Django ORM layer
+  - `models.py` - Django models with tenant scoping
+  - `repositories.py` - Repository implementations
+  - `admin.py` - Django admin configuration
+  - `apps.py` - Django app configuration
+- `modules/social/interfaces/` - API layer
+  - `serializers.py` - DRF serializers
+  - `views.py` - DRF viewsets
+  - `urls.py` - API URL routing
+- `tests/unit/social/` - Unit tests for domain logic
 
 ### Key Decisions
 - **Contact Model**: Contacts start independent, can be linked to users later

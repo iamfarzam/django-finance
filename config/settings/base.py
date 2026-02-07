@@ -67,6 +67,7 @@ PROJECT_APPS = [
     "modules.accounts.infrastructure",
     "modules.demo.infrastructure",
     "modules.finance.infrastructure",
+    "modules.social.infrastructure",
     # "modules.notifications.infrastructure",
 ]
 
@@ -389,6 +390,13 @@ Supported currencies: USD, EUR, GBP, CAD, AUD, JPY, INR
         {"name": "Loans", "description": "Loan tracking and payment management"},
         {"name": "Categories", "description": "Transaction categorization"},
         {"name": "Reports", "description": "Financial reports and analytics"},
+        {"name": "Social - Contacts", "description": "Friends and contacts management"},
+        {"name": "Social - Contact Groups", "description": "Contact group management"},
+        {"name": "Social - Peer Debts", "description": "Money lent/borrowed between peers"},
+        {"name": "Social - Expense Groups", "description": "Group expense splitting setup"},
+        {"name": "Social - Group Expenses", "description": "Shared expenses with automatic splitting"},
+        {"name": "Social - Settlements", "description": "Debt settlement records"},
+        {"name": "Social - Balances", "description": "Balance calculations and suggestions"},
     ],
     "SWAGGER_UI_SETTINGS": {
         "deepLinking": True,

@@ -7,6 +7,47 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+#### 2026-02-08 - Phase 5 Social Finance Domain Complete
+- Created social finance module with clean/hexagonal architecture
+- Implemented domain entities:
+  - `Contact`: Friends/people with optional user linking, archival support
+  - `ContactGroup`: Organize contacts into groups
+  - `PeerDebt`: Track money lent/borrowed with partial settlement support
+  - `ExpenseGroup`: Container for group expense splitting
+  - `GroupExpense`: Shared expenses with automatic equal or exact splits
+  - `ExpenseSplit`: Individual share per participant
+  - `Settlement`: Record payments between owner and contacts
+- Created domain services:
+  - `DebtCalculator`: Calculate net balance with a contact
+  - `GroupBalanceCalculator`: Calculate who owes whom in a group
+  - `SimplifyDebtsService`: Minimize transactions to settle all debts
+  - `SettlementSuggestionService`: Suggest optimal settlements
+- Implemented domain events for all social finance entities
+- Created Django ORM models with tenant scoping and proper indexes
+- Implemented repository pattern with Django ORM implementations
+- Created DRF serializers for all entities and commands
+- Implemented API viewsets:
+  - Contacts CRUD with archive support
+  - Contact groups CRUD with member management
+  - Peer debts CRUD with settle/cancel actions
+  - Expense groups CRUD with member management
+  - Group expenses CRUD with automatic splitting
+  - Settlements CRUD
+  - Balance calculations with settlement suggestions
+- Added API endpoints at `/api/v1/social/`:
+  - `/contacts/` - Contact management
+  - `/contact-groups/` - Contact group management
+  - `/peer-debts/` - Peer debt tracking with settle/cancel actions
+  - `/expense-groups/` - Expense group management
+  - `/group-expenses/` - Group expense with auto-splitting
+  - `/settlements/` - Settlement recording
+  - `/balances/` - Balance calculations and suggestions
+- Created comprehensive unit tests for domain logic:
+  - Entity tests (contact, debt, expense, settlement)
+  - Service tests (balance calculation, debt simplification)
+- Added OpenAPI tags for all social finance endpoints
+- Integrated social module into INSTALLED_APPS and API URLs
+
 #### 2026-02-08 - Project Scope Expansion: Hybrid Finance Platform
 - Updated project vision to include social finance features
 - Added new scope items:

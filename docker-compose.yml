@@ -1,0 +1,139 @@
+# Docker Compose for Django Finance Development Environment
+# Usage: docker-compose up -d
+
+version: "3.9"
+
+services:
+  # ==========================================================================
+  # PostgreSQL Database
+  # ==========================================================================
+  db:
+    image: postgres:16-bookworm
+    container_name: django-finance-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: django_finance
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d django_finance"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ==========================================================================
+  # Redis (Cache + Celery Broker)
+  # ==========================================================================
+  redis:
+    image: redis:7.2-bookworm
+    container_name: django-finance-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+
+  # ==========================================================================
+  # Django Web Application
+  # ==========================================================================
+  web:
+    build:
+      context: .
+      target: development
+    container_name: django-finance-web
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - DJANGO_ENVIRONMENT=local
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/django_finance
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app:cached
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: >
+      sh -c "
+        python manage.py migrate --noinput &&
+        python manage.py runserver 0.0.0.0:8000
+      "
+
+  # ==========================================================================
+  # Celery Worker
+  # ==========================================================================
+  celery-worker:
+    build:
+      context: .
+      target: development
+    container_name: django-finance-celery-worker
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - DJANGO_ENVIRONMENT=local
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/django_finance
+      - REDIS_URL=redis://redis:6379/0
+    volumes:
+      - .:/app:cached
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: celery -A config worker -l INFO --concurrency=2
+
+  # ==========================================================================
+  # Celery Beat (Scheduler)
+  # ==========================================================================
+  celery-beat:
+    build:
+      context: .
+      target: development
+    container_name: django-finance-celery-beat
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - DJANGO_ENVIRONMENT=local
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/django_finance
+      - REDIS_URL=redis://redis:6379/0
+    volumes:
+      - .:/app:cached
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: celery -A config beat -l INFO
+
+volumes:
+  postgres_data:
+    name: django-finance-postgres-data
+  redis_data:
+    name: django-finance-redis-data
+  static_volume:
+    name: django-finance-static
+  media_volume:
+    name: django-finance-media
+
+networks:
+  default:
+    name: django-finance-network

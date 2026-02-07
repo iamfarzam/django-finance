@@ -62,8 +62,12 @@ db.sqlite3
 db.sqlite3-journal
 staticfiles/
 mediafiles/
-static/
-media/
+
+# Static and media files (keep .gitkeep)
+static/*
+!static/.gitkeep
+media/*
+!media/.gitkeep
 
 # Django Finance specific
 *.pem

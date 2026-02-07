@@ -13,13 +13,22 @@ Status: Active
 
 ## Vision
 
-Build a production-ready, async-first finance management platform with a decoupled, domain-driven architecture that supports web, mobile, and real-time features while keeping SEO and admin usability as baseline requirements.
+Build a production-ready, async-first **personal and social finance platform** with a decoupled, domain-driven architecture that combines:
+- **Personal finance tracking** (income, expenses, assets, liabilities, net worth)
+- **Peer-to-peer debt tracking** (udhaar/IOUs - money lent/borrowed between contacts)
+- **Group expense splitting** (Splitwise-like shared expense management)
+
+The platform supports web, mobile, and real-time features while keeping SEO and admin usability as baseline requirements.
 
 ## Scope
 
-| Feature | Technology |
-|---------|------------|
-| Cash flow tracking | Inflow, outflow, assets, liabilities, loans |
+| Feature | Description |
+|---------|-------------|
+| **Personal Finance** | Accounts, transactions, assets, liabilities, loans, net worth |
+| **Peer Debts (Udhaar)** | Track money lent/borrowed between contacts with settlements |
+| **Group Expenses** | Split shared expenses among group members (equal, exact amounts) |
+| **Contacts** | Manage friends/people for social finance features |
+| **Settlements** | Record and track debt settlements between contacts |
 | Web application | Django templates (SSR) |
 | Mobile API | Django REST Framework |
 | Real-time updates | Django Channels + WebSocket |
@@ -33,14 +42,15 @@ Build a production-ready, async-first finance management platform with a decoupl
 | 0 | Discovery and Requirements | **Done** |
 | 1 | Architecture and Baseline Standards | **Done** |
 | 2 | Foundations | **Done** |
-| 3 | Core Domain Modeling | **Done** |
+| 3 | Core Domain Modeling (Personal Finance) | **Done** |
 | 4 | API and Integrations | **Done** |
-| 5 | Real-time Features | Not started |
-| 6 | Web UI | Not started |
-| 7 | Admin Modernization | Not started |
-| 8 | Optional React SSR Web | Not started |
-| 9 | Production Readiness | Not started |
-| 10 | Release and Maintenance | Not started |
+| 5 | Social Finance Domain | Not started |
+| 6 | Real-time Features | Not started |
+| 7 | Web UI | Not started |
+| 8 | Admin Modernization | Not started |
+| 9 | Optional React SSR Web | Not started |
+| 10 | Production Readiness | Not started |
+| 11 | Release and Maintenance | Not started |
 
 ---
 
@@ -164,7 +174,7 @@ Build a production-ready, async-first finance management platform with a decoupl
 
 ---
 
-## Phase 3: Core Domain Modeling
+## Phase 3: Core Domain Modeling (Personal Finance)
 **Status**: Done
 **Completed**: 2026-02-08
 
@@ -263,37 +273,157 @@ Build a production-ready, async-first finance management platform with a decoupl
 
 ---
 
-## Phase 5: Real-time Features
+## Phase 5: Social Finance Domain
 **Status**: Not started
 
 ### Prerequisites
 - Phase 4 complete
 
 ### Deliverables
+
+#### Contacts Module
+- [ ] Contact entity (name, email, phone, avatar, notes)
+- [ ] Contact can be independent or linked to registered user
+- [ ] Contact groups (roommates, family, trip, work, etc.)
+- [ ] Contact balance summary (net amount owed/owing)
+- [ ] Contact search and management
+
+#### Peer Debts (Udhaar/IOUs)
+- [ ] PeerDebt entity (lender, borrower, amount, currency, reason, date)
+- [ ] "I lent" flow (money given to contact)
+- [ ] "I borrowed" flow (money received from contact)
+- [ ] Running balance per contact
+- [ ] Partial settlement support
+- [ ] Debt history and audit trail
+- [ ] Optional link to personal finance transaction
+
+#### Group Expenses
+- [ ] ExpenseGroup entity (name, members, created_by)
+- [ ] GroupExpense entity (description, total_amount, paid_by, date, group)
+- [ ] ExpenseSplit entity (expense, contact, share_amount, is_settled)
+- [ ] Split methods (Phase 5 scope):
+  - [ ] Equal split among all members
+  - [ ] Exact amounts per member
+- [ ] Split methods (Future enhancement):
+  - [ ] Percentage-based split
+  - [ ] Shares/units-based split
+  - [ ] Itemized bill splitting
+- [ ] Group balance matrix (who owes whom)
+- [ ] Simplify debts algorithm (minimize number of settlements)
+
+#### Settlements
+- [ ] Settlement entity (from_contact, to_contact, amount, method, date, notes)
+- [ ] Link settlements to peer debts
+- [ ] Link settlements to group expense splits
+- [ ] Settlement history per contact
+- [ ] Settlement suggestions based on balances
+
+#### API Endpoints
+- [ ] Contacts CRUD (`/api/v1/social/contacts/`)
+- [ ] Contact groups CRUD (`/api/v1/social/groups/`)
+- [ ] Peer debts CRUD (`/api/v1/social/debts/`)
+- [ ] Group expenses CRUD (`/api/v1/social/expenses/`)
+- [ ] Settlements CRUD (`/api/v1/social/settlements/`)
+- [ ] Balance summaries:
+  - [ ] Per contact balance
+  - [ ] Per group balance matrix
+  - [ ] Overall social balance (total owed/owing)
+
+#### Sharing and Privacy
+- [ ] Share debt/expense with contact (if they're a registered user)
+- [ ] Sharing requires explicit invitation
+- [ ] Shared records visible to both parties
+- [ ] Unshared records remain private to creator
+
+#### Domain Services
+- [ ] DebtCalculator (net balance between two contacts)
+- [ ] GroupBalanceCalculator (who owes whom in a group)
+- [ ] SimplifyDebtsService (minimize transactions to settle)
+- [ ] SettlementSuggestionService
+
+#### Unit Tests
+- [ ] Contact and group entity tests
+- [ ] Peer debt calculation tests
+- [ ] Group expense split tests
+- [ ] Simplify debts algorithm tests
+- [ ] Settlement flow tests
+
+### Key Decisions
+- **Contact Model**: Contacts start independent, can be linked to users later
+- **Currency**: Same currency per debt/expense (multi-currency in future)
+- **Privacy**: Shared records require explicit invitation; unshared stays private
+- **Tenant Scope**: All social finance data is tenant-scoped (user's own data)
+
+### Domain Model
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    SOCIAL FINANCE DOMAIN                        │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  Contact ◄──────────────┬─────────────► ContactGroup            │
+│    │                    │                    │                  │
+│    │ (participant)      │ (members)          │ (group)          │
+│    ▼                    ▼                    ▼                  │
+│  PeerDebt          ExpenseGroup ◄────── GroupExpense            │
+│    │                                         │                  │
+│    │                                         │                  │
+│    │               ┌─────────────────────────┘                  │
+│    │               │                                            │
+│    │               ▼                                            │
+│    │          ExpenseSplit                                      │
+│    │               │                                            │
+│    └───────────────┴──────────────► Settlement                  │
+│                                                                 │
+│  Optional link to Personal Finance:                             │
+│  PeerDebt ─ ─ ─ ─► Transaction (personal record)               │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Phase 6: Real-time Features
+**Status**: Not started
+
+### Prerequisites
+- Phase 5 complete
+
+### Deliverables
 - [ ] Channels consumer implementation
 - [ ] Event routing and groups
 - [ ] WebSocket authentication
-- [ ] Real-time balance updates
+- [ ] Real-time balance updates (personal and social)
 - [ ] Transaction notifications
+- [ ] Debt/expense notifications (when shared)
+- [ ] Settlement notifications
 - [ ] Backpressure handling
 - [ ] Connection health monitoring
 - [ ] Integration tests for WebSocket flows
 
 ---
 
-## Phase 6: Web UI (Django Templates)
+## Phase 7: Web UI (Django Templates)
 **Status**: Not started
 
 ### Prerequisites
-- Phase 4 complete
+- Phase 6 complete
 
 ### Deliverables
 - [ ] Base templates and design system
 - [ ] Authentication pages (login, register, password reset)
-- [ ] Dashboard
-- [ ] Transaction management pages
-- [ ] Account/wallet views
-- [ ] Asset and liability tracking
+- [ ] Dashboard (personal finance + social finance summary)
+- [ ] Personal Finance UI:
+  - [ ] Transaction management pages
+  - [ ] Account/wallet views
+  - [ ] Asset and liability tracking
+  - [ ] Net worth dashboard
+- [ ] Social Finance UI:
+  - [ ] Contacts management
+  - [ ] Peer debts list and details
+  - [ ] Group expenses management
+  - [ ] Settlement recording
+  - [ ] Balance summaries
 - [ ] SEO implementation:
   - [ ] Meta tags
   - [ ] Sitemaps
@@ -304,17 +434,18 @@ Build a production-ready, async-first finance management platform with a decoupl
 
 ---
 
-## Phase 7: Admin Modernization
+## Phase 8: Admin Modernization
 **Status**: Not started
 
 ### Prerequisites
-- Phase 6 complete
+- Phase 7 complete
 
 ### Deliverables
 - [ ] Custom admin branding
 - [ ] Enhanced list displays and filters
 - [ ] Inline editing for related models
 - [ ] Financial entity management workflows
+- [ ] Social finance entity management
 - [ ] Approval workflows (if needed)
 - [ ] Admin permission review
 - [ ] Audit trail visibility
@@ -322,11 +453,11 @@ Build a production-ready, async-first finance management platform with a decoupl
 
 ---
 
-## Phase 8: Optional React SSR Web
+## Phase 9: Optional React SSR Web
 **Status**: Not started
 
 ### Prerequisites
-- Phase 7 complete
+- Phase 8 complete
 - Decision to proceed with React SSR approved
 
 ### Deliverables
@@ -338,11 +469,11 @@ Build a production-ready, async-first finance management platform with a decoupl
 
 ---
 
-## Phase 9: Production Readiness
+## Phase 10: Production Readiness
 **Status**: Not started
 
 ### Prerequisites
-- Phase 7 (or 8 if applicable) complete
+- Phase 8 (or 9 if applicable) complete
 
 ### Deliverables
 - [ ] Performance testing and optimization
@@ -362,11 +493,11 @@ Build a production-ready, async-first finance management platform with a decoupl
 
 ---
 
-## Phase 10: Release and Maintenance
+## Phase 11: Release and Maintenance
 **Status**: Not started
 
 ### Prerequisites
-- Phase 9 complete
+- Phase 10 complete
 
 ### Deliverables
 - [ ] Release process documented
@@ -384,38 +515,41 @@ Build a production-ready, async-first finance management platform with a decoupl
 Phase 0 (Discovery)
     │
     ▼
-Phase 1 (Baseline) ──────────────────┐
-    │                                │
-    ▼                                │
-Phase 2 (Foundations)                │
-    │                                │
-    ▼                                │
-Phase 3 (Domain)                     │
-    │                                │
-    ▼                                │
-Phase 4 (API)                        │
-    │                                │
-    ├──────────────┐                 │
-    ▼              ▼                 │
-Phase 5        Phase 6               │
-(Real-time)    (Web UI)              │
-    │              │                 │
-    └──────┬───────┘                 │
-           ▼                         │
-       Phase 7                       │
-       (Admin)                       │
-           │                         │
-           ├─────────────────────────┤
-           ▼                         │
-       Phase 8 (optional)            │
-       (React SSR)                   │
-           │                         │
-           ▼                         │
-       Phase 9 ◄─────────────────────┘
+Phase 1 (Baseline) ───────────────────────┐
+    │                                     │
+    ▼                                     │
+Phase 2 (Foundations)                     │
+    │                                     │
+    ▼                                     │
+Phase 3 (Personal Finance Domain)         │
+    │                                     │
+    ▼                                     │
+Phase 4 (API)                             │
+    │                                     │
+    ▼                                     │
+Phase 5 (Social Finance Domain)           │
+    │                                     │
+    ├──────────────┐                      │
+    ▼              ▼                      │
+Phase 6        Phase 7                    │
+(Real-time)    (Web UI)                   │
+    │              │                      │
+    └──────┬───────┘                      │
+           ▼                              │
+       Phase 8                            │
+       (Admin)                            │
+           │                              │
+           ├──────────────────────────────┤
+           ▼                              │
+       Phase 9 (optional)                 │
+       (React SSR)                        │
+           │                              │
+           ▼                              │
+       Phase 10 ◄─────────────────────────┘
        (Production)
            │
            ▼
-       Phase 10
+       Phase 11
        (Release)
 ```
 

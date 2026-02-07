@@ -7,6 +7,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+#### 2026-02-08 - Project Scope Expansion: Hybrid Finance Platform
+- Updated project vision to include social finance features
+- Added new scope items:
+  - Peer Debts (Udhaar/IOUs): Track money lent/borrowed between contacts
+  - Group Expenses: Split shared expenses (Splitwise-like)
+  - Contacts: Manage friends/people for social finance
+  - Settlements: Record and track debt settlements
+- Added Phase 5: Social Finance Domain with detailed deliverables
+- Renumbered subsequent phases (Real-time → Phase 6, Web UI → Phase 7, etc.)
+- Key decisions for social finance:
+  - Contacts can be independent or linked to registered users
+  - Same currency per debt/expense (multi-currency planned for future)
+  - Privacy: Shared records require explicit invitation
+  - Split methods: Equal and exact amounts (Phase 5), percentage/shares (future)
+
 #### 2026-02-08 - Phase 4 API and Integrations Complete
 - Created role-based permission classes in `shared/permissions.py`:
   - `IsActiveUser`: Requires active status and verified email

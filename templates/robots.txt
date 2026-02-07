@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and API
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap
+Sitemap: {{ request.scheme }}://{{ request.get_host }}/sitemap.xml

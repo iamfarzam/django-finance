@@ -5,6 +5,7 @@ The `urlpatterns` list routes URLs to views.
 
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
 from drf_spectacular.views import (
     SpectacularAPIView,
@@ -12,9 +13,17 @@ from drf_spectacular.views import (
     SpectacularSwaggerView,
 )
 
+from modules.web.seo import StaticViewSitemap, robots_txt
 from shared.views import health_check, health_ready
 
+sitemaps = {
+    "static": StaticViewSitemap,
+}
+
 urlpatterns = [
+    # SEO
+    path("robots.txt", robots_txt, name="robots-txt"),
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
     # Admin
     path("admin/", admin.site.urls),
     # Health checks
@@ -34,6 +43,10 @@ urlpatterns = [
     ),
     # API v1
     path("api/v1/", include("shared.api_urls", namespace="api-v1")),
+    # Authentication (web)
+    path("accounts/", include("modules.accounts.interfaces.web_urls", namespace="accounts")),
+    # Web UI
+    path("", include("modules.web.urls", namespace="web")),
 ]
 
 # Debug toolbar in development

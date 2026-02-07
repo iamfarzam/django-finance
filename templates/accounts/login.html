@@ -1,0 +1,114 @@
+{% extends "base/auth.html" %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block auth_content %}
+<div>
+    <h2 class="text-3xl font-bold text-gray-900">
+        Welcome back
+    </h2>
+    <p class="mt-2 text-sm text-gray-600">
+        Don't have an account?
+        <a href="{% url 'accounts:register' %}" class="font-medium text-primary-600 hover:text-primary-500">
+            Sign up for free
+        </a>
+    </p>
+</div>
+
+<form class="mt-8 space-y-6" method="post" action="{% url 'accounts:login' %}">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+    <div class="rounded-md bg-danger-50 p-4" role="alert">
+        <div class="flex">
+            <svg class="h-5 w-5 text-danger-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <div class="ml-3">
+                <p class="text-sm text-danger-600">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="space-y-4">
+        <!-- Email field -->
+        <div>
+            <label for="id_email" class="block text-sm font-medium text-gray-700">
+                Email address
+            </label>
+            <div class="mt-1">
+                <input id="id_email"
+                       name="email"
+                       type="email"
+                       autocomplete="email"
+                       required
+                       value="{{ form.email.value|default:'' }}"
+                       class="appearance-none block w-full px-3 py-2 border {% if form.email.errors %}border-danger-500{% else %}border-gray-300{% endif %} rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                       placeholder="you@example.com"
+                       aria-describedby="{% if form.email.errors %}email-error{% endif %}">
+            </div>
+            {% if form.email.errors %}
+            <p class="mt-2 text-sm text-danger-600" id="email-error">
+                {% for error in form.email.errors %}{{ error }}{% endfor %}
+            </p>
+            {% endif %}
+        </div>
+
+        <!-- Password field -->
+        <div>
+            <label for="id_password" class="block text-sm font-medium text-gray-700">
+                Password
+            </label>
+            <div class="mt-1">
+                <input id="id_password"
+                       name="password"
+                       type="password"
+                       autocomplete="current-password"
+                       required
+                       class="appearance-none block w-full px-3 py-2 border {% if form.password.errors %}border-danger-500{% else %}border-gray-300{% endif %} rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                       placeholder="Enter your password"
+                       aria-describedby="{% if form.password.errors %}password-error{% endif %}">
+            </div>
+            {% if form.password.errors %}
+            <p class="mt-2 text-sm text-danger-600" id="password-error">
+                {% for error in form.password.errors %}{{ error }}{% endfor %}
+            </p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="flex items-center justify-between">
+        <div class="flex items-center">
+            <input id="remember_me"
+                   name="remember_me"
+                   type="checkbox"
+                   class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+            <label for="remember_me" class="ml-2 block text-sm text-gray-900">
+                Remember me
+            </label>
+        </div>
+
+        <div class="text-sm">
+            <a href="{% url 'accounts:password_reset' %}" class="font-medium text-primary-600 hover:text-primary-500">
+                Forgot your password?
+            </a>
+        </div>
+    </div>
+
+    <div>
+        <button type="submit"
+                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors">
+            Sign in
+        </button>
+    </div>
+
+    {% if next %}
+    <input type="hidden" name="next" value="{{ next }}">
+    {% endif %}
+</form>
+{% endblock %}

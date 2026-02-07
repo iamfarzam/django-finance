@@ -1,0 +1,231 @@
+{% extends "base/app.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Page header -->
+    <div class="mb-8">
+        <h1 class="text-2xl font-bold text-gray-900">Dashboard</h1>
+        <p class="mt-1 text-sm text-gray-500">
+            Welcome back, {{ user.first_name|default:user.email }}! Here's your financial overview.
+        </p>
+    </div>
+
+    <!-- Net Worth Summary -->
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-semibold text-gray-900">Net Worth</h2>
+            <a href="{% url 'web:net_worth' %}" class="text-sm text-primary-600 hover:text-primary-500">View details</a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+                <p class="text-sm text-gray-500">Total Assets</p>
+                <p class="text-2xl font-bold text-success-600">{{ total_assets|default:"$0.00" }}</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500">Total Liabilities</p>
+                <p class="text-2xl font-bold text-danger-600">{{ total_liabilities|default:"$0.00" }}</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500">Net Worth</p>
+                <p class="text-2xl font-bold {% if net_worth_positive %}text-success-600{% else %}text-danger-600{% endif %}">
+                    {{ net_worth|default:"$0.00" }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <!-- Accounts -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 p-3 bg-primary-100 rounded-lg">
+                    <svg class="h-6 w-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-500">Accounts</p>
+                    <p class="text-2xl font-semibold text-gray-900">{{ accounts_count|default:0 }}</p>
+                </div>
+            </div>
+            <a href="{% url 'web:accounts_list' %}" class="mt-4 block text-sm text-primary-600 hover:text-primary-500">
+                View all accounts &rarr;
+            </a>
+        </div>
+
+        <!-- This Month's Transactions -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 p-3 bg-success-100 rounded-lg">
+                    <svg class="h-6 w-6 text-success-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-500">Transactions (This Month)</p>
+                    <p class="text-2xl font-semibold text-gray-900">{{ transactions_this_month|default:0 }}</p>
+                </div>
+            </div>
+            <a href="{% url 'web:transactions_list' %}" class="mt-4 block text-sm text-primary-600 hover:text-primary-500">
+                View all transactions &rarr;
+            </a>
+        </div>
+
+        <!-- Contacts -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 p-3 bg-warning-100 rounded-lg">
+                    <svg class="h-6 w-6 text-warning-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-500">Contacts</p>
+                    <p class="text-2xl font-semibold text-gray-900">{{ contacts_count|default:0 }}</p>
+                </div>
+            </div>
+            <a href="{% url 'web:contacts_list' %}" class="mt-4 block text-sm text-primary-600 hover:text-primary-500">
+                Manage contacts &rarr;
+            </a>
+        </div>
+
+        <!-- Active Debts -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 p-3 bg-danger-100 rounded-lg">
+                    <svg class="h-6 w-6 text-danger-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-500">Active Debts</p>
+                    <p class="text-2xl font-semibold text-gray-900">{{ active_debts_count|default:0 }}</p>
+                </div>
+            </div>
+            <a href="{% url 'web:debts_list' %}" class="mt-4 block text-sm text-primary-600 hover:text-primary-500">
+                View debts &rarr;
+            </a>
+        </div>
+    </div>
+
+    <!-- Two column layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Recent Transactions -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-lg font-semibold text-gray-900">Recent Transactions</h2>
+                    <a href="{% url 'web:transactions_list' %}" class="text-sm text-primary-600 hover:text-primary-500">View all</a>
+                </div>
+            </div>
+            <div class="divide-y divide-gray-200">
+                {% for transaction in recent_transactions %}
+                <div class="p-4 flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full {% if transaction.type == 'credit' %}bg-success-100{% else %}bg-danger-100{% endif %} flex items-center justify-center">
+                            {% if transaction.type == 'credit' %}
+                            <svg class="h-5 w-5 text-success-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                            </svg>
+                            {% else %}
+                            <svg class="h-5 w-5 text-danger-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/>
+                            </svg>
+                            {% endif %}
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-gray-900">{{ transaction.description|default:"Transaction" }}</p>
+                            <p class="text-xs text-gray-500">{{ transaction.account_name }} &bull; {{ transaction.date|date:"M d, Y" }}</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-medium {% if transaction.type == 'credit' %}text-success-600{% else %}text-danger-600{% endif %}">
+                        {% if transaction.type == 'credit' %}+{% else %}-{% endif %}{{ transaction.amount }}
+                    </span>
+                </div>
+                {% empty %}
+                <div class="p-8 text-center">
+                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    <h3 class="mt-2 text-sm font-medium text-gray-900">No transactions yet</h3>
+                    <p class="mt-1 text-sm text-gray-500">Get started by adding your first transaction.</p>
+                    <div class="mt-6">
+                        <a href="{% url 'web:transaction_create' %}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700">
+                            <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                            </svg>
+                            Add Transaction
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Social Finance Summary -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-lg font-semibold text-gray-900">Social Finance</h2>
+                    <a href="{% url 'web:balances_summary' %}" class="text-sm text-primary-600 hover:text-primary-500">View all</a>
+                </div>
+            </div>
+
+            <!-- Balance summary -->
+            <div class="p-6 border-b border-gray-200 bg-gray-50">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-sm text-gray-500">Others Owe You</p>
+                        <p class="text-xl font-semibold text-success-600">{{ others_owe_you|default:"$0.00" }}</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">You Owe Others</p>
+                        <p class="text-xl font-semibold text-danger-600">{{ you_owe_others|default:"$0.00" }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent debts/expenses -->
+            <div class="divide-y divide-gray-200">
+                {% for item in social_activity %}
+                <div class="p-4 flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center">
+                            <span class="text-sm font-medium text-gray-600">
+                                {{ item.contact_name|slice:":1"|upper }}
+                            </span>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-gray-900">{{ item.contact_name }}</p>
+                            <p class="text-xs text-gray-500">{{ item.description }}</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-medium {% if item.direction == 'they_owe' %}text-success-600{% else %}text-danger-600{% endif %}">
+                        {{ item.amount }}
+                    </span>
+                </div>
+                {% empty %}
+                <div class="p-8 text-center">
+                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    <h3 class="mt-2 text-sm font-medium text-gray-900">No social activity</h3>
+                    <p class="mt-1 text-sm text-gray-500">Start tracking debts with friends and family.</p>
+                    <div class="mt-6 space-x-3">
+                        <a href="{% url 'web:debt_create' %}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700">
+                            Record Debt
+                        </a>
+                        <a href="{% url 'web:groups_list' %}" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                            Create Group
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

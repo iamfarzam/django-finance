@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- SEO Meta Tags -->
+    <title>{% block title %}{% endblock title %} | Django Finance</title>
+    <meta name="description" content="{% block meta_description %}Personal and social finance management platform - track expenses, manage debts, split bills with friends.{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}finance, personal finance, expense tracking, debt management, bill splitting{% endblock %}">
+    <meta name="author" content="Django Finance">
+    <meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{% block og_title %}Django Finance{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Personal and social finance management platform{% endblock %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:site_name" content="Django Finance">
+    {% block og_image %}<meta property="og:image" content="{% static 'img/og-image.png' %}">{% endblock %}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}Django Finance{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Personal and social finance management platform{% endblock %}">
+
+    <!-- Canonical URL -->
+    {% block canonical %}<link rel="canonical" href="{{ request.build_absolute_uri }}">{% endblock %}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
+    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+
+    <!-- Tailwind CSS via CDN (for development - use build process for production) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                            950: '#172554',
+                        },
+                        success: {
+                            50: '#f0fdf4',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                        },
+                        danger: {
+                            50: '#fef2f2',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                        },
+                        warning: {
+                            50: '#fffbeb',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Alpine.js for interactivity -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        [x-cloak] { display: none !important; }
+
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            padding: 8px;
+            z-index: 100;
+            background: #1e40af;
+            color: white;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Focus visible for accessibility */
+        *:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="h-full bg-gray-50 text-gray-900 antialiased">
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    {% block body %}
+    <div class="min-h-full flex flex-col">
+        {% block header %}{% endblock %}
+
+        <main id="main-content" class="flex-1" role="main">
+            {% block content %}{% endblock %}
+        </main>
+
+        {% block footer %}{% endblock %}
+    </div>
+    {% endblock %}
+
+    <!-- Messages/Notifications -->
+    {% if messages %}
+    <div id="messages" class="fixed top-4 right-4 z-50 space-y-2" aria-live="polite">
+        {% for message in messages %}
+        <div x-data="{ show: true }"
+             x-show="show"
+             x-transition
+             x-init="setTimeout(() => show = false, 5000)"
+             class="flex items-center p-4 rounded-lg shadow-lg {% if message.tags == 'success' %}bg-success-50 text-success-600{% elif message.tags == 'error' %}bg-danger-50 text-danger-600{% elif message.tags == 'warning' %}bg-warning-50 text-warning-600{% else %}bg-primary-50 text-primary-600{% endif %}"
+             role="alert">
+            <span class="flex-1">{{ message }}</span>
+            <button @click="show = false" class="ml-4 hover:opacity-70" aria-label="Dismiss">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- CSRF Token for JavaScript -->
+    <script>
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

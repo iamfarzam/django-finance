@@ -1,0 +1,169 @@
+{% extends "base/auth.html" %}
+
+{% block title %}Create Account{% endblock %}
+
+{% block auth_content %}
+<div>
+    <h2 class="text-3xl font-bold text-gray-900">
+        Create your account
+    </h2>
+    <p class="mt-2 text-sm text-gray-600">
+        Already have an account?
+        <a href="{% url 'accounts:login' %}" class="font-medium text-primary-600 hover:text-primary-500">
+            Sign in
+        </a>
+    </p>
+</div>
+
+<form class="mt-8 space-y-6" method="post" action="{% url 'accounts:register' %}">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+    <div class="rounded-md bg-danger-50 p-4" role="alert">
+        <div class="flex">
+            <svg class="h-5 w-5 text-danger-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <div class="ml-3">
+                <p class="text-sm text-danger-600">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="space-y-4">
+        <!-- Name fields -->
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <label for="id_first_name" class="block text-sm font-medium text-gray-700">
+                    First name
+                </label>
+                <div class="mt-1">
+                    <input id="id_first_name"
+                           name="first_name"
+                           type="text"
+                           autocomplete="given-name"
+                           value="{{ form.first_name.value|default:'' }}"
+                           class="appearance-none block w-full px-3 py-2 border {% if form.first_name.errors %}border-danger-500{% else %}border-gray-300{% endif %} rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                </div>
+                {% if form.first_name.errors %}
+                <p class="mt-2 text-sm text-danger-600">
+                    {% for error in form.first_name.errors %}{{ error }}{% endfor %}
+                </p>
+                {% endif %}
+            </div>
+            <div>
+                <label for="id_last_name" class="block text-sm font-medium text-gray-700">
+                    Last name
+                </label>
+                <div class="mt-1">
+                    <input id="id_last_name"
+                           name="last_name"
+                           type="text"
+                           autocomplete="family-name"
+                           value="{{ form.last_name.value|default:'' }}"
+                           class="appearance-none block w-full px-3 py-2 border {% if form.last_name.errors %}border-danger-500{% else %}border-gray-300{% endif %} rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                </div>
+                {% if form.last_name.errors %}
+                <p class="mt-2 text-sm text-danger-600">
+                    {% for error in form.last_name.errors %}{{ error }}{% endfor %}
+                </p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Email field -->
+        <div>
+            <label for="id_email" class="block text-sm font-medium text-gray-700">
+                Email address
+            </label>
+            <div class="mt-1">
+                <input id="id_email"
+                       name="email"
+                       type="email"
+                       autocomplete="email"
+                       required
+                       value="{{ form.email.value|default:'' }}"
+                       class="appearance-none block w-full px-3 py-2 border {% if form.email.errors %}border-danger-500{% else %}border-gray-300{% endif %} rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                       placeholder="you@example.com">
+            </div>
+            {% if form.email.errors %}
+            <p class="mt-2 text-sm text-danger-600">
+                {% for error in form.email.errors %}{{ error }}{% endfor %}
+            </p>
+            {% endif %}
+        </div>
+
+        <!-- Password field -->
+        <div>
+            <label for="id_password1" class="block text-sm font-medium text-gray-700">
+                Password
+            </label>
+            <div class="mt-1">
+                <input id="id_password1"
+                       name="password1"
+                       type="password"
+                       autocomplete="new-password"
+                       required
+                       class="appearance-none block w-full px-3 py-2 border {% if form.password1.errors %}border-danger-500{% else %}border-gray-300{% endif %} rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                       placeholder="At least 12 characters">
+            </div>
+            {% if form.password1.errors %}
+            <p class="mt-2 text-sm text-danger-600">
+                {% for error in form.password1.errors %}{{ error }}{% endfor %}
+            </p>
+            {% else %}
+            <p class="mt-2 text-xs text-gray-500">
+                Must be at least 12 characters with uppercase, lowercase, number, and special character.
+            </p>
+            {% endif %}
+        </div>
+
+        <!-- Confirm password field -->
+        <div>
+            <label for="id_password2" class="block text-sm font-medium text-gray-700">
+                Confirm password
+            </label>
+            <div class="mt-1">
+                <input id="id_password2"
+                       name="password2"
+                       type="password"
+                       autocomplete="new-password"
+                       required
+                       class="appearance-none block w-full px-3 py-2 border {% if form.password2.errors %}border-danger-500{% else %}border-gray-300{% endif %} rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                       placeholder="Enter your password again">
+            </div>
+            {% if form.password2.errors %}
+            <p class="mt-2 text-sm text-danger-600">
+                {% for error in form.password2.errors %}{{ error }}{% endfor %}
+            </p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="flex items-center">
+        <input id="terms"
+               name="terms"
+               type="checkbox"
+               required
+               class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+        <label for="terms" class="ml-2 block text-sm text-gray-900">
+            I agree to the
+            <a href="#" class="text-primary-600 hover:text-primary-500">Terms of Service</a>
+            and
+            <a href="#" class="text-primary-600 hover:text-primary-500">Privacy Policy</a>
+        </label>
+    </div>
+
+    <div>
+        <button type="submit"
+                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors">
+            Create account
+        </button>
+    </div>
+</form>
+{% endblock %}

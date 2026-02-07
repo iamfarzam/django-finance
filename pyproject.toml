@@ -1,0 +1,287 @@
+[project]
+name = "django-finance"
+version = "0.1.0"
+description = "Finance management SaaS platform for tracking cash flow, loans, assets, and liabilities"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "Farzam Mehdi" }
+]
+requires-python = ">=3.12,<3.14"
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Environment :: Web Environment",
+    "Framework :: Django :: 5.2",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business :: Financial :: Accounting",
+]
+keywords = ["django", "finance", "saas", "accounting", "money-management"]
+
+dependencies = [
+    # Django Core (LTS)
+    "django>=5.2,<5.3",
+
+    # Django REST Framework & API
+    "djangorestframework>=3.16,<4.0",
+    "drf-spectacular>=0.28,<1.0",
+    "django-filter>=24.3,<25.0",
+
+    # Django Channels & ASGI
+    "channels>=4.3,<5.0",
+    "daphne>=4.1,<5.0",
+    "channels-redis>=4.2,<5.0",
+
+    # Authentication
+    "djangorestframework-simplejwt>=5.5,<6.0",
+    "argon2-cffi>=23.1",
+
+    # Database
+    "psycopg[binary]>=3.2,<4.0",
+
+    # Cache & Broker
+    "django-redis>=5.4,<6.0",
+    "redis>=5.2,<6.0",
+
+    # Background Tasks
+    "celery>=5.6,<6.0",
+    "django-celery-beat>=2.7,<3.0",
+    "django-celery-results>=2.5,<3.0",
+
+    # Configuration
+    "pydantic>=2.10,<3.0",
+    "pydantic-settings>=2.7,<3.0",
+
+    # Security
+    "django-cors-headers>=4.6,<5.0",
+
+    # Observability
+    "structlog>=24.4,<25.0",
+
+    # Utilities
+    "python-dateutil>=2.9,<3.0",
+    "httpx>=0.28,<1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    # Testing
+    "pytest>=8.3,<9.0",
+    "pytest-django>=4.9,<5.0",
+    "pytest-asyncio>=0.24,<1.0",
+    "pytest-cov>=6.0,<7.0",
+    "factory-boy>=3.3,<4.0",
+    "freezegun>=1.5,<2.0",
+    "hypothesis>=6.122,<7.0",
+
+    # Code Quality
+    "black>=24.10",
+    "ruff>=0.9",
+    "mypy>=1.14",
+    "django-stubs>=5.1",
+    "djangorestframework-stubs>=3.15",
+    "celery-types>=0.22",
+
+    # Pre-commit
+    "pre-commit>=4.0",
+
+    # Debug
+    "django-debug-toolbar>=5.0,<6.0",
+    "ipython>=8.31,<9.0",
+]
+
+production = [
+    # Error Tracking (optional)
+    "sentry-sdk>=2.19,<3.0",
+
+    # Production WSGI (fallback)
+    "gunicorn>=23.0,<24.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/farzam-mehdi/django-finance"
+Documentation = "https://github.com/farzam-mehdi/django-finance/tree/main/docs"
+Repository = "https://github.com/farzam-mehdi/django-finance"
+Issues = "https://github.com/farzam-mehdi/django-finance/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["modules"]
+
+# =============================================================================
+# Black - Code Formatter
+# =============================================================================
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+    \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+    | migrations
+)/
+'''
+
+# =============================================================================
+# Ruff - Linter
+# =============================================================================
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+exclude = [
+    ".git",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".venv",
+    "build",
+    "dist",
+    "migrations",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # Pyflakes
+    "I",      # isort
+    "B",      # flake8-bugbear
+    "C4",     # flake8-comprehensions
+    "UP",     # pyupgrade
+    "ARG",    # flake8-unused-arguments
+    "COM",    # flake8-commas
+    "DTZ",    # flake8-datetimez
+    "DJ",     # flake8-django
+    "PIE",    # flake8-pie
+    "PT",     # flake8-pytest-style
+    "RET",    # flake8-return
+    "SIM",    # flake8-simplify
+    "TID",    # flake8-tidy-imports
+    "TCH",    # flake8-type-checking
+    "RUF",    # Ruff-specific rules
+    "ASYNC",  # flake8-async
+    "S",      # flake8-bandit (security)
+]
+ignore = [
+    "E501",   # line too long (handled by black)
+    "B008",   # do not perform function calls in argument defaults
+    "COM812", # trailing comma (conflicts with black)
+    "S101",   # assert used (ok in tests)
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["modules", "config"]
+section-order = ["future", "standard-library", "django", "third-party", "first-party", "local-folder"]
+
+[tool.ruff.lint.isort.sections]
+django = ["django", "rest_framework", "channels"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101", "ARG001", "ARG002"]
+"**/migrations/*.py" = ["E501"]
+
+# =============================================================================
+# MyPy - Static Type Checker
+# =============================================================================
+[tool.mypy]
+python_version = "3.12"
+plugins = [
+    "mypy_django_plugin.main",
+    "mypy_drf_plugin.main",
+]
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+show_error_codes = true
+show_column_numbers = true
+pretty = true
+
+# Django-specific settings
+[[tool.mypy.overrides]]
+module = "*.migrations.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = [
+    "celery.*",
+    "channels.*",
+    "channels_redis.*",
+    "django_redis.*",
+    "factory.*",
+    "freezegun.*",
+    "hypothesis.*",
+]
+ignore_missing_imports = true
+
+[tool.django-stubs]
+django_settings_module = "config.settings"
+
+# =============================================================================
+# Pytest - Testing
+# =============================================================================
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "-ra",
+    "--tb=short",
+]
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+asyncio_mode = "auto"
+
+# =============================================================================
+# Coverage
+# =============================================================================
+[tool.coverage.run]
+source = ["modules"]
+branch = true
+omit = [
+    "*/migrations/*",
+    "*/tests/*",
+    "*/__pycache__/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstractmethod",
+]
+fail_under = 80
+show_missing = true
+
+[tool.coverage.html]
+directory = "htmlcov"

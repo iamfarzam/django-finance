@@ -261,3 +261,191 @@ class TenantIsolation(permissions.BasePermission):
             return False
 
         return str(user_tenant_id) == str(obj_tenant_id)
+
+
+# =============================================================================
+# Subscription-Based Permission Classes
+# =============================================================================
+
+
+class HasFeature(permissions.BasePermission):
+    """Permission that checks if subscription tier includes a feature.
+
+    Usage:
+        class MyViewSet(ViewSet):
+            permission_classes = [IsAuthenticated, HasFeature]
+            feature_code = "reports.advanced"
+
+        Or dynamically:
+            def get_permissions(self):
+                if self.action == 'export_pdf':
+                    return [IsAuthenticated(), HasFeature("export.pdf")]
+                return super().get_permissions()
+    """
+
+    message = "This feature requires a premium subscription."
+
+    def __init__(self, feature_code: str | None = None) -> None:
+        """Initialize with optional feature code.
+
+        Args:
+            feature_code: The feature code to check. If not provided,
+                         will look for `feature_code` attribute on the view.
+        """
+        self.feature_code = feature_code
+
+    def has_permission(self, request: Request, view: APIView) -> bool:
+        """Check if user's subscription includes the feature."""
+        if not request.user or not request.user.is_authenticated:
+            return False
+
+        # Get feature code from init or view
+        feature_code = self.feature_code or getattr(view, "feature_code", None)
+        if not feature_code:
+            # No feature code specified, allow access
+            return True
+
+        # Check subscription context
+        from shared.middleware import get_subscription_context
+
+        context = get_subscription_context()
+        if context and context.has_feature(feature_code):
+            return True
+
+        # Fallback to service check
+        from modules.subscriptions.domain.services import PermissionService
+
+        return PermissionService.has_feature(request.user, feature_code)
+
+
+class WithinUsageLimit(permissions.BasePermission):
+    """Permission that checks if user is within their usage limit.
+
+    Usage:
+        class AccountViewSet(ViewSet):
+            permission_classes = [IsAuthenticated, WithinUsageLimit]
+            limit_key = "accounts_max"
+
+        Or dynamically:
+            def get_permissions(self):
+                if self.action == 'create':
+                    return [IsAuthenticated(), WithinUsageLimit("accounts_max")]
+                return super().get_permissions()
+    """
+
+    message = "Usage limit exceeded. Upgrade to premium for unlimited access."
+
+    def __init__(self, limit_key: str | None = None) -> None:
+        """Initialize with optional limit key.
+
+        Args:
+            limit_key: The limit key to check. If not provided,
+                      will look for `limit_key` attribute on the view.
+        """
+        self.limit_key = limit_key
+
+    def has_permission(self, request: Request, view: APIView) -> bool:
+        """Check if user is within their usage limit."""
+        if not request.user or not request.user.is_authenticated:
+            return False
+
+        # Only check on create action
+        if getattr(view, "action", None) != "create":
+            return True
+
+        # Get limit key from init or view
+        limit_key = self.limit_key or getattr(view, "limit_key", None)
+        if not limit_key:
+            # No limit key specified, allow access
+            return True
+
+        # Check usage limit
+        from modules.subscriptions.domain.services import UsageLimitService
+
+        allowed, error_message = UsageLimitService.can_perform_action(
+            request.user, limit_key
+        )
+        if not allowed and error_message:
+            self.message = error_message
+
+        return allowed
+
+
+class HasApiAccess(permissions.BasePermission):
+    """Permission for API access (JWT-authenticated requests).
+
+    Premium users only have API access. Web session requests are always allowed.
+
+    Usage:
+        permission_classes = [IsAuthenticated, HasApiAccess]
+    """
+
+    message = "API access requires a premium subscription. Use the web interface or upgrade."
+
+    def has_permission(self, request: Request, view: APIView) -> bool:
+        """Check if user has API access."""
+        if not request.user or not request.user.is_authenticated:
+            return False
+
+        # Session-based requests (web UI) are always allowed
+        if not hasattr(request, "auth") or not request.auth:
+            return True
+
+        # JWT-authenticated requests require API access feature
+        from modules.subscriptions.domain.enums import FeatureCode
+        from modules.subscriptions.domain.services import PermissionService
+
+        return PermissionService.has_feature(
+            request.user, FeatureCode.API_ACCESS.value
+        )
+
+
+class CanExport(permissions.BasePermission):
+    """Permission that checks export format permissions.
+
+    Free users can only export CSV. Premium users can export all formats.
+
+    Usage:
+        @action(detail=False, methods=["get"])
+        def export(self, request):
+            format = request.query_params.get("format", "csv")
+            if not CanExport(format).has_permission(request, self):
+                raise PermissionDenied("Export format requires premium")
+    """
+
+    message = "This export format requires a premium subscription."
+
+    # Map export formats to feature codes
+    FORMAT_FEATURES = {
+        "csv": "export.csv",
+        "json": "export.json",
+        "pdf": "export.pdf",
+    }
+
+    def __init__(self, export_format: str = "csv") -> None:
+        """Initialize with export format.
+
+        Args:
+            export_format: The export format (csv, json, pdf).
+        """
+        self.export_format = export_format.lower()
+
+    def has_permission(self, request: Request, view: APIView) -> bool:
+        """Check if user can export in the requested format."""
+        if not request.user or not request.user.is_authenticated:
+            return False
+
+        # Get feature code for format
+        feature_code = self.FORMAT_FEATURES.get(self.export_format)
+        if not feature_code:
+            # Unknown format, deny access
+            return False
+
+        # CSV is free for everyone
+        if self.export_format == "csv":
+            return True
+
+        # Other formats require the feature
+        from modules.subscriptions.domain.services import PermissionService
+
+        return PermissionService.has_feature(request.user, feature_code)

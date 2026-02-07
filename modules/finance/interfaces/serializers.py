@@ -1,10 +1,12 @@
 """DRF serializers for the finance module."""
 
 from decimal import Decimal
+from typing import Any, ClassVar
 
 from rest_framework import serializers
 
 from modules.finance.domain.value_objects import Currency
+from shared.serializers import FieldPermissionMixin
 from modules.finance.infrastructure.models import (
     Account,
     Asset,
@@ -95,8 +97,22 @@ class CreateCategorySerializer(serializers.Serializer):
 # =============================================================================
 
 
-class AccountSerializer(serializers.ModelSerializer):
-    """Serializer for Account model."""
+class AccountSerializer(FieldPermissionMixin, serializers.ModelSerializer):
+    """Serializer for Account model.
+
+    Includes field-level permissions for premium features.
+    """
+
+    # Premium field permissions
+    premium_fields: ClassVar[dict[str, str]] = {
+        "account_number_masked": "finance.view_sensitive",
+        "notes": "finance.view_notes",
+    }
+
+    # Masking for non-premium users
+    masked_fields: ClassVar[dict[str, Any]] = {
+        "account_number_masked": "****",
+    }
 
     balance = serializers.DecimalField(
         max_digits=19, decimal_places=4, read_only=True, required=False
@@ -167,8 +183,22 @@ class AccountBalanceSerializer(serializers.Serializer):
 # =============================================================================
 
 
-class TransactionSerializer(serializers.ModelSerializer):
-    """Serializer for Transaction model."""
+class TransactionSerializer(FieldPermissionMixin, serializers.ModelSerializer):
+    """Serializer for Transaction model.
+
+    Includes field-level permissions for premium features.
+    """
+
+    # Premium field permissions
+    premium_fields: ClassVar[dict[str, str]] = {
+        "reference_number": "finance.view_sensitive",
+        "notes": "finance.view_notes",
+    }
+
+    # Masking for non-premium users
+    masked_fields: ClassVar[dict[str, Any]] = {
+        "reference_number": "****",
+    }
 
     category_name = serializers.CharField(source="category.name", read_only=True)
     signed_amount = serializers.SerializerMethodField()
@@ -371,8 +401,23 @@ class UpdateAssetValueSerializer(serializers.Serializer):
 # =============================================================================
 
 
-class LiabilitySerializer(serializers.ModelSerializer):
-    """Serializer for Liability model."""
+class LiabilitySerializer(FieldPermissionMixin, serializers.ModelSerializer):
+    """Serializer for Liability model.
+
+    Includes field-level permissions for premium features.
+    """
+
+    # Premium field permissions
+    premium_fields: ClassVar[dict[str, str]] = {
+        "interest_rate": "finance.view_rates",
+        "account_number_masked": "finance.view_sensitive",
+        "notes": "finance.view_notes",
+    }
+
+    # Masking for non-premium users
+    masked_fields: ClassVar[dict[str, Any]] = {
+        "account_number_masked": "****",
+    }
 
     formatted_balance = serializers.SerializerMethodField()
 
@@ -429,8 +474,23 @@ class CreateLiabilitySerializer(serializers.Serializer):
 # =============================================================================
 
 
-class LoanSerializer(serializers.ModelSerializer):
-    """Serializer for Loan model."""
+class LoanSerializer(FieldPermissionMixin, serializers.ModelSerializer):
+    """Serializer for Loan model.
+
+    Includes field-level permissions for premium features.
+    """
+
+    # Premium field permissions
+    premium_fields: ClassVar[dict[str, str]] = {
+        "interest_rate": "finance.view_rates",
+        "account_number_masked": "finance.view_sensitive",
+        "notes": "finance.view_notes",
+    }
+
+    # Masking for non-premium users
+    masked_fields: ClassVar[dict[str, Any]] = {
+        "account_number_masked": "****",
+    }
 
     principal_paid = serializers.SerializerMethodField()
     principal_paid_percentage = serializers.SerializerMethodField()

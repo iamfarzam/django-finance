@@ -16,4 +16,6 @@ urlpatterns = [
     path("finance/", include("modules.finance.interfaces.urls", namespace="finance")),
     # Social finance module
     path("social/", include("modules.social.interfaces.urls", namespace="social")),
+    # Subscriptions module
+    path("subscriptions/", include("modules.subscriptions.interfaces.urls", namespace="subscriptions")),
 ]

@@ -69,6 +69,7 @@ PROJECT_APPS = [
     "modules.demo.infrastructure",
     "modules.finance.infrastructure",
     "modules.social.infrastructure",
+    "modules.subscriptions.infrastructure",
     # "modules.notifications.infrastructure",
 ]
 
@@ -93,6 +94,8 @@ MIDDLEWARE = [
     # Custom middleware
     "shared.middleware.CorrelationIdMiddleware",
     "shared.middleware.TenantContextMiddleware",
+    "shared.middleware.SubscriptionContextMiddleware",
+    "shared.middleware.UsageTrackingMiddleware",
     "shared.middleware.AuditLoggingMiddleware",
 ]
 

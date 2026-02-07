@@ -81,6 +81,18 @@ class AuditAction(str, Enum):
     ADMIN_DATA_EXPORT = "admin.data_export"
     ADMIN_DATA_DELETE = "admin.data_delete"
 
+    # Subscription operations
+    SUBSCRIPTION_CREATED = "subscription.created"
+    SUBSCRIPTION_UPGRADED = "subscription.upgraded"
+    SUBSCRIPTION_DOWNGRADED = "subscription.downgraded"
+    SUBSCRIPTION_CANCELED = "subscription.canceled"
+    SUBSCRIPTION_RENEWED = "subscription.renewed"
+    SUBSCRIPTION_EXPIRED = "subscription.expired"
+
+    # Usage operations
+    USAGE_LIMIT_EXCEEDED = "usage.limit_exceeded"
+    USAGE_LIMIT_WARNING = "usage.limit_warning"
+
 
 class AuditCategory(str, Enum):
     """Categories for audit log retention."""

@@ -128,6 +128,11 @@ class Account(TenantScopedModel):
                 name="unique_account_name_per_tenant",
             ),
         ]
+        permissions = [
+            ("export_accounts", "Can export account data"),
+            ("view_account_analytics", "Can view account analytics"),
+            ("bulk_import_accounts", "Can bulk import accounts"),
+        ]
 
     def __str__(self) -> str:
         return f"{self.name} ({self.account_type})"
@@ -205,6 +210,11 @@ class Transaction(TenantScopedModel):
                 name="unique_idempotency_key_per_tenant",
                 condition=models.Q(idempotency_key__isnull=False),
             ),
+        ]
+        permissions = [
+            ("bulk_import_transactions", "Can bulk import transactions"),
+            ("export_transactions", "Can export transactions"),
+            ("view_transaction_analytics", "Can view transaction analytics"),
         ]
 
     def __str__(self) -> str:

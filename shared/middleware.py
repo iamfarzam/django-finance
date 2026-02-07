@@ -15,12 +15,15 @@ from typing import TYPE_CHECKING, Callable
 
 from django.http import HttpRequest, HttpResponse
 
-if TYPE_CHECKING:
-    pass
-
 # Context variables for request-scoped data
 correlation_id_var: ContextVar[str | None] = ContextVar("correlation_id", default=None)
 tenant_id_var: ContextVar[uuid.UUID | None] = ContextVar("tenant_id", default=None)
+subscription_context_var: ContextVar["PermissionContext | None"] = ContextVar(
+    "subscription_context", default=None
+)
+
+if TYPE_CHECKING:
+    from modules.subscriptions.domain.services import PermissionContext
 
 
 def get_correlation_id() -> str | None:
@@ -39,6 +42,15 @@ def get_tenant_id() -> uuid.UUID | None:
         The tenant ID for the current request, or None if not set.
     """
     return tenant_id_var.get()
+
+
+def get_subscription_context() -> "PermissionContext | None":
+    """Get the current subscription context.
+
+    Returns:
+        The PermissionContext for the current request, or None if not set.
+    """
+    return subscription_context_var.get()
 
 
 class CorrelationIdMiddleware:
@@ -196,6 +208,186 @@ class TenantContextMiddleware:
         return None
 
 
+class SubscriptionContextMiddleware:
+    """Middleware to attach subscription context to each request.
+
+    For authenticated requests, loads the user's subscription permissions
+    and makes them available throughout the request handling chain.
+
+    Usage:
+        Add to MIDDLEWARE in settings after TenantContextMiddleware:
+        'shared.middleware.SubscriptionContextMiddleware'
+
+    Example:
+        # Access subscription context anywhere in the request context
+        from shared.middleware import get_subscription_context
+        context = get_subscription_context()
+        if context and context.has_feature("reports.advanced"):
+            # Show advanced features
+    """
+
+    def __init__(self, get_response: Callable[[HttpRequest], HttpResponse]) -> None:
+        """Initialize the middleware.
+
+        Args:
+            get_response: The next middleware or view in the chain.
+        """
+        self.get_response = get_response
+
+    def __call__(self, request: HttpRequest) -> HttpResponse:
+        """Process the request.
+
+        Args:
+            request: The incoming HTTP request.
+
+        Returns:
+            The HTTP response.
+        """
+        context = self._get_subscription_context(request)
+        token = subscription_context_var.set(context)
+
+        # Add to request for easy access
+        request.subscription_context = context  # type: ignore[attr-defined]
+
+        try:
+            return self.get_response(request)
+        finally:
+            subscription_context_var.reset(token)
+
+    def _get_subscription_context(
+        self, request: HttpRequest
+    ) -> "PermissionContext | None":
+        """Get subscription context for the request.
+
+        Args:
+            request: The incoming HTTP request.
+
+        Returns:
+            PermissionContext or None if not authenticated.
+        """
+        # Only load context for authenticated users
+        if not hasattr(request, "user") or not request.user.is_authenticated:
+            return None
+
+        try:
+            from modules.subscriptions.domain.services import PermissionService
+
+            return PermissionService.get_user_context(request.user)
+        except Exception:
+            # If subscription system fails, return None
+            # This allows the app to function even if subscriptions are broken
+            return None
+
+
+class UsageTrackingMiddleware:
+    """Middleware to track API usage for rate limiting.
+
+    Tracks API calls for users with API access limits.
+    Only tracks authenticated API requests (not web/session requests).
+
+    Usage:
+        Add to MIDDLEWARE in settings after SubscriptionContextMiddleware:
+        'shared.middleware.UsageTrackingMiddleware'
+    """
+
+    # Paths to track usage for
+    TRACKED_PATH_PREFIXES = (
+        "/api/v1/",
+    )
+
+    # Paths to exclude from tracking
+    EXCLUDED_PATHS = (
+        "/api/v1/auth/token/",
+        "/api/v1/auth/token/refresh/",
+        "/api/v1/subscriptions/",
+    )
+
+    def __init__(self, get_response: Callable[[HttpRequest], HttpResponse]) -> None:
+        """Initialize the middleware.
+
+        Args:
+            get_response: The next middleware or view in the chain.
+        """
+        self.get_response = get_response
+
+    def __call__(self, request: HttpRequest) -> HttpResponse:
+        """Process the request.
+
+        Args:
+            request: The incoming HTTP request.
+
+        Returns:
+            The HTTP response.
+        """
+        # Process the request first
+        response = self.get_response(request)
+
+        # Only track successful API requests
+        if response.status_code < 400 and self._should_track(request):
+            self._track_usage(request)
+
+        return response
+
+    def _should_track(self, request: HttpRequest) -> bool:
+        """Check if request should be tracked.
+
+        Args:
+            request: The HTTP request.
+
+        Returns:
+            True if request should be tracked.
+        """
+        # Only track authenticated users
+        if not hasattr(request, "user") or not request.user.is_authenticated:
+            return False
+
+        # Check if it's an API path
+        if not any(
+            request.path.startswith(prefix)
+            for prefix in self.TRACKED_PATH_PREFIXES
+        ):
+            return False
+
+        # Exclude certain paths
+        if any(
+            request.path.startswith(path)
+            for path in self.EXCLUDED_PATHS
+        ):
+            return False
+
+        # Only track JWT-authenticated requests (not session-based)
+        # Session-based requests are web UI and should not count against API limits
+        if hasattr(request, "auth") and request.auth:
+            return True
+
+        return False
+
+    def _track_usage(self, request: HttpRequest) -> None:
+        """Track API usage for the request.
+
+        Args:
+            request: The HTTP request.
+        """
+        try:
+            from modules.subscriptions.domain.enums import UsageType
+            from modules.subscriptions.domain.services import UsageLimitService
+
+            UsageLimitService.increment_usage(
+                request.user,
+                UsageType.API_CALLS_DAILY.value,
+            )
+        except Exception:
+            # Don't fail the request if usage tracking fails
+            import structlog
+
+            logger = structlog.get_logger()
+            logger.warning(
+                "usage_tracking_failed",
+                user_id=str(getattr(request.user, "id", None)),
+                path=request.path,
+            )
+
+
 class RequestLoggingMiddleware:
     """Middleware to log request information.
 
@@ -284,6 +476,7 @@ class AuditLoggingMiddleware:
         "/api/v1/finance/",
         "/api/v1/accounts/",
         "/api/v1/auth/",
+        "/api/v1/subscriptions/",
     )
 
     # Methods that trigger audit logging

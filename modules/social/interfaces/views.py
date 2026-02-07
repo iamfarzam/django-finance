@@ -11,6 +11,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 
+from shared.permissions import HasFeature, WithinUsageLimit
+
 from modules.social.application.dto import (
     CreateContactCommand,
     CreateContactGroupCommand,
@@ -115,6 +117,22 @@ class ContactViewSet(viewsets.ViewSet):
     """ViewSet for Contact CRUD operations."""
 
     permission_classes = [IsAuthenticated]
+
+    # Subscription-based limits
+    action_limits = {
+        "create": "contacts_max",
+    }
+
+    def get_permissions(self):
+        """Add limit permissions based on action."""
+        permissions = super().get_permissions()
+
+        # Add limit permission if action is mapped
+        if self.action and self.action in self.action_limits:
+            limit_key = self.action_limits[self.action]
+            permissions.append(WithinUsageLimit(limit_key))
+
+        return permissions
 
     def get_use_cases(self) -> ContactUseCases:
         """Get contact use cases."""
@@ -513,6 +531,31 @@ class ExpenseGroupViewSet(viewsets.ViewSet):
     """ViewSet for ExpenseGroup CRUD operations."""
 
     permission_classes = [IsAuthenticated]
+
+    # Subscription-based limits
+    action_limits = {
+        "create": "expense_groups_max",
+    }
+
+    # Premium features
+    action_features = {
+        "add_member": "expense_groups.unlimited_members",
+    }
+
+    def get_permissions(self):
+        """Add limit/feature permissions based on action."""
+        permissions = super().get_permissions()
+
+        # Add limit permission if action is mapped
+        if self.action and self.action in self.action_limits:
+            limit_key = self.action_limits[self.action]
+            permissions.append(WithinUsageLimit(limit_key))
+
+        # Note: add_member feature check would limit adding members beyond
+        # a certain number for free users. For now, we'll allow it but
+        # could add member count limits later.
+
+        return permissions
 
     def get_use_cases(self) -> ExpenseGroupUseCases:
         """Get expense group use cases."""

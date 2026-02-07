@@ -10,7 +10,13 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from shared.permissions import CanCreateAccount, IsOwner, TenantIsolation
+from shared.permissions import (
+    CanCreateAccount,
+    HasFeature,
+    IsOwner,
+    TenantIsolation,
+    WithinUsageLimit,
+)
 
 from modules.finance.infrastructure.models import (
     Account,
@@ -46,10 +52,39 @@ from modules.finance.interfaces.serializers import (
 
 
 class TenantScopedViewSet(viewsets.ModelViewSet):
-    """Base viewset that scopes queries to the current tenant."""
+    """Base viewset that scopes queries to the current tenant.
+
+    Supports subscription-based permission configuration:
+    - action_features: Map actions to required feature codes
+    - action_limits: Map actions to usage limit keys
+    """
 
     permission_classes = [IsAuthenticated, TenantIsolation]
     ordering = ["-created_at"]
+
+    # Map action names to required feature codes
+    # e.g., {"export": "export.json", "analytics": "reports.advanced"}
+    action_features: dict[str, str] = {}
+
+    # Map action names to usage limit keys
+    # e.g., {"create": "accounts_max"}
+    action_limits: dict[str, str] = {}
+
+    def get_permissions(self):
+        """Add feature/limit permissions based on action mappings."""
+        permissions = super().get_permissions()
+
+        # Add feature permission if action is mapped
+        if self.action and self.action in self.action_features:
+            feature_code = self.action_features[self.action]
+            permissions.append(HasFeature(feature_code))
+
+        # Add limit permission if action is mapped
+        if self.action and self.action in self.action_limits:
+            limit_key = self.action_limits[self.action]
+            permissions.append(WithinUsageLimit(limit_key))
+
+        return permissions
 
     def get_queryset(self):
         """Filter queryset by tenant."""
@@ -157,11 +192,23 @@ class AccountViewSet(TenantScopedViewSet):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
 
+    # Subscription-based limits
+    action_limits = {
+        "create": "accounts_max",
+    }
+
+    # Premium features
+    action_features = {
+        "analytics": "finance.analytics",
+    }
+
     def get_permissions(self):
         """Add account creation limit check."""
+        permissions = super().get_permissions()
+        # Keep legacy CanCreateAccount for backwards compatibility
         if self.action == "create":
-            return [IsAuthenticated(), TenantIsolation(), CanCreateAccount()]
-        return super().get_permissions()
+            permissions.append(CanCreateAccount())
+        return permissions
 
     def get_serializer_class(self):
         if self.action == "create":
@@ -302,6 +349,16 @@ class TransactionViewSet(TenantScopedViewSet):
 
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
+
+    # Subscription-based limits
+    action_limits = {
+        "create": "transactions_monthly",
+    }
+
+    # Premium features
+    action_features = {
+        "bulk_import": "finance.bulk_import",
+    }
 
     def get_serializer_class(self):
         if self.action == "create":
@@ -626,9 +683,31 @@ class LoanViewSet(TenantScopedViewSet):
 
 
 class ReportsViewSet(viewsets.ViewSet):
-    """ViewSet for financial reports."""
+    """ViewSet for financial reports.
+
+    Basic reports (net worth) are available to all users.
+    Advanced reports require premium subscription.
+    """
 
     permission_classes = [IsAuthenticated]
+
+    # Premium features for advanced reports
+    action_features = {
+        "cash_flow": "reports.advanced",
+        "spending_analysis": "reports.advanced",
+        "income_analysis": "reports.advanced",
+    }
+
+    def get_permissions(self):
+        """Add feature permissions for advanced reports."""
+        permissions = super().get_permissions()
+
+        # Add feature permission if action is mapped
+        if self.action and self.action in self.action_features:
+            feature_code = self.action_features[self.action]
+            permissions.append(HasFeature(feature_code))
+
+        return permissions
 
     @extend_schema(
         tags=["Reports"],

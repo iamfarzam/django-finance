@@ -3,9 +3,12 @@
 from __future__ import annotations
 
 from decimal import Decimal
+from typing import Any, ClassVar
 from uuid import UUID
 
 from rest_framework import serializers
+
+from shared.serializers import FieldPermissionMixin
 
 
 # =============================================================================
@@ -13,8 +16,25 @@ from rest_framework import serializers
 # =============================================================================
 
 
-class ContactSerializer(serializers.Serializer):
-    """Serializer for Contact DTO."""
+class ContactSerializer(FieldPermissionMixin, serializers.Serializer):
+    """Serializer for Contact DTO.
+
+    Includes field-level permissions for premium features.
+    """
+
+    # Premium field permissions - sensitive contact info
+    premium_fields: ClassVar[dict[str, str]] = {
+        "email": "social.full",
+        "phone": "social.full",
+        "notes": "social.full",
+        "linked_user_id": "social.full",
+    }
+
+    # Masking for non-premium users
+    masked_fields: ClassVar[dict[str, Any]] = {
+        "email": "***@***.***",
+        "phone": "***-***-****",
+    }
 
     id = serializers.UUIDField(read_only=True)
     tenant_id = serializers.UUIDField(read_only=True)

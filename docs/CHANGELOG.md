@@ -7,6 +7,54 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+#### 2026-02-08 - Phase 9: React SSR Web with Next.js
+- Created Next.js 14 frontend application in `frontend/` directory:
+  - App Router architecture with TypeScript
+  - Static export configuration for Django integration
+  - TailwindCSS with Django's design system (colors, fonts)
+  - ESLint configuration for code quality
+- Implemented base UI components (`frontend/src/components/ui/`):
+  - `Button.tsx` - Variants: primary, secondary, outline, ghost, danger
+  - `Card.tsx` - Card with header, title, description, content, footer
+  - `Badge.tsx` - Colored status badges
+  - `Skeleton.tsx` - Loading skeleton components
+- Created layout components (`frontend/src/components/layout/`):
+  - `Header.tsx` - Navigation with logo, links, responsive user menu
+  - `Footer.tsx` - Copyright footer
+  - `MainLayout.tsx` - Full page wrapper with header/footer
+- Implemented dashboard components (`frontend/src/components/dashboard/`):
+  - `NetWorthCard.tsx` - Assets, liabilities, net worth display with progress bar
+  - `StatsGrid.tsx` - 4-stat grid (accounts, transactions, contacts, debts)
+  - `RecentTransactions.tsx` - Transaction list with icons and formatting
+  - `SocialFinanceSummary.tsx` - Debt summary (they owe/you owe)
+  - `EmptyState.tsx` - Empty state with call-to-action
+- Created API client and TypeScript types:
+  - `frontend/src/lib/api/client.ts` - Axios client with CSRF, error handling, 401 redirect
+  - `frontend/src/lib/api/types.ts` - API response types
+  - `frontend/src/types/finance.ts` - Account, Transaction, NetWorth types
+  - `frontend/src/types/social.ts` - Contact, PeerDebt, Balance types
+  - `frontend/src/lib/hooks/useDashboard.ts` - Dashboard data fetching hook
+  - `frontend/src/lib/utils/format.ts` - Currency and date formatting utilities
+- Created Next.js App Router pages:
+  - `frontend/src/app/layout.tsx` - Root layout with metadata
+  - `frontend/src/app/page.tsx` - Dashboard page with loading/error states
+  - `frontend/src/app/loading.tsx` - Loading skeleton
+  - `frontend/src/app/error.tsx` - Error boundary with retry
+  - `frontend/src/styles/globals.css` - Tailwind imports and custom animations
+- Created Django Dashboard API endpoint:
+  - `modules/web/api_views.py` - DashboardAPIView with aggregated data
+  - Returns: user info, net worth, stats, recent transactions, social summary
+  - Added route at `/api/v1/dashboard/`
+- Django integration:
+  - `templates/react/dashboard.html` - Django wrapper template with CSRF token
+  - `modules/web/views.py` - Added ReactDashboardView
+  - `modules/web/urls.py` - Added `/react/dashboard/` route
+- Build configuration:
+  - `Makefile` - Added frontend-install, frontend-dev, frontend-build, frontend-export, frontend-clean
+  - `.gitignore` - Added frontend/node_modules, frontend/.next, frontend/out, static/react/
+  - `next.config.js` - Static export with `/static/react/` base path
+- 38 new frontend files created with complete TypeScript type safety
+
 #### 2026-02-08 - Permission-Based Access Control with Monetization
 - Created subscriptions module (`modules/subscriptions/`) with clean architecture:
   - Domain layer: `TierCode`, `SubscriptionStatus`, `FeatureCode`, `LimitKey` enums

@@ -9,6 +9,8 @@ app_name = "web"
 urlpatterns = [
     # Dashboard
     path("", views.DashboardView.as_view(), name="dashboard"),
+    # React Dashboard (Next.js static export)
+    path("react/dashboard/", views.ReactDashboardView.as_view(), name="react_dashboard"),
 
     # Accounts
     path("accounts/", views.AccountListView.as_view(), name="accounts_list"),

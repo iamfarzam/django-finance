@@ -41,6 +41,16 @@ from modules.social.infrastructure.models import (
 # =============================================================================
 
 
+class ReactDashboardView(LoginRequiredMixin, TemplateView):
+    """React-based dashboard served as static export.
+
+    This view renders the Django template wrapper that loads the
+    Next.js static export from /static/react/.
+    """
+
+    template_name = "react/dashboard.html"
+
+
 class DashboardView(LoginRequiredMixin, TemplateView):
     """Main dashboard with financial overview."""
 

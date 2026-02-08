@@ -3,7 +3,8 @@
 
 .PHONY: help install up down restart logs migrate makemigrations \
         test test-cov test-unit test-integration lint lint-fix format typecheck \
-        security import-check contract-check ci shell runserver createsuperuser clean
+        security import-check contract-check ci shell runserver createsuperuser clean \
+        frontend-install frontend-dev frontend-build frontend-export frontend-clean
 
 # Default target
 .DEFAULT_GOAL := help
@@ -146,6 +147,30 @@ beat: ## Start Celery beat scheduler
 
 flower: ## Start Flower monitoring (port 5555)
 	celery -A config flower --port=5555
+
+# =============================================================================
+# Frontend (Next.js React Dashboard)
+# =============================================================================
+frontend-install: ## Install frontend dependencies
+	cd frontend && npm install
+
+frontend-dev: ## Start frontend development server
+	cd frontend && npm run dev
+
+frontend-build: ## Build frontend for production
+	cd frontend && npm run build
+
+frontend-export: ## Export frontend to static/react/
+	cd frontend && npm run build
+	rm -rf static/react/ 2>/dev/null || true
+	mkdir -p static/react
+	cp -r frontend/out/* static/react/
+
+frontend-clean: ## Clean frontend build artifacts
+	rm -rf frontend/node_modules 2>/dev/null || true
+	rm -rf frontend/.next 2>/dev/null || true
+	rm -rf frontend/out 2>/dev/null || true
+	rm -rf static/react 2>/dev/null || true
 
 # =============================================================================
 # Cleanup

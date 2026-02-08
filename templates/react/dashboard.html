@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your personal finance dashboard - Django Finance">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Dashboard - Django Finance">
+    <meta property="og:description" content="Your personal finance dashboard">
+
+    <title>Dashboard - Django Finance</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+
+    <!-- Preconnect to font servers -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Next.js Static Export CSS and JS -->
+    {% load static %}
+
+    <style>
+        /* Base styles while React loads */
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: #f9fafb;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Loading indicator */
+        .react-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #6b7280;
+        }
+
+        .react-loading svg {
+            animation: spin 1s linear infinite;
+            width: 40px;
+            height: 40px;
+            color: #3b82f6;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .react-loading p {
+            margin-top: 16px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="__next">
+        <!-- Loading state shown before React hydrates -->
+        <div class="react-loading">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <p>Loading dashboard...</p>
+        </div>
+    </div>
+
+    <!-- CSRF Token for API requests -->
+    <script>
+        window.CSRF_TOKEN = "{{ csrf_token }}";
+    </script>
+
+    <!-- User data for initial render -->
+    {% if user.is_authenticated %}
+    <script>
+        window.INITIAL_USER = {
+            id: "{{ user.id }}",
+            email: "{{ user.email }}",
+            firstName: "{{ user.first_name }}",
+            lastName: "{{ user.last_name }}",
+            fullName: "{{ user.get_full_name }}"
+        };
+    </script>
+    {% endif %}
+
+    <!-- Next.js Static Export Assets -->
+    <!-- These will be loaded from /static/react/ after build -->
+    <script src="{% static 'react/_next/static/chunks/main.js' %}" defer></script>
+</body>
+</html>

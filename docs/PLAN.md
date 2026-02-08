@@ -48,7 +48,7 @@ The platform supports web, mobile, and real-time features while keeping SEO and 
 | 6 | Real-time Features | **Done** |
 | 7 | Web UI | **Done** |
 | 8 | Admin Modernization | **Done** |
-| 9 | Optional React SSR Web | Not started |
+| 9 | React SSR Web (Next.js) | **Done** |
 | 10 | Production Readiness | Not started |
 | 11 | Release and Maintenance | Not started |
 
@@ -582,19 +582,55 @@ The platform supports web, mobile, and real-time features while keeping SEO and 
 
 ---
 
-## Phase 9: Optional React SSR Web
-**Status**: Not started
+## Phase 9: React SSR Web (Next.js)
+**Status**: Done
+**Completed**: 2026-02-08
 
 ### Prerequisites
 - Phase 8 complete
-- Decision to proceed with React SSR approved
 
 ### Deliverables
-- [ ] React SSR setup (Next.js or similar)
-- [ ] Shared design system between SSR and templates
-- [ ] Component library
-- [ ] API integration
-- [ ] SEO parity with templates
+- [x] React SSR setup with Next.js 14 (App Router)
+- [x] Shared design system between SSR and templates
+  - [x] TailwindCSS with Django's color palette
+  - [x] Inter and JetBrains Mono fonts
+  - [x] Consistent spacing and component styles
+- [x] Component library
+  - [x] UI components: Button, Card, Badge, Skeleton
+  - [x] Layout components: Header, Footer, MainLayout
+  - [x] Dashboard components: NetWorthCard, StatsGrid, RecentTransactions, SocialFinanceSummary
+- [x] API integration
+  - [x] Axios client with CSRF token handling
+  - [x] Dashboard API endpoint (`/api/v1/dashboard/`)
+  - [x] useDashboard hook for data fetching
+  - [x] TypeScript types for all entities
+- [x] Django integration
+  - [x] Static export configuration (`/static/react/` base path)
+  - [x] Django template wrapper (`templates/react/dashboard.html`)
+  - [x] React dashboard route (`/react/dashboard/`)
+- [x] Build configuration
+  - [x] Makefile commands for frontend development
+  - [x] .gitignore updates for frontend artifacts
+
+### Key Components Created
+- `frontend/` - Next.js 14 application (38 files)
+  - `src/app/` - App Router pages (layout, page, loading, error)
+  - `src/components/ui/` - Button, Card, Badge, Skeleton
+  - `src/components/layout/` - Header, Footer, MainLayout
+  - `src/components/dashboard/` - Dashboard widgets
+  - `src/lib/api/` - Axios client with CSRF handling
+  - `src/lib/hooks/` - useDashboard hook
+  - `src/lib/utils/` - cn (classnames), format utilities
+  - `src/types/` - TypeScript type definitions
+  - `src/styles/` - Global CSS with Tailwind
+- `modules/web/api_views.py` - DashboardAPIView
+- `templates/react/dashboard.html` - Django wrapper template
+
+### Technical Decisions
+- Static export for simple deployment (single Django server)
+- Session cookie authentication (already working)
+- Aggregated dashboard endpoint to minimize API calls
+- Client-side data fetching after hydration
 
 ---
 
@@ -602,7 +638,7 @@ The platform supports web, mobile, and real-time features while keeping SEO and 
 **Status**: Not started
 
 ### Prerequisites
-- Phase 8 (or 9 if applicable) complete
+- Phase 9 complete
 
 ### Deliverables
 - [ ] Performance testing and optimization

@@ -378,7 +378,11 @@ def register_event_handlers() -> None:
 
     Note: The actual event bus integration depends on the
     chosen event infrastructure (Django signals, Celery, etc.)
+
+    Current implementation: Handlers are called directly from use cases
+    and application services. For a more decoupled approach, consider:
+    - Django signals for synchronous in-process events
+    - Celery tasks for async background processing
+    - Redis pub/sub for cross-service events
     """
-    # TODO: Integrate with event bus when available
-    # For now, handlers are called directly from use cases
     logger.info("Event handlers registered for real-time notifications")

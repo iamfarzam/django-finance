@@ -41,6 +41,11 @@ from modules.accounts.interfaces.throttling import (
     ResendVerificationRateThrottle,
     VerifyEmailRateThrottle,
 )
+from modules.accounts.tasks import (
+    send_password_changed_notification,
+    send_password_reset_email,
+    send_verification_email,
+)
 
 
 class RegisterView(GenericAPIView):
@@ -68,7 +73,13 @@ class RegisterView(GenericAPIView):
             expires_at=timezone.now() + timedelta(hours=24),
         )
 
-        # TODO: Send verification email via Celery task
+        # Send verification email via Celery task
+        send_verification_email.delay(
+            user_id=str(user.id),
+            email=user.email,
+            token=token,
+            first_name=user.first_name,
+        )
 
         return Response(
             {
@@ -198,7 +209,13 @@ class ResendVerificationView(APIView):
             expires_at=timezone.now() + timedelta(hours=24),
         )
 
-        # TODO: Send verification email via Celery task
+        # Send verification email via Celery task
+        send_verification_email.delay(
+            user_id=str(user.id),
+            email=user.email,
+            token=token,
+            first_name=user.first_name,
+        )
 
         return Response({"message": "Verification email sent."})
 
@@ -236,7 +253,13 @@ class RequestPasswordResetView(GenericAPIView):
                 expires_at=timezone.now() + timedelta(hours=1),
             )
 
-            # TODO: Send reset email via Celery task
+            # Send reset email via Celery task
+            send_password_reset_email.delay(
+                user_id=str(user.id),
+                email=user.email,
+                token=token,
+                first_name=user.first_name,
+            )
 
         except User.DoesNotExist:
             # Don't reveal that user doesn't exist
@@ -294,7 +317,12 @@ class ResetPasswordView(GenericAPIView):
             )
         ])
 
-        # TODO: Send password changed notification via Celery task
+        # Send password changed notification via Celery task
+        send_password_changed_notification.delay(
+            user_id=str(user.id),
+            email=user.email,
+            first_name=user.first_name,
+        )
 
         return Response({"message": "Password reset successfully."})
 
@@ -315,7 +343,12 @@ class ChangePasswordView(GenericAPIView):
         user.set_password(serializer.validated_data["new_password"])
         user.save()
 
-        # TODO: Send password changed notification via Celery task
+        # Send password changed notification via Celery task
+        send_password_changed_notification.delay(
+            user_id=str(user.id),
+            email=user.email,
+            first_name=user.first_name,
+        )
 
         return Response({"message": "Password changed successfully."})
 

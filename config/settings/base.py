@@ -25,6 +25,7 @@ ALLOWED_HOSTS = env.allowed_hosts
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
 ASGI_APPLICATION = "config.asgi.application"
+SITE_URL = env.site_url
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

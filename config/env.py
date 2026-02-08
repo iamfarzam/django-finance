@@ -38,6 +38,7 @@ class Settings(BaseSettings):
     debug: bool = Field(default=False, alias="DEBUG")
     secret_key: str = Field(alias="SECRET_KEY")
     allowed_hosts: list[str] = Field(default=["localhost", "127.0.0.1"])
+    site_url: str = Field(default="http://localhost:8000", alias="SITE_URL")
 
     @field_validator("allowed_hosts", mode="before")
     @classmethod

@@ -4,6 +4,7 @@ Views handle HTTP requests and delegate to use cases.
 They translate between HTTP and application layer DTOs.
 """
 
+from django.utils.translation import gettext_lazy as _
 from drf_spectacular.utils import OpenApiParameter, OpenApiResponse, extend_schema, extend_schema_view
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
@@ -398,7 +399,7 @@ class TransactionViewSet(TenantScopedViewSet):
         transaction = self.get_object()
         if transaction.status != Transaction.Status.PENDING:
             return Response(
-                {"error": "Transaction is not pending"},
+                {"error": _("Transaction is not pending.")},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         transaction.status = Transaction.Status.POSTED
@@ -420,7 +421,7 @@ class TransactionViewSet(TenantScopedViewSet):
         transaction = self.get_object()
         if transaction.status == Transaction.Status.VOIDED:
             return Response(
-                {"error": "Transaction is already voided"},
+                {"error": _("Transaction is already voided.")},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         transaction.status = Transaction.Status.VOIDED
@@ -664,7 +665,7 @@ class LoanViewSet(TenantScopedViewSet):
         loan = self.get_object()
         if loan.status == Loan.LoanStatus.PAID_OFF:
             return Response(
-                {"error": "Loan is already paid off"},
+                {"error": _("Loan is already paid off.")},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -734,7 +735,7 @@ class ReportsViewSet(viewsets.ViewSet):
         tenant_id = getattr(request.user, "tenant_id", None)
         if not tenant_id:
             return Response(
-                {"error": "No tenant context"},
+                {"error": _("No tenant context.")},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 

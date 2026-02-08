@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import asdict
 
+from django.utils.translation import gettext_lazy as _
 from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
@@ -169,7 +170,7 @@ class ContactViewSet(viewsets.ViewSet):
         contact = use_cases.get_contact(pk, get_tenant_id(request))
         if not contact:
             return Response(
-                {"detail": "Contact not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Contact not found.")}, status=status.HTTP_404_NOT_FOUND
             )
         return Response(ContactSerializer(contact).data)
 
@@ -189,7 +190,7 @@ class ContactViewSet(viewsets.ViewSet):
             return Response(ContactSerializer(contact).data)
         except ContactNotFoundError:
             return Response(
-                {"detail": "Contact not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Contact not found.")}, status=status.HTTP_404_NOT_FOUND
             )
 
     def partial_update(self, request: Request, pk=None) -> Response:
@@ -202,7 +203,7 @@ class ContactViewSet(viewsets.ViewSet):
         deleted = use_cases.delete_contact(pk, get_tenant_id(request))
         if not deleted:
             return Response(
-                {"detail": "Contact not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Contact not found.")}, status=status.HTTP_404_NOT_FOUND
             )
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -220,7 +221,7 @@ class ContactViewSet(viewsets.ViewSet):
             return Response(ContactSerializer(contact).data)
         except ContactNotFoundError:
             return Response(
-                {"detail": "Contact not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Contact not found.")}, status=status.HTTP_404_NOT_FOUND
             )
 
 
@@ -292,7 +293,7 @@ class ContactGroupViewSet(viewsets.ViewSet):
         group = use_cases.get_group(pk, get_tenant_id(request))
         if not group:
             return Response(
-                {"detail": "Group not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Group not found.")}, status=status.HTTP_404_NOT_FOUND
             )
         return Response(ContactGroupSerializer(group).data)
 
@@ -302,7 +303,7 @@ class ContactGroupViewSet(viewsets.ViewSet):
         deleted = use_cases.group_repo.delete(pk, get_tenant_id(request))
         if not deleted:
             return Response(
-                {"detail": "Group not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Group not found.")}, status=status.HTTP_404_NOT_FOUND
             )
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -414,7 +415,7 @@ class PeerDebtViewSet(viewsets.ViewSet):
             )
         except ContactNotFoundError:
             return Response(
-                {"detail": "Contact not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Contact not found.")}, status=status.HTTP_404_NOT_FOUND
             )
 
     def retrieve(self, request: Request, pk=None) -> Response:
@@ -423,7 +424,7 @@ class PeerDebtViewSet(viewsets.ViewSet):
         debt = use_cases.get_debt(pk, get_tenant_id(request))
         if not debt:
             return Response(
-                {"detail": "Debt not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Debt not found.")}, status=status.HTTP_404_NOT_FOUND
             )
         return Response(PeerDebtSerializer(debt).data)
 
@@ -433,7 +434,7 @@ class PeerDebtViewSet(viewsets.ViewSet):
         deleted = use_cases.debt_repo.delete(pk, get_tenant_id(request))
         if not deleted:
             return Response(
-                {"detail": "Debt not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Debt not found.")}, status=status.HTTP_404_NOT_FOUND
             )
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -474,11 +475,11 @@ class PeerDebtViewSet(viewsets.ViewSet):
             return Response(PeerDebtSerializer(debt).data)
         except DebtNotFoundError:
             return Response(
-                {"detail": "Debt not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Debt not found.")}, status=status.HTTP_404_NOT_FOUND
             )
         except DebtAlreadySettledError:
             return Response(
-                {"detail": "Debt is already settled."},
+                {"detail": _("Debt is already settled.")},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -496,7 +497,7 @@ class PeerDebtViewSet(viewsets.ViewSet):
             return Response(PeerDebtSerializer(debt).data)
         except DebtNotFoundError:
             return Response(
-                {"detail": "Debt not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Debt not found.")}, status=status.HTTP_404_NOT_FOUND
             )
 
 
@@ -594,7 +595,7 @@ class ExpenseGroupViewSet(viewsets.ViewSet):
         group = use_cases.get_group(pk, get_tenant_id(request))
         if not group:
             return Response(
-                {"detail": "Group not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Group not found.")}, status=status.HTTP_404_NOT_FOUND
             )
         return Response(ExpenseGroupSerializer(group).data)
 
@@ -604,7 +605,7 @@ class ExpenseGroupViewSet(viewsets.ViewSet):
         deleted = use_cases.group_repo.delete(pk, get_tenant_id(request))
         if not deleted:
             return Response(
-                {"detail": "Group not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Group not found.")}, status=status.HTTP_404_NOT_FOUND
             )
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -740,7 +741,7 @@ class GroupExpenseViewSet(viewsets.ViewSet):
             )
         except ExpenseGroupNotFoundError:
             return Response(
-                {"detail": "Expense group not found."},
+                {"detail": _("Expense group not found.")},
                 status=status.HTTP_404_NOT_FOUND,
             )
         except InvalidSplitTotalError as e:
@@ -752,7 +753,7 @@ class GroupExpenseViewSet(viewsets.ViewSet):
         expense = use_cases.get_expense(pk, get_tenant_id(request))
         if not expense:
             return Response(
-                {"detail": "Expense not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Expense not found.")}, status=status.HTTP_404_NOT_FOUND
             )
         return Response(GroupExpenseSerializer(expense).data)
 
@@ -762,7 +763,7 @@ class GroupExpenseViewSet(viewsets.ViewSet):
         deleted = use_cases.expense_repo.delete(pk, get_tenant_id(request))
         if not deleted:
             return Response(
-                {"detail": "Expense not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Expense not found.")}, status=status.HTTP_404_NOT_FOUND
             )
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -780,7 +781,7 @@ class GroupExpenseViewSet(viewsets.ViewSet):
             return Response(GroupExpenseSerializer(expense).data)
         except GroupExpenseNotFoundError:
             return Response(
-                {"detail": "Expense not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Expense not found.")}, status=status.HTTP_404_NOT_FOUND
             )
 
 
@@ -854,7 +855,7 @@ class SettlementViewSet(viewsets.ViewSet):
         settlement = use_cases.get_settlement(pk, get_tenant_id(request))
         if not settlement:
             return Response(
-                {"detail": "Settlement not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Settlement not found.")}, status=status.HTTP_404_NOT_FOUND
             )
         return Response(SettlementSerializer(settlement).data)
 
@@ -864,7 +865,7 @@ class SettlementViewSet(viewsets.ViewSet):
         deleted = use_cases.settlement_repo.delete(pk, get_tenant_id(request))
         if not deleted:
             return Response(
-                {"detail": "Settlement not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Settlement not found.")}, status=status.HTTP_404_NOT_FOUND
             )
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -931,7 +932,7 @@ class BalanceViewSet(viewsets.ViewSet):
             return Response(ContactBalanceSerializer(balance).data)
         except ContactNotFoundError:
             return Response(
-                {"detail": "Contact not found."}, status=status.HTTP_404_NOT_FOUND
+                {"detail": _("Contact not found.")}, status=status.HTTP_404_NOT_FOUND
             )
 
     @extend_schema(
@@ -947,7 +948,7 @@ class BalanceViewSet(viewsets.ViewSet):
             return Response(GroupBalanceSerializer(balance).data)
         except ExpenseGroupNotFoundError:
             return Response(
-                {"detail": "Expense group not found."},
+                {"detail": _("Expense group not found.")},
                 status=status.HTTP_404_NOT_FOUND,
             )
 

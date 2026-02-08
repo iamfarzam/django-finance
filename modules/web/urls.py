@@ -52,4 +52,7 @@ urlpatterns = [
     # Profile & Settings
     path("profile/", views.ProfileView.as_view(), name="profile"),
     path("settings/", views.SettingsView.as_view(), name="settings"),
+
+    # Notifications
+    path("notifications/", views.NotificationsListView.as_view(), name="notifications_list"),
 ]

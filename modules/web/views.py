@@ -590,6 +590,17 @@ class SettingsView(LoginRequiredMixin, TemplateView):
 
 
 # =============================================================================
+# Notifications
+# =============================================================================
+
+
+class NotificationsListView(LoginRequiredMixin, TemplateView):
+    """Notifications list page."""
+
+    template_name = "notifications/list.html"
+
+
+# =============================================================================
 # Net Worth
 # =============================================================================
 

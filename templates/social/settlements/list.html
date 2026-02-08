@@ -1,20 +1,21 @@
 {% extends "base/app.html" %}
+{% load i18n %}
 
-{% block title %}Settlements{% endblock %}
+{% block title %}{% translate "Settlements" %}{% endblock %}
 
 {% block content %}
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="sm:flex sm:items-center sm:justify-between mb-8">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900">Settlements</h1>
-            <p class="mt-1 text-sm text-gray-500">Record payments to settle debts.</p>
+            <h1 class="text-2xl font-bold text-gray-900">{% translate "Settlements" %}</h1>
+            <p class="mt-1 text-sm text-gray-500">{% translate "Record payments to settle debts." %}</p>
         </div>
         <div class="mt-4 sm:mt-0">
             <a href="{% url 'web:settlement_create' %}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700">
                 <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                 </svg>
-                Record Settlement
+                {% translate "Record Settlement" %}
             </a>
         </div>
     </div>
@@ -24,10 +25,10 @@
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Direction</th>
-                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% translate "Date" %}</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% translate "Contact" %}</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% translate "Direction" %}</th>
+                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">{% translate "Amount" %}</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -40,7 +41,7 @@
                         {{ settlement.contact.name }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {% if settlement.from_is_owner %}You paid them{% else %}They paid you{% endif %}
+                        {% if settlement.from_is_owner %}{% translate "You paid them" %}{% else %}{% translate "They paid you" %}{% endif %}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-right font-medium {% if settlement.from_is_owner %}text-danger-600{% else %}text-success-600{% endif %}">
                         ${{ settlement.amount|floatformat:2 }}
@@ -55,8 +56,8 @@
         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
         </svg>
-        <h3 class="mt-2 text-sm font-medium text-gray-900">No settlements</h3>
-        <p class="mt-1 text-sm text-gray-500">Record settlements when debts are paid.</p>
+        <h3 class="mt-2 text-sm font-medium text-gray-900">{% translate "No settlements" %}</h3>
+        <p class="mt-1 text-sm text-gray-500">{% translate "Record settlements when debts are paid." %}</p>
     </div>
     {% endif %}
 </div>

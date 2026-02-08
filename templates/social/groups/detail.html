@@ -1,12 +1,13 @@
 {% extends "base/app.html" %}
+{% load i18n %}
 
 {% block title %}{{ group.name }}{% endblock %}
 
 {% block content %}
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <nav class="mb-4" aria-label="Breadcrumb">
+    <nav class="mb-4" aria-label="{% translate "Breadcrumb" %}">
         <ol class="flex items-center space-x-2 text-sm text-gray-500">
-            <li><a href="{% url 'web:groups_list' %}" class="hover:text-gray-700">Groups</a></li>
+            <li><a href="{% url 'web:groups_list' %}" class="hover:text-gray-700">{% translate "Groups" %}</a></li>
             <li><span class="mx-2">/</span></li>
             <li class="text-gray-900">{{ group.name }}</li>
         </ol>
@@ -22,12 +23,12 @@
         <div class="mt-4 sm:mt-0">
             <button type="button" disabled
                     class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-400 cursor-not-allowed"
-                    title="Coming soon">
+                    title="{% translate "Coming soon" %}">
                 <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                 </svg>
-                Add Expense
-                <span class="ml-2 text-xs bg-primary-500 px-1.5 py-0.5 rounded">Soon</span>
+                {% translate "Add Expense" %}
+                <span class="ml-2 text-xs bg-primary-500 px-1.5 py-0.5 rounded">{% translate "Soon" %}</span>
             </button>
         </div>
     </div>
@@ -35,7 +36,7 @@
     <!-- Expenses -->
     <div class="bg-white rounded-lg shadow-sm border border-gray-200">
         <div class="p-6 border-b border-gray-200">
-            <h2 class="text-lg font-semibold text-gray-900">Expenses</h2>
+            <h2 class="text-lg font-semibold text-gray-900">{% translate "Expenses" %}</h2>
         </div>
         <div class="divide-y divide-gray-200">
             {% for expense in expenses %}
@@ -48,7 +49,7 @@
             </div>
             {% empty %}
             <div class="p-8 text-center text-gray-500">
-                No expenses yet. Add one to get started.
+                {% translate "No expenses yet. Add one to get started." %}
             </div>
             {% endfor %}
         </div>

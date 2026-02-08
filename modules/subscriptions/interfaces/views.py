@@ -1,5 +1,6 @@
 """DRF views for the subscriptions module."""
 
+from django.utils.translation import gettext_lazy as _
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
@@ -65,7 +66,7 @@ class SubscriptionViewSet(viewsets.ViewSet):
                 "tier": "free",
                 "status": "active",
                 "is_premium": False,
-                "message": "No subscription found. Using free tier.",
+                "message": _("No subscription found. Using free tier."),
             })
 
     @extend_schema(

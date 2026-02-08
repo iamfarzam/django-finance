@@ -1,17 +1,18 @@
+{% load static i18n %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Your personal finance dashboard - Djanbe Finance">
+    <meta name="description" content="{% translate "Your personal finance dashboard - Djanbe Finance" %}">
     <meta name="robots" content="noindex, nofollow">
 
     <!-- Open Graph / Social -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Dashboard - Djanbe Finance">
-    <meta property="og:description" content="Your personal finance dashboard">
+    <meta property="og:title" content="{% translate "Dashboard" %} - {% translate "Djanbe Finance" %}">
+    <meta property="og:description" content="{% translate "Your personal finance dashboard" %}">
 
-    <title>Dashboard - Djanbe Finance</title>
+    <title>{% translate "Dashboard" %} - {% translate "Djanbe Finance" %}</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
@@ -24,8 +25,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Next.js Static Export CSS and JS -->
-    {% load static %}
-
     <style>
         /* Base styles while React loads */
         body {
@@ -70,7 +69,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
-            <p>Loading dashboard...</p>
+            <p>{% translate "Loading dashboard..." %}</p>
         </div>
     </div>
 

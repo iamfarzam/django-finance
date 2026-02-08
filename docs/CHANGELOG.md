@@ -11,19 +11,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Implemented comprehensive internationalization across the application:
   - Backend i18n configuration with `LocaleMiddleware` for language detection
   - Support for 14 languages: English, Spanish, German, French, Italian, Simplified Chinese, Arabic, Persian, Urdu, Hindi, Hungarian, Norwegian, Japanese, Korean
-  - Created locale directory structure for all supported languages
+  - Created locale directory structure with message catalogs for all supported languages
   - Added `/i18n/setlang/` endpoint for language switching
-- Template internationalization with Django i18n tags:
+- Template internationalization with Django i18n tags (33 templates total):
   - Base templates (`base.html`, `app.html`, `auth.html`) with `{% translate %}` tags
   - Account templates (login, register, password reset, profile, settings)
-  - Finance templates (dashboard, accounts list, transactions list)
-  - Social templates (contacts, debts, groups list/detail)
-  - Notification templates (list view)
-  - React dashboard wrapper template
+  - Finance templates (dashboard, accounts list/form/detail, transactions list/form/detail, net worth)
+  - Social templates (contacts list/form/detail, debts list/form/detail, groups list/form/detail, settlements list/form, balances summary)
+  - Notification templates (list view with filter tabs)
+  - Admin templates (finance_index, dashboard_stats, audit_logs) - converted from `{% trans %}` to `{% translate %}`
+  - React dashboard wrapper template with meta tags and loading text
 - API internationalization:
   - Added `gettext_lazy` to all user-facing API error messages
   - Internationalized validation errors in serializers (accounts, finance, social)
-  - Internationalized response messages in views (accounts, notifications, demo)
+  - Internationalized response messages in views (accounts, finance, social, notifications, subscriptions)
+  - 24+ error messages wrapped in finance and social modules
 - Language selector UI:
   - Desktop: Globe icon dropdown in navigation header
   - Mobile: Expandable language section in mobile menu

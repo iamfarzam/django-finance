@@ -40,6 +40,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - Accessibility improvements (skip link, focus styles)
   - `{% block structured_data %}` for page-specific schema
 
+#### 2026-02-08 - Account Settings and SEO Assets
+- Added account deletion endpoint (soft delete) and wired the settings button to call it.
+- Added user default currency preference with validation and persistence in settings.
+- Added static SEO assets (favicon, apple-touch-icon, og-image) and allowed `static/img/` in git.
+
+### Fixed
+
+#### 2026-02-08 - Web UI and i18n Fixes
+- Fixed account balance calculation by adding `Account.calculate_balance()` for dashboard usage.
+- Fixed debt creation by removing invalid `remaining_amount` assignment and restoring selectable direction cards.
+- Marked authenticated/auth pages as `noindex, nofollow`, updated robots exclusions, and made OG/Twitter images absolute.
+- Repaired broken UTF-8 translation for “Preference saved.” across all locales.
+
 #### 2026-02-08 - Notification System UI
 - Added notification bell with real-time WebSocket updates:
   - Unread count badge with live updates

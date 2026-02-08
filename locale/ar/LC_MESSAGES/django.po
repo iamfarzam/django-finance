@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-finance\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-08 07:21+0500\n"
-"PO-Revision-Date: 2026-02-08 08:17+0500\n"
+"POT-Creation-Date: 2026-02-08 09:22+0500\n"
+"PO-Revision-Date: 2026-02-08 09:22+0500\n"
 "Last-Translator: Farzam Mehdi <ifarzammehdi@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/django/django/language/ar/)\n"
 "Language: ar\n"
@@ -109,7 +109,7 @@ msgstr "كلمة المرور الحالية غير صحيحة."
 #: .\modules\accounts\interfaces\views.py:87
 msgid ""
 "Registration successful. Please check your email to verify your account."
-msgstr ""
+msgstr "تم التسجيل بنجاح. يرجى التحقق من بريدك الإلكتروني لتفعيل حسابك."
 
 #: .\modules\accounts\interfaces\views.py:118
 msgid "Refresh token is required."
@@ -147,6 +147,8 @@ msgstr "تم إرسال رسالة التحقق."
 msgid ""
 "If an account exists with this email, a password reset link has been sent."
 msgstr ""
+"إذا كان هناك حساب بهذا البريد الإلكتروني، فقد تم إرسال رابط إعادة تعيين كلمة "
+"المرور."
 
 #: .\modules\accounts\interfaces\views.py:293
 msgid "Invalid reset token."
@@ -199,6 +201,28 @@ msgstr "عملة غير مدعومة: %(currency)s"
 msgid "Cannot transfer to the same account."
 msgstr "لا يمكن التحويل إلى نفس الحساب."
 
+#: .\modules\finance\interfaces\views.py:402
+#, fuzzy
+#| msgid "Transactions (This Month)"
+msgid "Transaction is not pending."
+msgstr "المعاملات (هذا الشهر)"
+
+#: .\modules\finance\interfaces\views.py:424
+#, fuzzy
+#| msgid "Email is already verified."
+msgid "Transaction is already voided."
+msgstr "البريد الإلكتروني متحقق منه بالفعل."
+
+#: .\modules\finance\interfaces\views.py:668
+#, fuzzy
+#| msgid "Email is already verified."
+msgid "Loan is already paid off."
+msgstr "البريد الإلكتروني متحقق منه بالفعل."
+
+#: .\modules\finance\interfaces\views.py:738
+msgid "No tenant context."
+msgstr "لا يوجد سياق للمستأجر."
+
 #: .\modules\notifications\interfaces\views.py:87
 #: .\modules\notifications\interfaces\views.py:115
 #: .\modules\notifications\interfaces\views.py:165
@@ -218,6 +242,7 @@ msgstr "فئة غير صالحة. يجب أن تكون واحدة من: %(catego
 msgid ""
 "Either paid_by_owner must be True or paid_by_contact_id must be provided."
 msgstr ""
+"يجب أن تكون paid_by_owner مساوية لـ True أو يجب توفير paid_by_contact_id."
 
 #: .\modules\social\interfaces\serializers.py:322
 msgid "Cannot set both owner_pays and owner_receives to True."
@@ -226,6 +251,67 @@ msgstr "لا يمكن تعيين كل من owner_pays و owner_receives إلى T
 #: .\modules\social\interfaces\serializers.py:326
 msgid "Must set either owner_pays or owner_receives to True."
 msgstr "يجب تعيين owner_pays أو owner_receives إلى True."
+
+#: .\modules\social\interfaces\views.py:173
+#: .\modules\social\interfaces\views.py:193
+#: .\modules\social\interfaces\views.py:206
+#: .\modules\social\interfaces\views.py:224
+#: .\modules\social\interfaces\views.py:418
+#: .\modules\social\interfaces\views.py:935
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Contact not found."
+msgstr "الإشعار غير موجود."
+
+#: .\modules\social\interfaces\views.py:296
+#: .\modules\social\interfaces\views.py:306
+#: .\modules\social\interfaces\views.py:598
+#: .\modules\social\interfaces\views.py:608
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Group not found."
+msgstr "الإشعار غير موجود."
+
+#: .\modules\social\interfaces\views.py:427
+#: .\modules\social\interfaces\views.py:437
+#: .\modules\social\interfaces\views.py:478
+#: .\modules\social\interfaces\views.py:500
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Debt not found."
+msgstr "الإشعار غير موجود."
+
+#: .\modules\social\interfaces\views.py:482
+#, fuzzy
+#| msgid "Email is already registered."
+msgid "Debt is already settled."
+msgstr "البريد الإلكتروني مسجل بالفعل."
+
+#: .\modules\social\interfaces\views.py:744
+#: .\modules\social\interfaces\views.py:951
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Expense group not found."
+msgstr "مجموعات المصروفات"
+
+#: .\modules\social\interfaces\views.py:756
+#: .\modules\social\interfaces\views.py:766
+#: .\modules\social\interfaces\views.py:784
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Expense not found."
+msgstr "مجموعات المصروفات"
+
+#: .\modules\social\interfaces\views.py:858
+#: .\modules\social\interfaces\views.py:868
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Settlement not found."
+msgstr "الإشعار غير موجود."
+
+#: .\modules\subscriptions\interfaces\views.py:69
+msgid "No subscription found. Using free tier."
+msgstr "لم يتم العثور على اشتراك. يتم استخدام الخطة المجانية."
 
 #: .\templates\accounts\login.html:4
 msgid "Sign In"
@@ -276,7 +362,7 @@ msgstr "أعد تعيين كلمة المرور"
 #: .\templates\accounts\password_reset.html:12
 msgid ""
 "Enter your email address and we'll send you a link to reset your password."
-msgstr ""
+msgstr "أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور."
 
 #: .\templates\accounts\password_reset.html:60
 msgid "Send reset link"
@@ -347,6 +433,7 @@ msgid "Change Password"
 msgstr "تغيير كلمة المرور"
 
 #: .\templates\accounts\register.html:4
+#: .\templates\finance\accounts\form.html:75
 msgid "Create Account"
 msgstr "إنشاء حساب"
 
@@ -362,7 +449,7 @@ msgstr "لديك حساب بالفعل؟"
 msgid ""
 "Must be at least 12 characters with uppercase, lowercase, number, and "
 "special character."
-msgstr ""
+msgstr "يجب ألا يقل عن 12 حرفًا ويتضمن أحرفًا كبيرة وصغيرة ورقمًا ورمزًا خاصًا."
 
 #: .\templates\accounts\register.html:130
 msgid "Confirm password"
@@ -395,6 +482,7 @@ msgid ""
 "By accessing and using Djanbe Finance, you agree to be bound by these Terms "
 "of Service."
 msgstr ""
+"بدخولك واستخدامك Djanbe Finance، فإنك توافق على الالتزام بشروط الخدمة هذه."
 
 #: .\templates\accounts\register.html:174
 msgid "2. Use of Service"
@@ -406,6 +494,8 @@ msgid ""
 "these terms. You are responsible for maintaining the confidentiality of your "
 "account."
 msgstr ""
+"توافق على استخدام الخدمة لأغراض قانونية فقط ووفقًا لهذه الشروط. أنت مسؤول عن "
+"الحفاظ على سرية حسابك."
 
 #: .\templates\accounts\register.html:176
 msgid "3. User Data"
@@ -416,6 +506,8 @@ msgid ""
 "You retain ownership of all financial data you enter. We do not sell or "
 "share your personal financial information with third parties."
 msgstr ""
+"تحتفظ بملكية جميع البيانات المالية التي تدخلها. نحن لا نبيع أو نشارك "
+"معلوماتك المالية الشخصية مع أطراف ثالثة."
 
 #: .\templates\accounts\register.html:178
 msgid "4. Service Availability"
@@ -427,14 +519,20 @@ msgid ""
 "uninterrupted access. We may modify or discontinue features with reasonable "
 "notice."
 msgstr ""
+"نسعى للحفاظ على توفر الخدمة لكننا لا نضمن الوصول دون انقطاع. قد نقوم بتعديل "
+"الميزات أو إيقافها بإشعار معقول."
 
 #: .\templates\accounts\register.html:180
 msgid "5. Limitation of Liability"
 msgstr "5. تحديد المسؤولية"
 
 #: .\templates\accounts\register.html:181
-msgid "Djanbe Finance is provided \\"
+msgid ""
+"Djanbe Finance is provided \"as is\" without warranties. We are not liable "
+"for any financial decisions made based on information in the app."
 msgstr ""
+"??????? Djanbe Finance \"??? ??\" ??? ?? ??????. ??? ??? ??????? ?? ?? "
+"?????? ????? ??????? ????? ??? ????????? ???????? ?? ???????."
 
 #: .\templates\accounts\register.html:186
 #: .\templates\accounts\register.html:216
@@ -451,6 +549,8 @@ msgid ""
 "We collect information you provide directly: email, name, and financial data "
 "you choose to enter (accounts, transactions, contacts)."
 msgstr ""
+"نجمع المعلومات التي تقدمها مباشرة: البريد الإلكتروني والاسم والبيانات "
+"المالية التي تختار إدخالها (الحسابات والمعاملات وجهات الاتصال)."
 
 #: .\templates\accounts\register.html:204
 msgid "2. How We Use Your Information"
@@ -462,6 +562,8 @@ msgid ""
 "financial overview, calculate balances, and send notifications you've opted "
 "into."
 msgstr ""
+"تستخدم بياناتك فقط لتقديم الخدمة. نستخدمها لعرض نظرة عامة على أموالك، وحساب "
+"الأرصدة، وإرسال الإشعارات التي اخترتها."
 
 #: .\templates\accounts\register.html:206
 msgid "3. Data Security"
@@ -472,6 +574,8 @@ msgid ""
 "We implement industry-standard security measures including encryption, "
 "secure authentication, and regular security audits to protect your data."
 msgstr ""
+"نطبق إجراءات أمان بمعايير الصناعة بما في ذلك التشفير والمصادقة الآمنة "
+"وعمليات تدقيق أمنية منتظمة لحماية بياناتك."
 
 #: .\templates\accounts\register.html:208
 msgid "4. Data Sharing"
@@ -482,6 +586,8 @@ msgid ""
 "We do not sell, trade, or share your personal financial data with third "
 "parties. Data may only be shared if required by law."
 msgstr ""
+"لا نبيع أو نتاجر أو نشارك بياناتك المالية الشخصية مع أطراف ثالثة. لا تتم "
+"مشاركة البيانات إلا إذا كان ذلك مطلوبًا بموجب القانون."
 
 #: .\templates\accounts\register.html:210
 msgid "5. Your Rights"
@@ -492,6 +598,8 @@ msgid ""
 "You can access, export, or delete your data at any time through your account "
 "settings. Contact us for any privacy-related requests."
 msgstr ""
+"يمكنك الوصول إلى بياناتك أو تصديرها أو حذفها في أي وقت عبر إعدادات حسابك. "
+"تواصل معنا لأي طلبات تتعلق بالخصوصية."
 
 #: .\templates\accounts\register.html:226
 msgid "Create account"
@@ -555,6 +663,11 @@ msgid "Confirm New Password"
 msgstr "تأكيد كلمة المرور الجديدة"
 
 #: .\templates\accounts\settings.html:194
+#: .\templates\finance\accounts\form.html:72
+#: .\templates\finance\transactions\form.html:77
+#: .\templates\social\contacts\form.html:41
+#: .\templates\social\debts\form.html:88 .\templates\social\groups\form.html:42
+#: .\templates\social\settlements\form.html:95
 msgid "Cancel"
 msgstr "إلغاء"
 
@@ -567,6 +680,8 @@ msgid "Choose how you want to be notified."
 msgstr "اختر كيفية تلقي الإشعارات."
 
 #: .\templates\accounts\settings.html:240
+#: .\templates\finance\transactions\detail.html:31
+#: .\templates\finance\transactions\form.html:17
 #: .\templates\finance\transactions\list.html:31
 msgid "Account"
 msgstr "الحساب"
@@ -617,7 +732,7 @@ msgstr "أسبوعي"
 msgid "Never"
 msgstr "أبدًا"
 
-#: .\templates\accounts\settings.html:290
+#: .\templates\accounts\settings.html:290 .\templates\base\app.html:16
 #: .\templates\notifications\list.html:51
 msgid "Finance"
 msgstr "المالية"
@@ -653,6 +768,7 @@ msgid "Customize your experience."
 msgstr "خصص تجربتك."
 
 #: .\templates\accounts\settings.html:441
+#: .\templates\social\groups\form.html:31
 msgid "Default Currency"
 msgstr "العملة الافتراضية"
 
@@ -675,7 +791,7 @@ msgstr "حذف الحساب"
 #: .\templates\accounts\settings.html:464
 msgid ""
 "Once you delete your account, there is no going back. Please be certain."
-msgstr ""
+msgstr "بمجرد حذف حسابك، لا رجعة في ذلك. يرجى التأكد."
 
 #: .\templates\admin\audit_logs.html:97
 #: .\templates\admin\dashboard_stats.html:97
@@ -691,6 +807,8 @@ msgid ""
 "Audit logs are stored using structured logging (structlog) and can be viewed "
 "through your logging infrastructure."
 msgstr ""
+"تخزن سجلات التدقيق باستخدام التسجيل المنظم (structlog) ويمكن عرضها عبر بنية "
+"التسجيل لديك."
 
 #: .\templates\admin\audit_logs.html:108
 msgid "Retention policies:"
@@ -739,13 +857,15 @@ msgstr "عرض السجلات"
 #: .\templates\admin\audit_logs.html:140
 msgid ""
 "To view audit logs, check your application logs with the following filter:"
-msgstr ""
+msgstr "لعرض سجلات التدقيق، تحقق من سجلات التطبيق باستخدام الفلتر التالي:"
 
 #: .\templates\admin\audit_logs.html:145
 msgid ""
 "Or use your centralized logging solution (e.g., ELK Stack, Datadog, "
 "CloudWatch) to search for events with:"
 msgstr ""
+"أو استخدم حل التسجيل المركزي لديك (مثل ELK Stack أو Datadog أو CloudWatch) "
+"للبحث عن الأحداث باستخدام:"
 
 #: .\templates\admin\dashboard_stats.html:102
 msgid "Financial statistics for your tenant"
@@ -776,6 +896,7 @@ msgid "Transaction Summary (Last 30 Days)"
 msgstr "ملخص المعاملات (آخر 30 يومًا)"
 
 #: .\templates\admin\dashboard_stats.html:122
+#: .\templates\finance\accounts\detail.html:47
 #: .\templates\finance\dashboard.html:121
 msgid "Recent Transactions"
 msgstr "المعاملات الأخيرة"
@@ -823,6 +944,8 @@ msgstr "بانتظار التسوية"
 
 #: .\templates\admin\dashboard_stats.html:151
 #: .\templates\admin\finance_index.html:161
+#: .\templates\social\settlements\list.html:4
+#: .\templates\social\settlements\list.html:10
 msgid "Settlements"
 msgstr "التسويات"
 
@@ -879,13 +1002,16 @@ msgid "View Accounts"
 msgstr "عرض الحسابات"
 
 #: .\templates\admin\finance_index.html:143 .\templates\base\app.html:32
-#: .\templates\base\app.html:286 .\templates\finance\transactions\list.html:4
+#: .\templates\base\app.html:286
+#: .\templates\finance\transactions\detail.html:10
+#: .\templates\finance\transactions\list.html:4
 #: .\templates\finance\transactions\list.html:11
 msgid "Transactions"
 msgstr "المعاملات"
 
 #: .\templates\admin\finance_index.html:149 .\templates\base\app.html:36
 #: .\templates\base\app.html:287 .\templates\finance\dashboard.html:87
+#: .\templates\social\contacts\detail.html:10
 #: .\templates\social\contacts\list.html:4
 #: .\templates\social\contacts\list.html:11
 msgid "Contacts"
@@ -898,10 +1024,12 @@ msgstr "ديون الأقران"
 
 #: .\templates\base\app.html:24 .\templates\base\app.html:284
 #: .\templates\finance\dashboard.html:4 .\templates\finance\dashboard.html:10
+#: .\templates\react\dashboard.html:12 .\templates\react\dashboard.html:15
 msgid "Dashboard"
 msgstr "لوحة التحكم"
 
 #: .\templates\base\app.html:28 .\templates\base\app.html:285
+#: .\templates\finance\accounts\detail.html:11
 #: .\templates\finance\accounts\list.html:4
 #: .\templates\finance\accounts\list.html:11
 #: .\templates\finance\dashboard.html:51
@@ -909,10 +1037,13 @@ msgid "Accounts"
 msgstr "الحسابات"
 
 #: .\templates\base\app.html:40 .\templates\base\app.html:288
+#: .\templates\social\contacts\detail.html:54
+#: .\templates\social\debts\detail.html:10
 msgid "Debts"
 msgstr "الديون"
 
 #: .\templates\base\app.html:44 .\templates\base\app.html:289
+#: .\templates\social\groups\detail.html:10
 msgid "Groups"
 msgstr "المجموعات"
 
@@ -961,6 +1092,7 @@ msgstr "اللغة"
 #: .\templates\base\auth.html:116 .\templates\base\base.html:10
 #: .\templates\base\base.html:13 .\templates\base\base.html:18
 #: .\templates\base\base.html:21 .\templates\base\base.html:26
+#: .\templates\react\dashboard.html:12 .\templates\react\dashboard.html:15
 msgid "Djanbe Finance"
 msgstr "Djanbe Finance"
 
@@ -977,6 +1109,7 @@ msgid ""
 "Track expenses, manage debts, and split bills with friends - all in one "
 "place."
 msgstr ""
+"تتبع المصروفات، وأدر الديون، وقسم الفواتير مع الأصدقاء - كل ذلك في مكان واحد."
 
 #: .\templates\base\auth.html:44
 msgid "Track income & expenses"
@@ -995,11 +1128,13 @@ msgid ""
 "Personal and social finance management platform - track expenses, manage "
 "debts, split bills with friends."
 msgstr ""
+"منصة لإدارة التمويل الشخصي والاجتماعي - تتبع المصروفات، أدر الديون، وقسم "
+"الفواتير مع الأصدقاء."
 
 #: .\templates\base\base.html:12
 msgid ""
 "finance, personal finance, expense tracking, debt management, bill splitting"
-msgstr ""
+msgstr "التمويل، التمويل الشخصي، تتبع المصروفات، إدارة الديون، تقسيم الفواتير"
 
 #: .\templates\base\base.html:19 .\templates\base\base.html:27
 msgid "Personal and social finance management platform"
@@ -1012,6 +1147,155 @@ msgstr "تخطي إلى المحتوى الرئيسي"
 #: .\templates\base\base.html:178
 msgid "Dismiss"
 msgstr "تجاهل"
+
+#: .\templates\finance\accounts\detail.html:9
+#: .\templates\finance\transactions\detail.html:8
+#: .\templates\social\contacts\detail.html:8
+#: .\templates\social\debts\detail.html:8
+#: .\templates\social\groups\detail.html:8
+msgid "Breadcrumb"
+msgstr "مسار التنقل"
+
+#: .\templates\finance\accounts\detail.html:25
+#: .\templates\social\contacts\detail.html:29
+msgid "Edit"
+msgstr "تعديل"
+
+#: .\templates\finance\accounts\detail.html:28
+#: .\templates\finance\dashboard.html:161
+#: .\templates\finance\transactions\form.html:4
+#: .\templates\finance\transactions\form.html:9
+#: .\templates\finance\transactions\form.html:80
+#: .\templates\finance\transactions\list.html:19
+#: .\templates\finance\transactions\list.html:86
+msgid "Add Transaction"
+msgstr "إضافة معاملة"
+
+#: .\templates\finance\accounts\detail.html:35
+#, fuzzy
+#| msgid "Current balance"
+msgid "Current Balance"
+msgstr "الرصيد الحالي"
+
+#: .\templates\finance\accounts\detail.html:53
+#: .\templates\finance\transactions\detail.html:19
+#, fuzzy
+#| msgid "Transactions"
+msgid "Transaction"
+msgstr "المعاملات"
+
+#: .\templates\finance\accounts\detail.html:62
+#, fuzzy
+#| msgid "No transactions yet"
+msgid "No transactions yet."
+msgstr "لا توجد معاملات بعد"
+
+#: .\templates\finance\accounts\form.html:4
+#: .\templates\finance\accounts\form.html:10
+#, fuzzy
+#| msgid "Add Account"
+msgid "Edit Account"
+msgstr "إضافة حساب"
+
+#: .\templates\finance\accounts\form.html:4
+#, fuzzy
+#| msgid "View Accounts"
+msgid "New Account"
+msgstr "عرض الحسابات"
+
+#: .\templates\finance\accounts\form.html:10
+#, fuzzy
+#| msgid "Create Account"
+msgid "Create New Account"
+msgstr "إنشاء حساب"
+
+#: .\templates\finance\accounts\form.html:27
+#, fuzzy
+#| msgid "Account"
+msgid "Account Name"
+msgstr "الحساب"
+
+#: .\templates\finance\accounts\form.html:30
+msgid "e.g., Main Checking"
+msgstr "مثال: الحساب الجاري الرئيسي"
+
+#: .\templates\finance\accounts\form.html:38
+#, fuzzy
+#| msgid "Account"
+msgid "Account Type"
+msgstr "الحساب"
+
+#: .\templates\finance\accounts\form.html:41
+msgid "Select type..."
+msgstr "اختر النوع..."
+
+#: .\templates\finance\accounts\form.html:42
+msgid "Checking"
+msgstr "حساب جاري"
+
+#: .\templates\finance\accounts\form.html:43
+#, fuzzy
+#| msgid "Settings"
+msgid "Savings"
+msgstr "الإعدادات"
+
+#: .\templates\finance\accounts\form.html:44
+msgid "Credit Card"
+msgstr "بطاقة ائتمان"
+
+#: .\templates\finance\accounts\form.html:45
+#: .\templates\social\settlements\form.html:79
+msgid "Cash"
+msgstr "نقد"
+
+#: .\templates\finance\accounts\form.html:46
+msgid "Investment"
+msgstr "استثمار"
+
+#: .\templates\finance\accounts\form.html:47
+msgid "Loan"
+msgstr "قرض"
+
+#: .\templates\finance\accounts\form.html:52
+#: .\templates\social\debts\form.html:64
+#: .\templates\social\settlements\form.html:64
+#, fuzzy
+#| msgid "Default Currency"
+msgid "Currency"
+msgstr "العملة الافتراضية"
+
+#: .\templates\finance\accounts\form.html:55
+msgid "US Dollar"
+msgstr "دولار أمريكي"
+
+#: .\templates\finance\accounts\form.html:56
+msgid "Euro"
+msgstr "يورو"
+
+#: .\templates\finance\accounts\form.html:57
+msgid "British Pound"
+msgstr "جنيه إسترليني"
+
+#: .\templates\finance\accounts\form.html:58
+msgid "Indian Rupee"
+msgstr "روبية هندية"
+
+#: .\templates\finance\accounts\form.html:64
+#: .\templates\social\groups\form.html:24
+#, fuzzy
+#| msgid "Description"
+msgid "Description (optional)"
+msgstr "الوصف"
+
+#: .\templates\finance\accounts\form.html:67
+msgid "Notes about this account..."
+msgstr "ملاحظات حول هذا الحساب..."
+
+#: .\templates\finance\accounts\form.html:75
+#: .\templates\social\contacts\form.html:43
+#: .\templates\social\groups\form.html:44
+msgid "Save Changes"
+msgstr "حفظ التغييرات"
 
 #: .\templates\finance\accounts\list.html:12
 msgid "Manage your financial accounts and wallets."
@@ -1040,6 +1324,8 @@ msgid "Welcome back, %(name)s! Here's your financial overview."
 msgstr "مرحبًا بعودتك، %(name)s! إليك لمحة مالية."
 
 #: .\templates\finance\dashboard.html:19 .\templates\finance\dashboard.html:32
+#: .\templates\finance\net_worth.html:4 .\templates\finance\net_worth.html:9
+#: .\templates\finance\net_worth.html:25
 msgid "Net Worth"
 msgstr "صافي الثروة"
 
@@ -1048,11 +1334,11 @@ msgstr "صافي الثروة"
 msgid "View details"
 msgstr "عرض التفاصيل"
 
-#: .\templates\finance\dashboard.html:24
+#: .\templates\finance\dashboard.html:24 .\templates\finance\net_worth.html:17
 msgid "Total Assets"
 msgstr "إجمالي الأصول"
 
-#: .\templates\finance\dashboard.html:28
+#: .\templates\finance\dashboard.html:28 .\templates\finance\net_worth.html:21
 msgid "Total Liabilities"
 msgstr "إجمالي الالتزامات"
 
@@ -1094,12 +1380,6 @@ msgstr "لا توجد معاملات بعد"
 msgid "Get started by adding your first transaction."
 msgstr "ابدأ بإضافة أول معاملة لك."
 
-#: .\templates\finance\dashboard.html:161
-#: .\templates\finance\transactions\list.html:19
-#: .\templates\finance\transactions\list.html:86
-msgid "Add Transaction"
-msgstr "إضافة معاملة"
-
 #: .\templates\finance\dashboard.html:182
 msgid "Others Owe You"
 msgstr "الآخرون مدينون لك"
@@ -1116,36 +1396,137 @@ msgstr "لا نشاط اجتماعي"
 msgid "Start tracking debts with friends and family."
 msgstr "ابدأ بتتبع الديون مع الأصدقاء والعائلة."
 
-#: .\templates\finance\dashboard.html:220 .\templates\social\debts\list.html:18
-#: .\templates\social\debts\list.html:78
+#: .\templates\finance\dashboard.html:220 .\templates\social\debts\form.html:4
+#: .\templates\social\debts\form.html:9 .\templates\social\debts\form.html:90
+#: .\templates\social\debts\list.html:18 .\templates\social\debts\list.html:78
 msgid "Record Debt"
 msgstr "تسجيل دين"
 
-#: .\templates\finance\dashboard.html:223
+#: .\templates\finance\dashboard.html:223 .\templates\social\groups\form.html:4
+#: .\templates\social\groups\form.html:44
 #: .\templates\social\groups\list.html:18
 #: .\templates\social\groups\list.html:54
 msgid "Create Group"
 msgstr "إنشاء مجموعة"
 
-#: .\templates\finance\transactions\list.html:12
-msgid "View and manage all your transactions."
-msgstr "اعرض وأدِر جميع معاملاتك."
+#: .\templates\finance\net_worth.html:10
+msgid "Overview of your assets and liabilities."
+msgstr "نظرة عامة على أصولك والتزاماتك."
 
+#: .\templates\finance\net_worth.html:37
+#, fuzzy
+#| msgid "Total Assets"
+msgid "Assets"
+msgstr "إجمالي الأصول"
+
+#: .\templates\finance\net_worth.html:50
+#, fuzzy
+#| msgid "No transactions yet"
+msgid "No assets yet."
+msgstr "لا توجد معاملات بعد"
+
+#: .\templates\finance\net_worth.html:59
+#, fuzzy
+#| msgid "Total Liabilities"
+msgid "Liabilities"
+msgstr "إجمالي الالتزامات"
+
+#: .\templates\finance\net_worth.html:72
+#, fuzzy
+#| msgid "Total Liabilities"
+msgid "No liabilities."
+msgstr "إجمالي الالتزامات"
+
+#: .\templates\finance\transactions\detail.html:4
+#, fuzzy
+#| msgid "Transaction Operations"
+msgid "Transaction Details"
+msgstr "عمليات المعاملات"
+
+#: .\templates\finance\transactions\detail.html:12
+#, fuzzy
+#| msgid "View details"
+msgid "Details"
+msgstr "عرض التفاصيل"
+
+#: .\templates\finance\transactions\detail.html:27
+#: .\templates\finance\transactions\form.html:69
 #: .\templates\finance\transactions\list.html:29
+#: .\templates\social\debts\detail.html:43
+#: .\templates\social\debts\form.html:82
+#: .\templates\social\settlements\list.html:28
 msgid "Date"
 msgstr "التاريخ"
 
-#: .\templates\finance\transactions\list.html:30
-msgid "Description"
-msgstr "الوصف"
+#: .\templates\finance\transactions\detail.html:35
+#: .\templates\finance\transactions\form.html:28
+msgid "Type"
+msgstr "النوع"
 
+#: .\templates\finance\transactions\detail.html:39
 #: .\templates\finance\transactions\list.html:32
 msgid "Category"
 msgstr "الفئة"
 
+#: .\templates\finance\transactions\detail.html:40
+msgid "Uncategorized"
+msgstr "غير مصنف"
+
+#: .\templates\finance\transactions\detail.html:43
+msgid "Status"
+msgstr "الحالة"
+
+#: .\templates\finance\transactions\detail.html:51
+#, fuzzy
+#| msgid "Recent Transactions"
+msgid "Back to Transactions"
+msgstr "المعاملات الأخيرة"
+
+#: .\templates\finance\transactions\form.html:20
+#, fuzzy
+#| msgid "Delete Account"
+msgid "Select account..."
+msgstr "حذف الحساب"
+
+#: .\templates\finance\transactions\form.html:31
+msgid "Expense (Debit)"
+msgstr "مصروف (مدين)"
+
+#: .\templates\finance\transactions\form.html:32
+msgid "Income (Credit)"
+msgstr "دخل (دائن)"
+
+#: .\templates\finance\transactions\form.html:37
 #: .\templates\finance\transactions\list.html:33
+#: .\templates\social\debts\form.html:52
+#: .\templates\social\settlements\form.html:52
+#: .\templates\social\settlements\list.html:31
 msgid "Amount"
 msgstr "المبلغ"
+
+#: .\templates\finance\transactions\form.html:50
+#: .\templates\finance\transactions\list.html:30
+msgid "Description"
+msgstr "الوصف"
+
+#: .\templates\finance\transactions\form.html:54
+#: .\templates\social\debts\form.html:78
+msgid "What was this for?"
+msgstr "ما الغرض من هذا؟"
+
+#: .\templates\finance\transactions\form.html:58
+msgid "Category (optional)"
+msgstr "الفئة (اختياري)"
+
+#: .\templates\finance\transactions\form.html:61
+#, fuzzy
+#| msgid "Category"
+msgid "No category"
+msgstr "الفئة"
+
+#: .\templates\finance\transactions\list.html:12
+msgid "View and manage all your transactions."
+msgstr "اعرض وأدِر جميع معاملاتك."
 
 #: .\templates\finance\transactions\list.html:65
 #, python-format
@@ -1218,18 +1599,128 @@ msgstr "تحميل المزيد"
 msgid "Loading..."
 msgstr "جارٍ التحميل..."
 
-#: .\templates\social\contacts\list.html:12
-msgid "People you track debts and expenses with."
-msgstr "الأشخاص الذين تتتبع معهم الديون والمصاريف."
+#: .\templates\react\dashboard.html:7
+msgid "Your personal finance dashboard - Djanbe Finance"
+msgstr "لوحة معلومات التمويل الشخصي الخاصة بك - Djanbe Finance"
 
+#: .\templates\react\dashboard.html:13
+msgid "Your personal finance dashboard"
+msgstr "لوحة معلومات التمويل الشخصي الخاصة بك"
+
+#: .\templates\react\dashboard.html:72
+#, fuzzy
+#| msgid "Loading..."
+msgid "Loading dashboard..."
+msgstr "جارٍ التحميل..."
+
+#: .\templates\social\balances\summary.html:4
+#: .\templates\social\balances\summary.html:9
+msgid "Balance Summary"
+msgstr "ملخص الرصيد"
+
+#: .\templates\social\balances\summary.html:10
+msgid "See who owes you and who you owe."
+msgstr "اعرف من يدين لك ومن تدين له."
+
+#: .\templates\social\balances\summary.html:18
+#, fuzzy
+#| msgid "Others Owe You"
+msgid "They Owe You"
+msgstr "الآخرون مدينون لك"
+
+#: .\templates\social\balances\summary.html:37
+msgid "No one owes you money."
+msgstr "لا أحد يدين لك بالمال."
+
+#: .\templates\social\balances\summary.html:46
+#, fuzzy
+#| msgid "You Owe Others"
+msgid "You Owe Them"
+msgstr "أنت مدين للآخرين"
+
+#: .\templates\social\balances\summary.html:65
+msgid "You don't owe anyone money."
+msgstr "أنت لا تدين لأحد بالمال."
+
+#: .\templates\social\balances\summary.html:76
+msgid "All settled up!"
+msgstr "تمت التسوية بالكامل!"
+
+#: .\templates\social\balances\summary.html:77
+msgid "You have no outstanding balances with anyone."
+msgstr "ليس لديك أي أرصدة مستحقة مع أي شخص."
+
+#: .\templates\social\contacts\detail.html:25
+#: .\templates\social\contacts\list.html:39
+msgid "No email"
+msgstr "لا يوجد بريد إلكتروني"
+
+#: .\templates\social\contacts\detail.html:37
+msgid "Phone"
+msgstr "الهاتف"
+
+#: .\templates\social\contacts\detail.html:43
+msgid "Notes"
+msgstr "ملاحظات"
+
+#: .\templates\social\contacts\detail.html:60
+#, fuzzy
+#| msgid "Debts"
+msgid "Debt"
+msgstr "الديون"
+
+#: .\templates\social\contacts\detail.html:64
+#: .\templates\social\debts\list.html:59
+msgid "They owe"
+msgstr "هم مدينون"
+
+#: .\templates\social\contacts\detail.html:64
+#: .\templates\social\debts\list.html:59
+msgid "You owe"
+msgstr "أنت مدين"
+
+#: .\templates\social\contacts\form.html:4
+#: .\templates\social\contacts\form.html:9
+#, fuzzy
+#| msgid "Add Contact"
+msgid "Edit Contact"
+msgstr "إضافة جهة اتصال"
+
+#: .\templates\social\contacts\form.html:4
+#, fuzzy
+#| msgid "Contacts"
+msgid "New Contact"
+msgstr "جهات الاتصال"
+
+#: .\templates\social\contacts\form.html:9
+#: .\templates\social\contacts\form.html:43
 #: .\templates\social\contacts\list.html:19
 #: .\templates\social\contacts\list.html:77
 msgid "Add Contact"
 msgstr "إضافة جهة اتصال"
 
-#: .\templates\social\contacts\list.html:39
-msgid "No email"
-msgstr "لا يوجد بريد إلكتروني"
+#: .\templates\social\contacts\form.html:17
+msgid "Name"
+msgstr "الاسم"
+
+#: .\templates\social\contacts\form.html:23
+msgid "Email (optional)"
+msgstr "البريد الإلكتروني (اختياري)"
+
+#: .\templates\social\contacts\form.html:29
+msgid "Phone (optional)"
+msgstr "الهاتف (اختياري)"
+
+#: .\templates\social\contacts\form.html:35
+#: .\templates\social\settlements\form.html:89
+#, fuzzy
+#| msgid "All systems operational"
+msgid "Notes (optional)"
+msgstr "جميع الأنظمة تعمل"
+
+#: .\templates\social\contacts\list.html:12
+msgid "People you track debts and expenses with."
+msgstr "الأشخاص الذين تتتبع معهم الديون والمصاريف."
 
 #: .\templates\social\contacts\list.html:70
 msgid "No contacts"
@@ -1238,6 +1729,83 @@ msgstr "لا توجد جهات اتصال"
 #: .\templates\social\contacts\list.html:71
 msgid "Add people you share expenses or debts with."
 msgstr "أضف أشخاصًا تشاركهم المصروفات أو الديون."
+
+#: .\templates\social\debts\detail.html:4
+#, fuzzy
+#| msgid "View details"
+msgid "Debt Details"
+msgstr "عرض التفاصيل"
+
+#: .\templates\social\debts\detail.html:21
+#, fuzzy
+#| msgid "They owe"
+msgid "They owe you"
+msgstr "هم مدينون"
+
+#: .\templates\social\debts\detail.html:21
+#, fuzzy
+#| msgid "You Owe Others"
+msgid "You owe them"
+msgstr "أنت مدين للآخرين"
+
+#: .\templates\social\debts\detail.html:35
+#: .\templates\social\debts\form.html:17
+#: .\templates\social\settlements\form.html:17
+#: .\templates\social\settlements\list.html:29
+#, fuzzy
+#| msgid "Contacts"
+msgid "Contact"
+msgstr "جهات الاتصال"
+
+#: .\templates\social\debts\detail.html:39
+msgid "Original Amount"
+msgstr "المبلغ الأصلي"
+
+#: .\templates\social\debts\detail.html:48
+msgid "Reason"
+msgstr "السبب"
+
+#: .\templates\social\debts\detail.html:57
+#: .\templates\social\settlements\form.html:4
+#: .\templates\social\settlements\form.html:9
+#: .\templates\social\settlements\form.html:97
+#: .\templates\social\settlements\list.html:18
+#, fuzzy
+#| msgid "Settlements"
+msgid "Record Settlement"
+msgstr "التسويات"
+
+#: .\templates\social\debts\form.html:20
+#: .\templates\social\settlements\form.html:20
+msgid "Select contact..."
+msgstr "اختر جهة اتصال..."
+
+#: .\templates\social\debts\form.html:28
+#: .\templates\social\settlements\list.html:30
+#, fuzzy
+#| msgid "Description"
+msgid "Direction"
+msgstr "الوصف"
+
+#: .\templates\social\debts\form.html:34
+msgid "I Lent"
+msgstr "أقرضت"
+
+#: .\templates\social\debts\form.html:35
+msgid "Money I gave them"
+msgstr "المال الذي أعطيته لهم"
+
+#: .\templates\social\debts\form.html:43
+msgid "I Borrowed"
+msgstr "اقترضت"
+
+#: .\templates\social\debts\form.html:44
+msgid "Money they gave me"
+msgstr "المال الذي أعطوني إياه"
+
+#: .\templates\social\debts\form.html:75
+msgid "Reason (optional)"
+msgstr "السبب (اختياري)"
 
 #: .\templates\social\debts\list.html:11
 msgid "Track money lent and borrowed."
@@ -1255,14 +1823,6 @@ msgstr "أنت اقترضت (أنت مدين)"
 msgid "Net Balance"
 msgstr "الرصيد الصافي"
 
-#: .\templates\social\debts\list.html:59
-msgid "They owe"
-msgstr "هم مدينون"
-
-#: .\templates\social\debts\list.html:59
-msgid "You owe"
-msgstr "أنت مدين"
-
 #: .\templates\social\debts\list.html:74
 msgid "No debts"
 msgstr "لا توجد ديون"
@@ -1270,6 +1830,56 @@ msgstr "لا توجد ديون"
 #: .\templates\social\debts\list.html:75
 msgid "Start tracking money lent or borrowed."
 msgstr "ابدأ بتتبع الأموال المقرضة أو المقترضة."
+
+#: .\templates\social\groups\detail.html:26
+msgid "Coming soon"
+msgstr "قريبًا"
+
+#: .\templates\social\groups\detail.html:30
+#, fuzzy
+#| msgid "Total Expenses"
+msgid "Add Expense"
+msgstr "إجمالي المصروفات"
+
+#: .\templates\social\groups\detail.html:31
+msgid "Soon"
+msgstr "قريبًا"
+
+#: .\templates\social\groups\detail.html:39
+#, fuzzy
+#| msgid "Total Expenses"
+msgid "Expenses"
+msgstr "إجمالي المصروفات"
+
+#: .\templates\social\groups\detail.html:52
+msgid "No expenses yet. Add one to get started."
+msgstr "لا توجد مصروفات بعد. أضف واحدًا للبدء."
+
+#: .\templates\social\groups\form.html:4 .\templates\social\groups\form.html:9
+#, fuzzy
+#| msgid "Create Group"
+msgid "Edit Group"
+msgstr "إنشاء مجموعة"
+
+#: .\templates\social\groups\form.html:9
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Create Expense Group"
+msgstr "مجموعات المصروفات"
+
+#: .\templates\social\groups\form.html:17
+#, fuzzy
+#| msgid "Groups"
+msgid "Group Name"
+msgstr "المجموعات"
+
+#: .\templates\social\groups\form.html:20
+msgid "e.g., Roommates, Trip to Paris"
+msgstr "مثال: زملاء السكن، رحلة إلى باريس"
+
+#: .\templates\social\groups\form.html:27
+msgid "What is this group for?"
+msgstr "ما الغرض من هذه المجموعة؟"
 
 #: .\templates\social\groups\list.html:4 .\templates\social\groups\list.html:10
 msgid "Expense Groups"
@@ -1290,3 +1900,69 @@ msgstr "لا توجد مجموعات مصروفات"
 #: .\templates\social\groups\list.html:51
 msgid "Create a group to start splitting expenses."
 msgstr "أنشئ مجموعة لبدء تقسيم المصروفات."
+
+#: .\templates\social\settlements\form.html:28
+msgid "Who paid?"
+msgstr "من دفع؟"
+
+#: .\templates\social\settlements\form.html:34
+msgid "I Paid"
+msgstr "دفعت"
+
+#: .\templates\social\settlements\form.html:35
+#: .\templates\social\settlements\list.html:44
+msgid "You paid them"
+msgstr "أنت دفعت لهم"
+
+#: .\templates\social\settlements\form.html:43
+msgid "They Paid"
+msgstr "هم دفعوا"
+
+#: .\templates\social\settlements\form.html:44
+#: .\templates\social\settlements\list.html:44
+msgid "They paid you"
+msgstr "هم دفعوا لك"
+
+#: .\templates\social\settlements\form.html:75
+msgid "Payment Method (optional)"
+msgstr "طريقة الدفع (اختياري)"
+
+#: .\templates\social\settlements\form.html:78
+#, fuzzy
+#| msgid "Not verified"
+msgid "Not specified"
+msgstr "غير متحقق"
+
+#: .\templates\social\settlements\form.html:80
+msgid "Bank Transfer"
+msgstr "تحويل بنكي"
+
+#: .\templates\social\settlements\form.html:81
+msgid "UPI"
+msgstr "UPI"
+
+#: .\templates\social\settlements\form.html:82
+msgid "Venmo"
+msgstr "Venmo"
+
+#: .\templates\social\settlements\form.html:83
+msgid "PayPal"
+msgstr "PayPal"
+
+#: .\templates\social\settlements\form.html:84
+msgid "Other"
+msgstr "أخرى"
+
+#: .\templates\social\settlements\list.html:11
+msgid "Record payments to settle debts."
+msgstr "سجّل المدفوعات لتسوية الديون."
+
+#: .\templates\social\settlements\list.html:59
+#, fuzzy
+#| msgid "Settlements"
+msgid "No settlements"
+msgstr "التسويات"
+
+#: .\templates\social\settlements\list.html:60
+msgid "Record settlements when debts are paid."
+msgstr "سجّل التسويات عند سداد الديون."

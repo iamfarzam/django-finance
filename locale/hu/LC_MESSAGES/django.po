@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-finance\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-08 07:21+0500\n"
+"POT-Creation-Date: 2026-02-08 09:22+0500\n"
 "PO-Revision-Date: 2026-02-08 08:17+0500\n"
 "Last-Translator: Farzam Mehdi <ifarzammehdi@gmail.com>\n"
-"Language-Team: Hungarian (http://www.transifex.com/django/django/language/hu/)\n"
+"Language-Team: Hungarian (http://www.transifex.com/django/django/language/"
+"hu/)\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -145,7 +146,9 @@ msgstr "A megerősítő e-mail elküldve."
 #: .\modules\accounts\interfaces\views.py:270
 msgid ""
 "If an account exists with this email, a password reset link has been sent."
-msgstr "Ha létezik fiók ezzel az e-maillel, a jelszó-visszaállító link elküldésre került."
+msgstr ""
+"Ha létezik fiók ezzel az e-maillel, a jelszó-visszaállító link elküldésre "
+"került."
 
 #: .\modules\accounts\interfaces\views.py:293
 msgid "Invalid reset token."
@@ -198,6 +201,28 @@ msgstr "Nem támogatott pénznem: %(currency)s"
 msgid "Cannot transfer to the same account."
 msgstr "Nem lehet ugyanarra a fiókra átutalni."
 
+#: .\modules\finance\interfaces\views.py:402
+#, fuzzy
+#| msgid "Transactions (This Month)"
+msgid "Transaction is not pending."
+msgstr "Tranzakciók (ebben a hónapban)"
+
+#: .\modules\finance\interfaces\views.py:424
+#, fuzzy
+#| msgid "Email is already verified."
+msgid "Transaction is already voided."
+msgstr "Az e-mail már megerősítve van."
+
+#: .\modules\finance\interfaces\views.py:668
+#, fuzzy
+#| msgid "Email is already verified."
+msgid "Loan is already paid off."
+msgstr "Az e-mail már megerősítve van."
+
+#: .\modules\finance\interfaces\views.py:738
+msgid "No tenant context."
+msgstr "Nincs bérlői kontextus."
+
 #: .\modules\notifications\interfaces\views.py:87
 #: .\modules\notifications\interfaces\views.py:115
 #: .\modules\notifications\interfaces\views.py:165
@@ -216,7 +241,9 @@ msgstr "Érvénytelen kategória. A következők egyike lehet: %(categories)s"
 #: .\modules\social\interfaces\serializers.py:267
 msgid ""
 "Either paid_by_owner must be True or paid_by_contact_id must be provided."
-msgstr "A paid_by_owner értékének True-nak kell lennie, vagy meg kell adni a paid_by_contact_id-t."
+msgstr ""
+"A paid_by_owner értékének True-nak kell lennie, vagy meg kell adni a "
+"paid_by_contact_id-t."
 
 #: .\modules\social\interfaces\serializers.py:322
 msgid "Cannot set both owner_pays and owner_receives to True."
@@ -225,6 +252,67 @@ msgstr "Nem állítható mindkettő True-ra: owner_pays és owner_receives."
 #: .\modules\social\interfaces\serializers.py:326
 msgid "Must set either owner_pays or owner_receives to True."
 msgstr "Az owner_pays vagy owner_receives egyikét True-ra kell állítani."
+
+#: .\modules\social\interfaces\views.py:173
+#: .\modules\social\interfaces\views.py:193
+#: .\modules\social\interfaces\views.py:206
+#: .\modules\social\interfaces\views.py:224
+#: .\modules\social\interfaces\views.py:418
+#: .\modules\social\interfaces\views.py:935
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Contact not found."
+msgstr "Értesítés nem található."
+
+#: .\modules\social\interfaces\views.py:296
+#: .\modules\social\interfaces\views.py:306
+#: .\modules\social\interfaces\views.py:598
+#: .\modules\social\interfaces\views.py:608
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Group not found."
+msgstr "Értesítés nem található."
+
+#: .\modules\social\interfaces\views.py:427
+#: .\modules\social\interfaces\views.py:437
+#: .\modules\social\interfaces\views.py:478
+#: .\modules\social\interfaces\views.py:500
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Debt not found."
+msgstr "Értesítés nem található."
+
+#: .\modules\social\interfaces\views.py:482
+#, fuzzy
+#| msgid "Email is already registered."
+msgid "Debt is already settled."
+msgstr "Az e-mail már regisztrálva van."
+
+#: .\modules\social\interfaces\views.py:744
+#: .\modules\social\interfaces\views.py:951
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Expense group not found."
+msgstr "Kiadási csoportok"
+
+#: .\modules\social\interfaces\views.py:756
+#: .\modules\social\interfaces\views.py:766
+#: .\modules\social\interfaces\views.py:784
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Expense not found."
+msgstr "Kiadási csoportok"
+
+#: .\modules\social\interfaces\views.py:858
+#: .\modules\social\interfaces\views.py:868
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Settlement not found."
+msgstr "Értesítés nem található."
+
+#: .\modules\subscriptions\interfaces\views.py:69
+msgid "No subscription found. Using free tier."
+msgstr "Nem található előfizetés. Az ingyenes szintet használjuk."
 
 #: .\templates\accounts\login.html:4
 msgid "Sign In"
@@ -275,7 +363,8 @@ msgstr "Jelszó visszaállítása"
 #: .\templates\accounts\password_reset.html:12
 msgid ""
 "Enter your email address and we'll send you a link to reset your password."
-msgstr "Adja meg az e-mail címét, és küldünk egy linket a jelszó visszaállításához."
+msgstr ""
+"Adja meg az e-mail címét, és küldünk egy linket a jelszó visszaállításához."
 
 #: .\templates\accounts\password_reset.html:60
 msgid "Send reset link"
@@ -346,6 +435,7 @@ msgid "Change Password"
 msgstr "Jelszó módosítása"
 
 #: .\templates\accounts\register.html:4
+#: .\templates\finance\accounts\form.html:75
 msgid "Create Account"
 msgstr "Fiók létrehozása"
 
@@ -361,7 +451,8 @@ msgstr "Már van fiókja?"
 msgid ""
 "Must be at least 12 characters with uppercase, lowercase, number, and "
 "special character."
-msgstr "Legalább 12 karakter, nagy- és kisbetűvel, számmal és különleges karakterrel."
+msgstr ""
+"Legalább 12 karakter, nagy- és kisbetűvel, számmal és különleges karakterrel."
 
 #: .\templates\accounts\register.html:130
 msgid "Confirm password"
@@ -393,7 +484,8 @@ msgstr "1. Feltételek elfogadása"
 msgid ""
 "By accessing and using Djanbe Finance, you agree to be bound by these Terms "
 "of Service."
-msgstr "A Djanbe Finance használatával elfogadja ezeket a szolgáltatási feltételeket."
+msgstr ""
+"A Djanbe Finance használatával elfogadja ezeket a szolgáltatási feltételeket."
 
 #: .\templates\accounts\register.html:174
 msgid "2. Use of Service"
@@ -404,7 +496,9 @@ msgid ""
 "You agree to use the service only for lawful purposes and in accordance with "
 "these terms. You are responsible for maintaining the confidentiality of your "
 "account."
-msgstr "Ön vállalja, hogy a szolgáltatást csak jogszerű célokra és a feltételeknek megfelelően használja. Felelős fiókja bizalmas kezeléséért."
+msgstr ""
+"Ön vállalja, hogy a szolgáltatást csak jogszerű célokra és a feltételeknek "
+"megfelelően használja. Felelős fiókja bizalmas kezeléséért."
 
 #: .\templates\accounts\register.html:176
 msgid "3. User Data"
@@ -414,7 +508,9 @@ msgstr "3. Felhasználói adatok"
 msgid ""
 "You retain ownership of all financial data you enter. We do not sell or "
 "share your personal financial information with third parties."
-msgstr "Ön megőrzi az általa megadott pénzügyi adatok tulajdonjogát. Nem adjuk el és nem osztjuk meg személyes pénzügyi adatait harmadik felekkel."
+msgstr ""
+"Ön megőrzi az általa megadott pénzügyi adatok tulajdonjogát. Nem adjuk el és "
+"nem osztjuk meg személyes pénzügyi adatait harmadik felekkel."
 
 #: .\templates\accounts\register.html:178
 msgid "4. Service Availability"
@@ -425,15 +521,23 @@ msgid ""
 "We strive to maintain service availability but do not guarantee "
 "uninterrupted access. We may modify or discontinue features with reasonable "
 "notice."
-msgstr "Törekszünk a szolgáltatás elérhetőségére, de nem garantáljuk a megszakítás nélküli hozzáférést. A funkciókat ésszerű értesítéssel módosíthatjuk vagy megszüntethetjük."
+msgstr ""
+"Törekszünk a szolgáltatás elérhetőségére, de nem garantáljuk a megszakítás "
+"nélküli hozzáférést. A funkciókat ésszerű értesítéssel módosíthatjuk vagy "
+"megszüntethetjük."
 
 #: .\templates\accounts\register.html:180
 msgid "5. Limitation of Liability"
 msgstr "5. Felelősség korlátozása"
 
 #: .\templates\accounts\register.html:181
-msgid "Djanbe Finance is provided \\"
+msgid ""
+"Djanbe Finance is provided \"as is\" without warranties. We are not liable "
+"for any financial decisions made based on information in the app."
 msgstr ""
+"A Djanbe Finance \"ahogy van\" ?llapotban ?rhet? el, garancia n?lk?l. Nem "
+"v?llalunk felel?ss?get az alkalmaz?sban tal?lhat? inform?ci?k alapj?n hozott "
+"p?nz?gyi d?nt?sek?rt."
 
 #: .\templates\accounts\register.html:186
 #: .\templates\accounts\register.html:216
@@ -449,7 +553,9 @@ msgstr "1. Gyűjtött információk"
 msgid ""
 "We collect information you provide directly: email, name, and financial data "
 "you choose to enter (accounts, transactions, contacts)."
-msgstr "Az Ön által közvetlenül megadott információkat gyűjtjük: e-mail, név és az Ön által megadott pénzügyi adatok (számlák, tranzakciók, kapcsolatok)."
+msgstr ""
+"Az Ön által közvetlenül megadott információkat gyűjtjük: e-mail, név és az "
+"Ön által megadott pénzügyi adatok (számlák, tranzakciók, kapcsolatok)."
 
 #: .\templates\accounts\register.html:204
 msgid "2. How We Use Your Information"
@@ -460,7 +566,10 @@ msgid ""
 "Your data is used solely to provide the service. We use it to display your "
 "financial overview, calculate balances, and send notifications you've opted "
 "into."
-msgstr "Az adatait kizárólag a szolgáltatás biztosítására használjuk. Az Ön pénzügyi áttekintésének megjelenítésére, egyenlegek kiszámítására és az Ön által választott értesítések küldésére."
+msgstr ""
+"Az adatait kizárólag a szolgáltatás biztosítására használjuk. Az Ön pénzügyi "
+"áttekintésének megjelenítésére, egyenlegek kiszámítására és az Ön által "
+"választott értesítések küldésére."
 
 #: .\templates\accounts\register.html:206
 msgid "3. Data Security"
@@ -470,7 +579,10 @@ msgstr "3. Adatbiztonság"
 msgid ""
 "We implement industry-standard security measures including encryption, "
 "secure authentication, and regular security audits to protect your data."
-msgstr "Iparági szabványoknak megfelelő biztonsági intézkedéseket alkalmazunk, beleértve a titkosítást, a biztonságos hitelesítést és a rendszeres biztonsági auditokat."
+msgstr ""
+"Iparági szabványoknak megfelelő biztonsági intézkedéseket alkalmazunk, "
+"beleértve a titkosítást, a biztonságos hitelesítést és a rendszeres "
+"biztonsági auditokat."
 
 #: .\templates\accounts\register.html:208
 msgid "4. Data Sharing"
@@ -480,7 +592,9 @@ msgstr "4. Adatmegosztás"
 msgid ""
 "We do not sell, trade, or share your personal financial data with third "
 "parties. Data may only be shared if required by law."
-msgstr "Nem adjuk el, nem kereskedünk és nem osztjuk meg személyes pénzügyi adatait harmadik felekkel. Az adatokat csak akkor osztjuk meg, ha ezt a jog előírja."
+msgstr ""
+"Nem adjuk el, nem kereskedünk és nem osztjuk meg személyes pénzügyi adatait "
+"harmadik felekkel. Az adatokat csak akkor osztjuk meg, ha ezt a jog előírja."
 
 #: .\templates\accounts\register.html:210
 msgid "5. Your Rights"
@@ -490,7 +604,9 @@ msgstr "5. Az Ön jogai"
 msgid ""
 "You can access, export, or delete your data at any time through your account "
 "settings. Contact us for any privacy-related requests."
-msgstr "Az adataihoz bármikor hozzáférhet, exportálhatja vagy törölheti azokat a fiókbeállításokban. Adatvédelmi kérdésekben vegye fel velünk a kapcsolatot."
+msgstr ""
+"Az adataihoz bármikor hozzáférhet, exportálhatja vagy törölheti azokat a "
+"fiókbeállításokban. Adatvédelmi kérdésekben vegye fel velünk a kapcsolatot."
 
 #: .\templates\accounts\register.html:226
 msgid "Create account"
@@ -554,6 +670,11 @@ msgid "Confirm New Password"
 msgstr "Új jelszó megerősítése"
 
 #: .\templates\accounts\settings.html:194
+#: .\templates\finance\accounts\form.html:72
+#: .\templates\finance\transactions\form.html:77
+#: .\templates\social\contacts\form.html:41
+#: .\templates\social\debts\form.html:88 .\templates\social\groups\form.html:42
+#: .\templates\social\settlements\form.html:95
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -566,6 +687,8 @@ msgid "Choose how you want to be notified."
 msgstr "Válassza ki, hogyan szeretne értesítést kapni."
 
 #: .\templates\accounts\settings.html:240
+#: .\templates\finance\transactions\detail.html:31
+#: .\templates\finance\transactions\form.html:17
 #: .\templates\finance\transactions\list.html:31
 msgid "Account"
 msgstr "Fiók"
@@ -616,7 +739,7 @@ msgstr "Hetente"
 msgid "Never"
 msgstr "Soha"
 
-#: .\templates\accounts\settings.html:290
+#: .\templates\accounts\settings.html:290 .\templates\base\app.html:16
 #: .\templates\notifications\list.html:51
 msgid "Finance"
 msgstr "Pénzügy"
@@ -652,6 +775,7 @@ msgid "Customize your experience."
 msgstr "Élmény személyre szabása."
 
 #: .\templates\accounts\settings.html:441
+#: .\templates\social\groups\form.html:31
 msgid "Default Currency"
 msgstr "Alapértelmezett pénznem"
 
@@ -689,7 +813,9 @@ msgstr "Az auditnaplókról"
 msgid ""
 "Audit logs are stored using structured logging (structlog) and can be viewed "
 "through your logging infrastructure."
-msgstr "Az auditnaplókat strukturált naplózás (structlog) használatával tároljuk, és a naplózási infrastruktúrán keresztül megtekinthetők."
+msgstr ""
+"Az auditnaplókat strukturált naplózás (structlog) használatával tároljuk, és "
+"a naplózási infrastruktúrán keresztül megtekinthetők."
 
 #: .\templates\admin\audit_logs.html:108
 msgid "Retention policies:"
@@ -738,13 +864,17 @@ msgstr "Naplók megtekintése"
 #: .\templates\admin\audit_logs.html:140
 msgid ""
 "To view audit logs, check your application logs with the following filter:"
-msgstr "Az auditnaplók megtekintéséhez ellenőrizze az alkalmazásnaplókat a következő szűrővel:"
+msgstr ""
+"Az auditnaplók megtekintéséhez ellenőrizze az alkalmazásnaplókat a következő "
+"szűrővel:"
 
 #: .\templates\admin\audit_logs.html:145
 msgid ""
 "Or use your centralized logging solution (e.g., ELK Stack, Datadog, "
 "CloudWatch) to search for events with:"
-msgstr "Vagy használja a központosított naplózási megoldását (pl. ELK Stack, Datadog, CloudWatch) az események kereséséhez:"
+msgstr ""
+"Vagy használja a központosított naplózási megoldását (pl. ELK Stack, "
+"Datadog, CloudWatch) az események kereséséhez:"
 
 #: .\templates\admin\dashboard_stats.html:102
 msgid "Financial statistics for your tenant"
@@ -775,6 +905,7 @@ msgid "Transaction Summary (Last 30 Days)"
 msgstr "Tranzakciós összegzés (utolsó 30 nap)"
 
 #: .\templates\admin\dashboard_stats.html:122
+#: .\templates\finance\accounts\detail.html:47
 #: .\templates\finance\dashboard.html:121
 msgid "Recent Transactions"
 msgstr "Legutóbbi tranzakciók"
@@ -822,6 +953,8 @@ msgstr "Elszámolásra vár"
 
 #: .\templates\admin\dashboard_stats.html:151
 #: .\templates\admin\finance_index.html:161
+#: .\templates\social\settlements\list.html:4
+#: .\templates\social\settlements\list.html:10
 msgid "Settlements"
 msgstr "Elszámolások"
 
@@ -878,13 +1011,16 @@ msgid "View Accounts"
 msgstr "Fiókok megtekintése"
 
 #: .\templates\admin\finance_index.html:143 .\templates\base\app.html:32
-#: .\templates\base\app.html:286 .\templates\finance\transactions\list.html:4
+#: .\templates\base\app.html:286
+#: .\templates\finance\transactions\detail.html:10
+#: .\templates\finance\transactions\list.html:4
 #: .\templates\finance\transactions\list.html:11
 msgid "Transactions"
 msgstr "Tranzakciók"
 
 #: .\templates\admin\finance_index.html:149 .\templates\base\app.html:36
 #: .\templates\base\app.html:287 .\templates\finance\dashboard.html:87
+#: .\templates\social\contacts\detail.html:10
 #: .\templates\social\contacts\list.html:4
 #: .\templates\social\contacts\list.html:11
 msgid "Contacts"
@@ -897,10 +1033,12 @@ msgstr "Kapcsolati adósságok"
 
 #: .\templates\base\app.html:24 .\templates\base\app.html:284
 #: .\templates\finance\dashboard.html:4 .\templates\finance\dashboard.html:10
+#: .\templates\react\dashboard.html:12 .\templates\react\dashboard.html:15
 msgid "Dashboard"
 msgstr "Vezérlőpult"
 
 #: .\templates\base\app.html:28 .\templates\base\app.html:285
+#: .\templates\finance\accounts\detail.html:11
 #: .\templates\finance\accounts\list.html:4
 #: .\templates\finance\accounts\list.html:11
 #: .\templates\finance\dashboard.html:51
@@ -908,10 +1046,13 @@ msgid "Accounts"
 msgstr "Fiókok"
 
 #: .\templates\base\app.html:40 .\templates\base\app.html:288
+#: .\templates\social\contacts\detail.html:54
+#: .\templates\social\debts\detail.html:10
 msgid "Debts"
 msgstr "Adósságok"
 
 #: .\templates\base\app.html:44 .\templates\base\app.html:289
+#: .\templates\social\groups\detail.html:10
 msgid "Groups"
 msgstr "Csoportok"
 
@@ -960,6 +1101,7 @@ msgstr "Nyelv"
 #: .\templates\base\auth.html:116 .\templates\base\base.html:10
 #: .\templates\base\base.html:13 .\templates\base\base.html:18
 #: .\templates\base\base.html:21 .\templates\base\base.html:26
+#: .\templates\react\dashboard.html:12 .\templates\react\dashboard.html:15
 msgid "Djanbe Finance"
 msgstr "Djanbe Finance"
 
@@ -975,7 +1117,9 @@ msgstr "Vegye kézbe pénzügyeit"
 msgid ""
 "Track expenses, manage debts, and split bills with friends - all in one "
 "place."
-msgstr "Kövesse nyomon a kiadásokat, kezelje az adósságokat, és ossza meg a számlákat a barátokkal – mindezt egy helyen."
+msgstr ""
+"Kövesse nyomon a kiadásokat, kezelje az adósságokat, és ossza meg a "
+"számlákat a barátokkal – mindezt egy helyen."
 
 #: .\templates\base\auth.html:44
 msgid "Track income & expenses"
@@ -993,12 +1137,15 @@ msgstr "Számlák megosztása csoportokkal"
 msgid ""
 "Personal and social finance management platform - track expenses, manage "
 "debts, split bills with friends."
-msgstr "Személyes és közösségi pénzügyi platform – kövesse a kiadásokat, kezelje az adósságokat, ossza meg a számlákat a barátokkal."
+msgstr ""
+"Személyes és közösségi pénzügyi platform – kövesse a kiadásokat, kezelje az "
+"adósságokat, ossza meg a számlákat a barátokkal."
 
 #: .\templates\base\base.html:12
 msgid ""
 "finance, personal finance, expense tracking, debt management, bill splitting"
-msgstr "pénzügy, személyes pénzügy, kiadáskövetés, adósságkezelés, számlamegosztás"
+msgstr ""
+"pénzügy, személyes pénzügy, kiadáskövetés, adósságkezelés, számlamegosztás"
 
 #: .\templates\base\base.html:19 .\templates\base\base.html:27
 msgid "Personal and social finance management platform"
@@ -1011,6 +1158,155 @@ msgstr "Ugrás a fő tartalomra"
 #: .\templates\base\base.html:178
 msgid "Dismiss"
 msgstr "Bezárás"
+
+#: .\templates\finance\accounts\detail.html:9
+#: .\templates\finance\transactions\detail.html:8
+#: .\templates\social\contacts\detail.html:8
+#: .\templates\social\debts\detail.html:8
+#: .\templates\social\groups\detail.html:8
+msgid "Breadcrumb"
+msgstr "Morzsamenü"
+
+#: .\templates\finance\accounts\detail.html:25
+#: .\templates\social\contacts\detail.html:29
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: .\templates\finance\accounts\detail.html:28
+#: .\templates\finance\dashboard.html:161
+#: .\templates\finance\transactions\form.html:4
+#: .\templates\finance\transactions\form.html:9
+#: .\templates\finance\transactions\form.html:80
+#: .\templates\finance\transactions\list.html:19
+#: .\templates\finance\transactions\list.html:86
+msgid "Add Transaction"
+msgstr "Tranzakció hozzáadása"
+
+#: .\templates\finance\accounts\detail.html:35
+#, fuzzy
+#| msgid "Current balance"
+msgid "Current Balance"
+msgstr "Jelenlegi egyenleg"
+
+#: .\templates\finance\accounts\detail.html:53
+#: .\templates\finance\transactions\detail.html:19
+#, fuzzy
+#| msgid "Transactions"
+msgid "Transaction"
+msgstr "Tranzakciók"
+
+#: .\templates\finance\accounts\detail.html:62
+#, fuzzy
+#| msgid "No transactions yet"
+msgid "No transactions yet."
+msgstr "Még nincs tranzakció"
+
+#: .\templates\finance\accounts\form.html:4
+#: .\templates\finance\accounts\form.html:10
+#, fuzzy
+#| msgid "Add Account"
+msgid "Edit Account"
+msgstr "Fiók hozzáadása"
+
+#: .\templates\finance\accounts\form.html:4
+#, fuzzy
+#| msgid "View Accounts"
+msgid "New Account"
+msgstr "Fiókok megtekintése"
+
+#: .\templates\finance\accounts\form.html:10
+#, fuzzy
+#| msgid "Create Account"
+msgid "Create New Account"
+msgstr "Fiók létrehozása"
+
+#: .\templates\finance\accounts\form.html:27
+#, fuzzy
+#| msgid "Account"
+msgid "Account Name"
+msgstr "Fiók"
+
+#: .\templates\finance\accounts\form.html:30
+msgid "e.g., Main Checking"
+msgstr "pl. Fő folyószámla"
+
+#: .\templates\finance\accounts\form.html:38
+#, fuzzy
+#| msgid "Account"
+msgid "Account Type"
+msgstr "Fiók"
+
+#: .\templates\finance\accounts\form.html:41
+msgid "Select type..."
+msgstr "Típus kiválasztása..."
+
+#: .\templates\finance\accounts\form.html:42
+msgid "Checking"
+msgstr "Folyószámla"
+
+#: .\templates\finance\accounts\form.html:43
+#, fuzzy
+#| msgid "Settings"
+msgid "Savings"
+msgstr "Beállítások"
+
+#: .\templates\finance\accounts\form.html:44
+msgid "Credit Card"
+msgstr "Hitelkártya"
+
+#: .\templates\finance\accounts\form.html:45
+#: .\templates\social\settlements\form.html:79
+msgid "Cash"
+msgstr "Készpénz"
+
+#: .\templates\finance\accounts\form.html:46
+msgid "Investment"
+msgstr "Befektetés"
+
+#: .\templates\finance\accounts\form.html:47
+msgid "Loan"
+msgstr "Kölcsön"
+
+#: .\templates\finance\accounts\form.html:52
+#: .\templates\social\debts\form.html:64
+#: .\templates\social\settlements\form.html:64
+#, fuzzy
+#| msgid "Default Currency"
+msgid "Currency"
+msgstr "Alapértelmezett pénznem"
+
+#: .\templates\finance\accounts\form.html:55
+msgid "US Dollar"
+msgstr "USA-dollár"
+
+#: .\templates\finance\accounts\form.html:56
+msgid "Euro"
+msgstr "Euró"
+
+#: .\templates\finance\accounts\form.html:57
+msgid "British Pound"
+msgstr "Brit font"
+
+#: .\templates\finance\accounts\form.html:58
+msgid "Indian Rupee"
+msgstr "Indiai rúpia"
+
+#: .\templates\finance\accounts\form.html:64
+#: .\templates\social\groups\form.html:24
+#, fuzzy
+#| msgid "Description"
+msgid "Description (optional)"
+msgstr "Leírás"
+
+#: .\templates\finance\accounts\form.html:67
+msgid "Notes about this account..."
+msgstr "Megjegyzések erről a számláról..."
+
+#: .\templates\finance\accounts\form.html:75
+#: .\templates\social\contacts\form.html:43
+#: .\templates\social\groups\form.html:44
+msgid "Save Changes"
+msgstr "Változások mentése"
 
 #: .\templates\finance\accounts\list.html:12
 msgid "Manage your financial accounts and wallets."
@@ -1039,6 +1335,8 @@ msgid "Welcome back, %(name)s! Here's your financial overview."
 msgstr "Üdvözöljük, %(name)s! Íme a pénzügyi áttekintése."
 
 #: .\templates\finance\dashboard.html:19 .\templates\finance\dashboard.html:32
+#: .\templates\finance\net_worth.html:4 .\templates\finance\net_worth.html:9
+#: .\templates\finance\net_worth.html:25
 msgid "Net Worth"
 msgstr "Nettó vagyon"
 
@@ -1047,11 +1345,11 @@ msgstr "Nettó vagyon"
 msgid "View details"
 msgstr "Részletek megtekintése"
 
-#: .\templates\finance\dashboard.html:24
+#: .\templates\finance\dashboard.html:24 .\templates\finance\net_worth.html:17
 msgid "Total Assets"
 msgstr "Összes eszköz"
 
-#: .\templates\finance\dashboard.html:28
+#: .\templates\finance\dashboard.html:28 .\templates\finance\net_worth.html:21
 msgid "Total Liabilities"
 msgstr "Összes kötelezettség"
 
@@ -1093,12 +1391,6 @@ msgstr "Még nincs tranzakció"
 msgid "Get started by adding your first transaction."
 msgstr "Kezdje az első tranzakció hozzáadásával."
 
-#: .\templates\finance\dashboard.html:161
-#: .\templates\finance\transactions\list.html:19
-#: .\templates\finance\transactions\list.html:86
-msgid "Add Transaction"
-msgstr "Tranzakció hozzáadása"
-
 #: .\templates\finance\dashboard.html:182
 msgid "Others Owe You"
 msgstr "Mások tartoznak Önnek"
@@ -1115,36 +1407,137 @@ msgstr "Nincs közösségi aktivitás"
 msgid "Start tracking debts with friends and family."
 msgstr "Kezdje el nyomon követni az adósságokat barátokkal és családdal."
 
-#: .\templates\finance\dashboard.html:220 .\templates\social\debts\list.html:18
-#: .\templates\social\debts\list.html:78
+#: .\templates\finance\dashboard.html:220 .\templates\social\debts\form.html:4
+#: .\templates\social\debts\form.html:9 .\templates\social\debts\form.html:90
+#: .\templates\social\debts\list.html:18 .\templates\social\debts\list.html:78
 msgid "Record Debt"
 msgstr "Adósság rögzítése"
 
-#: .\templates\finance\dashboard.html:223
+#: .\templates\finance\dashboard.html:223 .\templates\social\groups\form.html:4
+#: .\templates\social\groups\form.html:44
 #: .\templates\social\groups\list.html:18
 #: .\templates\social\groups\list.html:54
 msgid "Create Group"
 msgstr "Csoport létrehozása"
 
-#: .\templates\finance\transactions\list.html:12
-msgid "View and manage all your transactions."
-msgstr "Az összes tranzakció megtekintése és kezelése."
+#: .\templates\finance\net_worth.html:10
+msgid "Overview of your assets and liabilities."
+msgstr "Eszközeid és kötelezettségeid áttekintése."
 
+#: .\templates\finance\net_worth.html:37
+#, fuzzy
+#| msgid "Total Assets"
+msgid "Assets"
+msgstr "Összes eszköz"
+
+#: .\templates\finance\net_worth.html:50
+#, fuzzy
+#| msgid "No transactions yet"
+msgid "No assets yet."
+msgstr "Még nincs tranzakció"
+
+#: .\templates\finance\net_worth.html:59
+#, fuzzy
+#| msgid "Total Liabilities"
+msgid "Liabilities"
+msgstr "Összes kötelezettség"
+
+#: .\templates\finance\net_worth.html:72
+#, fuzzy
+#| msgid "Total Liabilities"
+msgid "No liabilities."
+msgstr "Összes kötelezettség"
+
+#: .\templates\finance\transactions\detail.html:4
+#, fuzzy
+#| msgid "Transaction Operations"
+msgid "Transaction Details"
+msgstr "Tranzakciós műveletek"
+
+#: .\templates\finance\transactions\detail.html:12
+#, fuzzy
+#| msgid "View details"
+msgid "Details"
+msgstr "Részletek megtekintése"
+
+#: .\templates\finance\transactions\detail.html:27
+#: .\templates\finance\transactions\form.html:69
 #: .\templates\finance\transactions\list.html:29
+#: .\templates\social\debts\detail.html:43
+#: .\templates\social\debts\form.html:82
+#: .\templates\social\settlements\list.html:28
 msgid "Date"
 msgstr "Dátum"
 
-#: .\templates\finance\transactions\list.html:30
-msgid "Description"
-msgstr "Leírás"
+#: .\templates\finance\transactions\detail.html:35
+#: .\templates\finance\transactions\form.html:28
+msgid "Type"
+msgstr "Típus"
 
+#: .\templates\finance\transactions\detail.html:39
 #: .\templates\finance\transactions\list.html:32
 msgid "Category"
 msgstr "Kategória"
 
+#: .\templates\finance\transactions\detail.html:40
+msgid "Uncategorized"
+msgstr "Kategorizálatlan"
+
+#: .\templates\finance\transactions\detail.html:43
+msgid "Status"
+msgstr "Állapot"
+
+#: .\templates\finance\transactions\detail.html:51
+#, fuzzy
+#| msgid "Recent Transactions"
+msgid "Back to Transactions"
+msgstr "Legutóbbi tranzakciók"
+
+#: .\templates\finance\transactions\form.html:20
+#, fuzzy
+#| msgid "Delete Account"
+msgid "Select account..."
+msgstr "Fiók törlése"
+
+#: .\templates\finance\transactions\form.html:31
+msgid "Expense (Debit)"
+msgstr "Kiadás (terhelés)"
+
+#: .\templates\finance\transactions\form.html:32
+msgid "Income (Credit)"
+msgstr "Bevétel (jóváírás)"
+
+#: .\templates\finance\transactions\form.html:37
 #: .\templates\finance\transactions\list.html:33
+#: .\templates\social\debts\form.html:52
+#: .\templates\social\settlements\form.html:52
+#: .\templates\social\settlements\list.html:31
 msgid "Amount"
 msgstr "Összeg"
+
+#: .\templates\finance\transactions\form.html:50
+#: .\templates\finance\transactions\list.html:30
+msgid "Description"
+msgstr "Leírás"
+
+#: .\templates\finance\transactions\form.html:54
+#: .\templates\social\debts\form.html:78
+msgid "What was this for?"
+msgstr "Mire volt ez?"
+
+#: .\templates\finance\transactions\form.html:58
+msgid "Category (optional)"
+msgstr "Kategória (opcionális)"
+
+#: .\templates\finance\transactions\form.html:61
+#, fuzzy
+#| msgid "Category"
+msgid "No category"
+msgstr "Kategória"
+
+#: .\templates\finance\transactions\list.html:12
+msgid "View and manage all your transactions."
+msgstr "Az összes tranzakció megtekintése és kezelése."
 
 #: .\templates\finance\transactions\list.html:65
 #, python-format
@@ -1217,18 +1610,128 @@ msgstr "További betöltése"
 msgid "Loading..."
 msgstr "Betöltés..."
 
-#: .\templates\social\contacts\list.html:12
-msgid "People you track debts and expenses with."
-msgstr "Azok a személyek, akikkel a tartozásokat és kiadásokat követi."
+#: .\templates\react\dashboard.html:7
+msgid "Your personal finance dashboard - Djanbe Finance"
+msgstr "Személyes pénzügyi irányítópultod - Djanbe Finance"
 
+#: .\templates\react\dashboard.html:13
+msgid "Your personal finance dashboard"
+msgstr "Személyes pénzügyi irányítópultod"
+
+#: .\templates\react\dashboard.html:72
+#, fuzzy
+#| msgid "Loading..."
+msgid "Loading dashboard..."
+msgstr "Betöltés..."
+
+#: .\templates\social\balances\summary.html:4
+#: .\templates\social\balances\summary.html:9
+msgid "Balance Summary"
+msgstr "Egyenleg összefoglaló"
+
+#: .\templates\social\balances\summary.html:10
+msgid "See who owes you and who you owe."
+msgstr "Lásd, ki tartozik neked és kinek tartozol."
+
+#: .\templates\social\balances\summary.html:18
+#, fuzzy
+#| msgid "Others Owe You"
+msgid "They Owe You"
+msgstr "Mások tartoznak Önnek"
+
+#: .\templates\social\balances\summary.html:37
+msgid "No one owes you money."
+msgstr "Senki sem tartozik neked."
+
+#: .\templates\social\balances\summary.html:46
+#, fuzzy
+#| msgid "You Owe Others"
+msgid "You Owe Them"
+msgstr "Ön tartozik másoknak"
+
+#: .\templates\social\balances\summary.html:65
+msgid "You don't owe anyone money."
+msgstr "Te nem tartozol senkinek."
+
+#: .\templates\social\balances\summary.html:76
+msgid "All settled up!"
+msgstr "Minden rendezve!"
+
+#: .\templates\social\balances\summary.html:77
+msgid "You have no outstanding balances with anyone."
+msgstr "Nincs senkivel szemben nyitott egyenleged."
+
+#: .\templates\social\contacts\detail.html:25
+#: .\templates\social\contacts\list.html:39
+msgid "No email"
+msgstr "Nincs e-mail"
+
+#: .\templates\social\contacts\detail.html:37
+msgid "Phone"
+msgstr "Telefon"
+
+#: .\templates\social\contacts\detail.html:43
+msgid "Notes"
+msgstr "Megjegyzések"
+
+#: .\templates\social\contacts\detail.html:60
+#, fuzzy
+#| msgid "Debts"
+msgid "Debt"
+msgstr "Adósságok"
+
+#: .\templates\social\contacts\detail.html:64
+#: .\templates\social\debts\list.html:59
+msgid "They owe"
+msgstr "Ők tartoznak"
+
+#: .\templates\social\contacts\detail.html:64
+#: .\templates\social\debts\list.html:59
+msgid "You owe"
+msgstr "Ön tartozik"
+
+#: .\templates\social\contacts\form.html:4
+#: .\templates\social\contacts\form.html:9
+#, fuzzy
+#| msgid "Add Contact"
+msgid "Edit Contact"
+msgstr "Kapcsolat hozzáadása"
+
+#: .\templates\social\contacts\form.html:4
+#, fuzzy
+#| msgid "Contacts"
+msgid "New Contact"
+msgstr "Kapcsolatok"
+
+#: .\templates\social\contacts\form.html:9
+#: .\templates\social\contacts\form.html:43
 #: .\templates\social\contacts\list.html:19
 #: .\templates\social\contacts\list.html:77
 msgid "Add Contact"
 msgstr "Kapcsolat hozzáadása"
 
-#: .\templates\social\contacts\list.html:39
-msgid "No email"
-msgstr "Nincs e-mail"
+#: .\templates\social\contacts\form.html:17
+msgid "Name"
+msgstr "Név"
+
+#: .\templates\social\contacts\form.html:23
+msgid "Email (optional)"
+msgstr "E-mail (opcionális)"
+
+#: .\templates\social\contacts\form.html:29
+msgid "Phone (optional)"
+msgstr "Telefon (opcionális)"
+
+#: .\templates\social\contacts\form.html:35
+#: .\templates\social\settlements\form.html:89
+#, fuzzy
+#| msgid "All systems operational"
+msgid "Notes (optional)"
+msgstr "Minden rendszer működik"
+
+#: .\templates\social\contacts\list.html:12
+msgid "People you track debts and expenses with."
+msgstr "Azok a személyek, akikkel a tartozásokat és kiadásokat követi."
 
 #: .\templates\social\contacts\list.html:70
 msgid "No contacts"
@@ -1236,7 +1739,85 @@ msgstr "Nincsenek kapcsolatok"
 
 #: .\templates\social\contacts\list.html:71
 msgid "Add people you share expenses or debts with."
-msgstr "Adjon hozzá személyeket, akikkel megosztja a kiadásokat vagy adósságokat."
+msgstr ""
+"Adjon hozzá személyeket, akikkel megosztja a kiadásokat vagy adósságokat."
+
+#: .\templates\social\debts\detail.html:4
+#, fuzzy
+#| msgid "View details"
+msgid "Debt Details"
+msgstr "Részletek megtekintése"
+
+#: .\templates\social\debts\detail.html:21
+#, fuzzy
+#| msgid "They owe"
+msgid "They owe you"
+msgstr "Ők tartoznak"
+
+#: .\templates\social\debts\detail.html:21
+#, fuzzy
+#| msgid "You Owe Others"
+msgid "You owe them"
+msgstr "Ön tartozik másoknak"
+
+#: .\templates\social\debts\detail.html:35
+#: .\templates\social\debts\form.html:17
+#: .\templates\social\settlements\form.html:17
+#: .\templates\social\settlements\list.html:29
+#, fuzzy
+#| msgid "Contacts"
+msgid "Contact"
+msgstr "Kapcsolatok"
+
+#: .\templates\social\debts\detail.html:39
+msgid "Original Amount"
+msgstr "Eredeti összeg"
+
+#: .\templates\social\debts\detail.html:48
+msgid "Reason"
+msgstr "Ok"
+
+#: .\templates\social\debts\detail.html:57
+#: .\templates\social\settlements\form.html:4
+#: .\templates\social\settlements\form.html:9
+#: .\templates\social\settlements\form.html:97
+#: .\templates\social\settlements\list.html:18
+#, fuzzy
+#| msgid "Settlements"
+msgid "Record Settlement"
+msgstr "Elszámolások"
+
+#: .\templates\social\debts\form.html:20
+#: .\templates\social\settlements\form.html:20
+msgid "Select contact..."
+msgstr "Kapcsolat kiválasztása..."
+
+#: .\templates\social\debts\form.html:28
+#: .\templates\social\settlements\list.html:30
+#, fuzzy
+#| msgid "Description"
+msgid "Direction"
+msgstr "Leírás"
+
+#: .\templates\social\debts\form.html:34
+msgid "I Lent"
+msgstr "Kölcsönadtam"
+
+#: .\templates\social\debts\form.html:35
+msgid "Money I gave them"
+msgstr "Pénz, amit adtam nekik"
+
+#: .\templates\social\debts\form.html:43
+msgid "I Borrowed"
+msgstr "Kölcsönkértem"
+
+#: .\templates\social\debts\form.html:44
+msgid "Money they gave me"
+msgstr "Pénz, amit ők adtak nekem"
+
+#: .\templates\social\debts\form.html:75
+msgid "Reason (optional)"
+msgstr "Ok (opcionális)"
 
 #: .\templates\social\debts\list.html:11
 msgid "Track money lent and borrowed."
@@ -1254,14 +1835,6 @@ msgstr "Ön kölcsönkért (Ön tartozik)"
 msgid "Net Balance"
 msgstr "Nettó egyenleg"
 
-#: .\templates\social\debts\list.html:59
-msgid "They owe"
-msgstr "Ők tartoznak"
-
-#: .\templates\social\debts\list.html:59
-msgid "You owe"
-msgstr "Ön tartozik"
-
 #: .\templates\social\debts\list.html:74
 msgid "No debts"
 msgstr "Nincs adósság"
@@ -1269,6 +1842,56 @@ msgstr "Nincs adósság"
 #: .\templates\social\debts\list.html:75
 msgid "Start tracking money lent or borrowed."
 msgstr "Kezdje nyomon követni a kölcsönadott vagy kölcsönkért pénzt."
+
+#: .\templates\social\groups\detail.html:26
+msgid "Coming soon"
+msgstr "Hamarosan"
+
+#: .\templates\social\groups\detail.html:30
+#, fuzzy
+#| msgid "Total Expenses"
+msgid "Add Expense"
+msgstr "Összes kiadás"
+
+#: .\templates\social\groups\detail.html:31
+msgid "Soon"
+msgstr "Hamarosan"
+
+#: .\templates\social\groups\detail.html:39
+#, fuzzy
+#| msgid "Total Expenses"
+msgid "Expenses"
+msgstr "Összes kiadás"
+
+#: .\templates\social\groups\detail.html:52
+msgid "No expenses yet. Add one to get started."
+msgstr "Még nincs kiadás. Adj hozzá egyet a kezdéshez."
+
+#: .\templates\social\groups\form.html:4 .\templates\social\groups\form.html:9
+#, fuzzy
+#| msgid "Create Group"
+msgid "Edit Group"
+msgstr "Csoport létrehozása"
+
+#: .\templates\social\groups\form.html:9
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Create Expense Group"
+msgstr "Kiadási csoportok"
+
+#: .\templates\social\groups\form.html:17
+#, fuzzy
+#| msgid "Groups"
+msgid "Group Name"
+msgstr "Csoportok"
+
+#: .\templates\social\groups\form.html:20
+msgid "e.g., Roommates, Trip to Paris"
+msgstr "pl. Lakótársak, Párizsi út"
+
+#: .\templates\social\groups\form.html:27
+msgid "What is this group for?"
+msgstr "Mire való ez a csoport?"
 
 #: .\templates\social\groups\list.html:4 .\templates\social\groups\list.html:10
 msgid "Expense Groups"
@@ -1289,3 +1912,69 @@ msgstr "Nincsenek kiadási csoportok"
 #: .\templates\social\groups\list.html:51
 msgid "Create a group to start splitting expenses."
 msgstr "Hozzon létre egy csoportot a kiadások megosztásához."
+
+#: .\templates\social\settlements\form.html:28
+msgid "Who paid?"
+msgstr "Ki fizetett?"
+
+#: .\templates\social\settlements\form.html:34
+msgid "I Paid"
+msgstr "Én fizettem"
+
+#: .\templates\social\settlements\form.html:35
+#: .\templates\social\settlements\list.html:44
+msgid "You paid them"
+msgstr "Te fizettél nekik"
+
+#: .\templates\social\settlements\form.html:43
+msgid "They Paid"
+msgstr "Ők fizettek"
+
+#: .\templates\social\settlements\form.html:44
+#: .\templates\social\settlements\list.html:44
+msgid "They paid you"
+msgstr "Ők fizettek neked"
+
+#: .\templates\social\settlements\form.html:75
+msgid "Payment Method (optional)"
+msgstr "Fizetési mód (opcionális)"
+
+#: .\templates\social\settlements\form.html:78
+#, fuzzy
+#| msgid "Not verified"
+msgid "Not specified"
+msgstr "Nincs megerősítve"
+
+#: .\templates\social\settlements\form.html:80
+msgid "Bank Transfer"
+msgstr "Banki átutalás"
+
+#: .\templates\social\settlements\form.html:81
+msgid "UPI"
+msgstr "UPI"
+
+#: .\templates\social\settlements\form.html:82
+msgid "Venmo"
+msgstr "Venmo"
+
+#: .\templates\social\settlements\form.html:83
+msgid "PayPal"
+msgstr "PayPal"
+
+#: .\templates\social\settlements\form.html:84
+msgid "Other"
+msgstr "Egyéb"
+
+#: .\templates\social\settlements\list.html:11
+msgid "Record payments to settle debts."
+msgstr "Fizetések rögzítése a tartozások rendezéséhez."
+
+#: .\templates\social\settlements\list.html:59
+#, fuzzy
+#| msgid "Settlements"
+msgid "No settlements"
+msgstr "Elszámolások"
+
+#: .\templates\social\settlements\list.html:60
+msgid "Record settlements when debts are paid."
+msgstr "A rendezéseket rögzítse, amikor a tartozásokat kifizették."

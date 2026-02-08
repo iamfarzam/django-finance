@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-finance\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-08 07:21+0500\n"
+"POT-Creation-Date: 2026-02-08 09:22+0500\n"
 "PO-Revision-Date: 2026-02-08 07:21+0500\n"
 "Last-Translator: Farzam Mehdi <ifarzammehdi@gmail.com>\n"
-"Language-Team: Norwegian (http://www.transifex.com/django/django/language/no/)\n"
+"Language-Team: Norwegian (http://www.transifex.com/django/django/language/"
+"no/)\n"
 "Language: no\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -144,7 +145,9 @@ msgstr "Bekreftelses-e-post sendt."
 #: .\modules\accounts\interfaces\views.py:270
 msgid ""
 "If an account exists with this email, a password reset link has been sent."
-msgstr "Hvis en konto finnes med denne e-posten, er en lenke for tilbakestilling av passord sendt."
+msgstr ""
+"Hvis en konto finnes med denne e-posten, er en lenke for tilbakestilling av "
+"passord sendt."
 
 #: .\modules\accounts\interfaces\views.py:293
 msgid "Invalid reset token."
@@ -197,6 +200,28 @@ msgstr "Valuta ikke støttet: %(currency)s"
 msgid "Cannot transfer to the same account."
 msgstr "Kan ikke overføre til samme konto."
 
+#: .\modules\finance\interfaces\views.py:402
+#, fuzzy
+#| msgid "Transactions (This Month)"
+msgid "Transaction is not pending."
+msgstr "Transaksjoner (denne måneden)"
+
+#: .\modules\finance\interfaces\views.py:424
+#, fuzzy
+#| msgid "Email is already verified."
+msgid "Transaction is already voided."
+msgstr "E-post er allerede bekreftet."
+
+#: .\modules\finance\interfaces\views.py:668
+#, fuzzy
+#| msgid "Email is already verified."
+msgid "Loan is already paid off."
+msgstr "E-post er allerede bekreftet."
+
+#: .\modules\finance\interfaces\views.py:738
+msgid "No tenant context."
+msgstr "Ingen tenant-kontekst."
+
 #: .\modules\notifications\interfaces\views.py:87
 #: .\modules\notifications\interfaces\views.py:115
 #: .\modules\notifications\interfaces\views.py:165
@@ -224,6 +249,67 @@ msgstr "Kan ikke sette både owner_pays og owner_receives til True."
 #: .\modules\social\interfaces\serializers.py:326
 msgid "Must set either owner_pays or owner_receives to True."
 msgstr "Må sette enten owner_pays eller owner_receives til True."
+
+#: .\modules\social\interfaces\views.py:173
+#: .\modules\social\interfaces\views.py:193
+#: .\modules\social\interfaces\views.py:206
+#: .\modules\social\interfaces\views.py:224
+#: .\modules\social\interfaces\views.py:418
+#: .\modules\social\interfaces\views.py:935
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Contact not found."
+msgstr "Varsling ikke funnet."
+
+#: .\modules\social\interfaces\views.py:296
+#: .\modules\social\interfaces\views.py:306
+#: .\modules\social\interfaces\views.py:598
+#: .\modules\social\interfaces\views.py:608
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Group not found."
+msgstr "Varsling ikke funnet."
+
+#: .\modules\social\interfaces\views.py:427
+#: .\modules\social\interfaces\views.py:437
+#: .\modules\social\interfaces\views.py:478
+#: .\modules\social\interfaces\views.py:500
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Debt not found."
+msgstr "Varsling ikke funnet."
+
+#: .\modules\social\interfaces\views.py:482
+#, fuzzy
+#| msgid "Email is already registered."
+msgid "Debt is already settled."
+msgstr "E-post er allerede registrert."
+
+#: .\modules\social\interfaces\views.py:744
+#: .\modules\social\interfaces\views.py:951
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Expense group not found."
+msgstr "Utgiftsgrupper"
+
+#: .\modules\social\interfaces\views.py:756
+#: .\modules\social\interfaces\views.py:766
+#: .\modules\social\interfaces\views.py:784
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Expense not found."
+msgstr "Utgiftsgrupper"
+
+#: .\modules\social\interfaces\views.py:858
+#: .\modules\social\interfaces\views.py:868
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Settlement not found."
+msgstr "Varsling ikke funnet."
+
+#: .\modules\subscriptions\interfaces\views.py:69
+msgid "No subscription found. Using free tier."
+msgstr "Ingen abonnement funnet. Bruker gratisnivå."
 
 #: .\templates\accounts\login.html:4
 msgid "Sign In"
@@ -274,7 +360,9 @@ msgstr "Tilbakestill passordet ditt"
 #: .\templates\accounts\password_reset.html:12
 msgid ""
 "Enter your email address and we'll send you a link to reset your password."
-msgstr "Skriv inn e-postadressen din, så sender vi deg en lenke for å tilbakestille passordet."
+msgstr ""
+"Skriv inn e-postadressen din, så sender vi deg en lenke for å tilbakestille "
+"passordet."
 
 #: .\templates\accounts\password_reset.html:60
 msgid "Send reset link"
@@ -345,6 +433,7 @@ msgid "Change Password"
 msgstr "Endre passord"
 
 #: .\templates\accounts\register.html:4
+#: .\templates\finance\accounts\form.html:75
 msgid "Create Account"
 msgstr "Opprett konto"
 
@@ -392,7 +481,8 @@ msgstr "1. Godkjenning av vilkår"
 msgid ""
 "By accessing and using Djanbe Finance, you agree to be bound by these Terms "
 "of Service."
-msgstr "Ved å få tilgang til og bruke Djanbe Finance, godtar du disse vilkårene."
+msgstr ""
+"Ved å få tilgang til og bruke Djanbe Finance, godtar du disse vilkårene."
 
 #: .\templates\accounts\register.html:174
 msgid "2. Use of Service"
@@ -403,7 +493,9 @@ msgid ""
 "You agree to use the service only for lawful purposes and in accordance with "
 "these terms. You are responsible for maintaining the confidentiality of your "
 "account."
-msgstr "Du godtar å bruke tjenesten kun til lovlige formål og i samsvar med disse vilkårene. Du er ansvarlig for å holde kontoen din konfidensiell."
+msgstr ""
+"Du godtar å bruke tjenesten kun til lovlige formål og i samsvar med disse "
+"vilkårene. Du er ansvarlig for å holde kontoen din konfidensiell."
 
 #: .\templates\accounts\register.html:176
 msgid "3. User Data"
@@ -413,7 +505,9 @@ msgstr "3. Brukerdata"
 msgid ""
 "You retain ownership of all financial data you enter. We do not sell or "
 "share your personal financial information with third parties."
-msgstr "Du beholder eierskapet til alle finansdata du legger inn. Vi selger eller deler ikke dine personlige finansopplysninger med tredjeparter."
+msgstr ""
+"Du beholder eierskapet til alle finansdata du legger inn. Vi selger eller "
+"deler ikke dine personlige finansopplysninger med tredjeparter."
 
 #: .\templates\accounts\register.html:178
 msgid "4. Service Availability"
@@ -424,15 +518,21 @@ msgid ""
 "We strive to maintain service availability but do not guarantee "
 "uninterrupted access. We may modify or discontinue features with reasonable "
 "notice."
-msgstr "Vi forsøker å holde tjenesten tilgjengelig, men garanterer ikke uavbrutt tilgang. Vi kan endre eller avslutte funksjoner med rimelig varsel."
+msgstr ""
+"Vi forsøker å holde tjenesten tilgjengelig, men garanterer ikke uavbrutt "
+"tilgang. Vi kan endre eller avslutte funksjoner med rimelig varsel."
 
 #: .\templates\accounts\register.html:180
 msgid "5. Limitation of Liability"
 msgstr "5. Ansvarsbegrensning"
 
 #: .\templates\accounts\register.html:181
-msgid "Djanbe Finance is provided \\"
+msgid ""
+"Djanbe Finance is provided \"as is\" without warranties. We are not liable "
+"for any financial decisions made based on information in the app."
 msgstr ""
+"Djanbe Finance leveres \"som den er\" uten garantier. Vi er ikke ansvarlige "
+"for finansielle beslutninger som tas basert p? informasjon i appen."
 
 #: .\templates\accounts\register.html:186
 #: .\templates\accounts\register.html:216
@@ -448,7 +548,9 @@ msgstr "1. Informasjon vi samler inn"
 msgid ""
 "We collect information you provide directly: email, name, and financial data "
 "you choose to enter (accounts, transactions, contacts)."
-msgstr "Vi samler inn informasjon du gir direkte: e-post, navn og finansdata du velger å legge inn (kontoer, transaksjoner, kontakter)."
+msgstr ""
+"Vi samler inn informasjon du gir direkte: e-post, navn og finansdata du "
+"velger å legge inn (kontoer, transaksjoner, kontakter)."
 
 #: .\templates\accounts\register.html:204
 msgid "2. How We Use Your Information"
@@ -459,7 +561,9 @@ msgid ""
 "Your data is used solely to provide the service. We use it to display your "
 "financial overview, calculate balances, and send notifications you've opted "
 "into."
-msgstr "Dataene dine brukes kun for å levere tjenesten. Vi bruker dem til å vise din finansoversikt, beregne saldoer og sende varsler du har valgt."
+msgstr ""
+"Dataene dine brukes kun for å levere tjenesten. Vi bruker dem til å vise din "
+"finansoversikt, beregne saldoer og sende varsler du har valgt."
 
 #: .\templates\accounts\register.html:206
 msgid "3. Data Security"
@@ -469,7 +573,10 @@ msgstr "3. Datasikkerhet"
 msgid ""
 "We implement industry-standard security measures including encryption, "
 "secure authentication, and regular security audits to protect your data."
-msgstr "Vi bruker bransjestandard sikkerhetstiltak inkludert kryptering, sikker autentisering og regelmessige sikkerhetsrevisjoner for å beskytte dataene dine."
+msgstr ""
+"Vi bruker bransjestandard sikkerhetstiltak inkludert kryptering, sikker "
+"autentisering og regelmessige sikkerhetsrevisjoner for å beskytte dataene "
+"dine."
 
 #: .\templates\accounts\register.html:208
 msgid "4. Data Sharing"
@@ -479,7 +586,9 @@ msgstr "4. Datadeling"
 msgid ""
 "We do not sell, trade, or share your personal financial data with third "
 "parties. Data may only be shared if required by law."
-msgstr "Vi selger, bytter eller deler ikke dine personlige finansdata med tredjeparter. Data kan bare deles hvis loven krever det."
+msgstr ""
+"Vi selger, bytter eller deler ikke dine personlige finansdata med "
+"tredjeparter. Data kan bare deles hvis loven krever det."
 
 #: .\templates\accounts\register.html:210
 msgid "5. Your Rights"
@@ -489,7 +598,9 @@ msgstr "5. Dine rettigheter"
 msgid ""
 "You can access, export, or delete your data at any time through your account "
 "settings. Contact us for any privacy-related requests."
-msgstr "Du kan når som helst få tilgang til, eksportere eller slette dataene dine via kontoinnstillingene. Kontakt oss for forespørsler om personvern."
+msgstr ""
+"Du kan når som helst få tilgang til, eksportere eller slette dataene dine "
+"via kontoinnstillingene. Kontakt oss for forespørsler om personvern."
 
 #: .\templates\accounts\register.html:226
 msgid "Create account"
@@ -553,6 +664,11 @@ msgid "Confirm New Password"
 msgstr "Bekreft nytt passord"
 
 #: .\templates\accounts\settings.html:194
+#: .\templates\finance\accounts\form.html:72
+#: .\templates\finance\transactions\form.html:77
+#: .\templates\social\contacts\form.html:41
+#: .\templates\social\debts\form.html:88 .\templates\social\groups\form.html:42
+#: .\templates\social\settlements\form.html:95
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -565,6 +681,8 @@ msgid "Choose how you want to be notified."
 msgstr "Velg hvordan du vil bli varslet."
 
 #: .\templates\accounts\settings.html:240
+#: .\templates\finance\transactions\detail.html:31
+#: .\templates\finance\transactions\form.html:17
 #: .\templates\finance\transactions\list.html:31
 msgid "Account"
 msgstr "Konto"
@@ -615,7 +733,7 @@ msgstr "Ukentlig"
 msgid "Never"
 msgstr "Aldri"
 
-#: .\templates\accounts\settings.html:290
+#: .\templates\accounts\settings.html:290 .\templates\base\app.html:16
 #: .\templates\notifications\list.html:51
 msgid "Finance"
 msgstr "Finans"
@@ -651,6 +769,7 @@ msgid "Customize your experience."
 msgstr "Tilpass opplevelsen din."
 
 #: .\templates\accounts\settings.html:441
+#: .\templates\social\groups\form.html:31
 msgid "Default Currency"
 msgstr "Standardvaluta"
 
@@ -673,7 +792,9 @@ msgstr "Slett konto"
 #: .\templates\accounts\settings.html:464
 msgid ""
 "Once you delete your account, there is no going back. Please be certain."
-msgstr "Når du sletter kontoen din, finnes det ingen vei tilbake. Vennligst vær sikker."
+msgstr ""
+"Når du sletter kontoen din, finnes det ingen vei tilbake. Vennligst vær "
+"sikker."
 
 #: .\templates\admin\audit_logs.html:97
 #: .\templates\admin\dashboard_stats.html:97
@@ -688,7 +809,9 @@ msgstr "Om revisjonslogger"
 msgid ""
 "Audit logs are stored using structured logging (structlog) and can be viewed "
 "through your logging infrastructure."
-msgstr "Revisjonslogger lagres med strukturert logging (structlog) og kan vises via din logginfrastruktur."
+msgstr ""
+"Revisjonslogger lagres med strukturert logging (structlog) og kan vises via "
+"din logginfrastruktur."
 
 #: .\templates\admin\audit_logs.html:108
 msgid "Retention policies:"
@@ -737,13 +860,16 @@ msgstr "Visning av logger"
 #: .\templates\admin\audit_logs.html:140
 msgid ""
 "To view audit logs, check your application logs with the following filter:"
-msgstr "For å se revisjonslogger, sjekk applikasjonsloggene med følgende filter:"
+msgstr ""
+"For å se revisjonslogger, sjekk applikasjonsloggene med følgende filter:"
 
 #: .\templates\admin\audit_logs.html:145
 msgid ""
 "Or use your centralized logging solution (e.g., ELK Stack, Datadog, "
 "CloudWatch) to search for events with:"
-msgstr "Eller bruk din sentraliserte loggløsning (f.eks. ELK Stack, Datadog, CloudWatch) for å søke etter hendelser med:"
+msgstr ""
+"Eller bruk din sentraliserte loggløsning (f.eks. ELK Stack, Datadog, "
+"CloudWatch) for å søke etter hendelser med:"
 
 #: .\templates\admin\dashboard_stats.html:102
 msgid "Financial statistics for your tenant"
@@ -774,6 +900,7 @@ msgid "Transaction Summary (Last 30 Days)"
 msgstr "Transaksjonssammendrag (siste 30 dager)"
 
 #: .\templates\admin\dashboard_stats.html:122
+#: .\templates\finance\accounts\detail.html:47
 #: .\templates\finance\dashboard.html:121
 msgid "Recent Transactions"
 msgstr "Nylige transaksjoner"
@@ -821,6 +948,8 @@ msgstr "Avventer oppgjør"
 
 #: .\templates\admin\dashboard_stats.html:151
 #: .\templates\admin\finance_index.html:161
+#: .\templates\social\settlements\list.html:4
+#: .\templates\social\settlements\list.html:10
 msgid "Settlements"
 msgstr "Oppgjør"
 
@@ -877,13 +1006,16 @@ msgid "View Accounts"
 msgstr "Vis kontoer"
 
 #: .\templates\admin\finance_index.html:143 .\templates\base\app.html:32
-#: .\templates\base\app.html:286 .\templates\finance\transactions\list.html:4
+#: .\templates\base\app.html:286
+#: .\templates\finance\transactions\detail.html:10
+#: .\templates\finance\transactions\list.html:4
 #: .\templates\finance\transactions\list.html:11
 msgid "Transactions"
 msgstr "Transaksjoner"
 
 #: .\templates\admin\finance_index.html:149 .\templates\base\app.html:36
 #: .\templates\base\app.html:287 .\templates\finance\dashboard.html:87
+#: .\templates\social\contacts\detail.html:10
 #: .\templates\social\contacts\list.html:4
 #: .\templates\social\contacts\list.html:11
 msgid "Contacts"
@@ -896,10 +1028,12 @@ msgstr "Gjeld mellom kontakter"
 
 #: .\templates\base\app.html:24 .\templates\base\app.html:284
 #: .\templates\finance\dashboard.html:4 .\templates\finance\dashboard.html:10
+#: .\templates\react\dashboard.html:12 .\templates\react\dashboard.html:15
 msgid "Dashboard"
 msgstr "Dashbord"
 
 #: .\templates\base\app.html:28 .\templates\base\app.html:285
+#: .\templates\finance\accounts\detail.html:11
 #: .\templates\finance\accounts\list.html:4
 #: .\templates\finance\accounts\list.html:11
 #: .\templates\finance\dashboard.html:51
@@ -907,10 +1041,13 @@ msgid "Accounts"
 msgstr "Kontoer"
 
 #: .\templates\base\app.html:40 .\templates\base\app.html:288
+#: .\templates\social\contacts\detail.html:54
+#: .\templates\social\debts\detail.html:10
 msgid "Debts"
 msgstr "Gjeld"
 
 #: .\templates\base\app.html:44 .\templates\base\app.html:289
+#: .\templates\social\groups\detail.html:10
 msgid "Groups"
 msgstr "Grupper"
 
@@ -959,6 +1096,7 @@ msgstr "Språk"
 #: .\templates\base\auth.html:116 .\templates\base\base.html:10
 #: .\templates\base\base.html:13 .\templates\base\base.html:18
 #: .\templates\base\base.html:21 .\templates\base\base.html:26
+#: .\templates\react\dashboard.html:12 .\templates\react\dashboard.html:15
 msgid "Djanbe Finance"
 msgstr "Djanbe Finance"
 
@@ -974,7 +1112,9 @@ msgstr "Ta kontroll over finansene dine"
 msgid ""
 "Track expenses, manage debts, and split bills with friends - all in one "
 "place."
-msgstr "Spor utgifter, administrer gjeld og del regninger med venner - alt på ett sted."
+msgstr ""
+"Spor utgifter, administrer gjeld og del regninger med venner - alt på ett "
+"sted."
 
 #: .\templates\base\auth.html:44
 msgid "Track income & expenses"
@@ -992,12 +1132,15 @@ msgstr "Del regninger med grupper"
 msgid ""
 "Personal and social finance management platform - track expenses, manage "
 "debts, split bills with friends."
-msgstr "Plattform for personlig og sosial økonomistyring - spor utgifter, administrer gjeld, del regninger med venner."
+msgstr ""
+"Plattform for personlig og sosial økonomistyring - spor utgifter, "
+"administrer gjeld, del regninger med venner."
 
 #: .\templates\base\base.html:12
 msgid ""
 "finance, personal finance, expense tracking, debt management, bill splitting"
-msgstr "finans, personlig økonomi, utgiftssporing, gjeldshåndtering, regningsdeling"
+msgstr ""
+"finans, personlig økonomi, utgiftssporing, gjeldshåndtering, regningsdeling"
 
 #: .\templates\base\base.html:19 .\templates\base\base.html:27
 msgid "Personal and social finance management platform"
@@ -1010,6 +1153,155 @@ msgstr "Hopp til hovedinnhold"
 #: .\templates\base\base.html:178
 msgid "Dismiss"
 msgstr "Lukk"
+
+#: .\templates\finance\accounts\detail.html:9
+#: .\templates\finance\transactions\detail.html:8
+#: .\templates\social\contacts\detail.html:8
+#: .\templates\social\debts\detail.html:8
+#: .\templates\social\groups\detail.html:8
+msgid "Breadcrumb"
+msgstr "Brødsmulesti"
+
+#: .\templates\finance\accounts\detail.html:25
+#: .\templates\social\contacts\detail.html:29
+msgid "Edit"
+msgstr "Rediger"
+
+#: .\templates\finance\accounts\detail.html:28
+#: .\templates\finance\dashboard.html:161
+#: .\templates\finance\transactions\form.html:4
+#: .\templates\finance\transactions\form.html:9
+#: .\templates\finance\transactions\form.html:80
+#: .\templates\finance\transactions\list.html:19
+#: .\templates\finance\transactions\list.html:86
+msgid "Add Transaction"
+msgstr "Legg til transaksjon"
+
+#: .\templates\finance\accounts\detail.html:35
+#, fuzzy
+#| msgid "Current balance"
+msgid "Current Balance"
+msgstr "Nåværende saldo"
+
+#: .\templates\finance\accounts\detail.html:53
+#: .\templates\finance\transactions\detail.html:19
+#, fuzzy
+#| msgid "Transactions"
+msgid "Transaction"
+msgstr "Transaksjoner"
+
+#: .\templates\finance\accounts\detail.html:62
+#, fuzzy
+#| msgid "No transactions yet"
+msgid "No transactions yet."
+msgstr "Ingen transaksjoner ennå"
+
+#: .\templates\finance\accounts\form.html:4
+#: .\templates\finance\accounts\form.html:10
+#, fuzzy
+#| msgid "Add Account"
+msgid "Edit Account"
+msgstr "Legg til konto"
+
+#: .\templates\finance\accounts\form.html:4
+#, fuzzy
+#| msgid "View Accounts"
+msgid "New Account"
+msgstr "Vis kontoer"
+
+#: .\templates\finance\accounts\form.html:10
+#, fuzzy
+#| msgid "Create Account"
+msgid "Create New Account"
+msgstr "Opprett konto"
+
+#: .\templates\finance\accounts\form.html:27
+#, fuzzy
+#| msgid "Account"
+msgid "Account Name"
+msgstr "Konto"
+
+#: .\templates\finance\accounts\form.html:30
+msgid "e.g., Main Checking"
+msgstr "f.eks. Hovedbrukskonto"
+
+#: .\templates\finance\accounts\form.html:38
+#, fuzzy
+#| msgid "Account"
+msgid "Account Type"
+msgstr "Konto"
+
+#: .\templates\finance\accounts\form.html:41
+msgid "Select type..."
+msgstr "Velg type..."
+
+#: .\templates\finance\accounts\form.html:42
+msgid "Checking"
+msgstr "Brukskonto"
+
+#: .\templates\finance\accounts\form.html:43
+#, fuzzy
+#| msgid "Settings"
+msgid "Savings"
+msgstr "Innstillinger"
+
+#: .\templates\finance\accounts\form.html:44
+msgid "Credit Card"
+msgstr "Kredittkort"
+
+#: .\templates\finance\accounts\form.html:45
+#: .\templates\social\settlements\form.html:79
+msgid "Cash"
+msgstr "Kontanter"
+
+#: .\templates\finance\accounts\form.html:46
+msgid "Investment"
+msgstr "Investering"
+
+#: .\templates\finance\accounts\form.html:47
+msgid "Loan"
+msgstr "Lån"
+
+#: .\templates\finance\accounts\form.html:52
+#: .\templates\social\debts\form.html:64
+#: .\templates\social\settlements\form.html:64
+#, fuzzy
+#| msgid "Default Currency"
+msgid "Currency"
+msgstr "Standardvaluta"
+
+#: .\templates\finance\accounts\form.html:55
+msgid "US Dollar"
+msgstr "Amerikansk dollar"
+
+#: .\templates\finance\accounts\form.html:56
+msgid "Euro"
+msgstr "Euro"
+
+#: .\templates\finance\accounts\form.html:57
+msgid "British Pound"
+msgstr "Britisk pund"
+
+#: .\templates\finance\accounts\form.html:58
+msgid "Indian Rupee"
+msgstr "Indisk rupi"
+
+#: .\templates\finance\accounts\form.html:64
+#: .\templates\social\groups\form.html:24
+#, fuzzy
+#| msgid "Description"
+msgid "Description (optional)"
+msgstr "Beskrivelse"
+
+#: .\templates\finance\accounts\form.html:67
+msgid "Notes about this account..."
+msgstr "Notater om denne kontoen..."
+
+#: .\templates\finance\accounts\form.html:75
+#: .\templates\social\contacts\form.html:43
+#: .\templates\social\groups\form.html:44
+msgid "Save Changes"
+msgstr "Lagre endringer"
 
 #: .\templates\finance\accounts\list.html:12
 msgid "Manage your financial accounts and wallets."
@@ -1038,6 +1330,8 @@ msgid "Welcome back, %(name)s! Here's your financial overview."
 msgstr "Velkommen tilbake, %(name)s! Her er din finansoversikt."
 
 #: .\templates\finance\dashboard.html:19 .\templates\finance\dashboard.html:32
+#: .\templates\finance\net_worth.html:4 .\templates\finance\net_worth.html:9
+#: .\templates\finance\net_worth.html:25
 msgid "Net Worth"
 msgstr "Nettoformue"
 
@@ -1046,11 +1340,11 @@ msgstr "Nettoformue"
 msgid "View details"
 msgstr "Se detaljer"
 
-#: .\templates\finance\dashboard.html:24
+#: .\templates\finance\dashboard.html:24 .\templates\finance\net_worth.html:17
 msgid "Total Assets"
 msgstr "Totale eiendeler"
 
-#: .\templates\finance\dashboard.html:28
+#: .\templates\finance\dashboard.html:28 .\templates\finance\net_worth.html:21
 msgid "Total Liabilities"
 msgstr "Totale forpliktelser"
 
@@ -1092,12 +1386,6 @@ msgstr "Ingen transaksjoner ennå"
 msgid "Get started by adding your first transaction."
 msgstr "Kom i gang ved å legge til din første transaksjon."
 
-#: .\templates\finance\dashboard.html:161
-#: .\templates\finance\transactions\list.html:19
-#: .\templates\finance\transactions\list.html:86
-msgid "Add Transaction"
-msgstr "Legg til transaksjon"
-
 #: .\templates\finance\dashboard.html:182
 msgid "Others Owe You"
 msgstr "Andre skylder deg"
@@ -1114,36 +1402,137 @@ msgstr "Ingen sosial aktivitet"
 msgid "Start tracking debts with friends and family."
 msgstr "Begynn å spore gjeld med venner og familie."
 
-#: .\templates\finance\dashboard.html:220 .\templates\social\debts\list.html:18
-#: .\templates\social\debts\list.html:78
+#: .\templates\finance\dashboard.html:220 .\templates\social\debts\form.html:4
+#: .\templates\social\debts\form.html:9 .\templates\social\debts\form.html:90
+#: .\templates\social\debts\list.html:18 .\templates\social\debts\list.html:78
 msgid "Record Debt"
 msgstr "Registrer gjeld"
 
-#: .\templates\finance\dashboard.html:223
+#: .\templates\finance\dashboard.html:223 .\templates\social\groups\form.html:4
+#: .\templates\social\groups\form.html:44
 #: .\templates\social\groups\list.html:18
 #: .\templates\social\groups\list.html:54
 msgid "Create Group"
 msgstr "Opprett gruppe"
 
-#: .\templates\finance\transactions\list.html:12
-msgid "View and manage all your transactions."
-msgstr "Se og administrer alle transaksjonene dine."
+#: .\templates\finance\net_worth.html:10
+msgid "Overview of your assets and liabilities."
+msgstr "Oversikt over eiendeler og forpliktelser."
 
+#: .\templates\finance\net_worth.html:37
+#, fuzzy
+#| msgid "Total Assets"
+msgid "Assets"
+msgstr "Totale eiendeler"
+
+#: .\templates\finance\net_worth.html:50
+#, fuzzy
+#| msgid "No transactions yet"
+msgid "No assets yet."
+msgstr "Ingen transaksjoner ennå"
+
+#: .\templates\finance\net_worth.html:59
+#, fuzzy
+#| msgid "Total Liabilities"
+msgid "Liabilities"
+msgstr "Totale forpliktelser"
+
+#: .\templates\finance\net_worth.html:72
+#, fuzzy
+#| msgid "Total Liabilities"
+msgid "No liabilities."
+msgstr "Totale forpliktelser"
+
+#: .\templates\finance\transactions\detail.html:4
+#, fuzzy
+#| msgid "Transaction Operations"
+msgid "Transaction Details"
+msgstr "Transaksjonsoperasjoner"
+
+#: .\templates\finance\transactions\detail.html:12
+#, fuzzy
+#| msgid "View details"
+msgid "Details"
+msgstr "Se detaljer"
+
+#: .\templates\finance\transactions\detail.html:27
+#: .\templates\finance\transactions\form.html:69
 #: .\templates\finance\transactions\list.html:29
+#: .\templates\social\debts\detail.html:43
+#: .\templates\social\debts\form.html:82
+#: .\templates\social\settlements\list.html:28
 msgid "Date"
 msgstr "Dato"
 
-#: .\templates\finance\transactions\list.html:30
-msgid "Description"
-msgstr "Beskrivelse"
+#: .\templates\finance\transactions\detail.html:35
+#: .\templates\finance\transactions\form.html:28
+msgid "Type"
+msgstr "Type"
 
+#: .\templates\finance\transactions\detail.html:39
 #: .\templates\finance\transactions\list.html:32
 msgid "Category"
 msgstr "Kategori"
 
+#: .\templates\finance\transactions\detail.html:40
+msgid "Uncategorized"
+msgstr "Ukategorisert"
+
+#: .\templates\finance\transactions\detail.html:43
+msgid "Status"
+msgstr "Status"
+
+#: .\templates\finance\transactions\detail.html:51
+#, fuzzy
+#| msgid "Recent Transactions"
+msgid "Back to Transactions"
+msgstr "Nylige transaksjoner"
+
+#: .\templates\finance\transactions\form.html:20
+#, fuzzy
+#| msgid "Delete Account"
+msgid "Select account..."
+msgstr "Slett konto"
+
+#: .\templates\finance\transactions\form.html:31
+msgid "Expense (Debit)"
+msgstr "Utgift (debet)"
+
+#: .\templates\finance\transactions\form.html:32
+msgid "Income (Credit)"
+msgstr "Inntekt (kredit)"
+
+#: .\templates\finance\transactions\form.html:37
 #: .\templates\finance\transactions\list.html:33
+#: .\templates\social\debts\form.html:52
+#: .\templates\social\settlements\form.html:52
+#: .\templates\social\settlements\list.html:31
 msgid "Amount"
 msgstr "Beløp"
+
+#: .\templates\finance\transactions\form.html:50
+#: .\templates\finance\transactions\list.html:30
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: .\templates\finance\transactions\form.html:54
+#: .\templates\social\debts\form.html:78
+msgid "What was this for?"
+msgstr "Hva var dette for?"
+
+#: .\templates\finance\transactions\form.html:58
+msgid "Category (optional)"
+msgstr "Kategori (valgfri)"
+
+#: .\templates\finance\transactions\form.html:61
+#, fuzzy
+#| msgid "Category"
+msgid "No category"
+msgstr "Kategori"
+
+#: .\templates\finance\transactions\list.html:12
+msgid "View and manage all your transactions."
+msgstr "Se og administrer alle transaksjonene dine."
 
 #: .\templates\finance\transactions\list.html:65
 #, python-format
@@ -1216,18 +1605,128 @@ msgstr "Last inn mer"
 msgid "Loading..."
 msgstr "Laster..."
 
-#: .\templates\social\contacts\list.html:12
-msgid "People you track debts and expenses with."
-msgstr "Personer du sporer gjeld og utgifter med."
+#: .\templates\react\dashboard.html:7
+msgid "Your personal finance dashboard - Djanbe Finance"
+msgstr "Ditt personlige økonomi-dashbord - Djanbe Finance"
 
+#: .\templates\react\dashboard.html:13
+msgid "Your personal finance dashboard"
+msgstr "Ditt personlige økonomi-dashbord"
+
+#: .\templates\react\dashboard.html:72
+#, fuzzy
+#| msgid "Loading..."
+msgid "Loading dashboard..."
+msgstr "Laster..."
+
+#: .\templates\social\balances\summary.html:4
+#: .\templates\social\balances\summary.html:9
+msgid "Balance Summary"
+msgstr "Saldooversikt"
+
+#: .\templates\social\balances\summary.html:10
+msgid "See who owes you and who you owe."
+msgstr "Se hvem som skylder deg og hvem du skylder."
+
+#: .\templates\social\balances\summary.html:18
+#, fuzzy
+#| msgid "Others Owe You"
+msgid "They Owe You"
+msgstr "Andre skylder deg"
+
+#: .\templates\social\balances\summary.html:37
+msgid "No one owes you money."
+msgstr "Ingen skylder deg penger."
+
+#: .\templates\social\balances\summary.html:46
+#, fuzzy
+#| msgid "You Owe Others"
+msgid "You Owe Them"
+msgstr "Du skylder andre"
+
+#: .\templates\social\balances\summary.html:65
+msgid "You don't owe anyone money."
+msgstr "Du skylder ingen penger."
+
+#: .\templates\social\balances\summary.html:76
+msgid "All settled up!"
+msgstr "Alt oppgjort!"
+
+#: .\templates\social\balances\summary.html:77
+msgid "You have no outstanding balances with anyone."
+msgstr "Du har ingen utestående saldoer med noen."
+
+#: .\templates\social\contacts\detail.html:25
+#: .\templates\social\contacts\list.html:39
+msgid "No email"
+msgstr "Ingen e-post"
+
+#: .\templates\social\contacts\detail.html:37
+msgid "Phone"
+msgstr "Telefon"
+
+#: .\templates\social\contacts\detail.html:43
+msgid "Notes"
+msgstr "Notater"
+
+#: .\templates\social\contacts\detail.html:60
+#, fuzzy
+#| msgid "Debts"
+msgid "Debt"
+msgstr "Gjeld"
+
+#: .\templates\social\contacts\detail.html:64
+#: .\templates\social\debts\list.html:59
+msgid "They owe"
+msgstr "De skylder"
+
+#: .\templates\social\contacts\detail.html:64
+#: .\templates\social\debts\list.html:59
+msgid "You owe"
+msgstr "Du skylder"
+
+#: .\templates\social\contacts\form.html:4
+#: .\templates\social\contacts\form.html:9
+#, fuzzy
+#| msgid "Add Contact"
+msgid "Edit Contact"
+msgstr "Legg til kontakt"
+
+#: .\templates\social\contacts\form.html:4
+#, fuzzy
+#| msgid "Contacts"
+msgid "New Contact"
+msgstr "Kontakter"
+
+#: .\templates\social\contacts\form.html:9
+#: .\templates\social\contacts\form.html:43
 #: .\templates\social\contacts\list.html:19
 #: .\templates\social\contacts\list.html:77
 msgid "Add Contact"
 msgstr "Legg til kontakt"
 
-#: .\templates\social\contacts\list.html:39
-msgid "No email"
-msgstr "Ingen e-post"
+#: .\templates\social\contacts\form.html:17
+msgid "Name"
+msgstr "Navn"
+
+#: .\templates\social\contacts\form.html:23
+msgid "Email (optional)"
+msgstr "E-post (valgfri)"
+
+#: .\templates\social\contacts\form.html:29
+msgid "Phone (optional)"
+msgstr "Telefon (valgfri)"
+
+#: .\templates\social\contacts\form.html:35
+#: .\templates\social\settlements\form.html:89
+#, fuzzy
+#| msgid "All systems operational"
+msgid "Notes (optional)"
+msgstr "Alle systemer operative"
+
+#: .\templates\social\contacts\list.html:12
+msgid "People you track debts and expenses with."
+msgstr "Personer du sporer gjeld og utgifter med."
 
 #: .\templates\social\contacts\list.html:70
 msgid "No contacts"
@@ -1236,6 +1735,83 @@ msgstr "Ingen kontakter"
 #: .\templates\social\contacts\list.html:71
 msgid "Add people you share expenses or debts with."
 msgstr "Legg til personer du deler utgifter eller gjeld med."
+
+#: .\templates\social\debts\detail.html:4
+#, fuzzy
+#| msgid "View details"
+msgid "Debt Details"
+msgstr "Se detaljer"
+
+#: .\templates\social\debts\detail.html:21
+#, fuzzy
+#| msgid "They owe"
+msgid "They owe you"
+msgstr "De skylder"
+
+#: .\templates\social\debts\detail.html:21
+#, fuzzy
+#| msgid "You Owe Others"
+msgid "You owe them"
+msgstr "Du skylder andre"
+
+#: .\templates\social\debts\detail.html:35
+#: .\templates\social\debts\form.html:17
+#: .\templates\social\settlements\form.html:17
+#: .\templates\social\settlements\list.html:29
+#, fuzzy
+#| msgid "Contacts"
+msgid "Contact"
+msgstr "Kontakter"
+
+#: .\templates\social\debts\detail.html:39
+msgid "Original Amount"
+msgstr "Opprinnelig beløp"
+
+#: .\templates\social\debts\detail.html:48
+msgid "Reason"
+msgstr "Årsak"
+
+#: .\templates\social\debts\detail.html:57
+#: .\templates\social\settlements\form.html:4
+#: .\templates\social\settlements\form.html:9
+#: .\templates\social\settlements\form.html:97
+#: .\templates\social\settlements\list.html:18
+#, fuzzy
+#| msgid "Settlements"
+msgid "Record Settlement"
+msgstr "Oppgjør"
+
+#: .\templates\social\debts\form.html:20
+#: .\templates\social\settlements\form.html:20
+msgid "Select contact..."
+msgstr "Velg kontakt..."
+
+#: .\templates\social\debts\form.html:28
+#: .\templates\social\settlements\list.html:30
+#, fuzzy
+#| msgid "Description"
+msgid "Direction"
+msgstr "Beskrivelse"
+
+#: .\templates\social\debts\form.html:34
+msgid "I Lent"
+msgstr "Jeg lånte ut"
+
+#: .\templates\social\debts\form.html:35
+msgid "Money I gave them"
+msgstr "Penger jeg ga dem"
+
+#: .\templates\social\debts\form.html:43
+msgid "I Borrowed"
+msgstr "Jeg lånte"
+
+#: .\templates\social\debts\form.html:44
+msgid "Money they gave me"
+msgstr "Penger de ga meg"
+
+#: .\templates\social\debts\form.html:75
+msgid "Reason (optional)"
+msgstr "Årsak (valgfri)"
 
 #: .\templates\social\debts\list.html:11
 msgid "Track money lent and borrowed."
@@ -1253,14 +1829,6 @@ msgstr "Du har lånt (du skylder)"
 msgid "Net Balance"
 msgstr "Netto balanse"
 
-#: .\templates\social\debts\list.html:59
-msgid "They owe"
-msgstr "De skylder"
-
-#: .\templates\social\debts\list.html:59
-msgid "You owe"
-msgstr "Du skylder"
-
 #: .\templates\social\debts\list.html:74
 msgid "No debts"
 msgstr "Ingen gjeld"
@@ -1268,6 +1836,56 @@ msgstr "Ingen gjeld"
 #: .\templates\social\debts\list.html:75
 msgid "Start tracking money lent or borrowed."
 msgstr "Begynn å spore penger lånt eller utlånt."
+
+#: .\templates\social\groups\detail.html:26
+msgid "Coming soon"
+msgstr "Kommer snart"
+
+#: .\templates\social\groups\detail.html:30
+#, fuzzy
+#| msgid "Total Expenses"
+msgid "Add Expense"
+msgstr "Totale utgifter"
+
+#: .\templates\social\groups\detail.html:31
+msgid "Soon"
+msgstr "Snart"
+
+#: .\templates\social\groups\detail.html:39
+#, fuzzy
+#| msgid "Total Expenses"
+msgid "Expenses"
+msgstr "Totale utgifter"
+
+#: .\templates\social\groups\detail.html:52
+msgid "No expenses yet. Add one to get started."
+msgstr "Ingen utgifter ennå. Legg til en for å komme i gang."
+
+#: .\templates\social\groups\form.html:4 .\templates\social\groups\form.html:9
+#, fuzzy
+#| msgid "Create Group"
+msgid "Edit Group"
+msgstr "Opprett gruppe"
+
+#: .\templates\social\groups\form.html:9
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Create Expense Group"
+msgstr "Utgiftsgrupper"
+
+#: .\templates\social\groups\form.html:17
+#, fuzzy
+#| msgid "Groups"
+msgid "Group Name"
+msgstr "Grupper"
+
+#: .\templates\social\groups\form.html:20
+msgid "e.g., Roommates, Trip to Paris"
+msgstr "f.eks. Romkamerater, Tur til Paris"
+
+#: .\templates\social\groups\form.html:27
+msgid "What is this group for?"
+msgstr "Hva er denne gruppen for?"
 
 #: .\templates\social\groups\list.html:4 .\templates\social\groups\list.html:10
 msgid "Expense Groups"
@@ -1288,3 +1906,69 @@ msgstr "Ingen utgiftsgrupper"
 #: .\templates\social\groups\list.html:51
 msgid "Create a group to start splitting expenses."
 msgstr "Opprett en gruppe for å begynne å dele utgifter."
+
+#: .\templates\social\settlements\form.html:28
+msgid "Who paid?"
+msgstr "Hvem betalte?"
+
+#: .\templates\social\settlements\form.html:34
+msgid "I Paid"
+msgstr "Jeg betalte"
+
+#: .\templates\social\settlements\form.html:35
+#: .\templates\social\settlements\list.html:44
+msgid "You paid them"
+msgstr "Du betalte dem"
+
+#: .\templates\social\settlements\form.html:43
+msgid "They Paid"
+msgstr "De betalte"
+
+#: .\templates\social\settlements\form.html:44
+#: .\templates\social\settlements\list.html:44
+msgid "They paid you"
+msgstr "De betalte deg"
+
+#: .\templates\social\settlements\form.html:75
+msgid "Payment Method (optional)"
+msgstr "Betalingsmetode (valgfri)"
+
+#: .\templates\social\settlements\form.html:78
+#, fuzzy
+#| msgid "Not verified"
+msgid "Not specified"
+msgstr "Ikke bekreftet"
+
+#: .\templates\social\settlements\form.html:80
+msgid "Bank Transfer"
+msgstr "Bankoverføring"
+
+#: .\templates\social\settlements\form.html:81
+msgid "UPI"
+msgstr "UPI"
+
+#: .\templates\social\settlements\form.html:82
+msgid "Venmo"
+msgstr "Venmo"
+
+#: .\templates\social\settlements\form.html:83
+msgid "PayPal"
+msgstr "PayPal"
+
+#: .\templates\social\settlements\form.html:84
+msgid "Other"
+msgstr "Annet"
+
+#: .\templates\social\settlements\list.html:11
+msgid "Record payments to settle debts."
+msgstr "Registrer betalinger for å gjøre opp gjeld."
+
+#: .\templates\social\settlements\list.html:59
+#, fuzzy
+#| msgid "Settlements"
+msgid "No settlements"
+msgstr "Oppgjør"
+
+#: .\templates\social\settlements\list.html:60
+msgid "Record settlements when debts are paid."
+msgstr "Registrer oppgjør når gjeld er betalt."

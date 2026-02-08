@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-finance\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-08 07:21+0500\n"
+"POT-Creation-Date: 2026-02-08 09:22+0500\n"
 "PO-Revision-Date: 2026-02-08 08:17+0500\n"
 "Last-Translator: Farzam Mehdi <ifarzammehdi@gmail.com>\n"
-"Language-Team: Chinese Simplified (http://www.transifex.com/django/django/language/zh_Hans/)\n"
+"Language-Team: Chinese Simplified (http://www.transifex.com/django/django/"
+"language/zh_Hans/)\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -198,6 +199,28 @@ msgstr "不支持的货币：%(currency)s"
 msgid "Cannot transfer to the same account."
 msgstr "不能转账到同一账户。"
 
+#: .\modules\finance\interfaces\views.py:402
+#, fuzzy
+#| msgid "Transactions (This Month)"
+msgid "Transaction is not pending."
+msgstr "本月交易"
+
+#: .\modules\finance\interfaces\views.py:424
+#, fuzzy
+#| msgid "Email is already verified."
+msgid "Transaction is already voided."
+msgstr "邮箱已验证。"
+
+#: .\modules\finance\interfaces\views.py:668
+#, fuzzy
+#| msgid "Email is already verified."
+msgid "Loan is already paid off."
+msgstr "邮箱已验证。"
+
+#: .\modules\finance\interfaces\views.py:738
+msgid "No tenant context."
+msgstr "没有租户上下文。"
+
 #: .\modules\notifications\interfaces\views.py:87
 #: .\modules\notifications\interfaces\views.py:115
 #: .\modules\notifications\interfaces\views.py:165
@@ -225,6 +248,67 @@ msgstr "不能同时将owner_pays和owner_receives设为True。"
 #: .\modules\social\interfaces\serializers.py:326
 msgid "Must set either owner_pays or owner_receives to True."
 msgstr "必须将owner_pays或owner_receives其中之一设为True。"
+
+#: .\modules\social\interfaces\views.py:173
+#: .\modules\social\interfaces\views.py:193
+#: .\modules\social\interfaces\views.py:206
+#: .\modules\social\interfaces\views.py:224
+#: .\modules\social\interfaces\views.py:418
+#: .\modules\social\interfaces\views.py:935
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Contact not found."
+msgstr "未找到通知。"
+
+#: .\modules\social\interfaces\views.py:296
+#: .\modules\social\interfaces\views.py:306
+#: .\modules\social\interfaces\views.py:598
+#: .\modules\social\interfaces\views.py:608
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Group not found."
+msgstr "未找到通知。"
+
+#: .\modules\social\interfaces\views.py:427
+#: .\modules\social\interfaces\views.py:437
+#: .\modules\social\interfaces\views.py:478
+#: .\modules\social\interfaces\views.py:500
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Debt not found."
+msgstr "未找到通知。"
+
+#: .\modules\social\interfaces\views.py:482
+#, fuzzy
+#| msgid "Email is already registered."
+msgid "Debt is already settled."
+msgstr "该邮箱已注册。"
+
+#: .\modules\social\interfaces\views.py:744
+#: .\modules\social\interfaces\views.py:951
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Expense group not found."
+msgstr "支出群组"
+
+#: .\modules\social\interfaces\views.py:756
+#: .\modules\social\interfaces\views.py:766
+#: .\modules\social\interfaces\views.py:784
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Expense not found."
+msgstr "支出群组"
+
+#: .\modules\social\interfaces\views.py:858
+#: .\modules\social\interfaces\views.py:868
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Settlement not found."
+msgstr "未找到通知。"
+
+#: .\modules\subscriptions\interfaces\views.py:69
+msgid "No subscription found. Using free tier."
+msgstr "未找到订阅。使用免费版。"
 
 #: .\templates\accounts\login.html:4
 msgid "Sign In"
@@ -346,6 +430,7 @@ msgid "Change Password"
 msgstr "修改密码"
 
 #: .\templates\accounts\register.html:4
+#: .\templates\finance\accounts\form.html:75
 msgid "Create Account"
 msgstr "创建账户"
 
@@ -414,7 +499,9 @@ msgstr "3. 用户数据"
 msgid ""
 "You retain ownership of all financial data you enter. We do not sell or "
 "share your personal financial information with third parties."
-msgstr "您保留所输入全部财务数据的所有权。我们不会向第三方出售或共享您的个人财务信息。"
+msgstr ""
+"您保留所输入全部财务数据的所有权。我们不会向第三方出售或共享您的个人财务信"
+"息。"
 
 #: .\templates\accounts\register.html:178
 msgid "4. Service Availability"
@@ -425,15 +512,20 @@ msgid ""
 "We strive to maintain service availability but do not guarantee "
 "uninterrupted access. We may modify or discontinue features with reasonable "
 "notice."
-msgstr "我们努力保持服务可用，但不保证不间断访问。我们可能在合理通知后修改或停止某些功能。"
+msgstr ""
+"我们努力保持服务可用，但不保证不间断访问。我们可能在合理通知后修改或停止某些"
+"功能。"
 
 #: .\templates\accounts\register.html:180
 msgid "5. Limitation of Liability"
 msgstr "5. 责任限制"
 
 #: .\templates\accounts\register.html:181
-msgid "Djanbe Finance is provided \\"
+msgid ""
+"Djanbe Finance is provided \"as is\" without warranties. We are not liable "
+"for any financial decisions made based on information in the app."
 msgstr ""
+"Djanbe Finance ????????????????????????????????????????"
 
 #: .\templates\accounts\register.html:186
 #: .\templates\accounts\register.html:216
@@ -449,7 +541,9 @@ msgstr "1. 我们收集的信息"
 msgid ""
 "We collect information you provide directly: email, name, and financial data "
 "you choose to enter (accounts, transactions, contacts)."
-msgstr "我们收集您直接提供的信息：邮箱、姓名以及您选择输入的财务数据（账户、交易、联系人）。"
+msgstr ""
+"我们收集您直接提供的信息：邮箱、姓名以及您选择输入的财务数据（账户、交易、联"
+"系人）。"
 
 #: .\templates\accounts\register.html:204
 msgid "2. How We Use Your Information"
@@ -460,7 +554,9 @@ msgid ""
 "Your data is used solely to provide the service. We use it to display your "
 "financial overview, calculate balances, and send notifications you've opted "
 "into."
-msgstr "您的数据仅用于提供服务。我们用它来展示财务概览、计算余额并发送您选择接收的通知。"
+msgstr ""
+"您的数据仅用于提供服务。我们用它来展示财务概览、计算余额并发送您选择接收的通"
+"知。"
 
 #: .\templates\accounts\register.html:206
 msgid "3. Data Security"
@@ -470,7 +566,9 @@ msgstr "3. 数据安全"
 msgid ""
 "We implement industry-standard security measures including encryption, "
 "secure authentication, and regular security audits to protect your data."
-msgstr "我们实施行业标准的安全措施，包括加密、安全认证和定期安全审计，以保护您的数据。"
+msgstr ""
+"我们实施行业标准的安全措施，包括加密、安全认证和定期安全审计，以保护您的数"
+"据。"
 
 #: .\templates\accounts\register.html:208
 msgid "4. Data Sharing"
@@ -480,7 +578,9 @@ msgstr "4. 数据共享"
 msgid ""
 "We do not sell, trade, or share your personal financial data with third "
 "parties. Data may only be shared if required by law."
-msgstr "我们不会向第三方出售、交易或分享您的个人财务数据。仅在法律要求时才会共享数据。"
+msgstr ""
+"我们不会向第三方出售、交易或分享您的个人财务数据。仅在法律要求时才会共享数"
+"据。"
 
 #: .\templates\accounts\register.html:210
 msgid "5. Your Rights"
@@ -490,7 +590,8 @@ msgstr "5. 您的权利"
 msgid ""
 "You can access, export, or delete your data at any time through your account "
 "settings. Contact us for any privacy-related requests."
-msgstr "您可以通过账户设置随时访问、导出或删除您的数据。如有隐私相关请求请联系我们。"
+msgstr ""
+"您可以通过账户设置随时访问、导出或删除您的数据。如有隐私相关请求请联系我们。"
 
 #: .\templates\accounts\register.html:226
 msgid "Create account"
@@ -554,6 +655,11 @@ msgid "Confirm New Password"
 msgstr "确认新密码"
 
 #: .\templates\accounts\settings.html:194
+#: .\templates\finance\accounts\form.html:72
+#: .\templates\finance\transactions\form.html:77
+#: .\templates\social\contacts\form.html:41
+#: .\templates\social\debts\form.html:88 .\templates\social\groups\form.html:42
+#: .\templates\social\settlements\form.html:95
 msgid "Cancel"
 msgstr "取消"
 
@@ -566,6 +672,8 @@ msgid "Choose how you want to be notified."
 msgstr "选择您希望接收通知的方式。"
 
 #: .\templates\accounts\settings.html:240
+#: .\templates\finance\transactions\detail.html:31
+#: .\templates\finance\transactions\form.html:17
 #: .\templates\finance\transactions\list.html:31
 msgid "Account"
 msgstr "账户"
@@ -616,7 +724,7 @@ msgstr "每周"
 msgid "Never"
 msgstr "从不"
 
-#: .\templates\accounts\settings.html:290
+#: .\templates\accounts\settings.html:290 .\templates\base\app.html:16
 #: .\templates\notifications\list.html:51
 msgid "Finance"
 msgstr "财务"
@@ -652,6 +760,7 @@ msgid "Customize your experience."
 msgstr "自定义您的体验。"
 
 #: .\templates\accounts\settings.html:441
+#: .\templates\social\groups\form.html:31
 msgid "Default Currency"
 msgstr "默认货币"
 
@@ -744,7 +853,9 @@ msgstr "要查看审计日志，请在应用日志中使用以下过滤器："
 msgid ""
 "Or use your centralized logging solution (e.g., ELK Stack, Datadog, "
 "CloudWatch) to search for events with:"
-msgstr "或使用集中式日志方案（例如ELK Stack、Datadog、CloudWatch）搜索包含以下内容的事件："
+msgstr ""
+"或使用集中式日志方案（例如ELK Stack、Datadog、CloudWatch）搜索包含以下内容的"
+"事件："
 
 #: .\templates\admin\dashboard_stats.html:102
 msgid "Financial statistics for your tenant"
@@ -775,6 +886,7 @@ msgid "Transaction Summary (Last 30 Days)"
 msgstr "交易汇总（过去30天）"
 
 #: .\templates\admin\dashboard_stats.html:122
+#: .\templates\finance\accounts\detail.html:47
 #: .\templates\finance\dashboard.html:121
 msgid "Recent Transactions"
 msgstr "最近交易"
@@ -822,6 +934,8 @@ msgstr "等待结算"
 
 #: .\templates\admin\dashboard_stats.html:151
 #: .\templates\admin\finance_index.html:161
+#: .\templates\social\settlements\list.html:4
+#: .\templates\social\settlements\list.html:10
 msgid "Settlements"
 msgstr "结算"
 
@@ -878,13 +992,16 @@ msgid "View Accounts"
 msgstr "查看账户"
 
 #: .\templates\admin\finance_index.html:143 .\templates\base\app.html:32
-#: .\templates\base\app.html:286 .\templates\finance\transactions\list.html:4
+#: .\templates\base\app.html:286
+#: .\templates\finance\transactions\detail.html:10
+#: .\templates\finance\transactions\list.html:4
 #: .\templates\finance\transactions\list.html:11
 msgid "Transactions"
 msgstr "交易"
 
 #: .\templates\admin\finance_index.html:149 .\templates\base\app.html:36
 #: .\templates\base\app.html:287 .\templates\finance\dashboard.html:87
+#: .\templates\social\contacts\detail.html:10
 #: .\templates\social\contacts\list.html:4
 #: .\templates\social\contacts\list.html:11
 msgid "Contacts"
@@ -897,10 +1014,12 @@ msgstr "对等债务"
 
 #: .\templates\base\app.html:24 .\templates\base\app.html:284
 #: .\templates\finance\dashboard.html:4 .\templates\finance\dashboard.html:10
+#: .\templates\react\dashboard.html:12 .\templates\react\dashboard.html:15
 msgid "Dashboard"
 msgstr "仪表盘"
 
 #: .\templates\base\app.html:28 .\templates\base\app.html:285
+#: .\templates\finance\accounts\detail.html:11
 #: .\templates\finance\accounts\list.html:4
 #: .\templates\finance\accounts\list.html:11
 #: .\templates\finance\dashboard.html:51
@@ -908,10 +1027,13 @@ msgid "Accounts"
 msgstr "账户"
 
 #: .\templates\base\app.html:40 .\templates\base\app.html:288
+#: .\templates\social\contacts\detail.html:54
+#: .\templates\social\debts\detail.html:10
 msgid "Debts"
 msgstr "债务"
 
 #: .\templates\base\app.html:44 .\templates\base\app.html:289
+#: .\templates\social\groups\detail.html:10
 msgid "Groups"
 msgstr "群组"
 
@@ -960,6 +1082,7 @@ msgstr "语言"
 #: .\templates\base\auth.html:116 .\templates\base\base.html:10
 #: .\templates\base\base.html:13 .\templates\base\base.html:18
 #: .\templates\base\base.html:21 .\templates\base\base.html:26
+#: .\templates\react\dashboard.html:12 .\templates\react\dashboard.html:15
 msgid "Djanbe Finance"
 msgstr "Djanbe Finance"
 
@@ -1012,6 +1135,155 @@ msgstr "跳到主要内容"
 msgid "Dismiss"
 msgstr "关闭"
 
+#: .\templates\finance\accounts\detail.html:9
+#: .\templates\finance\transactions\detail.html:8
+#: .\templates\social\contacts\detail.html:8
+#: .\templates\social\debts\detail.html:8
+#: .\templates\social\groups\detail.html:8
+msgid "Breadcrumb"
+msgstr "面包屑"
+
+#: .\templates\finance\accounts\detail.html:25
+#: .\templates\social\contacts\detail.html:29
+msgid "Edit"
+msgstr "编辑"
+
+#: .\templates\finance\accounts\detail.html:28
+#: .\templates\finance\dashboard.html:161
+#: .\templates\finance\transactions\form.html:4
+#: .\templates\finance\transactions\form.html:9
+#: .\templates\finance\transactions\form.html:80
+#: .\templates\finance\transactions\list.html:19
+#: .\templates\finance\transactions\list.html:86
+msgid "Add Transaction"
+msgstr "添加交易"
+
+#: .\templates\finance\accounts\detail.html:35
+#, fuzzy
+#| msgid "Current balance"
+msgid "Current Balance"
+msgstr "当前余额"
+
+#: .\templates\finance\accounts\detail.html:53
+#: .\templates\finance\transactions\detail.html:19
+#, fuzzy
+#| msgid "Transactions"
+msgid "Transaction"
+msgstr "交易"
+
+#: .\templates\finance\accounts\detail.html:62
+#, fuzzy
+#| msgid "No transactions yet"
+msgid "No transactions yet."
+msgstr "暂无交易"
+
+#: .\templates\finance\accounts\form.html:4
+#: .\templates\finance\accounts\form.html:10
+#, fuzzy
+#| msgid "Add Account"
+msgid "Edit Account"
+msgstr "添加账户"
+
+#: .\templates\finance\accounts\form.html:4
+#, fuzzy
+#| msgid "View Accounts"
+msgid "New Account"
+msgstr "查看账户"
+
+#: .\templates\finance\accounts\form.html:10
+#, fuzzy
+#| msgid "Create Account"
+msgid "Create New Account"
+msgstr "创建账户"
+
+#: .\templates\finance\accounts\form.html:27
+#, fuzzy
+#| msgid "Account"
+msgid "Account Name"
+msgstr "账户"
+
+#: .\templates\finance\accounts\form.html:30
+msgid "e.g., Main Checking"
+msgstr "例如：主活期账户"
+
+#: .\templates\finance\accounts\form.html:38
+#, fuzzy
+#| msgid "Account"
+msgid "Account Type"
+msgstr "账户"
+
+#: .\templates\finance\accounts\form.html:41
+msgid "Select type..."
+msgstr "选择类型..."
+
+#: .\templates\finance\accounts\form.html:42
+msgid "Checking"
+msgstr "活期账户"
+
+#: .\templates\finance\accounts\form.html:43
+#, fuzzy
+#| msgid "Settings"
+msgid "Savings"
+msgstr "设置"
+
+#: .\templates\finance\accounts\form.html:44
+msgid "Credit Card"
+msgstr "信用卡"
+
+#: .\templates\finance\accounts\form.html:45
+#: .\templates\social\settlements\form.html:79
+msgid "Cash"
+msgstr "现金"
+
+#: .\templates\finance\accounts\form.html:46
+msgid "Investment"
+msgstr "投资"
+
+#: .\templates\finance\accounts\form.html:47
+msgid "Loan"
+msgstr "贷款"
+
+#: .\templates\finance\accounts\form.html:52
+#: .\templates\social\debts\form.html:64
+#: .\templates\social\settlements\form.html:64
+#, fuzzy
+#| msgid "Default Currency"
+msgid "Currency"
+msgstr "默认货币"
+
+#: .\templates\finance\accounts\form.html:55
+msgid "US Dollar"
+msgstr "美元"
+
+#: .\templates\finance\accounts\form.html:56
+msgid "Euro"
+msgstr "欧元"
+
+#: .\templates\finance\accounts\form.html:57
+msgid "British Pound"
+msgstr "英镑"
+
+#: .\templates\finance\accounts\form.html:58
+msgid "Indian Rupee"
+msgstr "印度卢比"
+
+#: .\templates\finance\accounts\form.html:64
+#: .\templates\social\groups\form.html:24
+#, fuzzy
+#| msgid "Description"
+msgid "Description (optional)"
+msgstr "描述"
+
+#: .\templates\finance\accounts\form.html:67
+msgid "Notes about this account..."
+msgstr "关于此账户的备注..."
+
+#: .\templates\finance\accounts\form.html:75
+#: .\templates\social\contacts\form.html:43
+#: .\templates\social\groups\form.html:44
+msgid "Save Changes"
+msgstr "保存更改"
+
 #: .\templates\finance\accounts\list.html:12
 msgid "Manage your financial accounts and wallets."
 msgstr "管理您的财务账户和钱包。"
@@ -1039,6 +1311,8 @@ msgid "Welcome back, %(name)s! Here's your financial overview."
 msgstr "欢迎回来，%(name)s！这是您的财务概览。"
 
 #: .\templates\finance\dashboard.html:19 .\templates\finance\dashboard.html:32
+#: .\templates\finance\net_worth.html:4 .\templates\finance\net_worth.html:9
+#: .\templates\finance\net_worth.html:25
 msgid "Net Worth"
 msgstr "净资产"
 
@@ -1047,11 +1321,11 @@ msgstr "净资产"
 msgid "View details"
 msgstr "查看详情"
 
-#: .\templates\finance\dashboard.html:24
+#: .\templates\finance\dashboard.html:24 .\templates\finance\net_worth.html:17
 msgid "Total Assets"
 msgstr "总资产"
 
-#: .\templates\finance\dashboard.html:28
+#: .\templates\finance\dashboard.html:28 .\templates\finance\net_worth.html:21
 msgid "Total Liabilities"
 msgstr "总负债"
 
@@ -1093,12 +1367,6 @@ msgstr "暂无交易"
 msgid "Get started by adding your first transaction."
 msgstr "添加第一笔交易开始使用。"
 
-#: .\templates\finance\dashboard.html:161
-#: .\templates\finance\transactions\list.html:19
-#: .\templates\finance\transactions\list.html:86
-msgid "Add Transaction"
-msgstr "添加交易"
-
 #: .\templates\finance\dashboard.html:182
 msgid "Others Owe You"
 msgstr "他人欠您"
@@ -1115,36 +1383,137 @@ msgstr "暂无社交活动"
 msgid "Start tracking debts with friends and family."
 msgstr "开始记录与朋友和家人的债务。"
 
-#: .\templates\finance\dashboard.html:220 .\templates\social\debts\list.html:18
-#: .\templates\social\debts\list.html:78
+#: .\templates\finance\dashboard.html:220 .\templates\social\debts\form.html:4
+#: .\templates\social\debts\form.html:9 .\templates\social\debts\form.html:90
+#: .\templates\social\debts\list.html:18 .\templates\social\debts\list.html:78
 msgid "Record Debt"
 msgstr "记录债务"
 
-#: .\templates\finance\dashboard.html:223
+#: .\templates\finance\dashboard.html:223 .\templates\social\groups\form.html:4
+#: .\templates\social\groups\form.html:44
 #: .\templates\social\groups\list.html:18
 #: .\templates\social\groups\list.html:54
 msgid "Create Group"
 msgstr "创建群组"
 
-#: .\templates\finance\transactions\list.html:12
-msgid "View and manage all your transactions."
-msgstr "查看并管理所有交易。"
+#: .\templates\finance\net_worth.html:10
+msgid "Overview of your assets and liabilities."
+msgstr "资产与负债概览。"
 
+#: .\templates\finance\net_worth.html:37
+#, fuzzy
+#| msgid "Total Assets"
+msgid "Assets"
+msgstr "总资产"
+
+#: .\templates\finance\net_worth.html:50
+#, fuzzy
+#| msgid "No transactions yet"
+msgid "No assets yet."
+msgstr "暂无交易"
+
+#: .\templates\finance\net_worth.html:59
+#, fuzzy
+#| msgid "Total Liabilities"
+msgid "Liabilities"
+msgstr "总负债"
+
+#: .\templates\finance\net_worth.html:72
+#, fuzzy
+#| msgid "Total Liabilities"
+msgid "No liabilities."
+msgstr "总负债"
+
+#: .\templates\finance\transactions\detail.html:4
+#, fuzzy
+#| msgid "Transaction Operations"
+msgid "Transaction Details"
+msgstr "交易操作"
+
+#: .\templates\finance\transactions\detail.html:12
+#, fuzzy
+#| msgid "View details"
+msgid "Details"
+msgstr "查看详情"
+
+#: .\templates\finance\transactions\detail.html:27
+#: .\templates\finance\transactions\form.html:69
 #: .\templates\finance\transactions\list.html:29
+#: .\templates\social\debts\detail.html:43
+#: .\templates\social\debts\form.html:82
+#: .\templates\social\settlements\list.html:28
 msgid "Date"
 msgstr "日期"
 
-#: .\templates\finance\transactions\list.html:30
-msgid "Description"
-msgstr "描述"
+#: .\templates\finance\transactions\detail.html:35
+#: .\templates\finance\transactions\form.html:28
+msgid "Type"
+msgstr "类型"
 
+#: .\templates\finance\transactions\detail.html:39
 #: .\templates\finance\transactions\list.html:32
 msgid "Category"
 msgstr "类别"
 
+#: .\templates\finance\transactions\detail.html:40
+msgid "Uncategorized"
+msgstr "未分类"
+
+#: .\templates\finance\transactions\detail.html:43
+msgid "Status"
+msgstr "状态"
+
+#: .\templates\finance\transactions\detail.html:51
+#, fuzzy
+#| msgid "Recent Transactions"
+msgid "Back to Transactions"
+msgstr "最近交易"
+
+#: .\templates\finance\transactions\form.html:20
+#, fuzzy
+#| msgid "Delete Account"
+msgid "Select account..."
+msgstr "删除账户"
+
+#: .\templates\finance\transactions\form.html:31
+msgid "Expense (Debit)"
+msgstr "支出（借方）"
+
+#: .\templates\finance\transactions\form.html:32
+msgid "Income (Credit)"
+msgstr "收入（贷方）"
+
+#: .\templates\finance\transactions\form.html:37
 #: .\templates\finance\transactions\list.html:33
+#: .\templates\social\debts\form.html:52
+#: .\templates\social\settlements\form.html:52
+#: .\templates\social\settlements\list.html:31
 msgid "Amount"
 msgstr "金额"
+
+#: .\templates\finance\transactions\form.html:50
+#: .\templates\finance\transactions\list.html:30
+msgid "Description"
+msgstr "描述"
+
+#: .\templates\finance\transactions\form.html:54
+#: .\templates\social\debts\form.html:78
+msgid "What was this for?"
+msgstr "这是用于什么？"
+
+#: .\templates\finance\transactions\form.html:58
+msgid "Category (optional)"
+msgstr "类别（可选）"
+
+#: .\templates\finance\transactions\form.html:61
+#, fuzzy
+#| msgid "Category"
+msgid "No category"
+msgstr "类别"
+
+#: .\templates\finance\transactions\list.html:12
+msgid "View and manage all your transactions."
+msgstr "查看并管理所有交易。"
 
 #: .\templates\finance\transactions\list.html:65
 #, python-format
@@ -1217,18 +1586,128 @@ msgstr "加载更多"
 msgid "Loading..."
 msgstr "加载中..."
 
-#: .\templates\social\contacts\list.html:12
-msgid "People you track debts and expenses with."
-msgstr "您与之记录债务和支出的人。"
+#: .\templates\react\dashboard.html:7
+msgid "Your personal finance dashboard - Djanbe Finance"
+msgstr "你的个人财务仪表板 - Djanbe Finance"
 
+#: .\templates\react\dashboard.html:13
+msgid "Your personal finance dashboard"
+msgstr "你的个人财务仪表板"
+
+#: .\templates\react\dashboard.html:72
+#, fuzzy
+#| msgid "Loading..."
+msgid "Loading dashboard..."
+msgstr "加载中..."
+
+#: .\templates\social\balances\summary.html:4
+#: .\templates\social\balances\summary.html:9
+msgid "Balance Summary"
+msgstr "余额摘要"
+
+#: .\templates\social\balances\summary.html:10
+msgid "See who owes you and who you owe."
+msgstr "查看谁欠你钱以及你欠谁钱。"
+
+#: .\templates\social\balances\summary.html:18
+#, fuzzy
+#| msgid "Others Owe You"
+msgid "They Owe You"
+msgstr "他人欠您"
+
+#: .\templates\social\balances\summary.html:37
+msgid "No one owes you money."
+msgstr "没有人欠你钱。"
+
+#: .\templates\social\balances\summary.html:46
+#, fuzzy
+#| msgid "You Owe Others"
+msgid "You Owe Them"
+msgstr "您欠他人"
+
+#: .\templates\social\balances\summary.html:65
+msgid "You don't owe anyone money."
+msgstr "你不欠任何人钱。"
+
+#: .\templates\social\balances\summary.html:76
+msgid "All settled up!"
+msgstr "全部结清！"
+
+#: .\templates\social\balances\summary.html:77
+msgid "You have no outstanding balances with anyone."
+msgstr "你与任何人之间都没有未结清余额。"
+
+#: .\templates\social\contacts\detail.html:25
+#: .\templates\social\contacts\list.html:39
+msgid "No email"
+msgstr "无邮箱"
+
+#: .\templates\social\contacts\detail.html:37
+msgid "Phone"
+msgstr "电话"
+
+#: .\templates\social\contacts\detail.html:43
+msgid "Notes"
+msgstr "备注"
+
+#: .\templates\social\contacts\detail.html:60
+#, fuzzy
+#| msgid "Debts"
+msgid "Debt"
+msgstr "债务"
+
+#: .\templates\social\contacts\detail.html:64
+#: .\templates\social\debts\list.html:59
+msgid "They owe"
+msgstr "对方欠"
+
+#: .\templates\social\contacts\detail.html:64
+#: .\templates\social\debts\list.html:59
+msgid "You owe"
+msgstr "您欠"
+
+#: .\templates\social\contacts\form.html:4
+#: .\templates\social\contacts\form.html:9
+#, fuzzy
+#| msgid "Add Contact"
+msgid "Edit Contact"
+msgstr "添加联系人"
+
+#: .\templates\social\contacts\form.html:4
+#, fuzzy
+#| msgid "Contacts"
+msgid "New Contact"
+msgstr "联系人"
+
+#: .\templates\social\contacts\form.html:9
+#: .\templates\social\contacts\form.html:43
 #: .\templates\social\contacts\list.html:19
 #: .\templates\social\contacts\list.html:77
 msgid "Add Contact"
 msgstr "添加联系人"
 
-#: .\templates\social\contacts\list.html:39
-msgid "No email"
-msgstr "无邮箱"
+#: .\templates\social\contacts\form.html:17
+msgid "Name"
+msgstr "姓名"
+
+#: .\templates\social\contacts\form.html:23
+msgid "Email (optional)"
+msgstr "电子邮件（可选）"
+
+#: .\templates\social\contacts\form.html:29
+msgid "Phone (optional)"
+msgstr "电话（可选）"
+
+#: .\templates\social\contacts\form.html:35
+#: .\templates\social\settlements\form.html:89
+#, fuzzy
+#| msgid "All systems operational"
+msgid "Notes (optional)"
+msgstr "所有系统运行正常"
+
+#: .\templates\social\contacts\list.html:12
+msgid "People you track debts and expenses with."
+msgstr "您与之记录债务和支出的人。"
 
 #: .\templates\social\contacts\list.html:70
 msgid "No contacts"
@@ -1237,6 +1716,83 @@ msgstr "没有联系人"
 #: .\templates\social\contacts\list.html:71
 msgid "Add people you share expenses or debts with."
 msgstr "添加与您共享支出或债务的人。"
+
+#: .\templates\social\debts\detail.html:4
+#, fuzzy
+#| msgid "View details"
+msgid "Debt Details"
+msgstr "查看详情"
+
+#: .\templates\social\debts\detail.html:21
+#, fuzzy
+#| msgid "They owe"
+msgid "They owe you"
+msgstr "对方欠"
+
+#: .\templates\social\debts\detail.html:21
+#, fuzzy
+#| msgid "You Owe Others"
+msgid "You owe them"
+msgstr "您欠他人"
+
+#: .\templates\social\debts\detail.html:35
+#: .\templates\social\debts\form.html:17
+#: .\templates\social\settlements\form.html:17
+#: .\templates\social\settlements\list.html:29
+#, fuzzy
+#| msgid "Contacts"
+msgid "Contact"
+msgstr "联系人"
+
+#: .\templates\social\debts\detail.html:39
+msgid "Original Amount"
+msgstr "原始金额"
+
+#: .\templates\social\debts\detail.html:48
+msgid "Reason"
+msgstr "原因"
+
+#: .\templates\social\debts\detail.html:57
+#: .\templates\social\settlements\form.html:4
+#: .\templates\social\settlements\form.html:9
+#: .\templates\social\settlements\form.html:97
+#: .\templates\social\settlements\list.html:18
+#, fuzzy
+#| msgid "Settlements"
+msgid "Record Settlement"
+msgstr "结算"
+
+#: .\templates\social\debts\form.html:20
+#: .\templates\social\settlements\form.html:20
+msgid "Select contact..."
+msgstr "选择联系人..."
+
+#: .\templates\social\debts\form.html:28
+#: .\templates\social\settlements\list.html:30
+#, fuzzy
+#| msgid "Description"
+msgid "Direction"
+msgstr "描述"
+
+#: .\templates\social\debts\form.html:34
+msgid "I Lent"
+msgstr "我借出"
+
+#: .\templates\social\debts\form.html:35
+msgid "Money I gave them"
+msgstr "我给他们的钱"
+
+#: .\templates\social\debts\form.html:43
+msgid "I Borrowed"
+msgstr "我借入"
+
+#: .\templates\social\debts\form.html:44
+msgid "Money they gave me"
+msgstr "他们给我的钱"
+
+#: .\templates\social\debts\form.html:75
+msgid "Reason (optional)"
+msgstr "原因（可选）"
 
 #: .\templates\social\debts\list.html:11
 msgid "Track money lent and borrowed."
@@ -1254,14 +1810,6 @@ msgstr "您借入（您欠对方）"
 msgid "Net Balance"
 msgstr "净余额"
 
-#: .\templates\social\debts\list.html:59
-msgid "They owe"
-msgstr "对方欠"
-
-#: .\templates\social\debts\list.html:59
-msgid "You owe"
-msgstr "您欠"
-
 #: .\templates\social\debts\list.html:74
 msgid "No debts"
 msgstr "没有债务"
@@ -1269,6 +1817,56 @@ msgstr "没有债务"
 #: .\templates\social\debts\list.html:75
 msgid "Start tracking money lent or borrowed."
 msgstr "开始记录借出或借入的金额。"
+
+#: .\templates\social\groups\detail.html:26
+msgid "Coming soon"
+msgstr "即将推出"
+
+#: .\templates\social\groups\detail.html:30
+#, fuzzy
+#| msgid "Total Expenses"
+msgid "Add Expense"
+msgstr "总支出"
+
+#: .\templates\social\groups\detail.html:31
+msgid "Soon"
+msgstr "很快"
+
+#: .\templates\social\groups\detail.html:39
+#, fuzzy
+#| msgid "Total Expenses"
+msgid "Expenses"
+msgstr "总支出"
+
+#: .\templates\social\groups\detail.html:52
+msgid "No expenses yet. Add one to get started."
+msgstr "还没有支出。添加一笔开始吧。"
+
+#: .\templates\social\groups\form.html:4 .\templates\social\groups\form.html:9
+#, fuzzy
+#| msgid "Create Group"
+msgid "Edit Group"
+msgstr "创建群组"
+
+#: .\templates\social\groups\form.html:9
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Create Expense Group"
+msgstr "支出群组"
+
+#: .\templates\social\groups\form.html:17
+#, fuzzy
+#| msgid "Groups"
+msgid "Group Name"
+msgstr "群组"
+
+#: .\templates\social\groups\form.html:20
+msgid "e.g., Roommates, Trip to Paris"
+msgstr "例如：室友、巴黎之旅"
+
+#: .\templates\social\groups\form.html:27
+msgid "What is this group for?"
+msgstr "这个小组是做什么的？"
 
 #: .\templates\social\groups\list.html:4 .\templates\social\groups\list.html:10
 msgid "Expense Groups"
@@ -1289,3 +1887,69 @@ msgstr "没有支出群组"
 #: .\templates\social\groups\list.html:51
 msgid "Create a group to start splitting expenses."
 msgstr "创建群组以开始分摊支出。"
+
+#: .\templates\social\settlements\form.html:28
+msgid "Who paid?"
+msgstr "谁付款？"
+
+#: .\templates\social\settlements\form.html:34
+msgid "I Paid"
+msgstr "我付款"
+
+#: .\templates\social\settlements\form.html:35
+#: .\templates\social\settlements\list.html:44
+msgid "You paid them"
+msgstr "你付给他们"
+
+#: .\templates\social\settlements\form.html:43
+msgid "They Paid"
+msgstr "他们付款"
+
+#: .\templates\social\settlements\form.html:44
+#: .\templates\social\settlements\list.html:44
+msgid "They paid you"
+msgstr "他们付给你"
+
+#: .\templates\social\settlements\form.html:75
+msgid "Payment Method (optional)"
+msgstr "付款方式（可选）"
+
+#: .\templates\social\settlements\form.html:78
+#, fuzzy
+#| msgid "Not verified"
+msgid "Not specified"
+msgstr "未验证"
+
+#: .\templates\social\settlements\form.html:80
+msgid "Bank Transfer"
+msgstr "银行转账"
+
+#: .\templates\social\settlements\form.html:81
+msgid "UPI"
+msgstr "UPI"
+
+#: .\templates\social\settlements\form.html:82
+msgid "Venmo"
+msgstr "Venmo"
+
+#: .\templates\social\settlements\form.html:83
+msgid "PayPal"
+msgstr "PayPal"
+
+#: .\templates\social\settlements\form.html:84
+msgid "Other"
+msgstr "其他"
+
+#: .\templates\social\settlements\list.html:11
+msgid "Record payments to settle debts."
+msgstr "记录付款以结清债务。"
+
+#: .\templates\social\settlements\list.html:59
+#, fuzzy
+#| msgid "Settlements"
+msgid "No settlements"
+msgstr "结算"
+
+#: .\templates\social\settlements\list.html:60
+msgid "Record settlements when debts are paid."
+msgstr "在债务还清时记录结算。"

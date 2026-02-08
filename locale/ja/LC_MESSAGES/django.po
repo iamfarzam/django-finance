@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-finance\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-08 07:21+0500\n"
+"POT-Creation-Date: 2026-02-08 09:22+0500\n"
 "PO-Revision-Date: 2026-02-08 08:17+0500\n"
 "Last-Translator: Farzam Mehdi <ifarzammehdi@gmail.com>\n"
-"Language-Team: Japanese (http://www.transifex.com/django/django/language/ja/)\n"
+"Language-Team: Japanese (http://www.transifex.com/django/django/language/"
+"ja/)\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -145,7 +146,9 @@ msgstr "認証メールを送信しました。"
 #: .\modules\accounts\interfaces\views.py:270
 msgid ""
 "If an account exists with this email, a password reset link has been sent."
-msgstr "このメールアドレスのアカウントが存在する場合、パスワード再設定リンクを送信しました。"
+msgstr ""
+"このメールアドレスのアカウントが存在する場合、パスワード再設定リンクを送信し"
+"ました。"
 
 #: .\modules\accounts\interfaces\views.py:293
 msgid "Invalid reset token."
@@ -198,6 +201,28 @@ msgstr "未対応の通貨: %(currency)s"
 msgid "Cannot transfer to the same account."
 msgstr "同じ口座には送金できません。"
 
+#: .\modules\finance\interfaces\views.py:402
+#, fuzzy
+#| msgid "Transactions (This Month)"
+msgid "Transaction is not pending."
+msgstr "今月の取引"
+
+#: .\modules\finance\interfaces\views.py:424
+#, fuzzy
+#| msgid "Email is already verified."
+msgid "Transaction is already voided."
+msgstr "メールアドレスはすでに認証済みです。"
+
+#: .\modules\finance\interfaces\views.py:668
+#, fuzzy
+#| msgid "Email is already verified."
+msgid "Loan is already paid off."
+msgstr "メールアドレスはすでに認証済みです。"
+
+#: .\modules\finance\interfaces\views.py:738
+msgid "No tenant context."
+msgstr "テナントのコンテキストがありません。"
+
 #: .\modules\notifications\interfaces\views.py:87
 #: .\modules\notifications\interfaces\views.py:115
 #: .\modules\notifications\interfaces\views.py:165
@@ -216,7 +241,8 @@ msgstr "無効なカテゴリです。次のいずれかである必要があり
 #: .\modules\social\interfaces\serializers.py:267
 msgid ""
 "Either paid_by_owner must be True or paid_by_contact_id must be provided."
-msgstr "paid_by_owner を True にするか、paid_by_contact_id を指定する必要があります。"
+msgstr ""
+"paid_by_owner を True にするか、paid_by_contact_id を指定する必要があります。"
 
 #: .\modules\social\interfaces\serializers.py:322
 msgid "Cannot set both owner_pays and owner_receives to True."
@@ -225,6 +251,67 @@ msgstr "owner_pays と owner_receives を両方 True にすることはできま
 #: .\modules\social\interfaces\serializers.py:326
 msgid "Must set either owner_pays or owner_receives to True."
 msgstr "owner_pays か owner_receives のどちらかを True にする必要があります。"
+
+#: .\modules\social\interfaces\views.py:173
+#: .\modules\social\interfaces\views.py:193
+#: .\modules\social\interfaces\views.py:206
+#: .\modules\social\interfaces\views.py:224
+#: .\modules\social\interfaces\views.py:418
+#: .\modules\social\interfaces\views.py:935
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Contact not found."
+msgstr "通知が見つかりません。"
+
+#: .\modules\social\interfaces\views.py:296
+#: .\modules\social\interfaces\views.py:306
+#: .\modules\social\interfaces\views.py:598
+#: .\modules\social\interfaces\views.py:608
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Group not found."
+msgstr "通知が見つかりません。"
+
+#: .\modules\social\interfaces\views.py:427
+#: .\modules\social\interfaces\views.py:437
+#: .\modules\social\interfaces\views.py:478
+#: .\modules\social\interfaces\views.py:500
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Debt not found."
+msgstr "通知が見つかりません。"
+
+#: .\modules\social\interfaces\views.py:482
+#, fuzzy
+#| msgid "Email is already registered."
+msgid "Debt is already settled."
+msgstr "メールアドレスはすでに登録されています。"
+
+#: .\modules\social\interfaces\views.py:744
+#: .\modules\social\interfaces\views.py:951
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Expense group not found."
+msgstr "支出グループ"
+
+#: .\modules\social\interfaces\views.py:756
+#: .\modules\social\interfaces\views.py:766
+#: .\modules\social\interfaces\views.py:784
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Expense not found."
+msgstr "支出グループ"
+
+#: .\modules\social\interfaces\views.py:858
+#: .\modules\social\interfaces\views.py:868
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Settlement not found."
+msgstr "通知が見つかりません。"
+
+#: .\modules\subscriptions\interfaces\views.py:69
+msgid "No subscription found. Using free tier."
+msgstr "サブスクリプションが見つかりません。無料プランを使用します。"
 
 #: .\templates\accounts\login.html:4
 msgid "Sign In"
@@ -346,6 +433,7 @@ msgid "Change Password"
 msgstr "パスワードを変更"
 
 #: .\templates\accounts\register.html:4
+#: .\templates\finance\accounts\form.html:75
 msgid "Create Account"
 msgstr "アカウント作成"
 
@@ -393,7 +481,9 @@ msgstr "1. 規約の承諾"
 msgid ""
 "By accessing and using Djanbe Finance, you agree to be bound by these Terms "
 "of Service."
-msgstr "Djanbe Finance にアクセスして利用することで、これらの利用規約に同意したものとします。"
+msgstr ""
+"Djanbe Finance にアクセスして利用することで、これらの利用規約に同意したものと"
+"します。"
 
 #: .\templates\accounts\register.html:174
 msgid "2. Use of Service"
@@ -404,7 +494,9 @@ msgid ""
 "You agree to use the service only for lawful purposes and in accordance with "
 "these terms. You are responsible for maintaining the confidentiality of your "
 "account."
-msgstr "サービスを適法な目的のみに使用し、これらの規約に従うことに同意します。アカウントの機密保持はお客様の責任です。"
+msgstr ""
+"サービスを適法な目的のみに使用し、これらの規約に従うことに同意します。アカウ"
+"ントの機密保持はお客様の責任です。"
 
 #: .\templates\accounts\register.html:176
 msgid "3. User Data"
@@ -414,7 +506,9 @@ msgstr "3. ユーザーデータ"
 msgid ""
 "You retain ownership of all financial data you enter. We do not sell or "
 "share your personal financial information with third parties."
-msgstr "入力したすべての財務データの所有権はお客様にあります。個人の財務情報を第三者に販売または共有することはありません。"
+msgstr ""
+"入力したすべての財務データの所有権はお客様にあります。個人の財務情報を第三者"
+"に販売または共有することはありません。"
 
 #: .\templates\accounts\register.html:178
 msgid "4. Service Availability"
@@ -425,15 +519,21 @@ msgid ""
 "We strive to maintain service availability but do not guarantee "
 "uninterrupted access. We may modify or discontinue features with reasonable "
 "notice."
-msgstr "サービスの提供に努めますが、継続的なアクセスを保証するものではありません。合理的な通知のうえで機能を変更または終了する場合があります。"
+msgstr ""
+"サービスの提供に努めますが、継続的なアクセスを保証するものではありません。合"
+"理的な通知のうえで機能を変更または終了する場合があります。"
 
 #: .\templates\accounts\register.html:180
 msgid "5. Limitation of Liability"
 msgstr "5. 免責事項"
 
 #: .\templates\accounts\register.html:181
-msgid "Djanbe Finance is provided \\"
+msgid ""
+"Djanbe Finance is provided \"as is\" without warranties. We are not liable "
+"for any financial decisions made based on information in the app."
 msgstr ""
+"Djanbe Finance "
+"?????????????????????????????????????????????????????????????????"
 
 #: .\templates\accounts\register.html:186
 #: .\templates\accounts\register.html:216
@@ -449,7 +549,9 @@ msgstr "1. 収集する情報"
 msgid ""
 "We collect information you provide directly: email, name, and financial data "
 "you choose to enter (accounts, transactions, contacts)."
-msgstr "直接ご提供いただく情報（メール、氏名、入力する財務データ（口座、取引、連絡先））を収集します。"
+msgstr ""
+"直接ご提供いただく情報（メール、氏名、入力する財務データ（口座、取引、連絡"
+"先））を収集します。"
 
 #: .\templates\accounts\register.html:204
 msgid "2. How We Use Your Information"
@@ -460,7 +562,9 @@ msgid ""
 "Your data is used solely to provide the service. We use it to display your "
 "financial overview, calculate balances, and send notifications you've opted "
 "into."
-msgstr "データはサービス提供のためのみに使用されます。財務概要の表示、残高計算、同意した通知の送信に使用します。"
+msgstr ""
+"データはサービス提供のためのみに使用されます。財務概要の表示、残高計算、同意"
+"した通知の送信に使用します。"
 
 #: .\templates\accounts\register.html:206
 msgid "3. Data Security"
@@ -470,7 +574,9 @@ msgstr "3. データセキュリティ"
 msgid ""
 "We implement industry-standard security measures including encryption, "
 "secure authentication, and regular security audits to protect your data."
-msgstr "暗号化、安全な認証、定期的なセキュリティ監査など、業界標準のセキュリティ対策を実施してデータを保護します。"
+msgstr ""
+"暗号化、安全な認証、定期的なセキュリティ監査など、業界標準のセキュリティ対策"
+"を実施してデータを保護します。"
 
 #: .\templates\accounts\register.html:208
 msgid "4. Data Sharing"
@@ -480,7 +586,9 @@ msgstr "4. データ共有"
 msgid ""
 "We do not sell, trade, or share your personal financial data with third "
 "parties. Data may only be shared if required by law."
-msgstr "個人の財務データを第三者に販売・取引・共有しません。法令により必要な場合のみ共有されます。"
+msgstr ""
+"個人の財務データを第三者に販売・取引・共有しません。法令により必要な場合のみ"
+"共有されます。"
 
 #: .\templates\accounts\register.html:210
 msgid "5. Your Rights"
@@ -490,7 +598,9 @@ msgstr "5. お客様の権利"
 msgid ""
 "You can access, export, or delete your data at any time through your account "
 "settings. Contact us for any privacy-related requests."
-msgstr "アカウント設定からいつでもデータの閲覧、エクスポート、削除ができます。プライバシーに関するご要望はお問い合わせください。"
+msgstr ""
+"アカウント設定からいつでもデータの閲覧、エクスポート、削除ができます。プライ"
+"バシーに関するご要望はお問い合わせください。"
 
 #: .\templates\accounts\register.html:226
 msgid "Create account"
@@ -554,6 +664,11 @@ msgid "Confirm New Password"
 msgstr "新しいパスワードを確認"
 
 #: .\templates\accounts\settings.html:194
+#: .\templates\finance\accounts\form.html:72
+#: .\templates\finance\transactions\form.html:77
+#: .\templates\social\contacts\form.html:41
+#: .\templates\social\debts\form.html:88 .\templates\social\groups\form.html:42
+#: .\templates\social\settlements\form.html:95
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -566,6 +681,8 @@ msgid "Choose how you want to be notified."
 msgstr "通知方法を選択してください。"
 
 #: .\templates\accounts\settings.html:240
+#: .\templates\finance\transactions\detail.html:31
+#: .\templates\finance\transactions\form.html:17
 #: .\templates\finance\transactions\list.html:31
 msgid "Account"
 msgstr "アカウント"
@@ -616,7 +733,7 @@ msgstr "毎週"
 msgid "Never"
 msgstr "しない"
 
-#: .\templates\accounts\settings.html:290
+#: .\templates\accounts\settings.html:290 .\templates\base\app.html:16
 #: .\templates\notifications\list.html:51
 msgid "Finance"
 msgstr "財務"
@@ -652,6 +769,7 @@ msgid "Customize your experience."
 msgstr "体験をカスタマイズします。"
 
 #: .\templates\accounts\settings.html:441
+#: .\templates\social\groups\form.html:31
 msgid "Default Currency"
 msgstr "既定通貨"
 
@@ -689,7 +807,8 @@ msgstr "監査ログについて"
 msgid ""
 "Audit logs are stored using structured logging (structlog) and can be viewed "
 "through your logging infrastructure."
-msgstr "監査ログは構造化ロギング（structlog）で保存され、ログ基盤で閲覧できます。"
+msgstr ""
+"監査ログは構造化ロギング（structlog）で保存され、ログ基盤で閲覧できます。"
 
 #: .\templates\admin\audit_logs.html:108
 msgid "Retention policies:"
@@ -738,13 +857,16 @@ msgstr "ログの閲覧"
 #: .\templates\admin\audit_logs.html:140
 msgid ""
 "To view audit logs, check your application logs with the following filter:"
-msgstr "監査ログを確認するには、次のフィルターでアプリのログを確認してください:"
+msgstr ""
+"監査ログを確認するには、次のフィルターでアプリのログを確認してください:"
 
 #: .\templates\admin\audit_logs.html:145
 msgid ""
 "Or use your centralized logging solution (e.g., ELK Stack, Datadog, "
 "CloudWatch) to search for events with:"
-msgstr "または、集中ログ（例: ELK Stack、Datadog、CloudWatch）で次のイベントを検索してください:"
+msgstr ""
+"または、集中ログ（例: ELK Stack、Datadog、CloudWatch）で次のイベントを検索し"
+"てください:"
 
 #: .\templates\admin\dashboard_stats.html:102
 msgid "Financial statistics for your tenant"
@@ -775,6 +897,7 @@ msgid "Transaction Summary (Last 30 Days)"
 msgstr "取引概要（過去30日）"
 
 #: .\templates\admin\dashboard_stats.html:122
+#: .\templates\finance\accounts\detail.html:47
 #: .\templates\finance\dashboard.html:121
 msgid "Recent Transactions"
 msgstr "最近の取引"
@@ -822,6 +945,8 @@ msgstr "精算待ち"
 
 #: .\templates\admin\dashboard_stats.html:151
 #: .\templates\admin\finance_index.html:161
+#: .\templates\social\settlements\list.html:4
+#: .\templates\social\settlements\list.html:10
 msgid "Settlements"
 msgstr "精算"
 
@@ -878,13 +1003,16 @@ msgid "View Accounts"
 msgstr "口座を見る"
 
 #: .\templates\admin\finance_index.html:143 .\templates\base\app.html:32
-#: .\templates\base\app.html:286 .\templates\finance\transactions\list.html:4
+#: .\templates\base\app.html:286
+#: .\templates\finance\transactions\detail.html:10
+#: .\templates\finance\transactions\list.html:4
 #: .\templates\finance\transactions\list.html:11
 msgid "Transactions"
 msgstr "取引"
 
 #: .\templates\admin\finance_index.html:149 .\templates\base\app.html:36
 #: .\templates\base\app.html:287 .\templates\finance\dashboard.html:87
+#: .\templates\social\contacts\detail.html:10
 #: .\templates\social\contacts\list.html:4
 #: .\templates\social\contacts\list.html:11
 msgid "Contacts"
@@ -897,10 +1025,12 @@ msgstr "対人債務"
 
 #: .\templates\base\app.html:24 .\templates\base\app.html:284
 #: .\templates\finance\dashboard.html:4 .\templates\finance\dashboard.html:10
+#: .\templates\react\dashboard.html:12 .\templates\react\dashboard.html:15
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
 #: .\templates\base\app.html:28 .\templates\base\app.html:285
+#: .\templates\finance\accounts\detail.html:11
 #: .\templates\finance\accounts\list.html:4
 #: .\templates\finance\accounts\list.html:11
 #: .\templates\finance\dashboard.html:51
@@ -908,10 +1038,13 @@ msgid "Accounts"
 msgstr "口座"
 
 #: .\templates\base\app.html:40 .\templates\base\app.html:288
+#: .\templates\social\contacts\detail.html:54
+#: .\templates\social\debts\detail.html:10
 msgid "Debts"
 msgstr "債務"
 
 #: .\templates\base\app.html:44 .\templates\base\app.html:289
+#: .\templates\social\groups\detail.html:10
 msgid "Groups"
 msgstr "グループ"
 
@@ -960,6 +1093,7 @@ msgstr "言語"
 #: .\templates\base\auth.html:116 .\templates\base\base.html:10
 #: .\templates\base\base.html:13 .\templates\base\base.html:18
 #: .\templates\base\base.html:21 .\templates\base\base.html:26
+#: .\templates\react\dashboard.html:12 .\templates\react\dashboard.html:15
 msgid "Djanbe Finance"
 msgstr "Djanbe Finance"
 
@@ -993,7 +1127,9 @@ msgstr "グループで割り勘"
 msgid ""
 "Personal and social finance management platform - track expenses, manage "
 "debts, split bills with friends."
-msgstr "個人およびソーシャル財務管理プラットフォーム — 支出追跡、債務管理、友人との割り勘。"
+msgstr ""
+"個人およびソーシャル財務管理プラットフォーム — 支出追跡、債務管理、友人との割"
+"り勘。"
 
 #: .\templates\base\base.html:12
 msgid ""
@@ -1011,6 +1147,155 @@ msgstr "メインコンテンツへスキップ"
 #: .\templates\base\base.html:178
 msgid "Dismiss"
 msgstr "閉じる"
+
+#: .\templates\finance\accounts\detail.html:9
+#: .\templates\finance\transactions\detail.html:8
+#: .\templates\social\contacts\detail.html:8
+#: .\templates\social\debts\detail.html:8
+#: .\templates\social\groups\detail.html:8
+msgid "Breadcrumb"
+msgstr "パンくずリスト"
+
+#: .\templates\finance\accounts\detail.html:25
+#: .\templates\social\contacts\detail.html:29
+msgid "Edit"
+msgstr "編集"
+
+#: .\templates\finance\accounts\detail.html:28
+#: .\templates\finance\dashboard.html:161
+#: .\templates\finance\transactions\form.html:4
+#: .\templates\finance\transactions\form.html:9
+#: .\templates\finance\transactions\form.html:80
+#: .\templates\finance\transactions\list.html:19
+#: .\templates\finance\transactions\list.html:86
+msgid "Add Transaction"
+msgstr "取引を追加"
+
+#: .\templates\finance\accounts\detail.html:35
+#, fuzzy
+#| msgid "Current balance"
+msgid "Current Balance"
+msgstr "現在の残高"
+
+#: .\templates\finance\accounts\detail.html:53
+#: .\templates\finance\transactions\detail.html:19
+#, fuzzy
+#| msgid "Transactions"
+msgid "Transaction"
+msgstr "取引"
+
+#: .\templates\finance\accounts\detail.html:62
+#, fuzzy
+#| msgid "No transactions yet"
+msgid "No transactions yet."
+msgstr "まだ取引はありません"
+
+#: .\templates\finance\accounts\form.html:4
+#: .\templates\finance\accounts\form.html:10
+#, fuzzy
+#| msgid "Add Account"
+msgid "Edit Account"
+msgstr "口座を追加"
+
+#: .\templates\finance\accounts\form.html:4
+#, fuzzy
+#| msgid "View Accounts"
+msgid "New Account"
+msgstr "口座を見る"
+
+#: .\templates\finance\accounts\form.html:10
+#, fuzzy
+#| msgid "Create Account"
+msgid "Create New Account"
+msgstr "アカウント作成"
+
+#: .\templates\finance\accounts\form.html:27
+#, fuzzy
+#| msgid "Account"
+msgid "Account Name"
+msgstr "アカウント"
+
+#: .\templates\finance\accounts\form.html:30
+msgid "e.g., Main Checking"
+msgstr "例：メインの当座預金"
+
+#: .\templates\finance\accounts\form.html:38
+#, fuzzy
+#| msgid "Account"
+msgid "Account Type"
+msgstr "アカウント"
+
+#: .\templates\finance\accounts\form.html:41
+msgid "Select type..."
+msgstr "種類を選択..."
+
+#: .\templates\finance\accounts\form.html:42
+msgid "Checking"
+msgstr "当座預金"
+
+#: .\templates\finance\accounts\form.html:43
+#, fuzzy
+#| msgid "Settings"
+msgid "Savings"
+msgstr "設定"
+
+#: .\templates\finance\accounts\form.html:44
+msgid "Credit Card"
+msgstr "クレジットカード"
+
+#: .\templates\finance\accounts\form.html:45
+#: .\templates\social\settlements\form.html:79
+msgid "Cash"
+msgstr "現金"
+
+#: .\templates\finance\accounts\form.html:46
+msgid "Investment"
+msgstr "投資"
+
+#: .\templates\finance\accounts\form.html:47
+msgid "Loan"
+msgstr "ローン"
+
+#: .\templates\finance\accounts\form.html:52
+#: .\templates\social\debts\form.html:64
+#: .\templates\social\settlements\form.html:64
+#, fuzzy
+#| msgid "Default Currency"
+msgid "Currency"
+msgstr "既定通貨"
+
+#: .\templates\finance\accounts\form.html:55
+msgid "US Dollar"
+msgstr "米ドル"
+
+#: .\templates\finance\accounts\form.html:56
+msgid "Euro"
+msgstr "ユーロ"
+
+#: .\templates\finance\accounts\form.html:57
+msgid "British Pound"
+msgstr "英ポンド"
+
+#: .\templates\finance\accounts\form.html:58
+msgid "Indian Rupee"
+msgstr "インドルピー"
+
+#: .\templates\finance\accounts\form.html:64
+#: .\templates\social\groups\form.html:24
+#, fuzzy
+#| msgid "Description"
+msgid "Description (optional)"
+msgstr "説明"
+
+#: .\templates\finance\accounts\form.html:67
+msgid "Notes about this account..."
+msgstr "この口座に関するメモ..."
+
+#: .\templates\finance\accounts\form.html:75
+#: .\templates\social\contacts\form.html:43
+#: .\templates\social\groups\form.html:44
+msgid "Save Changes"
+msgstr "変更を保存"
 
 #: .\templates\finance\accounts\list.html:12
 msgid "Manage your financial accounts and wallets."
@@ -1039,6 +1324,8 @@ msgid "Welcome back, %(name)s! Here's your financial overview."
 msgstr "%(name)sさん、お帰りなさい！財務概要はこちらです。"
 
 #: .\templates\finance\dashboard.html:19 .\templates\finance\dashboard.html:32
+#: .\templates\finance\net_worth.html:4 .\templates\finance\net_worth.html:9
+#: .\templates\finance\net_worth.html:25
 msgid "Net Worth"
 msgstr "純資産"
 
@@ -1047,11 +1334,11 @@ msgstr "純資産"
 msgid "View details"
 msgstr "詳細を見る"
 
-#: .\templates\finance\dashboard.html:24
+#: .\templates\finance\dashboard.html:24 .\templates\finance\net_worth.html:17
 msgid "Total Assets"
 msgstr "総資産"
 
-#: .\templates\finance\dashboard.html:28
+#: .\templates\finance\dashboard.html:28 .\templates\finance\net_worth.html:21
 msgid "Total Liabilities"
 msgstr "総負債"
 
@@ -1093,12 +1380,6 @@ msgstr "まだ取引はありません"
 msgid "Get started by adding your first transaction."
 msgstr "最初の取引を追加して始めましょう。"
 
-#: .\templates\finance\dashboard.html:161
-#: .\templates\finance\transactions\list.html:19
-#: .\templates\finance\transactions\list.html:86
-msgid "Add Transaction"
-msgstr "取引を追加"
-
 #: .\templates\finance\dashboard.html:182
 msgid "Others Owe You"
 msgstr "他人があなたに借りがある"
@@ -1115,36 +1396,137 @@ msgstr "ソーシャル活動はありません"
 msgid "Start tracking debts with friends and family."
 msgstr "友人や家族との債務を追跡し始めましょう。"
 
-#: .\templates\finance\dashboard.html:220 .\templates\social\debts\list.html:18
-#: .\templates\social\debts\list.html:78
+#: .\templates\finance\dashboard.html:220 .\templates\social\debts\form.html:4
+#: .\templates\social\debts\form.html:9 .\templates\social\debts\form.html:90
+#: .\templates\social\debts\list.html:18 .\templates\social\debts\list.html:78
 msgid "Record Debt"
 msgstr "債務を記録"
 
-#: .\templates\finance\dashboard.html:223
+#: .\templates\finance\dashboard.html:223 .\templates\social\groups\form.html:4
+#: .\templates\social\groups\form.html:44
 #: .\templates\social\groups\list.html:18
 #: .\templates\social\groups\list.html:54
 msgid "Create Group"
 msgstr "グループを作成"
 
-#: .\templates\finance\transactions\list.html:12
-msgid "View and manage all your transactions."
-msgstr "すべての取引を表示・管理します。"
+#: .\templates\finance\net_worth.html:10
+msgid "Overview of your assets and liabilities."
+msgstr "資産と負債の概要。"
 
+#: .\templates\finance\net_worth.html:37
+#, fuzzy
+#| msgid "Total Assets"
+msgid "Assets"
+msgstr "総資産"
+
+#: .\templates\finance\net_worth.html:50
+#, fuzzy
+#| msgid "No transactions yet"
+msgid "No assets yet."
+msgstr "まだ取引はありません"
+
+#: .\templates\finance\net_worth.html:59
+#, fuzzy
+#| msgid "Total Liabilities"
+msgid "Liabilities"
+msgstr "総負債"
+
+#: .\templates\finance\net_worth.html:72
+#, fuzzy
+#| msgid "Total Liabilities"
+msgid "No liabilities."
+msgstr "総負債"
+
+#: .\templates\finance\transactions\detail.html:4
+#, fuzzy
+#| msgid "Transaction Operations"
+msgid "Transaction Details"
+msgstr "取引操作"
+
+#: .\templates\finance\transactions\detail.html:12
+#, fuzzy
+#| msgid "View details"
+msgid "Details"
+msgstr "詳細を見る"
+
+#: .\templates\finance\transactions\detail.html:27
+#: .\templates\finance\transactions\form.html:69
 #: .\templates\finance\transactions\list.html:29
+#: .\templates\social\debts\detail.html:43
+#: .\templates\social\debts\form.html:82
+#: .\templates\social\settlements\list.html:28
 msgid "Date"
 msgstr "日付"
 
-#: .\templates\finance\transactions\list.html:30
-msgid "Description"
-msgstr "説明"
+#: .\templates\finance\transactions\detail.html:35
+#: .\templates\finance\transactions\form.html:28
+msgid "Type"
+msgstr "種類"
 
+#: .\templates\finance\transactions\detail.html:39
 #: .\templates\finance\transactions\list.html:32
 msgid "Category"
 msgstr "カテゴリ"
 
+#: .\templates\finance\transactions\detail.html:40
+msgid "Uncategorized"
+msgstr "未分類"
+
+#: .\templates\finance\transactions\detail.html:43
+msgid "Status"
+msgstr "ステータス"
+
+#: .\templates\finance\transactions\detail.html:51
+#, fuzzy
+#| msgid "Recent Transactions"
+msgid "Back to Transactions"
+msgstr "最近の取引"
+
+#: .\templates\finance\transactions\form.html:20
+#, fuzzy
+#| msgid "Delete Account"
+msgid "Select account..."
+msgstr "アカウント削除"
+
+#: .\templates\finance\transactions\form.html:31
+msgid "Expense (Debit)"
+msgstr "支出（借方）"
+
+#: .\templates\finance\transactions\form.html:32
+msgid "Income (Credit)"
+msgstr "収入（貸方）"
+
+#: .\templates\finance\transactions\form.html:37
 #: .\templates\finance\transactions\list.html:33
+#: .\templates\social\debts\form.html:52
+#: .\templates\social\settlements\form.html:52
+#: .\templates\social\settlements\list.html:31
 msgid "Amount"
 msgstr "金額"
+
+#: .\templates\finance\transactions\form.html:50
+#: .\templates\finance\transactions\list.html:30
+msgid "Description"
+msgstr "説明"
+
+#: .\templates\finance\transactions\form.html:54
+#: .\templates\social\debts\form.html:78
+msgid "What was this for?"
+msgstr "これは何のためですか？"
+
+#: .\templates\finance\transactions\form.html:58
+msgid "Category (optional)"
+msgstr "カテゴリ（任意）"
+
+#: .\templates\finance\transactions\form.html:61
+#, fuzzy
+#| msgid "Category"
+msgid "No category"
+msgstr "カテゴリ"
+
+#: .\templates\finance\transactions\list.html:12
+msgid "View and manage all your transactions."
+msgstr "すべての取引を表示・管理します。"
 
 #: .\templates\finance\transactions\list.html:65
 #, python-format
@@ -1217,18 +1599,128 @@ msgstr "さらに読み込む"
 msgid "Loading..."
 msgstr "読み込み中..."
 
-#: .\templates\social\contacts\list.html:12
-msgid "People you track debts and expenses with."
-msgstr "債務や支出を共有している人々。"
+#: .\templates\react\dashboard.html:7
+msgid "Your personal finance dashboard - Djanbe Finance"
+msgstr "あなたの個人資産ダッシュボード - Djanbe Finance"
 
+#: .\templates\react\dashboard.html:13
+msgid "Your personal finance dashboard"
+msgstr "あなたの個人資産ダッシュボード"
+
+#: .\templates\react\dashboard.html:72
+#, fuzzy
+#| msgid "Loading..."
+msgid "Loading dashboard..."
+msgstr "読み込み中..."
+
+#: .\templates\social\balances\summary.html:4
+#: .\templates\social\balances\summary.html:9
+msgid "Balance Summary"
+msgstr "残高サマリー"
+
+#: .\templates\social\balances\summary.html:10
+msgid "See who owes you and who you owe."
+msgstr "誰があなたに借りているか、あなたが誰に借りているかを確認します。"
+
+#: .\templates\social\balances\summary.html:18
+#, fuzzy
+#| msgid "Others Owe You"
+msgid "They Owe You"
+msgstr "他人があなたに借りがある"
+
+#: .\templates\social\balances\summary.html:37
+msgid "No one owes you money."
+msgstr "誰もあなたにお金を借りていません。"
+
+#: .\templates\social\balances\summary.html:46
+#, fuzzy
+#| msgid "You Owe Others"
+msgid "You Owe Them"
+msgstr "あなたが他人に借りがある"
+
+#: .\templates\social\balances\summary.html:65
+msgid "You don't owe anyone money."
+msgstr "あなたは誰にもお金を借りていません。"
+
+#: .\templates\social\balances\summary.html:76
+msgid "All settled up!"
+msgstr "すべて清算済み！"
+
+#: .\templates\social\balances\summary.html:77
+msgid "You have no outstanding balances with anyone."
+msgstr "未清算の残高はありません。"
+
+#: .\templates\social\contacts\detail.html:25
+#: .\templates\social\contacts\list.html:39
+msgid "No email"
+msgstr "メールなし"
+
+#: .\templates\social\contacts\detail.html:37
+msgid "Phone"
+msgstr "電話"
+
+#: .\templates\social\contacts\detail.html:43
+msgid "Notes"
+msgstr "メモ"
+
+#: .\templates\social\contacts\detail.html:60
+#, fuzzy
+#| msgid "Debts"
+msgid "Debt"
+msgstr "債務"
+
+#: .\templates\social\contacts\detail.html:64
+#: .\templates\social\debts\list.html:59
+msgid "They owe"
+msgstr "相手が支払い"
+
+#: .\templates\social\contacts\detail.html:64
+#: .\templates\social\debts\list.html:59
+msgid "You owe"
+msgstr "あなたが支払い"
+
+#: .\templates\social\contacts\form.html:4
+#: .\templates\social\contacts\form.html:9
+#, fuzzy
+#| msgid "Add Contact"
+msgid "Edit Contact"
+msgstr "連絡先を追加"
+
+#: .\templates\social\contacts\form.html:4
+#, fuzzy
+#| msgid "Contacts"
+msgid "New Contact"
+msgstr "連絡先"
+
+#: .\templates\social\contacts\form.html:9
+#: .\templates\social\contacts\form.html:43
 #: .\templates\social\contacts\list.html:19
 #: .\templates\social\contacts\list.html:77
 msgid "Add Contact"
 msgstr "連絡先を追加"
 
-#: .\templates\social\contacts\list.html:39
-msgid "No email"
-msgstr "メールなし"
+#: .\templates\social\contacts\form.html:17
+msgid "Name"
+msgstr "名前"
+
+#: .\templates\social\contacts\form.html:23
+msgid "Email (optional)"
+msgstr "メール（任意）"
+
+#: .\templates\social\contacts\form.html:29
+msgid "Phone (optional)"
+msgstr "電話（任意）"
+
+#: .\templates\social\contacts\form.html:35
+#: .\templates\social\settlements\form.html:89
+#, fuzzy
+#| msgid "All systems operational"
+msgid "Notes (optional)"
+msgstr "すべてのシステムが稼働中"
+
+#: .\templates\social\contacts\list.html:12
+msgid "People you track debts and expenses with."
+msgstr "債務や支出を共有している人々。"
 
 #: .\templates\social\contacts\list.html:70
 msgid "No contacts"
@@ -1237,6 +1729,83 @@ msgstr "連絡先なし"
 #: .\templates\social\contacts\list.html:71
 msgid "Add people you share expenses or debts with."
 msgstr "支出や債務を共有する人を追加してください。"
+
+#: .\templates\social\debts\detail.html:4
+#, fuzzy
+#| msgid "View details"
+msgid "Debt Details"
+msgstr "詳細を見る"
+
+#: .\templates\social\debts\detail.html:21
+#, fuzzy
+#| msgid "They owe"
+msgid "They owe you"
+msgstr "相手が支払い"
+
+#: .\templates\social\debts\detail.html:21
+#, fuzzy
+#| msgid "You Owe Others"
+msgid "You owe them"
+msgstr "あなたが他人に借りがある"
+
+#: .\templates\social\debts\detail.html:35
+#: .\templates\social\debts\form.html:17
+#: .\templates\social\settlements\form.html:17
+#: .\templates\social\settlements\list.html:29
+#, fuzzy
+#| msgid "Contacts"
+msgid "Contact"
+msgstr "連絡先"
+
+#: .\templates\social\debts\detail.html:39
+msgid "Original Amount"
+msgstr "元の金額"
+
+#: .\templates\social\debts\detail.html:48
+msgid "Reason"
+msgstr "理由"
+
+#: .\templates\social\debts\detail.html:57
+#: .\templates\social\settlements\form.html:4
+#: .\templates\social\settlements\form.html:9
+#: .\templates\social\settlements\form.html:97
+#: .\templates\social\settlements\list.html:18
+#, fuzzy
+#| msgid "Settlements"
+msgid "Record Settlement"
+msgstr "精算"
+
+#: .\templates\social\debts\form.html:20
+#: .\templates\social\settlements\form.html:20
+msgid "Select contact..."
+msgstr "連絡先を選択..."
+
+#: .\templates\social\debts\form.html:28
+#: .\templates\social\settlements\list.html:30
+#, fuzzy
+#| msgid "Description"
+msgid "Direction"
+msgstr "説明"
+
+#: .\templates\social\debts\form.html:34
+msgid "I Lent"
+msgstr "貸しました"
+
+#: .\templates\social\debts\form.html:35
+msgid "Money I gave them"
+msgstr "私が渡したお金"
+
+#: .\templates\social\debts\form.html:43
+msgid "I Borrowed"
+msgstr "借りました"
+
+#: .\templates\social\debts\form.html:44
+msgid "Money they gave me"
+msgstr "彼らがくれたお金"
+
+#: .\templates\social\debts\form.html:75
+msgid "Reason (optional)"
+msgstr "理由（任意）"
 
 #: .\templates\social\debts\list.html:11
 msgid "Track money lent and borrowed."
@@ -1254,14 +1823,6 @@ msgstr "借りた（あなたが支払い）"
 msgid "Net Balance"
 msgstr "純残高"
 
-#: .\templates\social\debts\list.html:59
-msgid "They owe"
-msgstr "相手が支払い"
-
-#: .\templates\social\debts\list.html:59
-msgid "You owe"
-msgstr "あなたが支払い"
-
 #: .\templates\social\debts\list.html:74
 msgid "No debts"
 msgstr "債務なし"
@@ -1269,6 +1830,56 @@ msgstr "債務なし"
 #: .\templates\social\debts\list.html:75
 msgid "Start tracking money lent or borrowed."
 msgstr "貸し借りの追跡を始めましょう。"
+
+#: .\templates\social\groups\detail.html:26
+msgid "Coming soon"
+msgstr "近日公開"
+
+#: .\templates\social\groups\detail.html:30
+#, fuzzy
+#| msgid "Total Expenses"
+msgid "Add Expense"
+msgstr "総支出"
+
+#: .\templates\social\groups\detail.html:31
+msgid "Soon"
+msgstr "まもなく"
+
+#: .\templates\social\groups\detail.html:39
+#, fuzzy
+#| msgid "Total Expenses"
+msgid "Expenses"
+msgstr "総支出"
+
+#: .\templates\social\groups\detail.html:52
+msgid "No expenses yet. Add one to get started."
+msgstr "まだ支出がありません。追加して始めましょう。"
+
+#: .\templates\social\groups\form.html:4 .\templates\social\groups\form.html:9
+#, fuzzy
+#| msgid "Create Group"
+msgid "Edit Group"
+msgstr "グループを作成"
+
+#: .\templates\social\groups\form.html:9
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Create Expense Group"
+msgstr "支出グループ"
+
+#: .\templates\social\groups\form.html:17
+#, fuzzy
+#| msgid "Groups"
+msgid "Group Name"
+msgstr "グループ"
+
+#: .\templates\social\groups\form.html:20
+msgid "e.g., Roommates, Trip to Paris"
+msgstr "例：ルームメイト、パリ旅行"
+
+#: .\templates\social\groups\form.html:27
+msgid "What is this group for?"
+msgstr "このグループは何のためですか？"
 
 #: .\templates\social\groups\list.html:4 .\templates\social\groups\list.html:10
 msgid "Expense Groups"
@@ -1289,3 +1900,69 @@ msgstr "支出グループがありません"
 #: .\templates\social\groups\list.html:51
 msgid "Create a group to start splitting expenses."
 msgstr "グループを作成して支出の分割を始めましょう。"
+
+#: .\templates\social\settlements\form.html:28
+msgid "Who paid?"
+msgstr "誰が支払いましたか？"
+
+#: .\templates\social\settlements\form.html:34
+msgid "I Paid"
+msgstr "私が支払いました"
+
+#: .\templates\social\settlements\form.html:35
+#: .\templates\social\settlements\list.html:44
+msgid "You paid them"
+msgstr "あなたが支払いました"
+
+#: .\templates\social\settlements\form.html:43
+msgid "They Paid"
+msgstr "彼らが支払いました"
+
+#: .\templates\social\settlements\form.html:44
+#: .\templates\social\settlements\list.html:44
+msgid "They paid you"
+msgstr "彼らがあなたに支払いました"
+
+#: .\templates\social\settlements\form.html:75
+msgid "Payment Method (optional)"
+msgstr "支払い方法（任意）"
+
+#: .\templates\social\settlements\form.html:78
+#, fuzzy
+#| msgid "Not verified"
+msgid "Not specified"
+msgstr "未認証"
+
+#: .\templates\social\settlements\form.html:80
+msgid "Bank Transfer"
+msgstr "銀行振込"
+
+#: .\templates\social\settlements\form.html:81
+msgid "UPI"
+msgstr "UPI"
+
+#: .\templates\social\settlements\form.html:82
+msgid "Venmo"
+msgstr "Venmo"
+
+#: .\templates\social\settlements\form.html:83
+msgid "PayPal"
+msgstr "PayPal"
+
+#: .\templates\social\settlements\form.html:84
+msgid "Other"
+msgstr "その他"
+
+#: .\templates\social\settlements\list.html:11
+msgid "Record payments to settle debts."
+msgstr "負債を清算するための支払いを記録します。"
+
+#: .\templates\social\settlements\list.html:59
+#, fuzzy
+#| msgid "Settlements"
+msgid "No settlements"
+msgstr "精算"
+
+#: .\templates\social\settlements\list.html:60
+msgid "Record settlements when debts are paid."
+msgstr "負債が支払われたときに清算を記録します。"

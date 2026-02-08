@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-finance\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-08 07:21+0500\n"
+"POT-Creation-Date: 2026-02-08 09:22+0500\n"
 "PO-Revision-Date: 2026-02-08 08:17+0500\n"
 "Last-Translator: Farzam Mehdi <ifarzammehdi@gmail.com>\n"
 "Language-Team: Hindi (http://www.transifex.com/django/django/language/hi/)\n"
@@ -108,7 +108,7 @@ msgstr "वर्तमान पासवर्ड गलत है।"
 #: .\modules\accounts\interfaces\views.py:87
 msgid ""
 "Registration successful. Please check your email to verify your account."
-msgstr ""
+msgstr "पंजीकरण सफल हुआ। कृपया अपने खाते की पुष्टि के लिए अपना ईमेल जाँचें।"
 
 #: .\modules\accounts\interfaces\views.py:118
 msgid "Refresh token is required."
@@ -145,7 +145,7 @@ msgstr "सत्यापन ईमेल भेज दिया गया।"
 #: .\modules\accounts\interfaces\views.py:270
 msgid ""
 "If an account exists with this email, a password reset link has been sent."
-msgstr ""
+msgstr "यदि इस ईमेल से कोई खाता मौजूद है, तो पासवर्ड रीसेट लिंक भेज दिया गया है।"
 
 #: .\modules\accounts\interfaces\views.py:293
 msgid "Invalid reset token."
@@ -198,6 +198,28 @@ msgstr "असमर्थित मुद्रा: %(currency)s"
 msgid "Cannot transfer to the same account."
 msgstr "एक ही खाते में स्थानांतरण नहीं किया जा सकता।"
 
+#: .\modules\finance\interfaces\views.py:402
+#, fuzzy
+#| msgid "Transactions (This Month)"
+msgid "Transaction is not pending."
+msgstr "लेन-देन (इस माह)"
+
+#: .\modules\finance\interfaces\views.py:424
+#, fuzzy
+#| msgid "Email is already verified."
+msgid "Transaction is already voided."
+msgstr "ईमेल पहले से सत्यापित है।"
+
+#: .\modules\finance\interfaces\views.py:668
+#, fuzzy
+#| msgid "Email is already verified."
+msgid "Loan is already paid off."
+msgstr "ईमेल पहले से सत्यापित है।"
+
+#: .\modules\finance\interfaces\views.py:738
+msgid "No tenant context."
+msgstr "टेनेंट संदर्भ उपलब्ध नहीं है।"
+
 #: .\modules\notifications\interfaces\views.py:87
 #: .\modules\notifications\interfaces\views.py:115
 #: .\modules\notifications\interfaces\views.py:165
@@ -217,6 +239,8 @@ msgstr "अमान्य श्रेणी। इनमें से एक �
 msgid ""
 "Either paid_by_owner must be True or paid_by_contact_id must be provided."
 msgstr ""
+"या तो paid_by_owner को True होना चाहिए या paid_by_contact_id प्रदान किया जाना "
+"चाहिए।"
 
 #: .\modules\social\interfaces\serializers.py:322
 msgid "Cannot set both owner_pays and owner_receives to True."
@@ -225,6 +249,67 @@ msgstr "owner_pays और owner_receives दोनों को True नही�
 #: .\modules\social\interfaces\serializers.py:326
 msgid "Must set either owner_pays or owner_receives to True."
 msgstr "owner_pays या owner_receives में से किसी एक को True करना होगा।"
+
+#: .\modules\social\interfaces\views.py:173
+#: .\modules\social\interfaces\views.py:193
+#: .\modules\social\interfaces\views.py:206
+#: .\modules\social\interfaces\views.py:224
+#: .\modules\social\interfaces\views.py:418
+#: .\modules\social\interfaces\views.py:935
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Contact not found."
+msgstr "सूचना नहीं मिली।"
+
+#: .\modules\social\interfaces\views.py:296
+#: .\modules\social\interfaces\views.py:306
+#: .\modules\social\interfaces\views.py:598
+#: .\modules\social\interfaces\views.py:608
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Group not found."
+msgstr "सूचना नहीं मिली।"
+
+#: .\modules\social\interfaces\views.py:427
+#: .\modules\social\interfaces\views.py:437
+#: .\modules\social\interfaces\views.py:478
+#: .\modules\social\interfaces\views.py:500
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Debt not found."
+msgstr "सूचना नहीं मिली।"
+
+#: .\modules\social\interfaces\views.py:482
+#, fuzzy
+#| msgid "Email is already registered."
+msgid "Debt is already settled."
+msgstr "ईमेल पहले से पंजीकृत है।"
+
+#: .\modules\social\interfaces\views.py:744
+#: .\modules\social\interfaces\views.py:951
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Expense group not found."
+msgstr "खर्च समूह"
+
+#: .\modules\social\interfaces\views.py:756
+#: .\modules\social\interfaces\views.py:766
+#: .\modules\social\interfaces\views.py:784
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Expense not found."
+msgstr "खर्च समूह"
+
+#: .\modules\social\interfaces\views.py:858
+#: .\modules\social\interfaces\views.py:868
+#, fuzzy
+#| msgid "Notification not found."
+msgid "Settlement not found."
+msgstr "सूचना नहीं मिली।"
+
+#: .\modules\subscriptions\interfaces\views.py:69
+msgid "No subscription found. Using free tier."
+msgstr "कोई सब्सक्रिप्शन नहीं मिला। मुफ़्त प्लान उपयोग किया जा रहा है।"
 
 #: .\templates\accounts\login.html:4
 msgid "Sign In"
@@ -275,7 +360,7 @@ msgstr "अपना पासवर्ड रीसेट करें"
 #: .\templates\accounts\password_reset.html:12
 msgid ""
 "Enter your email address and we'll send you a link to reset your password."
-msgstr ""
+msgstr "अपना ईमेल पता दर्ज करें और हम आपको पासवर्ड रीसेट करने का लिंक भेजेंगे।"
 
 #: .\templates\accounts\password_reset.html:60
 msgid "Send reset link"
@@ -346,6 +431,7 @@ msgid "Change Password"
 msgstr "पासवर्ड बदलें"
 
 #: .\templates\accounts\register.html:4
+#: .\templates\finance\accounts\form.html:75
 msgid "Create Account"
 msgstr "खाता बनाएँ"
 
@@ -362,6 +448,7 @@ msgid ""
 "Must be at least 12 characters with uppercase, lowercase, number, and "
 "special character."
 msgstr ""
+"कम से कम 12 अक्षर होने चाहिए, जिनमें बड़े अक्षर, छोटे अक्षर, संख्या और विशेष वर्ण हों।"
 
 #: .\templates\accounts\register.html:130
 msgid "Confirm password"
@@ -393,7 +480,7 @@ msgstr "1. शर्तों की स्वीकृति"
 msgid ""
 "By accessing and using Djanbe Finance, you agree to be bound by these Terms "
 "of Service."
-msgstr ""
+msgstr "Djanbe Finance का उपयोग करके, आप इन सेवा शर्तों से बंधे होने पर सहमत होते हैं।"
 
 #: .\templates\accounts\register.html:174
 msgid "2. Use of Service"
@@ -405,6 +492,8 @@ msgid ""
 "these terms. You are responsible for maintaining the confidentiality of your "
 "account."
 msgstr ""
+"आप सहमत हैं कि सेवा का उपयोग केवल कानूनी उद्देश्यों के लिए और इन शर्तों के अनुसार करेंगे। अपने "
+"खाते की गोपनीयता बनाए रखना आपकी जिम्मेदारी है।"
 
 #: .\templates\accounts\register.html:176
 msgid "3. User Data"
@@ -415,6 +504,8 @@ msgid ""
 "You retain ownership of all financial data you enter. We do not sell or "
 "share your personal financial information with third parties."
 msgstr ""
+"आप द्वारा दर्ज किए गए सभी वित्तीय डेटा का स्वामित्व आपके पास रहता है। हम आपकी "
+"व्यक्तिगत वित्तीय जानकारी तीसरे पक्ष को न तो बेचते हैं और न साझा करते हैं।"
 
 #: .\templates\accounts\register.html:178
 msgid "4. Service Availability"
@@ -426,14 +517,21 @@ msgid ""
 "uninterrupted access. We may modify or discontinue features with reasonable "
 "notice."
 msgstr ""
+"हम सेवा की उपलब्धता बनाए रखने की कोशिश करते हैं, लेकिन निरंतर पहुँच की गारंटी नहीं देते। "
+"हम उचित सूचना के साथ सुविधाएँ बदल या बंद कर सकते हैं।"
 
 #: .\templates\accounts\register.html:180
 msgid "5. Limitation of Liability"
 msgstr "5. दायित्व की सीमा"
 
 #: .\templates\accounts\register.html:181
-msgid "Djanbe Finance is provided \\"
+msgid ""
+"Djanbe Finance is provided \"as is\" without warranties. We are not liable "
+"for any financial decisions made based on information in the app."
 msgstr ""
+"Djanbe Finance \"???? ??\" ???? ???? ?????? ?? ?????? ???? ???? ??? ?? ??? "
+"?? ?? ??????? ?? ???? ?? ??? ?? ???? ?? ??????? ?????? ?? ??? ?? ????????? "
+"???? ????"
 
 #: .\templates\accounts\register.html:186
 #: .\templates\accounts\register.html:216
@@ -450,6 +548,8 @@ msgid ""
 "We collect information you provide directly: email, name, and financial data "
 "you choose to enter (accounts, transactions, contacts)."
 msgstr ""
+"हम आपके द्वारा सीधे प्रदान की गई जानकारी एकत्र करते हैं: ईमेल, नाम और वह वित्तीय डेटा "
+"जिसे आप दर्ज करना चुनते हैं (खाते, लेन-देन, संपर्क)।"
 
 #: .\templates\accounts\register.html:204
 msgid "2. How We Use Your Information"
@@ -461,6 +561,9 @@ msgid ""
 "financial overview, calculate balances, and send notifications you've opted "
 "into."
 msgstr ""
+"आपका डेटा केवल सेवा प्रदान करने के लिए उपयोग किया जाता है। हम इसका उपयोग आपके वित्तीय "
+"अवलोकन को दिखाने, शेष राशि की गणना करने और आपके द्वारा चुनी गई सूचनाएँ भेजने के लिए करते "
+"हैं।"
 
 #: .\templates\accounts\register.html:206
 msgid "3. Data Security"
@@ -471,6 +574,8 @@ msgid ""
 "We implement industry-standard security measures including encryption, "
 "secure authentication, and regular security audits to protect your data."
 msgstr ""
+"हम आपके डेटा की सुरक्षा के लिए उद्योग-मानक सुरक्षा उपाय लागू करते हैं, जिनमें एन्क्रिप्शन, "
+"सुरक्षित प्रमाणीकरण और नियमित सुरक्षा ऑडिट शामिल हैं।"
 
 #: .\templates\accounts\register.html:208
 msgid "4. Data Sharing"
@@ -481,6 +586,8 @@ msgid ""
 "We do not sell, trade, or share your personal financial data with third "
 "parties. Data may only be shared if required by law."
 msgstr ""
+"हम आपकी व्यक्तिगत वित्तीय जानकारी तीसरे पक्ष को नहीं बेचते, व्यापार नहीं करते या साझा "
+"नहीं करते। डेटा केवल तभी साझा किया जा सकता है जब कानून द्वारा आवश्यक हो।"
 
 #: .\templates\accounts\register.html:210
 msgid "5. Your Rights"
@@ -491,6 +598,8 @@ msgid ""
 "You can access, export, or delete your data at any time through your account "
 "settings. Contact us for any privacy-related requests."
 msgstr ""
+"आप अपने खाते की सेटिंग्स के माध्यम से किसी भी समय अपने डेटा तक पहुँच सकते हैं, उसे निर्यात कर "
+"सकते हैं या हटा सकते हैं। गोपनीयता संबंधी अनुरोधों के लिए हमसे संपर्क करें।"
 
 #: .\templates\accounts\register.html:226
 msgid "Create account"
@@ -554,6 +663,11 @@ msgid "Confirm New Password"
 msgstr "नया पासवर्ड पुष्टि करें"
 
 #: .\templates\accounts\settings.html:194
+#: .\templates\finance\accounts\form.html:72
+#: .\templates\finance\transactions\form.html:77
+#: .\templates\social\contacts\form.html:41
+#: .\templates\social\debts\form.html:88 .\templates\social\groups\form.html:42
+#: .\templates\social\settlements\form.html:95
 msgid "Cancel"
 msgstr "रद्द करें"
 
@@ -566,6 +680,8 @@ msgid "Choose how you want to be notified."
 msgstr "चुनें कि आपको कैसे सूचित किया जाए।"
 
 #: .\templates\accounts\settings.html:240
+#: .\templates\finance\transactions\detail.html:31
+#: .\templates\finance\transactions\form.html:17
 #: .\templates\finance\transactions\list.html:31
 msgid "Account"
 msgstr "खाता"
@@ -616,7 +732,7 @@ msgstr "साप्ताहिक"
 msgid "Never"
 msgstr "कभी नहीं"
 
-#: .\templates\accounts\settings.html:290
+#: .\templates\accounts\settings.html:290 .\templates\base\app.html:16
 #: .\templates\notifications\list.html:51
 msgid "Finance"
 msgstr "वित्त"
@@ -652,6 +768,7 @@ msgid "Customize your experience."
 msgstr "अपने अनुभव को अनुकूलित करें।"
 
 #: .\templates\accounts\settings.html:441
+#: .\templates\social\groups\form.html:31
 msgid "Default Currency"
 msgstr "डिफ़ॉल्ट मुद्रा"
 
@@ -674,7 +791,7 @@ msgstr "खाता हटाएँ"
 #: .\templates\accounts\settings.html:464
 msgid ""
 "Once you delete your account, there is no going back. Please be certain."
-msgstr ""
+msgstr "एक बार आपका खाता हटाने के बाद वापस नहीं आ सकते। कृपया सुनिश्चित करें।"
 
 #: .\templates\admin\audit_logs.html:97
 #: .\templates\admin\dashboard_stats.html:97
@@ -690,6 +807,8 @@ msgid ""
 "Audit logs are stored using structured logging (structlog) and can be viewed "
 "through your logging infrastructure."
 msgstr ""
+"ऑडिट लॉग संरचित लॉगिंग (structlog) का उपयोग करके संग्रहीत किए जाते हैं और आपके लॉगिंग "
+"इन्फ्रास्ट्रक्चर के माध्यम से देखे जा सकते हैं।"
 
 #: .\templates\admin\audit_logs.html:108
 msgid "Retention policies:"
@@ -738,13 +857,15 @@ msgstr "लॉग देखें"
 #: .\templates\admin\audit_logs.html:140
 msgid ""
 "To view audit logs, check your application logs with the following filter:"
-msgstr ""
+msgstr "ऑडिट लॉग देखने के लिए, अपने एप्लिकेशन लॉग को निम्न फ़िल्टर के साथ जांचें:"
 
 #: .\templates\admin\audit_logs.html:145
 msgid ""
 "Or use your centralized logging solution (e.g., ELK Stack, Datadog, "
 "CloudWatch) to search for events with:"
 msgstr ""
+"या अपने केंद्रीकृत लॉगिंग समाधान (जैसे ELK Stack, Datadog, CloudWatch) का उपयोग करके "
+"निम्न के साथ इवेंट खोजें:"
 
 #: .\templates\admin\dashboard_stats.html:102
 msgid "Financial statistics for your tenant"
@@ -775,6 +896,7 @@ msgid "Transaction Summary (Last 30 Days)"
 msgstr "लेन-देन सारांश (पिछले 30 दिन)"
 
 #: .\templates\admin\dashboard_stats.html:122
+#: .\templates\finance\accounts\detail.html:47
 #: .\templates\finance\dashboard.html:121
 msgid "Recent Transactions"
 msgstr "हालिया लेन-देन"
@@ -822,6 +944,8 @@ msgstr "निपटान की प्रतीक्षा में"
 
 #: .\templates\admin\dashboard_stats.html:151
 #: .\templates\admin\finance_index.html:161
+#: .\templates\social\settlements\list.html:4
+#: .\templates\social\settlements\list.html:10
 msgid "Settlements"
 msgstr "निपटान"
 
@@ -878,13 +1002,16 @@ msgid "View Accounts"
 msgstr "खाते देखें"
 
 #: .\templates\admin\finance_index.html:143 .\templates\base\app.html:32
-#: .\templates\base\app.html:286 .\templates\finance\transactions\list.html:4
+#: .\templates\base\app.html:286
+#: .\templates\finance\transactions\detail.html:10
+#: .\templates\finance\transactions\list.html:4
 #: .\templates\finance\transactions\list.html:11
 msgid "Transactions"
 msgstr "लेन-देन"
 
 #: .\templates\admin\finance_index.html:149 .\templates\base\app.html:36
 #: .\templates\base\app.html:287 .\templates\finance\dashboard.html:87
+#: .\templates\social\contacts\detail.html:10
 #: .\templates\social\contacts\list.html:4
 #: .\templates\social\contacts\list.html:11
 msgid "Contacts"
@@ -897,10 +1024,12 @@ msgstr "साथी ऋण"
 
 #: .\templates\base\app.html:24 .\templates\base\app.html:284
 #: .\templates\finance\dashboard.html:4 .\templates\finance\dashboard.html:10
+#: .\templates\react\dashboard.html:12 .\templates\react\dashboard.html:15
 msgid "Dashboard"
 msgstr "डैशबोर्ड"
 
 #: .\templates\base\app.html:28 .\templates\base\app.html:285
+#: .\templates\finance\accounts\detail.html:11
 #: .\templates\finance\accounts\list.html:4
 #: .\templates\finance\accounts\list.html:11
 #: .\templates\finance\dashboard.html:51
@@ -908,10 +1037,13 @@ msgid "Accounts"
 msgstr "खाते"
 
 #: .\templates\base\app.html:40 .\templates\base\app.html:288
+#: .\templates\social\contacts\detail.html:54
+#: .\templates\social\debts\detail.html:10
 msgid "Debts"
 msgstr "ऋण"
 
 #: .\templates\base\app.html:44 .\templates\base\app.html:289
+#: .\templates\social\groups\detail.html:10
 msgid "Groups"
 msgstr "समूह"
 
@@ -960,6 +1092,7 @@ msgstr "भाषा"
 #: .\templates\base\auth.html:116 .\templates\base\base.html:10
 #: .\templates\base\base.html:13 .\templates\base\base.html:18
 #: .\templates\base\base.html:21 .\templates\base\base.html:26
+#: .\templates\react\dashboard.html:12 .\templates\react\dashboard.html:15
 msgid "Djanbe Finance"
 msgstr "Djanbe Finance"
 
@@ -975,7 +1108,7 @@ msgstr "अपने वित्त पर नियंत्रण रखे�
 msgid ""
 "Track expenses, manage debts, and split bills with friends - all in one "
 "place."
-msgstr ""
+msgstr "खर्च ट्रैक करें, ऋण प्रबंधित करें और दोस्तों के साथ बिल बाँटें - सब एक ही जगह पर।"
 
 #: .\templates\base\auth.html:44
 msgid "Track income & expenses"
@@ -994,11 +1127,13 @@ msgid ""
 "Personal and social finance management platform - track expenses, manage "
 "debts, split bills with friends."
 msgstr ""
+"व्यक्तिगत और सामाजिक वित्त प्रबंधन प्लेटफ़ॉर्म - खर्च ट्रैक करें, ऋण प्रबंधित करें, दोस्तों के "
+"साथ बिल बाँटें।"
 
 #: .\templates\base\base.html:12
 msgid ""
 "finance, personal finance, expense tracking, debt management, bill splitting"
-msgstr ""
+msgstr "वित्त, व्यक्तिगत वित्त, खर्च ट्रैकिंग, ऋण प्रबंधन, बिल विभाजन"
 
 #: .\templates\base\base.html:19 .\templates\base\base.html:27
 msgid "Personal and social finance management platform"
@@ -1011,6 +1146,155 @@ msgstr "मुख्य सामग्री पर जाएँ"
 #: .\templates\base\base.html:178
 msgid "Dismiss"
 msgstr "खारिज करें"
+
+#: .\templates\finance\accounts\detail.html:9
+#: .\templates\finance\transactions\detail.html:8
+#: .\templates\social\contacts\detail.html:8
+#: .\templates\social\debts\detail.html:8
+#: .\templates\social\groups\detail.html:8
+msgid "Breadcrumb"
+msgstr "नेविगेशन पथ"
+
+#: .\templates\finance\accounts\detail.html:25
+#: .\templates\social\contacts\detail.html:29
+msgid "Edit"
+msgstr "संपादित करें"
+
+#: .\templates\finance\accounts\detail.html:28
+#: .\templates\finance\dashboard.html:161
+#: .\templates\finance\transactions\form.html:4
+#: .\templates\finance\transactions\form.html:9
+#: .\templates\finance\transactions\form.html:80
+#: .\templates\finance\transactions\list.html:19
+#: .\templates\finance\transactions\list.html:86
+msgid "Add Transaction"
+msgstr "लेन-देन जोड़ें"
+
+#: .\templates\finance\accounts\detail.html:35
+#, fuzzy
+#| msgid "Current balance"
+msgid "Current Balance"
+msgstr "वर्तमान शेष"
+
+#: .\templates\finance\accounts\detail.html:53
+#: .\templates\finance\transactions\detail.html:19
+#, fuzzy
+#| msgid "Transactions"
+msgid "Transaction"
+msgstr "लेन-देन"
+
+#: .\templates\finance\accounts\detail.html:62
+#, fuzzy
+#| msgid "No transactions yet"
+msgid "No transactions yet."
+msgstr "अभी कोई लेन-देन नहीं"
+
+#: .\templates\finance\accounts\form.html:4
+#: .\templates\finance\accounts\form.html:10
+#, fuzzy
+#| msgid "Add Account"
+msgid "Edit Account"
+msgstr "खाता जोड़ें"
+
+#: .\templates\finance\accounts\form.html:4
+#, fuzzy
+#| msgid "View Accounts"
+msgid "New Account"
+msgstr "खाते देखें"
+
+#: .\templates\finance\accounts\form.html:10
+#, fuzzy
+#| msgid "Create Account"
+msgid "Create New Account"
+msgstr "खाता बनाएँ"
+
+#: .\templates\finance\accounts\form.html:27
+#, fuzzy
+#| msgid "Account"
+msgid "Account Name"
+msgstr "खाता"
+
+#: .\templates\finance\accounts\form.html:30
+msgid "e.g., Main Checking"
+msgstr "उदा., मुख्य चेकिंग"
+
+#: .\templates\finance\accounts\form.html:38
+#, fuzzy
+#| msgid "Account"
+msgid "Account Type"
+msgstr "खाता"
+
+#: .\templates\finance\accounts\form.html:41
+msgid "Select type..."
+msgstr "प्रकार चुनें..."
+
+#: .\templates\finance\accounts\form.html:42
+msgid "Checking"
+msgstr "चेकिंग"
+
+#: .\templates\finance\accounts\form.html:43
+#, fuzzy
+#| msgid "Settings"
+msgid "Savings"
+msgstr "सेटिंग्स"
+
+#: .\templates\finance\accounts\form.html:44
+msgid "Credit Card"
+msgstr "क्रेडिट कार्ड"
+
+#: .\templates\finance\accounts\form.html:45
+#: .\templates\social\settlements\form.html:79
+msgid "Cash"
+msgstr "नकद"
+
+#: .\templates\finance\accounts\form.html:46
+msgid "Investment"
+msgstr "निवेश"
+
+#: .\templates\finance\accounts\form.html:47
+msgid "Loan"
+msgstr "ऋण"
+
+#: .\templates\finance\accounts\form.html:52
+#: .\templates\social\debts\form.html:64
+#: .\templates\social\settlements\form.html:64
+#, fuzzy
+#| msgid "Default Currency"
+msgid "Currency"
+msgstr "डिफ़ॉल्ट मुद्रा"
+
+#: .\templates\finance\accounts\form.html:55
+msgid "US Dollar"
+msgstr "अमेरिकी डॉलर"
+
+#: .\templates\finance\accounts\form.html:56
+msgid "Euro"
+msgstr "यूरो"
+
+#: .\templates\finance\accounts\form.html:57
+msgid "British Pound"
+msgstr "ब्रिटिश पाउंड"
+
+#: .\templates\finance\accounts\form.html:58
+msgid "Indian Rupee"
+msgstr "भारतीय रुपया"
+
+#: .\templates\finance\accounts\form.html:64
+#: .\templates\social\groups\form.html:24
+#, fuzzy
+#| msgid "Description"
+msgid "Description (optional)"
+msgstr "विवरण"
+
+#: .\templates\finance\accounts\form.html:67
+msgid "Notes about this account..."
+msgstr "इस खाते के बारे में नोट्स..."
+
+#: .\templates\finance\accounts\form.html:75
+#: .\templates\social\contacts\form.html:43
+#: .\templates\social\groups\form.html:44
+msgid "Save Changes"
+msgstr "परिवर्तन सहेजें"
 
 #: .\templates\finance\accounts\list.html:12
 msgid "Manage your financial accounts and wallets."
@@ -1039,6 +1323,8 @@ msgid "Welcome back, %(name)s! Here's your financial overview."
 msgstr "वापसी पर स्वागत है, %(name)s! यह रहा आपका वित्तीय अवलोकन।"
 
 #: .\templates\finance\dashboard.html:19 .\templates\finance\dashboard.html:32
+#: .\templates\finance\net_worth.html:4 .\templates\finance\net_worth.html:9
+#: .\templates\finance\net_worth.html:25
 msgid "Net Worth"
 msgstr "शुद्ध संपत्ति"
 
@@ -1047,11 +1333,11 @@ msgstr "शुद्ध संपत्ति"
 msgid "View details"
 msgstr "विवरण देखें"
 
-#: .\templates\finance\dashboard.html:24
+#: .\templates\finance\dashboard.html:24 .\templates\finance\net_worth.html:17
 msgid "Total Assets"
 msgstr "कुल परिसंपत्तियाँ"
 
-#: .\templates\finance\dashboard.html:28
+#: .\templates\finance\dashboard.html:28 .\templates\finance\net_worth.html:21
 msgid "Total Liabilities"
 msgstr "कुल देनदारियाँ"
 
@@ -1093,12 +1379,6 @@ msgstr "अभी कोई लेन-देन नहीं"
 msgid "Get started by adding your first transaction."
 msgstr "अपना पहला लेन-देन जोड़कर शुरू करें।"
 
-#: .\templates\finance\dashboard.html:161
-#: .\templates\finance\transactions\list.html:19
-#: .\templates\finance\transactions\list.html:86
-msgid "Add Transaction"
-msgstr "लेन-देन जोड़ें"
-
 #: .\templates\finance\dashboard.html:182
 msgid "Others Owe You"
 msgstr "दूसरे आपको देनदार हैं"
@@ -1115,36 +1395,137 @@ msgstr "कोई सामाजिक गतिविधि नहीं"
 msgid "Start tracking debts with friends and family."
 msgstr "दोस्तों और परिवार के साथ ऋण ट्रैक करना शुरू करें।"
 
-#: .\templates\finance\dashboard.html:220 .\templates\social\debts\list.html:18
-#: .\templates\social\debts\list.html:78
+#: .\templates\finance\dashboard.html:220 .\templates\social\debts\form.html:4
+#: .\templates\social\debts\form.html:9 .\templates\social\debts\form.html:90
+#: .\templates\social\debts\list.html:18 .\templates\social\debts\list.html:78
 msgid "Record Debt"
 msgstr "ऋण दर्ज करें"
 
-#: .\templates\finance\dashboard.html:223
+#: .\templates\finance\dashboard.html:223 .\templates\social\groups\form.html:4
+#: .\templates\social\groups\form.html:44
 #: .\templates\social\groups\list.html:18
 #: .\templates\social\groups\list.html:54
 msgid "Create Group"
 msgstr "समूह बनाएँ"
 
-#: .\templates\finance\transactions\list.html:12
-msgid "View and manage all your transactions."
-msgstr "अपने सभी लेन-देन देखें और प्रबंधित करें।"
+#: .\templates\finance\net_worth.html:10
+msgid "Overview of your assets and liabilities."
+msgstr "आपकी परिसंपत्तियों और देनदारियों का अवलोकन।"
 
+#: .\templates\finance\net_worth.html:37
+#, fuzzy
+#| msgid "Total Assets"
+msgid "Assets"
+msgstr "कुल परिसंपत्तियाँ"
+
+#: .\templates\finance\net_worth.html:50
+#, fuzzy
+#| msgid "No transactions yet"
+msgid "No assets yet."
+msgstr "अभी कोई लेन-देन नहीं"
+
+#: .\templates\finance\net_worth.html:59
+#, fuzzy
+#| msgid "Total Liabilities"
+msgid "Liabilities"
+msgstr "कुल देनदारियाँ"
+
+#: .\templates\finance\net_worth.html:72
+#, fuzzy
+#| msgid "Total Liabilities"
+msgid "No liabilities."
+msgstr "कुल देनदारियाँ"
+
+#: .\templates\finance\transactions\detail.html:4
+#, fuzzy
+#| msgid "Transaction Operations"
+msgid "Transaction Details"
+msgstr "लेन-देन संचालन"
+
+#: .\templates\finance\transactions\detail.html:12
+#, fuzzy
+#| msgid "View details"
+msgid "Details"
+msgstr "विवरण देखें"
+
+#: .\templates\finance\transactions\detail.html:27
+#: .\templates\finance\transactions\form.html:69
 #: .\templates\finance\transactions\list.html:29
+#: .\templates\social\debts\detail.html:43
+#: .\templates\social\debts\form.html:82
+#: .\templates\social\settlements\list.html:28
 msgid "Date"
 msgstr "तारीख"
 
-#: .\templates\finance\transactions\list.html:30
-msgid "Description"
-msgstr "विवरण"
+#: .\templates\finance\transactions\detail.html:35
+#: .\templates\finance\transactions\form.html:28
+msgid "Type"
+msgstr "प्रकार"
 
+#: .\templates\finance\transactions\detail.html:39
 #: .\templates\finance\transactions\list.html:32
 msgid "Category"
 msgstr "श्रेणी"
 
+#: .\templates\finance\transactions\detail.html:40
+msgid "Uncategorized"
+msgstr "बिना श्रेणी"
+
+#: .\templates\finance\transactions\detail.html:43
+msgid "Status"
+msgstr "स्थिति"
+
+#: .\templates\finance\transactions\detail.html:51
+#, fuzzy
+#| msgid "Recent Transactions"
+msgid "Back to Transactions"
+msgstr "हालिया लेन-देन"
+
+#: .\templates\finance\transactions\form.html:20
+#, fuzzy
+#| msgid "Delete Account"
+msgid "Select account..."
+msgstr "खाता हटाएँ"
+
+#: .\templates\finance\transactions\form.html:31
+msgid "Expense (Debit)"
+msgstr "खर्च (डेबिट)"
+
+#: .\templates\finance\transactions\form.html:32
+msgid "Income (Credit)"
+msgstr "आय (क्रेडिट)"
+
+#: .\templates\finance\transactions\form.html:37
 #: .\templates\finance\transactions\list.html:33
+#: .\templates\social\debts\form.html:52
+#: .\templates\social\settlements\form.html:52
+#: .\templates\social\settlements\list.html:31
 msgid "Amount"
 msgstr "राशि"
+
+#: .\templates\finance\transactions\form.html:50
+#: .\templates\finance\transactions\list.html:30
+msgid "Description"
+msgstr "विवरण"
+
+#: .\templates\finance\transactions\form.html:54
+#: .\templates\social\debts\form.html:78
+msgid "What was this for?"
+msgstr "यह किस लिए था?"
+
+#: .\templates\finance\transactions\form.html:58
+msgid "Category (optional)"
+msgstr "श्रेणी (वैकल्पिक)"
+
+#: .\templates\finance\transactions\form.html:61
+#, fuzzy
+#| msgid "Category"
+msgid "No category"
+msgstr "श्रेणी"
+
+#: .\templates\finance\transactions\list.html:12
+msgid "View and manage all your transactions."
+msgstr "अपने सभी लेन-देन देखें और प्रबंधित करें।"
 
 #: .\templates\finance\transactions\list.html:65
 #, python-format
@@ -1217,18 +1598,128 @@ msgstr "और लोड करें"
 msgid "Loading..."
 msgstr "लोड हो रहा है..."
 
-#: .\templates\social\contacts\list.html:12
-msgid "People you track debts and expenses with."
-msgstr "वे लोग जिनके साथ आप ऋण और खर्च ट्रैक करते हैं।"
+#: .\templates\react\dashboard.html:7
+msgid "Your personal finance dashboard - Djanbe Finance"
+msgstr "आपका व्यक्तिगत वित्त डैशबोर्ड - Djanbe Finance"
 
+#: .\templates\react\dashboard.html:13
+msgid "Your personal finance dashboard"
+msgstr "आपका व्यक्तिगत वित्त डैशबोर्ड"
+
+#: .\templates\react\dashboard.html:72
+#, fuzzy
+#| msgid "Loading..."
+msgid "Loading dashboard..."
+msgstr "लोड हो रहा है..."
+
+#: .\templates\social\balances\summary.html:4
+#: .\templates\social\balances\summary.html:9
+msgid "Balance Summary"
+msgstr "शेष सारांश"
+
+#: .\templates\social\balances\summary.html:10
+msgid "See who owes you and who you owe."
+msgstr "देखें कौन आपको देता है और आप किसे देते हैं।"
+
+#: .\templates\social\balances\summary.html:18
+#, fuzzy
+#| msgid "Others Owe You"
+msgid "They Owe You"
+msgstr "दूसरे आपको देनदार हैं"
+
+#: .\templates\social\balances\summary.html:37
+msgid "No one owes you money."
+msgstr "कोई आपको पैसा नहीं देता।"
+
+#: .\templates\social\balances\summary.html:46
+#, fuzzy
+#| msgid "You Owe Others"
+msgid "You Owe Them"
+msgstr "आप दूसरों के देनदार हैं"
+
+#: .\templates\social\balances\summary.html:65
+msgid "You don't owe anyone money."
+msgstr "आप किसी के देनदार नहीं हैं।"
+
+#: .\templates\social\balances\summary.html:76
+msgid "All settled up!"
+msgstr "सब निपट गया!"
+
+#: .\templates\social\balances\summary.html:77
+msgid "You have no outstanding balances with anyone."
+msgstr "आपके पास किसी के साथ कोई बकाया शेष नहीं है।"
+
+#: .\templates\social\contacts\detail.html:25
+#: .\templates\social\contacts\list.html:39
+msgid "No email"
+msgstr "ईमेल नहीं"
+
+#: .\templates\social\contacts\detail.html:37
+msgid "Phone"
+msgstr "फोन"
+
+#: .\templates\social\contacts\detail.html:43
+msgid "Notes"
+msgstr "नोट्स"
+
+#: .\templates\social\contacts\detail.html:60
+#, fuzzy
+#| msgid "Debts"
+msgid "Debt"
+msgstr "ऋण"
+
+#: .\templates\social\contacts\detail.html:64
+#: .\templates\social\debts\list.html:59
+msgid "They owe"
+msgstr "वे देनदार हैं"
+
+#: .\templates\social\contacts\detail.html:64
+#: .\templates\social\debts\list.html:59
+msgid "You owe"
+msgstr "आप देनदार हैं"
+
+#: .\templates\social\contacts\form.html:4
+#: .\templates\social\contacts\form.html:9
+#, fuzzy
+#| msgid "Add Contact"
+msgid "Edit Contact"
+msgstr "संपर्क जोड़ें"
+
+#: .\templates\social\contacts\form.html:4
+#, fuzzy
+#| msgid "Contacts"
+msgid "New Contact"
+msgstr "संपर्क"
+
+#: .\templates\social\contacts\form.html:9
+#: .\templates\social\contacts\form.html:43
 #: .\templates\social\contacts\list.html:19
 #: .\templates\social\contacts\list.html:77
 msgid "Add Contact"
 msgstr "संपर्क जोड़ें"
 
-#: .\templates\social\contacts\list.html:39
-msgid "No email"
-msgstr "ईमेल नहीं"
+#: .\templates\social\contacts\form.html:17
+msgid "Name"
+msgstr "नाम"
+
+#: .\templates\social\contacts\form.html:23
+msgid "Email (optional)"
+msgstr "ईमेल (वैकल्पिक)"
+
+#: .\templates\social\contacts\form.html:29
+msgid "Phone (optional)"
+msgstr "फोन (वैकल्पिक)"
+
+#: .\templates\social\contacts\form.html:35
+#: .\templates\social\settlements\form.html:89
+#, fuzzy
+#| msgid "All systems operational"
+msgid "Notes (optional)"
+msgstr "सभी सिस्टम चालू हैं"
+
+#: .\templates\social\contacts\list.html:12
+msgid "People you track debts and expenses with."
+msgstr "वे लोग जिनके साथ आप ऋण और खर्च ट्रैक करते हैं।"
 
 #: .\templates\social\contacts\list.html:70
 msgid "No contacts"
@@ -1237,6 +1728,83 @@ msgstr "कोई संपर्क नहीं"
 #: .\templates\social\contacts\list.html:71
 msgid "Add people you share expenses or debts with."
 msgstr "उन लोगों को जोड़ें जिनके साथ आप खर्च या ऋण साझा करते हैं।"
+
+#: .\templates\social\debts\detail.html:4
+#, fuzzy
+#| msgid "View details"
+msgid "Debt Details"
+msgstr "विवरण देखें"
+
+#: .\templates\social\debts\detail.html:21
+#, fuzzy
+#| msgid "They owe"
+msgid "They owe you"
+msgstr "वे देनदार हैं"
+
+#: .\templates\social\debts\detail.html:21
+#, fuzzy
+#| msgid "You Owe Others"
+msgid "You owe them"
+msgstr "आप दूसरों के देनदार हैं"
+
+#: .\templates\social\debts\detail.html:35
+#: .\templates\social\debts\form.html:17
+#: .\templates\social\settlements\form.html:17
+#: .\templates\social\settlements\list.html:29
+#, fuzzy
+#| msgid "Contacts"
+msgid "Contact"
+msgstr "संपर्क"
+
+#: .\templates\social\debts\detail.html:39
+msgid "Original Amount"
+msgstr "मूल राशि"
+
+#: .\templates\social\debts\detail.html:48
+msgid "Reason"
+msgstr "कारण"
+
+#: .\templates\social\debts\detail.html:57
+#: .\templates\social\settlements\form.html:4
+#: .\templates\social\settlements\form.html:9
+#: .\templates\social\settlements\form.html:97
+#: .\templates\social\settlements\list.html:18
+#, fuzzy
+#| msgid "Settlements"
+msgid "Record Settlement"
+msgstr "निपटान"
+
+#: .\templates\social\debts\form.html:20
+#: .\templates\social\settlements\form.html:20
+msgid "Select contact..."
+msgstr "संपर्क चुनें..."
+
+#: .\templates\social\debts\form.html:28
+#: .\templates\social\settlements\list.html:30
+#, fuzzy
+#| msgid "Description"
+msgid "Direction"
+msgstr "विवरण"
+
+#: .\templates\social\debts\form.html:34
+msgid "I Lent"
+msgstr "मैंने उधार दिया"
+
+#: .\templates\social\debts\form.html:35
+msgid "Money I gave them"
+msgstr "वह पैसा जो मैंने उन्हें दिया"
+
+#: .\templates\social\debts\form.html:43
+msgid "I Borrowed"
+msgstr "मैंने उधार लिया"
+
+#: .\templates\social\debts\form.html:44
+msgid "Money they gave me"
+msgstr "वह पैसा जो उन्होंने मुझे दिया"
+
+#: .\templates\social\debts\form.html:75
+msgid "Reason (optional)"
+msgstr "कारण (वैकल्पिक)"
 
 #: .\templates\social\debts\list.html:11
 msgid "Track money lent and borrowed."
@@ -1254,14 +1822,6 @@ msgstr "आपने उधार लिया (आप देनदार है
 msgid "Net Balance"
 msgstr "शुद्ध शेष"
 
-#: .\templates\social\debts\list.html:59
-msgid "They owe"
-msgstr "वे देनदार हैं"
-
-#: .\templates\social\debts\list.html:59
-msgid "You owe"
-msgstr "आप देनदार हैं"
-
 #: .\templates\social\debts\list.html:74
 msgid "No debts"
 msgstr "कोई ऋण नहीं"
@@ -1269,6 +1829,56 @@ msgstr "कोई ऋण नहीं"
 #: .\templates\social\debts\list.html:75
 msgid "Start tracking money lent or borrowed."
 msgstr "उधार दिए या लिए गए पैसे को ट्रैक करना शुरू करें।"
+
+#: .\templates\social\groups\detail.html:26
+msgid "Coming soon"
+msgstr "जल्द आ रहा है"
+
+#: .\templates\social\groups\detail.html:30
+#, fuzzy
+#| msgid "Total Expenses"
+msgid "Add Expense"
+msgstr "कुल खर्च"
+
+#: .\templates\social\groups\detail.html:31
+msgid "Soon"
+msgstr "जल्द"
+
+#: .\templates\social\groups\detail.html:39
+#, fuzzy
+#| msgid "Total Expenses"
+msgid "Expenses"
+msgstr "कुल खर्च"
+
+#: .\templates\social\groups\detail.html:52
+msgid "No expenses yet. Add one to get started."
+msgstr "अभी कोई खर्च नहीं। शुरू करने के लिए एक जोड़ें।"
+
+#: .\templates\social\groups\form.html:4 .\templates\social\groups\form.html:9
+#, fuzzy
+#| msgid "Create Group"
+msgid "Edit Group"
+msgstr "समूह बनाएँ"
+
+#: .\templates\social\groups\form.html:9
+#, fuzzy
+#| msgid "Expense Groups"
+msgid "Create Expense Group"
+msgstr "खर्च समूह"
+
+#: .\templates\social\groups\form.html:17
+#, fuzzy
+#| msgid "Groups"
+msgid "Group Name"
+msgstr "समूह"
+
+#: .\templates\social\groups\form.html:20
+msgid "e.g., Roommates, Trip to Paris"
+msgstr "उदा., रूममेट्स, पेरिस की यात्रा"
+
+#: .\templates\social\groups\form.html:27
+msgid "What is this group for?"
+msgstr "यह समूह किस लिए है?"
 
 #: .\templates\social\groups\list.html:4 .\templates\social\groups\list.html:10
 msgid "Expense Groups"
@@ -1289,3 +1899,69 @@ msgstr "कोई खर्च समूह नहीं"
 #: .\templates\social\groups\list.html:51
 msgid "Create a group to start splitting expenses."
 msgstr "खर्च बाँटना शुरू करने के लिए एक समूह बनाएँ।"
+
+#: .\templates\social\settlements\form.html:28
+msgid "Who paid?"
+msgstr "किसने भुगतान किया?"
+
+#: .\templates\social\settlements\form.html:34
+msgid "I Paid"
+msgstr "मैंने भुगतान किया"
+
+#: .\templates\social\settlements\form.html:35
+#: .\templates\social\settlements\list.html:44
+msgid "You paid them"
+msgstr "आपने उन्हें भुगतान किया"
+
+#: .\templates\social\settlements\form.html:43
+msgid "They Paid"
+msgstr "उन्होंने भुगतान किया"
+
+#: .\templates\social\settlements\form.html:44
+#: .\templates\social\settlements\list.html:44
+msgid "They paid you"
+msgstr "उन्होंने आपको भुगतान किया"
+
+#: .\templates\social\settlements\form.html:75
+msgid "Payment Method (optional)"
+msgstr "भुगतान विधि (वैकल्पिक)"
+
+#: .\templates\social\settlements\form.html:78
+#, fuzzy
+#| msgid "Not verified"
+msgid "Not specified"
+msgstr "सत्यापित नहीं"
+
+#: .\templates\social\settlements\form.html:80
+msgid "Bank Transfer"
+msgstr "बैंक ट्रांसफर"
+
+#: .\templates\social\settlements\form.html:81
+msgid "UPI"
+msgstr "UPI"
+
+#: .\templates\social\settlements\form.html:82
+msgid "Venmo"
+msgstr "Venmo"
+
+#: .\templates\social\settlements\form.html:83
+msgid "PayPal"
+msgstr "PayPal"
+
+#: .\templates\social\settlements\form.html:84
+msgid "Other"
+msgstr "अन्य"
+
+#: .\templates\social\settlements\list.html:11
+msgid "Record payments to settle debts."
+msgstr "ऋण निपटाने के लिए भुगतान दर्ज करें।"
+
+#: .\templates\social\settlements\list.html:59
+#, fuzzy
+#| msgid "Settlements"
+msgid "No settlements"
+msgstr "निपटान"
+
+#: .\templates\social\settlements\list.html:60
+msgid "Record settlements when debts are paid."
+msgstr "जब ऋण चुकाए जाएँ तो निपटान दर्ज करें।"

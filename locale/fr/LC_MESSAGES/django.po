@@ -1,0 +1,1291 @@
+# DJANBE FINANCE FRENCH TRANSLATION.
+# Copyright (C) 2026 DJANBE FINANCE
+# This file is distributed under the same license as the Djanbe Finance package.
+# Farzam Mehdi <ifarzammehdi@gmail.com>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: django-finance\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-08 07:21+0500\n"
+"PO-Revision-Date: 2026-02-08 07:21+0500\n"
+"Last-Translator: Farzam Mehdi <ifarzammehdi@gmail.com>\n"
+"Language-Team: French (http://www.transifex.com/django/django/language/fr/)\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\config\settings\base.py:216
+msgid "English"
+msgstr "Anglais"
+
+#: .\config\settings\base.py:217
+msgid "Spanish"
+msgstr "Espagnol"
+
+#: .\config\settings\base.py:218
+msgid "German"
+msgstr "Allemand"
+
+#: .\config\settings\base.py:219
+msgid "French"
+msgstr "Français"
+
+#: .\config\settings\base.py:220
+msgid "Italian"
+msgstr "Italien"
+
+#: .\config\settings\base.py:221
+msgid "Simplified Chinese"
+msgstr "Chinois simplifié"
+
+#: .\config\settings\base.py:222
+msgid "Arabic"
+msgstr "Arabe"
+
+#: .\config\settings\base.py:223
+msgid "Persian"
+msgstr "Persan"
+
+#: .\config\settings\base.py:224
+msgid "Urdu"
+msgstr "Ourdou"
+
+#: .\config\settings\base.py:225
+msgid "Hindi"
+msgstr "Hindi"
+
+#: .\config\settings\base.py:226
+msgid "Hungarian"
+msgstr "Hongrois"
+
+#: .\config\settings\base.py:227
+msgid "Norwegian"
+msgstr "Norvégien"
+
+#: .\config\settings\base.py:228
+msgid "Japanese"
+msgstr "Japonais"
+
+#: .\config\settings\base.py:229
+msgid "Korean"
+msgstr "Coréen"
+
+#: .\modules\accounts\interfaces\serializers.py:66
+msgid "Email is already registered."
+msgstr "L'email est déjà enregistré."
+
+#: .\modules\accounts\interfaces\serializers.py:80
+#: .\modules\accounts\interfaces\serializers.py:208
+#: .\modules\accounts\interfaces\serializers.py:231
+msgid "Passwords do not match."
+msgstr "Les mots de passe ne correspondent pas."
+
+#: .\modules\accounts\interfaces\serializers.py:111
+#: .\modules\accounts\interfaces\serializers.py:150
+msgid "Invalid email or password."
+msgstr "Email ou mot de passe invalide."
+
+#: .\modules\accounts\interfaces\serializers.py:118
+msgid "Account is locked. Please try again later."
+msgstr "Le compte est verrouillé. Veuillez réessayer plus tard."
+
+#: .\modules\accounts\interfaces\serializers.py:126
+msgid "Please verify your email address."
+msgstr "Veuillez vérifier votre adresse email."
+
+#: .\modules\accounts\interfaces\serializers.py:130
+msgid "Account is not active."
+msgstr "Le compte n'est pas actif."
+
+#: .\modules\accounts\interfaces\serializers.py:237
+msgid "Current password is incorrect."
+msgstr "Le mot de passe actuel est incorrect."
+
+#: .\modules\accounts\interfaces\views.py:87
+msgid ""
+"Registration successful. Please check your email to verify your account."
+msgstr "Inscription réussie. Veuillez vérifier votre email pour confirmer votre compte."
+
+#: .\modules\accounts\interfaces\views.py:118
+msgid "Refresh token is required."
+msgstr "Le jeton d'actualisation est requis."
+
+#: .\modules\accounts\interfaces\views.py:131
+msgid "Successfully logged out."
+msgstr "Déconnexion réussie."
+
+#: .\modules\accounts\interfaces\views.py:134
+msgid "Invalid token."
+msgstr "Jeton invalide."
+
+#: .\modules\accounts\interfaces\views.py:157
+msgid "Invalid verification token."
+msgstr "Jeton de vérification invalide."
+
+#: .\modules\accounts\interfaces\views.py:163
+msgid "Verification token has expired."
+msgstr "Le jeton de vérification a expiré."
+
+#: .\modules\accounts\interfaces\views.py:177
+msgid "Email verified successfully."
+msgstr "Email vérifié avec succès."
+
+#: .\modules\accounts\interfaces\views.py:195
+msgid "Email is already verified."
+msgstr "L'email est déjà vérifié."
+
+#: .\modules\accounts\interfaces\views.py:221
+msgid "Verification email sent."
+msgstr "Email de vérification envoyé."
+
+#: .\modules\accounts\interfaces\views.py:270
+msgid ""
+"If an account exists with this email, a password reset link has been sent."
+msgstr "Si un compte existe avec cet email, un lien de réinitialisation du mot de passe a été envoyé."
+
+#: .\modules\accounts\interfaces\views.py:293
+msgid "Invalid reset token."
+msgstr "Jeton de réinitialisation invalide."
+
+#: .\modules\accounts\interfaces\views.py:299
+msgid "Reset token has expired."
+msgstr "Le jeton de réinitialisation a expiré."
+
+#: .\modules\accounts\interfaces\views.py:328
+msgid "Password reset successfully."
+msgstr "Mot de passe réinitialisé avec succès."
+
+#: .\modules\accounts\interfaces\views.py:354
+msgid "Password changed successfully."
+msgstr "Mot de passe modifié avec succès."
+
+#: .\modules\demo\interfaces\views.py:63
+#: .\modules\notifications\interfaces\views.py:111
+msgid "Notification marked as read."
+msgstr "Notification marquée comme lue."
+
+#: .\modules\demo\interfaces\views.py:66
+#: .\modules\notifications\interfaces\views.py:79
+#: .\modules\notifications\interfaces\views.py:107
+#: .\modules\notifications\interfaces\views.py:157
+msgid "Notification not found."
+msgstr "Notification introuvable."
+
+#: .\modules\demo\interfaces\views.py:88
+#: .\modules\notifications\interfaces\views.py:137
+#, python-format
+msgid "%(count)s notifications marked as read."
+msgstr "%(count)s notifications marquées comme lues."
+
+#: .\modules\demo\interfaces\views.py:100
+msgid "Admin access required."
+msgstr "Accès administrateur requis."
+
+#: .\modules\demo\interfaces\views.py:166
+msgid "Demo event created."
+msgstr "Événement de démonstration créé."
+
+#: .\modules\finance\interfaces\serializers.py:33
+#, python-format
+msgid "Unsupported currency: %(currency)s"
+msgstr "Devise non prise en charge : %(currency)s"
+
+#: .\modules\finance\interfaces\serializers.py:320
+msgid "Cannot transfer to the same account."
+msgstr "Impossible de transférer vers le même compte."
+
+#: .\modules\notifications\interfaces\views.py:87
+#: .\modules\notifications\interfaces\views.py:115
+#: .\modules\notifications\interfaces\views.py:165
+msgid "Invalid notification ID."
+msgstr "ID de notification invalide."
+
+#: .\modules\notifications\interfaces\views.py:161
+msgid "Notification archived."
+msgstr "Notification archivée."
+
+#: .\modules\notifications\interfaces\views.py:209
+#, python-format
+msgid "Invalid category. Must be one of: %(categories)s"
+msgstr "Catégorie invalide. Doit être l'une de : %(categories)s"
+
+#: .\modules\social\interfaces\serializers.py:267
+msgid ""
+"Either paid_by_owner must be True or paid_by_contact_id must be provided."
+msgstr "paid_by_owner doit être True ou paid_by_contact_id doit être fourni."
+
+#: .\modules\social\interfaces\serializers.py:322
+msgid "Cannot set both owner_pays and owner_receives to True."
+msgstr "Impossible de définir owner_pays et owner_receives sur True en même temps."
+
+#: .\modules\social\interfaces\serializers.py:326
+msgid "Must set either owner_pays or owner_receives to True."
+msgstr "Il faut définir owner_pays ou owner_receives sur True."
+
+#: .\templates\accounts\login.html:4
+msgid "Sign In"
+msgstr "Se connecter"
+
+#: .\templates\accounts\login.html:9
+msgid "Welcome back"
+msgstr "Bon retour"
+
+#: .\templates\accounts\login.html:12
+msgid "Don't have an account?"
+msgstr "Vous n'avez pas de compte ?"
+
+#: .\templates\accounts\login.html:14
+msgid "Sign up for free"
+msgstr "Inscrivez-vous gratuitement"
+
+#: .\templates\accounts\login.html:43
+#: .\templates\accounts\password_reset.html:38
+#: .\templates\accounts\register.html:83
+msgid "Email address"
+msgstr "Adresse email"
+
+#: .\templates\accounts\login.html:66 .\templates\accounts\register.html:105
+msgid "Password"
+msgstr "Mot de passe"
+
+#: .\templates\accounts\login.html:93
+msgid "Remember me"
+msgstr "Se souvenir de moi"
+
+#: .\templates\accounts\login.html:99
+msgid "Forgot your password?"
+msgstr "Mot de passe oublié ?"
+
+#: .\templates\accounts\login.html:107 .\templates\accounts\register.html:14
+msgid "Sign in"
+msgstr "Se connecter"
+
+#: .\templates\accounts\password_reset.html:4
+msgid "Reset Password"
+msgstr "Réinitialiser le mot de passe"
+
+#: .\templates\accounts\password_reset.html:9
+msgid "Reset your password"
+msgstr "Réinitialiser votre mot de passe"
+
+#: .\templates\accounts\password_reset.html:12
+msgid ""
+"Enter your email address and we'll send you a link to reset your password."
+msgstr "Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe."
+
+#: .\templates\accounts\password_reset.html:60
+msgid "Send reset link"
+msgstr "Envoyer le lien de réinitialisation"
+
+#: .\templates\accounts\password_reset.html:66
+msgid "Back to sign in"
+msgstr "Retour à la connexion"
+
+#: .\templates\accounts\profile.html:4 .\templates\accounts\profile.html:9
+#: .\templates\base\app.html:249 .\templates\base\app.html:306
+msgid "Your Profile"
+msgstr "Votre profil"
+
+#: .\templates\accounts\profile.html:27
+msgid "Member since"
+msgstr "Membre depuis"
+
+#: .\templates\accounts\profile.html:36
+msgid "Account Information"
+msgstr "Informations du compte"
+
+#: .\templates\accounts\profile.html:39 .\templates\accounts\register.html:44
+#: .\templates\accounts\settings.html:41
+msgid "First name"
+msgstr "Prénom"
+
+#: .\templates\accounts\profile.html:40 .\templates\accounts\profile.html:44
+msgid "Not set"
+msgstr "Non défini"
+
+#: .\templates\accounts\profile.html:43 .\templates\accounts\register.html:62
+#: .\templates\accounts\settings.html:46
+msgid "Last name"
+msgstr "Nom"
+
+#: .\templates\accounts\profile.html:47 .\templates\accounts\settings.html:52
+#: .\templates\accounts\settings.html:257
+#: .\templates\accounts\settings.html:307
+#: .\templates\accounts\settings.html:357
+#: .\templates\accounts\settings.html:407
+msgid "Email"
+msgstr "Email"
+
+#: .\templates\accounts\profile.html:51
+msgid "Email verified"
+msgstr "Email vérifié"
+
+#: .\templates\accounts\profile.html:55
+msgid "Verified"
+msgstr "Vérifié"
+
+#: .\templates\accounts\profile.html:59
+msgid "Not verified"
+msgstr "Non vérifié"
+
+#: .\templates\accounts\profile.html:68
+msgid "Account Actions"
+msgstr "Actions du compte"
+
+#: .\templates\accounts\profile.html:71
+msgid "Edit Profile"
+msgstr "Modifier le profil"
+
+#: .\templates\accounts\profile.html:74 .\templates\accounts\settings.html:78
+#: .\templates\accounts\settings.html:121
+msgid "Change Password"
+msgstr "Changer le mot de passe"
+
+#: .\templates\accounts\register.html:4
+msgid "Create Account"
+msgstr "Créer un compte"
+
+#: .\templates\accounts\register.html:9
+msgid "Create your account"
+msgstr "Créez votre compte"
+
+#: .\templates\accounts\register.html:12
+msgid "Already have an account?"
+msgstr "Vous avez déjà un compte ?"
+
+#: .\templates\accounts\register.html:122
+msgid ""
+"Must be at least 12 characters with uppercase, lowercase, number, and "
+"special character."
+msgstr "Doit contenir au moins 12 caractères avec majuscules, minuscules, chiffre et caractère spécial."
+
+#: .\templates\accounts\register.html:130
+msgid "Confirm password"
+msgstr "Confirmer le mot de passe"
+
+#: .\templates\accounts\register.html:156
+msgid "I agree to the"
+msgstr "J'accepte les"
+
+#: .\templates\accounts\register.html:157
+#: .\templates\accounts\register.html:170
+msgid "Terms of Service"
+msgstr "Conditions d'utilisation"
+
+#: .\templates\accounts\register.html:158
+msgid "and"
+msgstr "et"
+
+#: .\templates\accounts\register.html:159
+#: .\templates\accounts\register.html:200
+msgid "Privacy Policy"
+msgstr "Politique de confidentialité"
+
+#: .\templates\accounts\register.html:172
+msgid "1. Acceptance of Terms"
+msgstr "1. Acceptation des conditions"
+
+#: .\templates\accounts\register.html:173
+msgid ""
+"By accessing and using Djanbe Finance, you agree to be bound by these Terms "
+"of Service."
+msgstr "En accédant et en utilisant Djanbe Finance, vous acceptez d'être lié par ces conditions d'utilisation."
+
+#: .\templates\accounts\register.html:174
+msgid "2. Use of Service"
+msgstr "2. Utilisation du service"
+
+#: .\templates\accounts\register.html:175
+msgid ""
+"You agree to use the service only for lawful purposes and in accordance with "
+"these terms. You are responsible for maintaining the confidentiality of your "
+"account."
+msgstr "Vous acceptez d'utiliser le service uniquement à des fins légales et conformément à ces conditions. Vous êtes responsable de la confidentialité de votre compte."
+
+#: .\templates\accounts\register.html:176
+msgid "3. User Data"
+msgstr "3. Données utilisateur"
+
+#: .\templates\accounts\register.html:177
+msgid ""
+"You retain ownership of all financial data you enter. We do not sell or "
+"share your personal financial information with third parties."
+msgstr "Vous conservez la propriété de toutes les données financières que vous saisissez. Nous ne vendons ni ne partageons vos informations financières personnelles avec des tiers."
+
+#: .\templates\accounts\register.html:178
+msgid "4. Service Availability"
+msgstr "4. Disponibilité du service"
+
+#: .\templates\accounts\register.html:179
+msgid ""
+"We strive to maintain service availability but do not guarantee "
+"uninterrupted access. We may modify or discontinue features with reasonable "
+"notice."
+msgstr "Nous nous efforçons de maintenir la disponibilité du service, mais ne garantissons pas un accès ininterrompu. Nous pouvons modifier ou interrompre des fonctionnalités avec un préavis raisonnable."
+
+#: .\templates\accounts\register.html:180
+msgid "5. Limitation of Liability"
+msgstr "5. Limitation de responsabilité"
+
+#: .\templates\accounts\register.html:181
+msgid "Djanbe Finance is provided \\"
+msgstr ""
+
+#: .\templates\accounts\register.html:186
+#: .\templates\accounts\register.html:216
+#: .\templates\accounts\settings.html:204
+msgid "Close"
+msgstr "Fermer"
+
+#: .\templates\accounts\register.html:202
+msgid "1. Information We Collect"
+msgstr "1. Informations que nous collectons"
+
+#: .\templates\accounts\register.html:203
+msgid ""
+"We collect information you provide directly: email, name, and financial data "
+"you choose to enter (accounts, transactions, contacts)."
+msgstr "Nous collectons les informations que vous fournissez directement : email, nom et données financières que vous choisissez de saisir (comptes, transactions, contacts)."
+
+#: .\templates\accounts\register.html:204
+msgid "2. How We Use Your Information"
+msgstr "2. Comment nous utilisons vos informations"
+
+#: .\templates\accounts\register.html:205
+msgid ""
+"Your data is used solely to provide the service. We use it to display your "
+"financial overview, calculate balances, and send notifications you've opted "
+"into."
+msgstr "Vos données sont utilisées uniquement pour fournir le service. Nous les utilisons pour afficher votre aperçu financier, calculer les soldes et envoyer les notifications auxquelles vous avez opté."
+
+#: .\templates\accounts\register.html:206
+msgid "3. Data Security"
+msgstr "3. Sécurité des données"
+
+#: .\templates\accounts\register.html:207
+msgid ""
+"We implement industry-standard security measures including encryption, "
+"secure authentication, and regular security audits to protect your data."
+msgstr "Nous mettons en œuvre des mesures de sécurité conformes aux standards de l'industrie, y compris le chiffrement, une authentification sécurisée et des audits de sécurité réguliers pour protéger vos données."
+
+#: .\templates\accounts\register.html:208
+msgid "4. Data Sharing"
+msgstr "4. Partage des données"
+
+#: .\templates\accounts\register.html:209
+msgid ""
+"We do not sell, trade, or share your personal financial data with third "
+"parties. Data may only be shared if required by law."
+msgstr "Nous ne vendons, n'échangeons ni ne partageons vos données financières personnelles avec des tiers. Les données ne peuvent être partagées que si la loi l'exige."
+
+#: .\templates\accounts\register.html:210
+msgid "5. Your Rights"
+msgstr "5. Vos droits"
+
+#: .\templates\accounts\register.html:211
+msgid ""
+"You can access, export, or delete your data at any time through your account "
+"settings. Contact us for any privacy-related requests."
+msgstr "Vous pouvez accéder, exporter ou supprimer vos données à tout moment via les paramètres de votre compte. Contactez-nous pour toute demande liée à la confidentialité."
+
+#: .\templates\accounts\register.html:226
+msgid "Create account"
+msgstr "Créer un compte"
+
+#: .\templates\accounts\settings.html:4 .\templates\accounts\settings.html:9
+#: .\templates\base\app.html:250 .\templates\base\app.html:307
+msgid "Settings"
+msgstr "Paramètres"
+
+#: .\templates\accounts\settings.html:10
+msgid "Manage your account preferences."
+msgstr "Gérez vos préférences de compte."
+
+#: .\templates\accounts\settings.html:17
+msgid "Profile Settings"
+msgstr "Paramètres du profil"
+
+#: .\templates\accounts\settings.html:18
+msgid "Update your personal information."
+msgstr "Mettez à jour vos informations personnelles."
+
+#: .\templates\accounts\settings.html:27
+msgid "Profile updated successfully!"
+msgstr "Profil mis à jour avec succès !"
+
+#: .\templates\accounts\settings.html:55
+msgid "Contact support to change your email address."
+msgstr "Contactez le support pour changer votre adresse email."
+
+#: .\templates\accounts\settings.html:73
+msgid "Security"
+msgstr "Sécurité"
+
+#: .\templates\accounts\settings.html:74
+msgid "Manage your password and security preferences."
+msgstr "Gérez votre mot de passe et vos préférences de sécurité."
+
+#: .\templates\accounts\settings.html:124
+msgid "Enter your current password and choose a new one."
+msgstr "Entrez votre mot de passe actuel et choisissez-en un nouveau."
+
+#: .\templates\accounts\settings.html:138
+msgid "Password changed successfully!"
+msgstr "Mot de passe modifié avec succès !"
+
+#: .\templates\accounts\settings.html:159
+msgid "Current Password"
+msgstr "Mot de passe actuel"
+
+#: .\templates\accounts\settings.html:166
+msgid "New Password"
+msgstr "Nouveau mot de passe"
+
+#: .\templates\accounts\settings.html:170
+msgid "Minimum 12 characters with uppercase, lowercase, number, and symbol."
+msgstr "Minimum 12 caractères avec majuscules, minuscules, chiffre et symbole."
+
+#: .\templates\accounts\settings.html:174
+msgid "Confirm New Password"
+msgstr "Confirmer le nouveau mot de passe"
+
+#: .\templates\accounts\settings.html:194
+msgid "Cancel"
+msgstr "Annuler"
+
+#: .\templates\accounts\settings.html:215
+msgid "Notification Preferences"
+msgstr "Préférences de notification"
+
+#: .\templates\accounts\settings.html:216
+msgid "Choose how you want to be notified."
+msgstr "Choisissez comment vous souhaitez être notifié."
+
+#: .\templates\accounts\settings.html:240
+#: .\templates\finance\transactions\list.html:31
+msgid "Account"
+msgstr "Compte"
+
+#: .\templates\accounts\settings.html:242
+msgid "Login alerts, password changes, and account updates."
+msgstr "Alertes de connexion, changements de mot de passe et mises à jour du compte."
+
+#: .\templates\accounts\settings.html:247
+#: .\templates\accounts\settings.html:297
+#: .\templates\accounts\settings.html:347
+#: .\templates\accounts\settings.html:397
+msgid "In-app"
+msgstr "Dans l'application"
+
+#: .\templates\accounts\settings.html:267
+#: .\templates\accounts\settings.html:317
+#: .\templates\accounts\settings.html:367
+#: .\templates\accounts\settings.html:417
+msgid "Frequency"
+msgstr "Fréquence"
+
+#: .\templates\accounts\settings.html:271
+#: .\templates\accounts\settings.html:321
+#: .\templates\accounts\settings.html:371
+#: .\templates\accounts\settings.html:421
+msgid "Immediate"
+msgstr "Immédiat"
+
+#: .\templates\accounts\settings.html:272
+#: .\templates\accounts\settings.html:322
+#: .\templates\accounts\settings.html:372
+#: .\templates\accounts\settings.html:422
+msgid "Daily"
+msgstr "Quotidien"
+
+#: .\templates\accounts\settings.html:273
+#: .\templates\accounts\settings.html:323
+#: .\templates\accounts\settings.html:373
+#: .\templates\accounts\settings.html:423
+msgid "Weekly"
+msgstr "Hebdomadaire"
+
+#: .\templates\accounts\settings.html:274
+#: .\templates\accounts\settings.html:324
+#: .\templates\accounts\settings.html:374
+#: .\templates\accounts\settings.html:424
+msgid "Never"
+msgstr "Jamais"
+
+#: .\templates\accounts\settings.html:290
+#: .\templates\notifications\list.html:51
+msgid "Finance"
+msgstr "Finance"
+
+#: .\templates\accounts\settings.html:292
+msgid "Transactions, transfers, and balance updates."
+msgstr "Transactions, transferts et mises à jour de solde."
+
+#: .\templates\accounts\settings.html:340
+#: .\templates\notifications\list.html:56
+msgid "Social"
+msgstr "Social"
+
+#: .\templates\accounts\settings.html:342
+msgid "Debts, settlements, and group expenses."
+msgstr "Dettes, règlements et dépenses de groupe."
+
+#: .\templates\accounts\settings.html:390
+msgid "System"
+msgstr "Système"
+
+#: .\templates\accounts\settings.html:392
+msgid "Announcements, maintenance, and feature updates."
+msgstr "Annonces, maintenance et mises à jour de fonctionnalités."
+
+#: .\templates\accounts\settings.html:435
+#: .\templates\notifications\list.html:26
+msgid "Preferences"
+msgstr "Préférences"
+
+#: .\templates\accounts\settings.html:436
+msgid "Customize your experience."
+msgstr "Personnalisez votre expérience."
+
+#: .\templates\accounts\settings.html:441
+msgid "Default Currency"
+msgstr "Devise par défaut"
+
+#: .\templates\accounts\settings.html:442
+msgid "Currency used for new accounts and transactions."
+msgstr "Devise utilisée pour les nouveaux comptes et transactions."
+
+#: .\templates\accounts\settings.html:457
+msgid "Danger Zone"
+msgstr "Zone dangereuse"
+
+#: .\templates\accounts\settings.html:458
+msgid "Irreversible and destructive actions."
+msgstr "Actions irréversibles et destructrices."
+
+#: .\templates\accounts\settings.html:462
+msgid "Delete Account"
+msgstr "Supprimer le compte"
+
+#: .\templates\accounts\settings.html:464
+msgid ""
+"Once you delete your account, there is no going back. Please be certain."
+msgstr "Une fois votre compte supprimé, il n'y a pas de retour en arrière. Veuillez être certain."
+
+#: .\templates\admin\audit_logs.html:97
+#: .\templates\admin\dashboard_stats.html:97
+msgid "Back to Dashboard"
+msgstr "Retour au tableau de bord"
+
+#: .\templates\admin\audit_logs.html:106
+msgid "About Audit Logs"
+msgstr "À propos des journaux d'audit"
+
+#: .\templates\admin\audit_logs.html:107
+msgid ""
+"Audit logs are stored using structured logging (structlog) and can be viewed "
+"through your logging infrastructure."
+msgstr "Les journaux d'audit sont stockés via une journalisation structurée (structlog) et peuvent être consultés via votre infrastructure de logs."
+
+#: .\templates\admin\audit_logs.html:108
+msgid "Retention policies:"
+msgstr "Politiques de rétention :"
+
+#: .\templates\admin\audit_logs.html:110
+msgid "Financial operations: 7 years"
+msgstr "Opérations financières : 7 ans"
+
+#: .\templates\admin\audit_logs.html:111
+msgid "Security operations: 2 years"
+msgstr "Opérations de sécurité : 2 ans"
+
+#: .\templates\admin\audit_logs.html:112
+msgid "Admin operations: 7 years"
+msgstr "Opérations administratives : 7 ans"
+
+#: .\templates\admin\audit_logs.html:116
+msgid "Audit Log Categories"
+msgstr "Catégories de journaux d'audit"
+
+#: .\templates\admin\audit_logs.html:117
+msgid "The following actions are automatically logged:"
+msgstr "Les actions suivantes sont automatiquement enregistrées :"
+
+#: .\templates\admin\audit_logs.html:119
+msgid "Account Operations"
+msgstr "Opérations de compte"
+
+#: .\templates\admin\audit_logs.html:124
+msgid "Transaction Operations"
+msgstr "Opérations de transaction"
+
+#: .\templates\admin\audit_logs.html:129
+msgid "Security Operations"
+msgstr "Opérations de sécurité"
+
+#: .\templates\admin\audit_logs.html:134
+msgid "Admin Operations"
+msgstr "Opérations administratives"
+
+#: .\templates\admin\audit_logs.html:139
+msgid "Viewing Logs"
+msgstr "Consultation des logs"
+
+#: .\templates\admin\audit_logs.html:140
+msgid ""
+"To view audit logs, check your application logs with the following filter:"
+msgstr "Pour consulter les journaux d'audit, vérifiez les logs de votre application avec le filtre suivant :"
+
+#: .\templates\admin\audit_logs.html:145
+msgid ""
+"Or use your centralized logging solution (e.g., ELK Stack, Datadog, "
+"CloudWatch) to search for events with:"
+msgstr "Ou utilisez votre solution de journalisation centralisée (p. ex., ELK Stack, Datadog, CloudWatch) pour rechercher des événements avec :"
+
+#: .\templates\admin\dashboard_stats.html:102
+msgid "Financial statistics for your tenant"
+msgstr "Statistiques financières pour votre tenant"
+
+#: .\templates\admin\dashboard_stats.html:105
+msgid "Accounts Overview"
+msgstr "Aperçu des comptes"
+
+#: .\templates\admin\dashboard_stats.html:108
+msgid "Total Accounts"
+msgstr "Total des comptes"
+
+#: .\templates\admin\dashboard_stats.html:110
+msgid "All financial accounts"
+msgstr "Tous les comptes financiers"
+
+#: .\templates\admin\dashboard_stats.html:113
+msgid "Active Accounts"
+msgstr "Comptes actifs"
+
+#: .\templates\admin\dashboard_stats.html:115
+msgid "Currently active accounts"
+msgstr "Comptes actuellement actifs"
+
+#: .\templates\admin\dashboard_stats.html:119
+msgid "Transaction Summary (Last 30 Days)"
+msgstr "Résumé des transactions (30 derniers jours)"
+
+#: .\templates\admin\dashboard_stats.html:122
+#: .\templates\finance\dashboard.html:121
+msgid "Recent Transactions"
+msgstr "Transactions récentes"
+
+#: .\templates\admin\dashboard_stats.html:124
+msgid "Transactions in the last 30 days"
+msgstr "Transactions des 30 derniers jours"
+
+#: .\templates\admin\dashboard_stats.html:127
+msgid "Total Income"
+msgstr "Revenus totaux"
+
+#: .\templates\admin\dashboard_stats.html:129
+msgid "Credits in the last 30 days"
+msgstr "Crédits des 30 derniers jours"
+
+#: .\templates\admin\dashboard_stats.html:132
+msgid "Total Expenses"
+msgstr "Dépenses totales"
+
+#: .\templates\admin\dashboard_stats.html:134
+msgid "Debits in the last 30 days"
+msgstr "Débits des 30 derniers jours"
+
+#: .\templates\admin\dashboard_stats.html:138
+#: .\templates\finance\dashboard.html:173
+msgid "Social Finance"
+msgstr "Finance sociale"
+
+#: .\templates\admin\dashboard_stats.html:141
+msgid "Total Debts"
+msgstr "Total des dettes"
+
+#: .\templates\admin\dashboard_stats.html:143
+msgid "Peer debt records"
+msgstr "Enregistrements de dettes entre contacts"
+
+#: .\templates\admin\dashboard_stats.html:146
+msgid "Pending Debts"
+msgstr "Dettes en attente"
+
+#: .\templates\admin\dashboard_stats.html:148
+msgid "Awaiting settlement"
+msgstr "En attente de règlement"
+
+#: .\templates\admin\dashboard_stats.html:151
+#: .\templates\admin\finance_index.html:161
+msgid "Settlements"
+msgstr "Règlements"
+
+#: .\templates\admin\dashboard_stats.html:153
+msgid "Completed settlements"
+msgstr "Règlements effectués"
+
+#: .\templates\admin\finance_index.html:102
+msgid "Total Users"
+msgstr "Total des utilisateurs"
+
+#: .\templates\admin\finance_index.html:104
+msgid "Registered accounts"
+msgstr "Comptes enregistrés"
+
+#: .\templates\admin\finance_index.html:107
+msgid "Active Sessions"
+msgstr "Sessions actives"
+
+#: .\templates\admin\finance_index.html:109
+msgid "Current active sessions"
+msgstr "Sessions actives actuelles"
+
+#: .\templates\admin\finance_index.html:112
+msgid "Pending Tasks"
+msgstr "Tâches en attente"
+
+#: .\templates\admin\finance_index.html:114
+msgid "Background tasks"
+msgstr "Tâches en arrière-plan"
+
+#: .\templates\admin\finance_index.html:117
+msgid "System Health"
+msgstr "Santé du système"
+
+#: .\templates\admin\finance_index.html:118
+msgid "OK"
+msgstr "OK"
+
+#: .\templates\admin\finance_index.html:119
+msgid "All systems operational"
+msgstr "Tous les systèmes opérationnels"
+
+#: .\templates\admin\finance_index.html:125
+msgid "Quick Actions"
+msgstr "Actions rapides"
+
+#: .\templates\admin\finance_index.html:131
+msgid "Manage Users"
+msgstr "Gérer les utilisateurs"
+
+#: .\templates\admin\finance_index.html:137
+msgid "View Accounts"
+msgstr "Voir les comptes"
+
+#: .\templates\admin\finance_index.html:143 .\templates\base\app.html:32
+#: .\templates\base\app.html:286 .\templates\finance\transactions\list.html:4
+#: .\templates\finance\transactions\list.html:11
+msgid "Transactions"
+msgstr "Transactions"
+
+#: .\templates\admin\finance_index.html:149 .\templates\base\app.html:36
+#: .\templates\base\app.html:287 .\templates\finance\dashboard.html:87
+#: .\templates\social\contacts\list.html:4
+#: .\templates\social\contacts\list.html:11
+msgid "Contacts"
+msgstr "Contacts"
+
+#: .\templates\admin\finance_index.html:155
+#: .\templates\social\debts\list.html:4 .\templates\social\debts\list.html:10
+msgid "Peer Debts"
+msgstr "Dettes entre contacts"
+
+#: .\templates\base\app.html:24 .\templates\base\app.html:284
+#: .\templates\finance\dashboard.html:4 .\templates\finance\dashboard.html:10
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: .\templates\base\app.html:28 .\templates\base\app.html:285
+#: .\templates\finance\accounts\list.html:4
+#: .\templates\finance\accounts\list.html:11
+#: .\templates\finance\dashboard.html:51
+msgid "Accounts"
+msgstr "Comptes"
+
+#: .\templates\base\app.html:40 .\templates\base\app.html:288
+msgid "Debts"
+msgstr "Dettes"
+
+#: .\templates\base\app.html:44 .\templates\base\app.html:289
+msgid "Groups"
+msgstr "Groupes"
+
+#: .\templates\base\app.html:57 .\templates\base\auth.html:74
+msgid "Change language"
+msgstr "Changer de langue"
+
+#: .\templates\base\app.html:104
+msgid "View notifications"
+msgstr "Voir les notifications"
+
+#: .\templates\base\app.html:127 .\templates\notifications\list.html:4
+#: .\templates\notifications\list.html:11
+msgid "Notifications"
+msgstr "Notifications"
+
+#: .\templates\base\app.html:131
+msgid "Mark all read"
+msgstr "Tout marquer comme lu"
+
+#: .\templates\base\app.html:151
+msgid "No notifications yet"
+msgstr "Pas encore de notifications"
+
+#: .\templates\base\app.html:207
+msgid "View all notifications"
+msgstr "Voir toutes les notifications"
+
+#: .\templates\base\app.html:222
+msgid "Open user menu"
+msgstr "Ouvrir le menu utilisateur"
+
+#: .\templates\base\app.html:255 .\templates\base\app.html:346
+msgid "Sign out"
+msgstr "Se déconnecter"
+
+#: .\templates\base\app.html:269
+msgid "Open main menu"
+msgstr "Ouvrir le menu principal"
+
+#: .\templates\base\app.html:317
+msgid "Language"
+msgstr "Langue"
+
+#: .\templates\base\app.html:359 .\templates\base\auth.html:26
+#: .\templates\base\auth.html:116 .\templates\base\base.html:10
+#: .\templates\base\base.html:13 .\templates\base\base.html:18
+#: .\templates\base\base.html:21 .\templates\base\base.html:26
+msgid "Djanbe Finance"
+msgstr "Djanbe Finance"
+
+#: .\templates\base\app.html:359
+msgid "All rights reserved."
+msgstr "Tous droits réservés."
+
+#: .\templates\base\auth.html:30
+msgid "Take Control of Your Finances"
+msgstr "Prenez le contrôle de vos finances"
+
+#: .\templates\base\auth.html:33
+msgid ""
+"Track expenses, manage debts, and split bills with friends - all in one "
+"place."
+msgstr "Suivez vos dépenses, gérez vos dettes et partagez les factures avec des amis - le tout au même endroit."
+
+#: .\templates\base\auth.html:44
+msgid "Track income & expenses"
+msgstr "Suivre les revenus et dépenses"
+
+#: .\templates\base\auth.html:52
+msgid "Manage peer debts"
+msgstr "Gérer les dettes entre contacts"
+
+#: .\templates\base\auth.html:60
+msgid "Split bills with groups"
+msgstr "Partager les factures avec des groupes"
+
+#: .\templates\base\base.html:11 .\templates\base\base.html:139
+msgid ""
+"Personal and social finance management platform - track expenses, manage "
+"debts, split bills with friends."
+msgstr "Plateforme de gestion financière personnelle et sociale - suivez vos dépenses, gérez vos dettes, partagez les factures avec des amis."
+
+#: .\templates\base\base.html:12
+msgid ""
+"finance, personal finance, expense tracking, debt management, bill splitting"
+msgstr "finance, finances personnelles, suivi des dépenses, gestion des dettes, partage des factures"
+
+#: .\templates\base\base.html:19 .\templates\base\base.html:27
+msgid "Personal and social finance management platform"
+msgstr "Plateforme de gestion financière personnelle et sociale"
+
+#: .\templates\base\base.html:153
+msgid "Skip to main content"
+msgstr "Aller au contenu principal"
+
+#: .\templates\base\base.html:178
+msgid "Dismiss"
+msgstr "Fermer"
+
+#: .\templates\finance\accounts\list.html:12
+msgid "Manage your financial accounts and wallets."
+msgstr "Gérez vos comptes financiers et portefeuilles."
+
+#: .\templates\finance\accounts\list.html:19
+#: .\templates\finance\accounts\list.html:81
+msgid "Add Account"
+msgstr "Ajouter un compte"
+
+#: .\templates\finance\accounts\list.html:62
+msgid "Current balance"
+msgstr "Solde actuel"
+
+#: .\templates\finance\accounts\list.html:74
+msgid "No accounts"
+msgstr "Aucun compte"
+
+#: .\templates\finance\accounts\list.html:75
+msgid "Get started by creating your first account."
+msgstr "Commencez par créer votre premier compte."
+
+#: .\templates\finance\dashboard.html:12
+#, python-format
+msgid "Welcome back, %(name)s! Here's your financial overview."
+msgstr "Bon retour, %(name)s ! Voici votre aperçu financier."
+
+#: .\templates\finance\dashboard.html:19 .\templates\finance\dashboard.html:32
+msgid "Net Worth"
+msgstr "Valeur nette"
+
+#: .\templates\finance\dashboard.html:20
+#: .\templates\notifications\list.html:152
+msgid "View details"
+msgstr "Voir les détails"
+
+#: .\templates\finance\dashboard.html:24
+msgid "Total Assets"
+msgstr "Total des actifs"
+
+#: .\templates\finance\dashboard.html:28
+msgid "Total Liabilities"
+msgstr "Total des passifs"
+
+#: .\templates\finance\dashboard.html:56
+msgid "View all accounts"
+msgstr "Voir tous les comptes"
+
+#: .\templates\finance\dashboard.html:69
+msgid "Transactions (This Month)"
+msgstr "Transactions (ce mois-ci)"
+
+#: .\templates\finance\dashboard.html:74
+msgid "View all transactions"
+msgstr "Voir toutes les transactions"
+
+#: .\templates\finance\dashboard.html:92
+msgid "Manage contacts"
+msgstr "Gérer les contacts"
+
+#: .\templates\finance\dashboard.html:105
+msgid "Active Debts"
+msgstr "Dettes actives"
+
+#: .\templates\finance\dashboard.html:110
+msgid "View debts"
+msgstr "Voir les dettes"
+
+#: .\templates\finance\dashboard.html:122
+#: .\templates\finance\dashboard.html:174
+msgid "View all"
+msgstr "Voir tout"
+
+#: .\templates\finance\dashboard.html:154
+msgid "No transactions yet"
+msgstr "Aucune transaction pour le moment"
+
+#: .\templates\finance\dashboard.html:155
+#: .\templates\finance\transactions\list.html:83
+msgid "Get started by adding your first transaction."
+msgstr "Commencez par ajouter votre première transaction."
+
+#: .\templates\finance\dashboard.html:161
+#: .\templates\finance\transactions\list.html:19
+#: .\templates\finance\transactions\list.html:86
+msgid "Add Transaction"
+msgstr "Ajouter une transaction"
+
+#: .\templates\finance\dashboard.html:182
+msgid "Others Owe You"
+msgstr "D'autres vous doivent"
+
+#: .\templates\finance\dashboard.html:186
+msgid "You Owe Others"
+msgstr "Vous devez aux autres"
+
+#: .\templates\finance\dashboard.html:216
+msgid "No social activity"
+msgstr "Aucune activité sociale"
+
+#: .\templates\finance\dashboard.html:217
+msgid "Start tracking debts with friends and family."
+msgstr "Commencez à suivre les dettes avec vos amis et votre famille."
+
+#: .\templates\finance\dashboard.html:220 .\templates\social\debts\list.html:18
+#: .\templates\social\debts\list.html:78
+msgid "Record Debt"
+msgstr "Enregistrer une dette"
+
+#: .\templates\finance\dashboard.html:223
+#: .\templates\social\groups\list.html:18
+#: .\templates\social\groups\list.html:54
+msgid "Create Group"
+msgstr "Créer un groupe"
+
+#: .\templates\finance\transactions\list.html:12
+msgid "View and manage all your transactions."
+msgstr "Voir et gérer toutes vos transactions."
+
+#: .\templates\finance\transactions\list.html:29
+msgid "Date"
+msgstr "Date"
+
+#: .\templates\finance\transactions\list.html:30
+msgid "Description"
+msgstr "Description"
+
+#: .\templates\finance\transactions\list.html:32
+msgid "Category"
+msgstr "Catégorie"
+
+#: .\templates\finance\transactions\list.html:33
+msgid "Amount"
+msgstr "Montant"
+
+#: .\templates\finance\transactions\list.html:65
+#, python-format
+msgid "Showing %(start)s to %(end)s of %(total)s transactions"
+msgstr "Affichage de %(start)s à %(end)s sur %(total)s transactions"
+
+#: .\templates\finance\transactions\list.html:69
+#: .\templates\social\contacts\list.html:56
+msgid "Previous"
+msgstr "Précédent"
+
+#: .\templates\finance\transactions\list.html:72
+#: .\templates\social\contacts\list.html:59
+msgid "Next"
+msgstr "Suivant"
+
+#: .\templates\finance\transactions\list.html:82
+msgid "No transactions"
+msgstr "Aucune transaction"
+
+#: .\templates\notifications\list.html:12
+msgid "Stay updated on your financial activity."
+msgstr "Restez informé de votre activité financière."
+
+#: .\templates\notifications\list.html:18
+msgid "Mark all as read"
+msgstr "Tout marquer comme lu"
+
+#: .\templates\notifications\list.html:37
+msgid "All"
+msgstr "Tous"
+
+#: .\templates\notifications\list.html:42
+msgid "Unread"
+msgstr "Non lues"
+
+#: .\templates\notifications\list.html:84
+msgid "No notifications"
+msgstr "Aucune notification"
+
+#: .\templates\notifications\list.html:86
+msgid "You're all caught up!"
+msgstr "Vous êtes à jour !"
+
+#: .\templates\notifications\list.html:87
+msgid "No unread notifications."
+msgstr "Aucune notification non lue."
+
+#: .\templates\notifications\list.html:88
+msgid "No finance notifications."
+msgstr "Aucune notification financière."
+
+#: .\templates\notifications\list.html:89
+msgid "No social notifications."
+msgstr "Aucune notification sociale."
+
+#: .\templates\notifications\list.html:157
+msgid "Mark as read"
+msgstr "Marquer comme lu"
+
+#: .\templates\notifications\list.html:161
+msgid "Archive"
+msgstr "Archiver"
+
+#: .\templates\notifications\list.html:175
+msgid "Load more"
+msgstr "Charger plus"
+
+#: .\templates\notifications\list.html:176
+msgid "Loading..."
+msgstr "Chargement..."
+
+#: .\templates\social\contacts\list.html:12
+msgid "People you track debts and expenses with."
+msgstr "Personnes avec qui vous suivez les dettes et dépenses."
+
+#: .\templates\social\contacts\list.html:19
+#: .\templates\social\contacts\list.html:77
+msgid "Add Contact"
+msgstr "Ajouter un contact"
+
+#: .\templates\social\contacts\list.html:39
+msgid "No email"
+msgstr "Pas d'email"
+
+#: .\templates\social\contacts\list.html:70
+msgid "No contacts"
+msgstr "Aucun contact"
+
+#: .\templates\social\contacts\list.html:71
+msgid "Add people you share expenses or debts with."
+msgstr "Ajoutez des personnes avec qui vous partagez des dépenses ou des dettes."
+
+#: .\templates\social\debts\list.html:11
+msgid "Track money lent and borrowed."
+msgstr "Suivez l'argent prêté et emprunté."
+
+#: .\templates\social\debts\list.html:26
+msgid "You Lent (They Owe)"
+msgstr "Vous avez prêté (ils vous doivent)"
+
+#: .\templates\social\debts\list.html:30
+msgid "You Borrowed (You Owe)"
+msgstr "Vous avez emprunté (vous devez)"
+
+#: .\templates\social\debts\list.html:34
+msgid "Net Balance"
+msgstr "Solde net"
+
+#: .\templates\social\debts\list.html:59
+msgid "They owe"
+msgstr "Ils vous doivent"
+
+#: .\templates\social\debts\list.html:59
+msgid "You owe"
+msgstr "Vous devez"
+
+#: .\templates\social\debts\list.html:74
+msgid "No debts"
+msgstr "Aucune dette"
+
+#: .\templates\social\debts\list.html:75
+msgid "Start tracking money lent or borrowed."
+msgstr "Commencez à suivre l'argent prêté ou emprunté."
+
+#: .\templates\social\groups\list.html:4 .\templates\social\groups\list.html:10
+msgid "Expense Groups"
+msgstr "Groupes de dépenses"
+
+#: .\templates\social\groups\list.html:11
+msgid "Split expenses with groups of people."
+msgstr "Partagez les dépenses avec des groupes de personnes."
+
+#: .\templates\social\groups\list.html:40
+msgid "Created"
+msgstr "Créé"
+
+#: .\templates\social\groups\list.html:50
+msgid "No expense groups"
+msgstr "Aucun groupe de dépenses"
+
+#: .\templates\social\groups\list.html:51
+msgid "Create a group to start splitting expenses."
+msgstr "Créez un groupe pour commencer à partager les dépenses."

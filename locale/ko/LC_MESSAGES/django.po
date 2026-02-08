@@ -1,0 +1,1291 @@
+# DJANBE FINANCE KOREAN TRANSLATION.
+# Copyright (C) 2026 DJANBE FINANCE
+# This file is distributed under the same license as the Djanbe Finance package.
+# Farzam Mehdi <ifarzammehdi@gmail.com>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: django-finance\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-08 07:21+0500\n"
+"PO-Revision-Date: 2026-02-08 08:17+0500\n"
+"Last-Translator: Farzam Mehdi <ifarzammehdi@gmail.com>\n"
+"Language-Team: Korean (http://www.transifex.com/django/django/language/ko/)\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\config\settings\base.py:216
+msgid "English"
+msgstr "영어"
+
+#: .\config\settings\base.py:217
+msgid "Spanish"
+msgstr "스페인어"
+
+#: .\config\settings\base.py:218
+msgid "German"
+msgstr "독일어"
+
+#: .\config\settings\base.py:219
+msgid "French"
+msgstr "프랑스어"
+
+#: .\config\settings\base.py:220
+msgid "Italian"
+msgstr "이탈리아어"
+
+#: .\config\settings\base.py:221
+msgid "Simplified Chinese"
+msgstr "중국어(간체)"
+
+#: .\config\settings\base.py:222
+msgid "Arabic"
+msgstr "아랍어"
+
+#: .\config\settings\base.py:223
+msgid "Persian"
+msgstr "페르시아어"
+
+#: .\config\settings\base.py:224
+msgid "Urdu"
+msgstr "우르두어"
+
+#: .\config\settings\base.py:225
+msgid "Hindi"
+msgstr "힌디어"
+
+#: .\config\settings\base.py:226
+msgid "Hungarian"
+msgstr "헝가리어"
+
+#: .\config\settings\base.py:227
+msgid "Norwegian"
+msgstr "노르웨이어"
+
+#: .\config\settings\base.py:228
+msgid "Japanese"
+msgstr "일본어"
+
+#: .\config\settings\base.py:229
+msgid "Korean"
+msgstr "한국어"
+
+#: .\modules\accounts\interfaces\serializers.py:66
+msgid "Email is already registered."
+msgstr "이메일이 이미 등록되어 있습니다."
+
+#: .\modules\accounts\interfaces\serializers.py:80
+#: .\modules\accounts\interfaces\serializers.py:208
+#: .\modules\accounts\interfaces\serializers.py:231
+msgid "Passwords do not match."
+msgstr "비밀번호가 일치하지 않습니다."
+
+#: .\modules\accounts\interfaces\serializers.py:111
+#: .\modules\accounts\interfaces\serializers.py:150
+msgid "Invalid email or password."
+msgstr "이메일 또는 비밀번호가 올바르지 않습니다."
+
+#: .\modules\accounts\interfaces\serializers.py:118
+msgid "Account is locked. Please try again later."
+msgstr "계정이 잠겼습니다. 잠시 후 다시 시도하세요."
+
+#: .\modules\accounts\interfaces\serializers.py:126
+msgid "Please verify your email address."
+msgstr "이메일 주소를 인증해 주세요."
+
+#: .\modules\accounts\interfaces\serializers.py:130
+msgid "Account is not active."
+msgstr "계정이 활성화되어 있지 않습니다."
+
+#: .\modules\accounts\interfaces\serializers.py:237
+msgid "Current password is incorrect."
+msgstr "현재 비밀번호가 올바르지 않습니다."
+
+#: .\modules\accounts\interfaces\views.py:87
+msgid ""
+"Registration successful. Please check your email to verify your account."
+msgstr "등록이 완료되었습니다. 이메일을 확인하여 계정을 인증하세요."
+
+#: .\modules\accounts\interfaces\views.py:118
+msgid "Refresh token is required."
+msgstr "리프레시 토큰이 필요합니다."
+
+#: .\modules\accounts\interfaces\views.py:131
+msgid "Successfully logged out."
+msgstr "성공적으로 로그아웃했습니다."
+
+#: .\modules\accounts\interfaces\views.py:134
+msgid "Invalid token."
+msgstr "유효하지 않은 토큰입니다."
+
+#: .\modules\accounts\interfaces\views.py:157
+msgid "Invalid verification token."
+msgstr "유효하지 않은 인증 토큰입니다."
+
+#: .\modules\accounts\interfaces\views.py:163
+msgid "Verification token has expired."
+msgstr "인증 토큰이 만료되었습니다."
+
+#: .\modules\accounts\interfaces\views.py:177
+msgid "Email verified successfully."
+msgstr "이메일이 성공적으로 인증되었습니다."
+
+#: .\modules\accounts\interfaces\views.py:195
+msgid "Email is already verified."
+msgstr "이메일이 이미 인증되었습니다."
+
+#: .\modules\accounts\interfaces\views.py:221
+msgid "Verification email sent."
+msgstr "인증 이메일을 보냈습니다."
+
+#: .\modules\accounts\interfaces\views.py:270
+msgid ""
+"If an account exists with this email, a password reset link has been sent."
+msgstr "해당 이메일의 계정이 존재하면 비밀번호 재설정 링크를 보냈습니다."
+
+#: .\modules\accounts\interfaces\views.py:293
+msgid "Invalid reset token."
+msgstr "유효하지 않은 재설정 토큰입니다."
+
+#: .\modules\accounts\interfaces\views.py:299
+msgid "Reset token has expired."
+msgstr "재설정 토큰이 만료되었습니다."
+
+#: .\modules\accounts\interfaces\views.py:328
+msgid "Password reset successfully."
+msgstr "비밀번호가 성공적으로 재설정되었습니다."
+
+#: .\modules\accounts\interfaces\views.py:354
+msgid "Password changed successfully."
+msgstr "비밀번호가 성공적으로 변경되었습니다."
+
+#: .\modules\demo\interfaces\views.py:63
+#: .\modules\notifications\interfaces\views.py:111
+msgid "Notification marked as read."
+msgstr "알림을 읽음으로 표시했습니다."
+
+#: .\modules\demo\interfaces\views.py:66
+#: .\modules\notifications\interfaces\views.py:79
+#: .\modules\notifications\interfaces\views.py:107
+#: .\modules\notifications\interfaces\views.py:157
+msgid "Notification not found."
+msgstr "알림을 찾을 수 없습니다."
+
+#: .\modules\demo\interfaces\views.py:88
+#: .\modules\notifications\interfaces\views.py:137
+#, python-format
+msgid "%(count)s notifications marked as read."
+msgstr "%(count)s개의 알림을 읽음으로 표시했습니다."
+
+#: .\modules\demo\interfaces\views.py:100
+msgid "Admin access required."
+msgstr "관리자 권한이 필요합니다."
+
+#: .\modules\demo\interfaces\views.py:166
+msgid "Demo event created."
+msgstr "데모 이벤트가 생성되었습니다."
+
+#: .\modules\finance\interfaces\serializers.py:33
+#, python-format
+msgid "Unsupported currency: %(currency)s"
+msgstr "지원되지 않는 통화: %(currency)s"
+
+#: .\modules\finance\interfaces\serializers.py:320
+msgid "Cannot transfer to the same account."
+msgstr "동일한 계정으로 이체할 수 없습니다."
+
+#: .\modules\notifications\interfaces\views.py:87
+#: .\modules\notifications\interfaces\views.py:115
+#: .\modules\notifications\interfaces\views.py:165
+msgid "Invalid notification ID."
+msgstr "유효하지 않은 알림 ID입니다."
+
+#: .\modules\notifications\interfaces\views.py:161
+msgid "Notification archived."
+msgstr "알림이 보관되었습니다."
+
+#: .\modules\notifications\interfaces\views.py:209
+#, python-format
+msgid "Invalid category. Must be one of: %(categories)s"
+msgstr "유효하지 않은 카테고리입니다. 다음 중 하나여야 합니다: %(categories)s"
+
+#: .\modules\social\interfaces\serializers.py:267
+msgid ""
+"Either paid_by_owner must be True or paid_by_contact_id must be provided."
+msgstr "paid_by_owner를 True로 설정하거나 paid_by_contact_id를 제공해야 합니다."
+
+#: .\modules\social\interfaces\serializers.py:322
+msgid "Cannot set both owner_pays and owner_receives to True."
+msgstr "owner_pays와 owner_receives를 모두 True로 설정할 수 없습니다."
+
+#: .\modules\social\interfaces\serializers.py:326
+msgid "Must set either owner_pays or owner_receives to True."
+msgstr "owner_pays 또는 owner_receives 중 하나를 True로 설정해야 합니다."
+
+#: .\templates\accounts\login.html:4
+msgid "Sign In"
+msgstr "로그인"
+
+#: .\templates\accounts\login.html:9
+msgid "Welcome back"
+msgstr "다시 오신 것을 환영합니다"
+
+#: .\templates\accounts\login.html:12
+msgid "Don't have an account?"
+msgstr "계정이 없으신가요?"
+
+#: .\templates\accounts\login.html:14
+msgid "Sign up for free"
+msgstr "무료로 가입"
+
+#: .\templates\accounts\login.html:43
+#: .\templates\accounts\password_reset.html:38
+#: .\templates\accounts\register.html:83
+msgid "Email address"
+msgstr "이메일 주소"
+
+#: .\templates\accounts\login.html:66 .\templates\accounts\register.html:105
+msgid "Password"
+msgstr "비밀번호"
+
+#: .\templates\accounts\login.html:93
+msgid "Remember me"
+msgstr "로그인 상태 유지"
+
+#: .\templates\accounts\login.html:99
+msgid "Forgot your password?"
+msgstr "비밀번호를 잊으셨나요?"
+
+#: .\templates\accounts\login.html:107 .\templates\accounts\register.html:14
+msgid "Sign in"
+msgstr "로그인"
+
+#: .\templates\accounts\password_reset.html:4
+msgid "Reset Password"
+msgstr "비밀번호 재설정"
+
+#: .\templates\accounts\password_reset.html:9
+msgid "Reset your password"
+msgstr "비밀번호 재설정"
+
+#: .\templates\accounts\password_reset.html:12
+msgid ""
+"Enter your email address and we'll send you a link to reset your password."
+msgstr "이메일 주소를 입력하면 비밀번호 재설정 링크를 보내드립니다."
+
+#: .\templates\accounts\password_reset.html:60
+msgid "Send reset link"
+msgstr "재설정 링크 보내기"
+
+#: .\templates\accounts\password_reset.html:66
+msgid "Back to sign in"
+msgstr "로그인으로 돌아가기"
+
+#: .\templates\accounts\profile.html:4 .\templates\accounts\profile.html:9
+#: .\templates\base\app.html:249 .\templates\base\app.html:306
+msgid "Your Profile"
+msgstr "내 프로필"
+
+#: .\templates\accounts\profile.html:27
+msgid "Member since"
+msgstr "가입일"
+
+#: .\templates\accounts\profile.html:36
+msgid "Account Information"
+msgstr "계정 정보"
+
+#: .\templates\accounts\profile.html:39 .\templates\accounts\register.html:44
+#: .\templates\accounts\settings.html:41
+msgid "First name"
+msgstr "이름"
+
+#: .\templates\accounts\profile.html:40 .\templates\accounts\profile.html:44
+msgid "Not set"
+msgstr "미설정"
+
+#: .\templates\accounts\profile.html:43 .\templates\accounts\register.html:62
+#: .\templates\accounts\settings.html:46
+msgid "Last name"
+msgstr "성"
+
+#: .\templates\accounts\profile.html:47 .\templates\accounts\settings.html:52
+#: .\templates\accounts\settings.html:257
+#: .\templates\accounts\settings.html:307
+#: .\templates\accounts\settings.html:357
+#: .\templates\accounts\settings.html:407
+msgid "Email"
+msgstr "이메일"
+
+#: .\templates\accounts\profile.html:51
+msgid "Email verified"
+msgstr "이메일 인증됨"
+
+#: .\templates\accounts\profile.html:55
+msgid "Verified"
+msgstr "인증됨"
+
+#: .\templates\accounts\profile.html:59
+msgid "Not verified"
+msgstr "미인증"
+
+#: .\templates\accounts\profile.html:68
+msgid "Account Actions"
+msgstr "계정 작업"
+
+#: .\templates\accounts\profile.html:71
+msgid "Edit Profile"
+msgstr "프로필 편집"
+
+#: .\templates\accounts\profile.html:74 .\templates\accounts\settings.html:78
+#: .\templates\accounts\settings.html:121
+msgid "Change Password"
+msgstr "비밀번호 변경"
+
+#: .\templates\accounts\register.html:4
+msgid "Create Account"
+msgstr "계정 생성"
+
+#: .\templates\accounts\register.html:9
+msgid "Create your account"
+msgstr "계정 만들기"
+
+#: .\templates\accounts\register.html:12
+msgid "Already have an account?"
+msgstr "이미 계정이 있나요?"
+
+#: .\templates\accounts\register.html:122
+msgid ""
+"Must be at least 12 characters with uppercase, lowercase, number, and "
+"special character."
+msgstr "최소 12자이며 대문자, 소문자, 숫자, 특수문자를 포함해야 합니다."
+
+#: .\templates\accounts\register.html:130
+msgid "Confirm password"
+msgstr "비밀번호 확인"
+
+#: .\templates\accounts\register.html:156
+msgid "I agree to the"
+msgstr "다음에 동의합니다"
+
+#: .\templates\accounts\register.html:157
+#: .\templates\accounts\register.html:170
+msgid "Terms of Service"
+msgstr "서비스 이용약관"
+
+#: .\templates\accounts\register.html:158
+msgid "and"
+msgstr "및"
+
+#: .\templates\accounts\register.html:159
+#: .\templates\accounts\register.html:200
+msgid "Privacy Policy"
+msgstr "개인정보처리방침"
+
+#: .\templates\accounts\register.html:172
+msgid "1. Acceptance of Terms"
+msgstr "1. 약관 동의"
+
+#: .\templates\accounts\register.html:173
+msgid ""
+"By accessing and using Djanbe Finance, you agree to be bound by these Terms "
+"of Service."
+msgstr "Djanbe Finance에 접속하고 사용함으로써 본 약관에 동의합니다."
+
+#: .\templates\accounts\register.html:174
+msgid "2. Use of Service"
+msgstr "2. 서비스 이용"
+
+#: .\templates\accounts\register.html:175
+msgid ""
+"You agree to use the service only for lawful purposes and in accordance with "
+"these terms. You are responsible for maintaining the confidentiality of your "
+"account."
+msgstr "서비스를 합법적인 목적에 한해 약관에 따라 사용하기로 동의합니다. 계정의 기밀 유지 책임은 본인에게 있습니다."
+
+#: .\templates\accounts\register.html:176
+msgid "3. User Data"
+msgstr "3. 사용자 데이터"
+
+#: .\templates\accounts\register.html:177
+msgid ""
+"You retain ownership of all financial data you enter. We do not sell or "
+"share your personal financial information with third parties."
+msgstr "입력한 모든 재무 데이터의 소유권은 사용자에게 있습니다. 개인 재무 정보를 제3자에게 판매하거나 공유하지 않습니다."
+
+#: .\templates\accounts\register.html:178
+msgid "4. Service Availability"
+msgstr "4. 서비스 가용성"
+
+#: .\templates\accounts\register.html:179
+msgid ""
+"We strive to maintain service availability but do not guarantee "
+"uninterrupted access. We may modify or discontinue features with reasonable "
+"notice."
+msgstr "서비스 가용성을 유지하기 위해 노력하지만 중단 없는 접근을 보장하지는 않습니다. 합리적인 사전 고지 후 기능을 변경하거나 중단할 수 있습니다."
+
+#: .\templates\accounts\register.html:180
+msgid "5. Limitation of Liability"
+msgstr "5. 책임 제한"
+
+#: .\templates\accounts\register.html:181
+msgid "Djanbe Finance is provided \\"
+msgstr ""
+
+#: .\templates\accounts\register.html:186
+#: .\templates\accounts\register.html:216
+#: .\templates\accounts\settings.html:204
+msgid "Close"
+msgstr "닫기"
+
+#: .\templates\accounts\register.html:202
+msgid "1. Information We Collect"
+msgstr "1. 수집하는 정보"
+
+#: .\templates\accounts\register.html:203
+msgid ""
+"We collect information you provide directly: email, name, and financial data "
+"you choose to enter (accounts, transactions, contacts)."
+msgstr "이메일, 이름 및 사용자가 입력한 재무 데이터(계정, 거래, 연락처) 등 직접 제공한 정보를 수집합니다."
+
+#: .\templates\accounts\register.html:204
+msgid "2. How We Use Your Information"
+msgstr "2. 정보 사용 방법"
+
+#: .\templates\accounts\register.html:205
+msgid ""
+"Your data is used solely to provide the service. We use it to display your "
+"financial overview, calculate balances, and send notifications you've opted "
+"into."
+msgstr "데이터는 서비스 제공을 위해서만 사용됩니다. 재무 개요 표시, 잔액 계산, 동의한 알림 발송에 사용됩니다."
+
+#: .\templates\accounts\register.html:206
+msgid "3. Data Security"
+msgstr "3. 데이터 보안"
+
+#: .\templates\accounts\register.html:207
+msgid ""
+"We implement industry-standard security measures including encryption, "
+"secure authentication, and regular security audits to protect your data."
+msgstr "암호화, 안전한 인증, 정기 보안 감사 등 업계 표준 보안 조치를 적용하여 데이터를 보호합니다."
+
+#: .\templates\accounts\register.html:208
+msgid "4. Data Sharing"
+msgstr "4. 데이터 공유"
+
+#: .\templates\accounts\register.html:209
+msgid ""
+"We do not sell, trade, or share your personal financial data with third "
+"parties. Data may only be shared if required by law."
+msgstr "개인 재무 데이터를 제3자에게 판매, 거래, 공유하지 않습니다. 법적 요구가 있을 때만 공유됩니다."
+
+#: .\templates\accounts\register.html:210
+msgid "5. Your Rights"
+msgstr "5. 권리"
+
+#: .\templates\accounts\register.html:211
+msgid ""
+"You can access, export, or delete your data at any time through your account "
+"settings. Contact us for any privacy-related requests."
+msgstr "계정 설정에서 언제든지 데이터를 조회, 내보내기, 삭제할 수 있습니다. 개인정보 관련 요청은 문의해 주세요."
+
+#: .\templates\accounts\register.html:226
+msgid "Create account"
+msgstr "계정 생성"
+
+#: .\templates\accounts\settings.html:4 .\templates\accounts\settings.html:9
+#: .\templates\base\app.html:250 .\templates\base\app.html:307
+msgid "Settings"
+msgstr "설정"
+
+#: .\templates\accounts\settings.html:10
+msgid "Manage your account preferences."
+msgstr "계정 설정을 관리합니다."
+
+#: .\templates\accounts\settings.html:17
+msgid "Profile Settings"
+msgstr "프로필 설정"
+
+#: .\templates\accounts\settings.html:18
+msgid "Update your personal information."
+msgstr "개인 정보를 업데이트합니다."
+
+#: .\templates\accounts\settings.html:27
+msgid "Profile updated successfully!"
+msgstr "프로필이 성공적으로 업데이트되었습니다!"
+
+#: .\templates\accounts\settings.html:55
+msgid "Contact support to change your email address."
+msgstr "이메일 변경은 지원팀에 문의하세요."
+
+#: .\templates\accounts\settings.html:73
+msgid "Security"
+msgstr "보안"
+
+#: .\templates\accounts\settings.html:74
+msgid "Manage your password and security preferences."
+msgstr "비밀번호 및 보안 설정을 관리합니다."
+
+#: .\templates\accounts\settings.html:124
+msgid "Enter your current password and choose a new one."
+msgstr "현재 비밀번호를 입력하고 새 비밀번호를 선택하세요."
+
+#: .\templates\accounts\settings.html:138
+msgid "Password changed successfully!"
+msgstr "비밀번호가 성공적으로 변경되었습니다!"
+
+#: .\templates\accounts\settings.html:159
+msgid "Current Password"
+msgstr "현재 비밀번호"
+
+#: .\templates\accounts\settings.html:166
+msgid "New Password"
+msgstr "새 비밀번호"
+
+#: .\templates\accounts\settings.html:170
+msgid "Minimum 12 characters with uppercase, lowercase, number, and symbol."
+msgstr "최소 12자이며 대문자, 소문자, 숫자, 기호를 포함해야 합니다."
+
+#: .\templates\accounts\settings.html:174
+msgid "Confirm New Password"
+msgstr "새 비밀번호 확인"
+
+#: .\templates\accounts\settings.html:194
+msgid "Cancel"
+msgstr "취소"
+
+#: .\templates\accounts\settings.html:215
+msgid "Notification Preferences"
+msgstr "알림 설정"
+
+#: .\templates\accounts\settings.html:216
+msgid "Choose how you want to be notified."
+msgstr "알림 방식을 선택하세요."
+
+#: .\templates\accounts\settings.html:240
+#: .\templates\finance\transactions\list.html:31
+msgid "Account"
+msgstr "계정"
+
+#: .\templates\accounts\settings.html:242
+msgid "Login alerts, password changes, and account updates."
+msgstr "로그인 알림, 비밀번호 변경, 계정 업데이트."
+
+#: .\templates\accounts\settings.html:247
+#: .\templates\accounts\settings.html:297
+#: .\templates\accounts\settings.html:347
+#: .\templates\accounts\settings.html:397
+msgid "In-app"
+msgstr "앱 내"
+
+#: .\templates\accounts\settings.html:267
+#: .\templates\accounts\settings.html:317
+#: .\templates\accounts\settings.html:367
+#: .\templates\accounts\settings.html:417
+msgid "Frequency"
+msgstr "빈도"
+
+#: .\templates\accounts\settings.html:271
+#: .\templates\accounts\settings.html:321
+#: .\templates\accounts\settings.html:371
+#: .\templates\accounts\settings.html:421
+msgid "Immediate"
+msgstr "즉시"
+
+#: .\templates\accounts\settings.html:272
+#: .\templates\accounts\settings.html:322
+#: .\templates\accounts\settings.html:372
+#: .\templates\accounts\settings.html:422
+msgid "Daily"
+msgstr "매일"
+
+#: .\templates\accounts\settings.html:273
+#: .\templates\accounts\settings.html:323
+#: .\templates\accounts\settings.html:373
+#: .\templates\accounts\settings.html:423
+msgid "Weekly"
+msgstr "매주"
+
+#: .\templates\accounts\settings.html:274
+#: .\templates\accounts\settings.html:324
+#: .\templates\accounts\settings.html:374
+#: .\templates\accounts\settings.html:424
+msgid "Never"
+msgstr "사용 안 함"
+
+#: .\templates\accounts\settings.html:290
+#: .\templates\notifications\list.html:51
+msgid "Finance"
+msgstr "재무"
+
+#: .\templates\accounts\settings.html:292
+msgid "Transactions, transfers, and balance updates."
+msgstr "거래, 이체, 잔액 업데이트."
+
+#: .\templates\accounts\settings.html:340
+#: .\templates\notifications\list.html:56
+msgid "Social"
+msgstr "소셜"
+
+#: .\templates\accounts\settings.html:342
+msgid "Debts, settlements, and group expenses."
+msgstr "채무, 정산, 그룹 지출."
+
+#: .\templates\accounts\settings.html:390
+msgid "System"
+msgstr "시스템"
+
+#: .\templates\accounts\settings.html:392
+msgid "Announcements, maintenance, and feature updates."
+msgstr "공지, 점검, 기능 업데이트."
+
+#: .\templates\accounts\settings.html:435
+#: .\templates\notifications\list.html:26
+msgid "Preferences"
+msgstr "환경설정"
+
+#: .\templates\accounts\settings.html:436
+msgid "Customize your experience."
+msgstr "사용자 경험을 맞춤 설정합니다."
+
+#: .\templates\accounts\settings.html:441
+msgid "Default Currency"
+msgstr "기본 통화"
+
+#: .\templates\accounts\settings.html:442
+msgid "Currency used for new accounts and transactions."
+msgstr "새 계정 및 거래에 사용되는 통화."
+
+#: .\templates\accounts\settings.html:457
+msgid "Danger Zone"
+msgstr "위험 구역"
+
+#: .\templates\accounts\settings.html:458
+msgid "Irreversible and destructive actions."
+msgstr "되돌릴 수 없는 파괴적 작업."
+
+#: .\templates\accounts\settings.html:462
+msgid "Delete Account"
+msgstr "계정 삭제"
+
+#: .\templates\accounts\settings.html:464
+msgid ""
+"Once you delete your account, there is no going back. Please be certain."
+msgstr "계정을 삭제하면 되돌릴 수 없습니다. 신중히 결정하세요."
+
+#: .\templates\admin\audit_logs.html:97
+#: .\templates\admin\dashboard_stats.html:97
+msgid "Back to Dashboard"
+msgstr "대시보드로 돌아가기"
+
+#: .\templates\admin\audit_logs.html:106
+msgid "About Audit Logs"
+msgstr "감사 로그 정보"
+
+#: .\templates\admin\audit_logs.html:107
+msgid ""
+"Audit logs are stored using structured logging (structlog) and can be viewed "
+"through your logging infrastructure."
+msgstr "감사 로그는 구조화된 로깅(structlog)으로 저장되며 로그 인프라에서 볼 수 있습니다."
+
+#: .\templates\admin\audit_logs.html:108
+msgid "Retention policies:"
+msgstr "보관 정책:"
+
+#: .\templates\admin\audit_logs.html:110
+msgid "Financial operations: 7 years"
+msgstr "재무 작업: 7년"
+
+#: .\templates\admin\audit_logs.html:111
+msgid "Security operations: 2 years"
+msgstr "보안 작업: 2년"
+
+#: .\templates\admin\audit_logs.html:112
+msgid "Admin operations: 7 years"
+msgstr "관리자 작업: 7년"
+
+#: .\templates\admin\audit_logs.html:116
+msgid "Audit Log Categories"
+msgstr "감사 로그 범주"
+
+#: .\templates\admin\audit_logs.html:117
+msgid "The following actions are automatically logged:"
+msgstr "다음 작업은 자동으로 기록됩니다:"
+
+#: .\templates\admin\audit_logs.html:119
+msgid "Account Operations"
+msgstr "계정 작업"
+
+#: .\templates\admin\audit_logs.html:124
+msgid "Transaction Operations"
+msgstr "거래 작업"
+
+#: .\templates\admin\audit_logs.html:129
+msgid "Security Operations"
+msgstr "보안 작업"
+
+#: .\templates\admin\audit_logs.html:134
+msgid "Admin Operations"
+msgstr "관리자 작업"
+
+#: .\templates\admin\audit_logs.html:139
+msgid "Viewing Logs"
+msgstr "로그 보기"
+
+#: .\templates\admin\audit_logs.html:140
+msgid ""
+"To view audit logs, check your application logs with the following filter:"
+msgstr "감사 로그를 보려면 다음 필터로 애플리케이션 로그를 확인하세요:"
+
+#: .\templates\admin\audit_logs.html:145
+msgid ""
+"Or use your centralized logging solution (e.g., ELK Stack, Datadog, "
+"CloudWatch) to search for events with:"
+msgstr "또는 중앙화된 로깅 솔루션(예: ELK Stack, Datadog, CloudWatch)에서 다음과 같은 이벤트를 검색하세요:"
+
+#: .\templates\admin\dashboard_stats.html:102
+msgid "Financial statistics for your tenant"
+msgstr "테넌트 재무 통계"
+
+#: .\templates\admin\dashboard_stats.html:105
+msgid "Accounts Overview"
+msgstr "계정 개요"
+
+#: .\templates\admin\dashboard_stats.html:108
+msgid "Total Accounts"
+msgstr "전체 계정 수"
+
+#: .\templates\admin\dashboard_stats.html:110
+msgid "All financial accounts"
+msgstr "모든 재무 계정"
+
+#: .\templates\admin\dashboard_stats.html:113
+msgid "Active Accounts"
+msgstr "활성 계정"
+
+#: .\templates\admin\dashboard_stats.html:115
+msgid "Currently active accounts"
+msgstr "현재 활성 계정"
+
+#: .\templates\admin\dashboard_stats.html:119
+msgid "Transaction Summary (Last 30 Days)"
+msgstr "거래 요약(최근 30일)"
+
+#: .\templates\admin\dashboard_stats.html:122
+#: .\templates\finance\dashboard.html:121
+msgid "Recent Transactions"
+msgstr "최근 거래"
+
+#: .\templates\admin\dashboard_stats.html:124
+msgid "Transactions in the last 30 days"
+msgstr "최근 30일 거래"
+
+#: .\templates\admin\dashboard_stats.html:127
+msgid "Total Income"
+msgstr "총수입"
+
+#: .\templates\admin\dashboard_stats.html:129
+msgid "Credits in the last 30 days"
+msgstr "최근 30일 입금"
+
+#: .\templates\admin\dashboard_stats.html:132
+msgid "Total Expenses"
+msgstr "총지출"
+
+#: .\templates\admin\dashboard_stats.html:134
+msgid "Debits in the last 30 days"
+msgstr "최근 30일 출금"
+
+#: .\templates\admin\dashboard_stats.html:138
+#: .\templates\finance\dashboard.html:173
+msgid "Social Finance"
+msgstr "소셜 재무"
+
+#: .\templates\admin\dashboard_stats.html:141
+msgid "Total Debts"
+msgstr "총 채무"
+
+#: .\templates\admin\dashboard_stats.html:143
+msgid "Peer debt records"
+msgstr "피어 채무 기록"
+
+#: .\templates\admin\dashboard_stats.html:146
+msgid "Pending Debts"
+msgstr "미결 채무"
+
+#: .\templates\admin\dashboard_stats.html:148
+msgid "Awaiting settlement"
+msgstr "정산 대기"
+
+#: .\templates\admin\dashboard_stats.html:151
+#: .\templates\admin\finance_index.html:161
+msgid "Settlements"
+msgstr "정산"
+
+#: .\templates\admin\dashboard_stats.html:153
+msgid "Completed settlements"
+msgstr "완료된 정산"
+
+#: .\templates\admin\finance_index.html:102
+msgid "Total Users"
+msgstr "총 사용자 수"
+
+#: .\templates\admin\finance_index.html:104
+msgid "Registered accounts"
+msgstr "등록된 계정"
+
+#: .\templates\admin\finance_index.html:107
+msgid "Active Sessions"
+msgstr "활성 세션"
+
+#: .\templates\admin\finance_index.html:109
+msgid "Current active sessions"
+msgstr "현재 활성 세션"
+
+#: .\templates\admin\finance_index.html:112
+msgid "Pending Tasks"
+msgstr "보류 중인 작업"
+
+#: .\templates\admin\finance_index.html:114
+msgid "Background tasks"
+msgstr "백그라운드 작업"
+
+#: .\templates\admin\finance_index.html:117
+msgid "System Health"
+msgstr "시스템 상태"
+
+#: .\templates\admin\finance_index.html:118
+msgid "OK"
+msgstr "정상"
+
+#: .\templates\admin\finance_index.html:119
+msgid "All systems operational"
+msgstr "모든 시스템이 정상 작동 중"
+
+#: .\templates\admin\finance_index.html:125
+msgid "Quick Actions"
+msgstr "빠른 작업"
+
+#: .\templates\admin\finance_index.html:131
+msgid "Manage Users"
+msgstr "사용자 관리"
+
+#: .\templates\admin\finance_index.html:137
+msgid "View Accounts"
+msgstr "계정 보기"
+
+#: .\templates\admin\finance_index.html:143 .\templates\base\app.html:32
+#: .\templates\base\app.html:286 .\templates\finance\transactions\list.html:4
+#: .\templates\finance\transactions\list.html:11
+msgid "Transactions"
+msgstr "거래"
+
+#: .\templates\admin\finance_index.html:149 .\templates\base\app.html:36
+#: .\templates\base\app.html:287 .\templates\finance\dashboard.html:87
+#: .\templates\social\contacts\list.html:4
+#: .\templates\social\contacts\list.html:11
+msgid "Contacts"
+msgstr "연락처"
+
+#: .\templates\admin\finance_index.html:155
+#: .\templates\social\debts\list.html:4 .\templates\social\debts\list.html:10
+msgid "Peer Debts"
+msgstr "피어 채무"
+
+#: .\templates\base\app.html:24 .\templates\base\app.html:284
+#: .\templates\finance\dashboard.html:4 .\templates\finance\dashboard.html:10
+msgid "Dashboard"
+msgstr "대시보드"
+
+#: .\templates\base\app.html:28 .\templates\base\app.html:285
+#: .\templates\finance\accounts\list.html:4
+#: .\templates\finance\accounts\list.html:11
+#: .\templates\finance\dashboard.html:51
+msgid "Accounts"
+msgstr "계정"
+
+#: .\templates\base\app.html:40 .\templates\base\app.html:288
+msgid "Debts"
+msgstr "채무"
+
+#: .\templates\base\app.html:44 .\templates\base\app.html:289
+msgid "Groups"
+msgstr "그룹"
+
+#: .\templates\base\app.html:57 .\templates\base\auth.html:74
+msgid "Change language"
+msgstr "언어 변경"
+
+#: .\templates\base\app.html:104
+msgid "View notifications"
+msgstr "알림 보기"
+
+#: .\templates\base\app.html:127 .\templates\notifications\list.html:4
+#: .\templates\notifications\list.html:11
+msgid "Notifications"
+msgstr "알림"
+
+#: .\templates\base\app.html:131
+msgid "Mark all read"
+msgstr "모두 읽음으로 표시"
+
+#: .\templates\base\app.html:151
+msgid "No notifications yet"
+msgstr "아직 알림이 없습니다"
+
+#: .\templates\base\app.html:207
+msgid "View all notifications"
+msgstr "모든 알림 보기"
+
+#: .\templates\base\app.html:222
+msgid "Open user menu"
+msgstr "사용자 메뉴 열기"
+
+#: .\templates\base\app.html:255 .\templates\base\app.html:346
+msgid "Sign out"
+msgstr "로그아웃"
+
+#: .\templates\base\app.html:269
+msgid "Open main menu"
+msgstr "메인 메뉴 열기"
+
+#: .\templates\base\app.html:317
+msgid "Language"
+msgstr "언어"
+
+#: .\templates\base\app.html:359 .\templates\base\auth.html:26
+#: .\templates\base\auth.html:116 .\templates\base\base.html:10
+#: .\templates\base\base.html:13 .\templates\base\base.html:18
+#: .\templates\base\base.html:21 .\templates\base\base.html:26
+msgid "Djanbe Finance"
+msgstr "Djanbe Finance"
+
+#: .\templates\base\app.html:359
+msgid "All rights reserved."
+msgstr "모든 권리 보유."
+
+#: .\templates\base\auth.html:30
+msgid "Take Control of Your Finances"
+msgstr "재무를 통제하세요"
+
+#: .\templates\base\auth.html:33
+msgid ""
+"Track expenses, manage debts, and split bills with friends - all in one "
+"place."
+msgstr "지출을 추적하고 채무를 관리하며 친구와 비용을 나눌 수 있는 모든 것을 한곳에서 제공합니다."
+
+#: .\templates\base\auth.html:44
+msgid "Track income & expenses"
+msgstr "수입 및 지출 추적"
+
+#: .\templates\base\auth.html:52
+msgid "Manage peer debts"
+msgstr "피어 채무 관리"
+
+#: .\templates\base\auth.html:60
+msgid "Split bills with groups"
+msgstr "그룹과 비용 분담"
+
+#: .\templates\base\base.html:11 .\templates\base\base.html:139
+msgid ""
+"Personal and social finance management platform - track expenses, manage "
+"debts, split bills with friends."
+msgstr "개인 및 소셜 재무 관리 플랫폼 - 지출 추적, 채무 관리, 친구와 비용 분담."
+
+#: .\templates\base\base.html:12
+msgid ""
+"finance, personal finance, expense tracking, debt management, bill splitting"
+msgstr "재무, 개인 재무, 지출 추적, 채무 관리, 비용 분담"
+
+#: .\templates\base\base.html:19 .\templates\base\base.html:27
+msgid "Personal and social finance management platform"
+msgstr "개인 및 소셜 재무 관리 플랫폼"
+
+#: .\templates\base\base.html:153
+msgid "Skip to main content"
+msgstr "본문으로 건너뛰기"
+
+#: .\templates\base\base.html:178
+msgid "Dismiss"
+msgstr "닫기"
+
+#: .\templates\finance\accounts\list.html:12
+msgid "Manage your financial accounts and wallets."
+msgstr "재무 계정과 지갑을 관리하세요."
+
+#: .\templates\finance\accounts\list.html:19
+#: .\templates\finance\accounts\list.html:81
+msgid "Add Account"
+msgstr "계정 추가"
+
+#: .\templates\finance\accounts\list.html:62
+msgid "Current balance"
+msgstr "현재 잔액"
+
+#: .\templates\finance\accounts\list.html:74
+msgid "No accounts"
+msgstr "계정이 없습니다"
+
+#: .\templates\finance\accounts\list.html:75
+msgid "Get started by creating your first account."
+msgstr "첫 번째 계정을 생성하여 시작하세요."
+
+#: .\templates\finance\dashboard.html:12
+#, python-format
+msgid "Welcome back, %(name)s! Here's your financial overview."
+msgstr "%(name)s님, 다시 오신 것을 환영합니다! 재무 개요입니다."
+
+#: .\templates\finance\dashboard.html:19 .\templates\finance\dashboard.html:32
+msgid "Net Worth"
+msgstr "순자산"
+
+#: .\templates\finance\dashboard.html:20
+#: .\templates\notifications\list.html:152
+msgid "View details"
+msgstr "자세히 보기"
+
+#: .\templates\finance\dashboard.html:24
+msgid "Total Assets"
+msgstr "총 자산"
+
+#: .\templates\finance\dashboard.html:28
+msgid "Total Liabilities"
+msgstr "총 부채"
+
+#: .\templates\finance\dashboard.html:56
+msgid "View all accounts"
+msgstr "모든 계정 보기"
+
+#: .\templates\finance\dashboard.html:69
+msgid "Transactions (This Month)"
+msgstr "이번 달 거래"
+
+#: .\templates\finance\dashboard.html:74
+msgid "View all transactions"
+msgstr "모든 거래 보기"
+
+#: .\templates\finance\dashboard.html:92
+msgid "Manage contacts"
+msgstr "연락처 관리"
+
+#: .\templates\finance\dashboard.html:105
+msgid "Active Debts"
+msgstr "활성 채무"
+
+#: .\templates\finance\dashboard.html:110
+msgid "View debts"
+msgstr "채무 보기"
+
+#: .\templates\finance\dashboard.html:122
+#: .\templates\finance\dashboard.html:174
+msgid "View all"
+msgstr "모두 보기"
+
+#: .\templates\finance\dashboard.html:154
+msgid "No transactions yet"
+msgstr "아직 거래가 없습니다"
+
+#: .\templates\finance\dashboard.html:155
+#: .\templates\finance\transactions\list.html:83
+msgid "Get started by adding your first transaction."
+msgstr "첫 거래를 추가하여 시작하세요."
+
+#: .\templates\finance\dashboard.html:161
+#: .\templates\finance\transactions\list.html:19
+#: .\templates\finance\transactions\list.html:86
+msgid "Add Transaction"
+msgstr "거래 추가"
+
+#: .\templates\finance\dashboard.html:182
+msgid "Others Owe You"
+msgstr "다른 사람이 나에게 빚"
+
+#: .\templates\finance\dashboard.html:186
+msgid "You Owe Others"
+msgstr "내가 다른 사람에게 빚"
+
+#: .\templates\finance\dashboard.html:216
+msgid "No social activity"
+msgstr "소셜 활동이 없습니다"
+
+#: .\templates\finance\dashboard.html:217
+msgid "Start tracking debts with friends and family."
+msgstr "친구 및 가족과의 채무를 추적하기 시작하세요."
+
+#: .\templates\finance\dashboard.html:220 .\templates\social\debts\list.html:18
+#: .\templates\social\debts\list.html:78
+msgid "Record Debt"
+msgstr "채무 기록"
+
+#: .\templates\finance\dashboard.html:223
+#: .\templates\social\groups\list.html:18
+#: .\templates\social\groups\list.html:54
+msgid "Create Group"
+msgstr "그룹 만들기"
+
+#: .\templates\finance\transactions\list.html:12
+msgid "View and manage all your transactions."
+msgstr "모든 거래를 보고 관리하세요."
+
+#: .\templates\finance\transactions\list.html:29
+msgid "Date"
+msgstr "날짜"
+
+#: .\templates\finance\transactions\list.html:30
+msgid "Description"
+msgstr "설명"
+
+#: .\templates\finance\transactions\list.html:32
+msgid "Category"
+msgstr "카테고리"
+
+#: .\templates\finance\transactions\list.html:33
+msgid "Amount"
+msgstr "금액"
+
+#: .\templates\finance\transactions\list.html:65
+#, python-format
+msgid "Showing %(start)s to %(end)s of %(total)s transactions"
+msgstr "총 %(total)s건 중 %(start)s~%(end)s건 표시"
+
+#: .\templates\finance\transactions\list.html:69
+#: .\templates\social\contacts\list.html:56
+msgid "Previous"
+msgstr "이전"
+
+#: .\templates\finance\transactions\list.html:72
+#: .\templates\social\contacts\list.html:59
+msgid "Next"
+msgstr "다음"
+
+#: .\templates\finance\transactions\list.html:82
+msgid "No transactions"
+msgstr "거래 없음"
+
+#: .\templates\notifications\list.html:12
+msgid "Stay updated on your financial activity."
+msgstr "재무 활동을 최신 상태로 유지하세요."
+
+#: .\templates\notifications\list.html:18
+msgid "Mark all as read"
+msgstr "모두 읽음으로 표시"
+
+#: .\templates\notifications\list.html:37
+msgid "All"
+msgstr "전체"
+
+#: .\templates\notifications\list.html:42
+msgid "Unread"
+msgstr "읽지 않음"
+
+#: .\templates\notifications\list.html:84
+msgid "No notifications"
+msgstr "알림 없음"
+
+#: .\templates\notifications\list.html:86
+msgid "You're all caught up!"
+msgstr "모두 확인하셨습니다!"
+
+#: .\templates\notifications\list.html:87
+msgid "No unread notifications."
+msgstr "읽지 않은 알림이 없습니다."
+
+#: .\templates\notifications\list.html:88
+msgid "No finance notifications."
+msgstr "재무 알림이 없습니다."
+
+#: .\templates\notifications\list.html:89
+msgid "No social notifications."
+msgstr "소셜 알림이 없습니다."
+
+#: .\templates\notifications\list.html:157
+msgid "Mark as read"
+msgstr "읽음으로 표시"
+
+#: .\templates\notifications\list.html:161
+msgid "Archive"
+msgstr "보관"
+
+#: .\templates\notifications\list.html:175
+msgid "Load more"
+msgstr "더 불러오기"
+
+#: .\templates\notifications\list.html:176
+msgid "Loading..."
+msgstr "로딩 중..."
+
+#: .\templates\social\contacts\list.html:12
+msgid "People you track debts and expenses with."
+msgstr "채무와 지출을 함께 관리하는 사람들."
+
+#: .\templates\social\contacts\list.html:19
+#: .\templates\social\contacts\list.html:77
+msgid "Add Contact"
+msgstr "연락처 추가"
+
+#: .\templates\social\contacts\list.html:39
+msgid "No email"
+msgstr "이메일 없음"
+
+#: .\templates\social\contacts\list.html:70
+msgid "No contacts"
+msgstr "연락처 없음"
+
+#: .\templates\social\contacts\list.html:71
+msgid "Add people you share expenses or debts with."
+msgstr "지출이나 채무를 공유하는 사람을 추가하세요."
+
+#: .\templates\social\debts\list.html:11
+msgid "Track money lent and borrowed."
+msgstr "빌려준 돈과 빌린 돈을 추적하세요."
+
+#: .\templates\social\debts\list.html:26
+msgid "You Lent (They Owe)"
+msgstr "내가 빌려줌(상대가 빚)"
+
+#: .\templates\social\debts\list.html:30
+msgid "You Borrowed (You Owe)"
+msgstr "내가 빌림(내가 빚)"
+
+#: .\templates\social\debts\list.html:34
+msgid "Net Balance"
+msgstr "순 잔액"
+
+#: .\templates\social\debts\list.html:59
+msgid "They owe"
+msgstr "상대가 빚"
+
+#: .\templates\social\debts\list.html:59
+msgid "You owe"
+msgstr "내가 빚"
+
+#: .\templates\social\debts\list.html:74
+msgid "No debts"
+msgstr "채무 없음"
+
+#: .\templates\social\debts\list.html:75
+msgid "Start tracking money lent or borrowed."
+msgstr "빌려준/빌린 돈을 추적하기 시작하세요."
+
+#: .\templates\social\groups\list.html:4 .\templates\social\groups\list.html:10
+msgid "Expense Groups"
+msgstr "지출 그룹"
+
+#: .\templates\social\groups\list.html:11
+msgid "Split expenses with groups of people."
+msgstr "여러 사람과 지출을 분담하세요."
+
+#: .\templates\social\groups\list.html:40
+msgid "Created"
+msgstr "생성됨"
+
+#: .\templates\social\groups\list.html:50
+msgid "No expense groups"
+msgstr "지출 그룹이 없습니다"
+
+#: .\templates\social\groups\list.html:51
+msgid "Create a group to start splitting expenses."
+msgstr "그룹을 만들어 지출을 분담하세요."

@@ -59,7 +59,7 @@ class DashboardAPIView(APIView):
 
     def _get_net_worth(self, tenant_id) -> dict:
         """Calculate net worth from accounts."""
-        accounts = Account.objects.filter(tenant_id=tenant_id, is_active=True)
+        accounts = Account.objects.filter(tenant_id=tenant_id, status="active")
 
         total_assets = Decimal("0")
         total_liabilities = Decimal("0")
@@ -84,7 +84,7 @@ class DashboardAPIView(APIView):
         """Get dashboard statistics."""
         # Accounts count
         accounts_count = Account.objects.filter(
-            tenant_id=tenant_id, is_active=True
+            tenant_id=tenant_id, status="active"
         ).count()
 
         # This month's transactions
@@ -98,7 +98,7 @@ class DashboardAPIView(APIView):
         # Contacts count
         contacts_count = Contact.objects.filter(
             tenant_id=tenant_id,
-            is_archived=False,
+            status="active",
         ).count()
 
         # Active debts count

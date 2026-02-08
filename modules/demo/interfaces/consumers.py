@@ -37,55 +37,60 @@ class NotificationConsumer(AsyncJsonWebsocketConsumer):
     async def connect(self) -> None:
         """Handle WebSocket connection.
 
-        Authenticates user via JWT token and joins notification group.
+        Authenticates user via session (Django AuthMiddleware) or JWT token.
         """
-        # Get token from query string
-        query_string = self.scope.get("query_string", b"").decode()
-        params = dict(
-            param.split("=") for param in query_string.split("&") if "=" in param
+        # Try session-based auth first (from AuthMiddlewareStack)
+        user = self.scope.get("user")
+        if user and user.is_authenticated:
+            self.user_id = str(user.id)
+            self.tenant_id = str(getattr(user, "tenant_id", user.id))
+        else:
+            # Fall back to JWT token from query string
+            query_string = self.scope.get("query_string", b"").decode()
+            params = dict(
+                param.split("=") for param in query_string.split("&") if "=" in param
+            )
+            token_str = params.get("token", "")
+
+            if not token_str:
+                logger.warning("websocket_auth_failed", reason="no_auth")
+                await self.close(code=4001)
+                return
+
+            try:
+                token = AccessToken(token_str)
+                self.user_id = str(token["user_id"])
+                self.tenant_id = str(token.get("tenant_id", ""))
+            except (InvalidToken, TokenError) as e:
+                logger.warning(
+                    "websocket_auth_failed",
+                    reason="invalid_token",
+                    error=str(e),
+                )
+                await self.close(code=4001)
+                return
+
+        # Join user's notification group
+        self.group_name = f"notifications_{self.user_id}"
+        await self.channel_layer.group_add(self.group_name, self.channel_name)
+
+        await self.accept()
+
+        logger.info(
+            "websocket_connected",
+            user_id=self.user_id,
+            tenant_id=self.tenant_id,
+            group_name=self.group_name,
         )
-        token_str = params.get("token", "")
 
-        if not token_str:
-            logger.warning("websocket_auth_failed", reason="missing_token")
-            await self.close(code=4001)
-            return
-
-        # Validate token
-        try:
-            token = AccessToken(token_str)
-            self.user_id = str(token["user_id"])
-            self.tenant_id = str(token.get("tenant_id", ""))
-
-            # Join user's notification group
-            self.group_name = f"notifications_{self.user_id}"
-            await self.channel_layer.group_add(self.group_name, self.channel_name)
-
-            await self.accept()
-
-            logger.info(
-                "websocket_connected",
-                user_id=self.user_id,
-                tenant_id=self.tenant_id,
-                group_name=self.group_name,
-            )
-
-            # Send connection confirmation
-            await self.send_json({
-                "type": "connection.established",
-                "data": {
-                    "message": "Connected to notification service",
-                    "user_id": self.user_id,
-                },
-            })
-
-        except (InvalidToken, TokenError) as e:
-            logger.warning(
-                "websocket_auth_failed",
-                reason="invalid_token",
-                error=str(e),
-            )
-            await self.close(code=4001)
+        # Send connection confirmation
+        await self.send_json({
+            "type": "connection.established",
+            "data": {
+                "message": "Connected to notification service",
+                "user_id": self.user_id,
+            },
+        })
 
     async def disconnect(self, close_code: int) -> None:
         """Handle WebSocket disconnection.
@@ -145,14 +150,17 @@ class NotificationConsumer(AsyncJsonWebsocketConsumer):
         """
         from uuid import UUID
 
-        from modules.demo.infrastructure.models import Notification
+        from django.utils import timezone
+        from modules.notifications.infrastructure.models import Notification
 
         try:
             notification = Notification.objects.get(
                 id=UUID(notification_id),
                 user_id=UUID(self.user_id),
             )
-            notification.mark_as_read()
+            if not notification.read_at:
+                notification.read_at = timezone.now()
+                notification.save(update_fields=["read_at"])
         except (Notification.DoesNotExist, ValueError):
             pass
 

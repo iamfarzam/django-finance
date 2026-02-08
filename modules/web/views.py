@@ -63,7 +63,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         tenant_id = user.id
 
         # Account stats
-        accounts = Account.objects.filter(tenant_id=tenant_id, is_active=True)
+        accounts = Account.objects.filter(tenant_id=tenant_id, status="active")
         context["accounts_count"] = accounts.count()
 
         # Calculate totals
@@ -111,7 +111,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         # Contacts count
         context["contacts_count"] = Contact.objects.filter(
             tenant_id=tenant_id,
-            is_archived=False,
+            status="active",
         ).count()
 
         # Active debts count
@@ -168,7 +168,7 @@ class AccountListView(LoginRequiredMixin, ListView):
         """Get accounts for current user."""
         return Account.objects.filter(
             tenant_id=self.request.user.id,
-            is_active=True,
+            status="active",
         ).order_by("name")
 
 
@@ -263,7 +263,7 @@ class TransactionCreateView(LoginRequiredMixin, CreateView):
         """Limit account and category choices to current user."""
         form = super().get_form(form_class)
         form.fields["account"].queryset = Account.objects.filter(
-            tenant_id=self.request.user.id, is_active=True
+            tenant_id=self.request.user.id, status="active"
         )
         form.fields["category"].queryset = Category.objects.filter(
             tenant_id=self.request.user.id
@@ -294,7 +294,7 @@ class ContactListView(LoginRequiredMixin, ListView):
         """Get contacts for current user."""
         return Contact.objects.filter(
             tenant_id=self.request.user.id,
-            is_archived=False,
+            status="active",
         ).order_by("name")
 
 
@@ -415,7 +415,7 @@ class DebtCreateView(LoginRequiredMixin, CreateView):
         """Limit contact choices to current user."""
         form = super().get_form(form_class)
         form.fields["contact"].queryset = Contact.objects.filter(
-            tenant_id=self.request.user.id, is_archived=False
+            tenant_id=self.request.user.id, status="active"
         )
         return form
 
@@ -442,7 +442,6 @@ class GroupListView(LoginRequiredMixin, ListView):
         """Get groups for current user."""
         return ExpenseGroup.objects.filter(
             tenant_id=self.request.user.id,
-            is_active=True,
         ).order_by("-created_at")
 
 
@@ -513,7 +512,7 @@ class SettlementCreateView(LoginRequiredMixin, CreateView):
         """Limit contact choices to current user."""
         form = super().get_form(form_class)
         form.fields["contact"].queryset = Contact.objects.filter(
-            tenant_id=self.request.user.id, is_archived=False
+            tenant_id=self.request.user.id, status="active"
         )
         return form
 
@@ -540,7 +539,7 @@ class BalancesSummaryView(LoginRequiredMixin, TemplateView):
 
         contacts = Contact.objects.filter(
             tenant_id=tenant_id,
-            is_archived=False,
+            status="active",
         )
 
         balances = []
@@ -615,7 +614,7 @@ class NetWorthView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         tenant_id = self.request.user.id
 
-        accounts = Account.objects.filter(tenant_id=tenant_id, is_active=True)
+        accounts = Account.objects.filter(tenant_id=tenant_id, status="active")
 
         assets = []
         liabilities = []

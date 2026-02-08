@@ -137,6 +137,21 @@ class Account(TenantScopedModel):
     def __str__(self) -> str:
         return f"{self.name} ({self.account_type})"
 
+    def calculate_balance(self) -> Decimal:
+        """Calculate balance from posted transactions."""
+        from django.db.models import Sum
+        from django.db.models.functions import Coalesce
+        from decimal import Decimal
+
+        transactions = self.transactions.filter(status=Transaction.Status.POSTED)
+        credits = transactions.filter(
+            transaction_type=Transaction.TransactionType.CREDIT
+        ).aggregate(total=Coalesce(Sum("amount"), Decimal("0")))["total"]
+        debits = transactions.filter(
+            transaction_type=Transaction.TransactionType.DEBIT
+        ).aggregate(total=Coalesce(Sum("amount"), Decimal("0")))["total"]
+        return credits - debits
+
 
 # =============================================================================
 # Transaction Model

@@ -420,9 +420,8 @@ class DebtCreateView(LoginRequiredMixin, CreateView):
         return form
 
     def form_valid(self, form):
-        """Set tenant and remaining amount before saving."""
+        """Set tenant before saving."""
         form.instance.tenant_id = self.request.user.id
-        form.instance.remaining_amount = form.instance.amount
         return super().form_valid(form)
 
 

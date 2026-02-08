@@ -29,6 +29,8 @@ urlpatterns = [
     # Health checks
     path("health/", health_check, name="health-check"),
     path("health/ready/", health_ready, name="health-ready"),
+    # i18n - language switching
+    path("i18n/", include("django.conf.urls.i18n")),
     # API Documentation
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     path(

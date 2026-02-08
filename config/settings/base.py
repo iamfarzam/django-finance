@@ -8,6 +8,8 @@ from __future__ import annotations
 from datetime import timedelta
 from pathlib import Path
 
+from django.utils.translation import gettext_lazy as _
+
 from config.env import settings as env
 
 # =============================================================================
@@ -87,6 +89,8 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     # Django defaults
     "django.contrib.sessions.middleware.SessionMiddleware",
+    # i18n - must be after SessionMiddleware and before CommonMiddleware
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -204,7 +208,26 @@ PASSWORD_HASHERS = [
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
+USE_L10N = True
 USE_TZ = True
+
+# Supported languages
+LANGUAGES = [
+    ("en", _("English")),
+    ("es", _("Spanish")),
+    ("de", _("German")),
+    ("fr", _("French")),
+    ("it", _("Italian")),
+    ("zh-hans", _("Simplified Chinese")),
+    ("ar", _("Arabic")),
+    ("fa", _("Persian")),
+    ("ur", _("Urdu")),
+    ("hi", _("Hindi")),
+    ("hu", _("Hungarian")),
+    ("no", _("Norwegian")),
+    ("ja", _("Japanese")),
+    ("ko", _("Korean")),
+]
 
 # Locale paths for translations
 LOCALE_PATHS = [

@@ -36,8 +36,8 @@
         <p class="text-3xl font-bold {% if account.calculate_balance >= 0 %}text-gray-900{% else %}text-danger-600{% endif %}">
             ${{ account.calculate_balance|floatformat:2 }}
         </p>
-        {% if account.description %}
-        <p class="mt-4 text-sm text-gray-600">{{ account.description }}</p>
+        {% if account.notes %}
+        <p class="mt-4 text-sm text-gray-600">{{ account.notes }}</p>
         {% endif %}
     </div>
 

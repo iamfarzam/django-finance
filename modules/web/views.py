@@ -142,7 +142,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         context["social_activity"] = [
             {
                 "contact_name": debt.contact.name if debt.contact else "Unknown",
-                "description": debt.reason or "Debt",
+                "description": debt.description or "Debt",
                 "amount": f"${debt.remaining_amount:,.2f}",
                 "direction": "they_owe" if debt.direction == "lent" else "you_owe",
             }
@@ -188,7 +188,7 @@ class AccountCreateView(LoginRequiredMixin, CreateView):
 
     template_name = "finance/accounts/form.html"
     model = Account
-    fields = ["name", "account_type", "currency_code", "description"]
+    fields = ["name", "account_type", "currency_code", "notes"]
     success_url = reverse_lazy("web:accounts_list")
 
     def form_valid(self, form):
@@ -202,7 +202,7 @@ class AccountUpdateView(LoginRequiredMixin, UpdateView):
 
     template_name = "finance/accounts/form.html"
     model = Account
-    fields = ["name", "description"]
+    fields = ["name", "notes"]
     success_url = reverse_lazy("web:accounts_list")
 
     def get_queryset(self):
@@ -408,7 +408,7 @@ class DebtCreateView(LoginRequiredMixin, CreateView):
 
     template_name = "social/debts/form.html"
     model = PeerDebt
-    fields = ["contact", "direction", "amount", "currency_code", "reason", "debt_date"]
+    fields = ["contact", "direction", "amount", "currency_code", "description", "debt_date"]
     success_url = reverse_lazy("web:debts_list")
 
     def get_form(self, form_class=None):

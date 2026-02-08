@@ -43,10 +43,10 @@
                 <dt class="text-sm text-gray-500">{% translate "Date" %}</dt>
                 <dd class="text-sm font-medium text-gray-900">{{ debt.debt_date|date:"F d, Y" }}</dd>
             </div>
-            {% if debt.reason %}
+            {% if debt.description %}
             <div>
                 <dt class="text-sm text-gray-500 mb-1">{% translate "Reason" %}</dt>
-                <dd class="text-sm text-gray-900">{{ debt.reason }}</dd>
+                <dd class="text-sm text-gray-900">{{ debt.description }}</dd>
             </div>
             {% endif %}
         </dl>

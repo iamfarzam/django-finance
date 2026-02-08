@@ -7,6 +7,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+#### 2026-02-08 - Phase 11: Release and Maintenance
+- Created release process documentation (`docs/RELEASE.md`):
+  - Semantic versioning (SemVer) guidelines
+  - Release types (major, minor, patch) with processes
+  - Pre-release, release, and post-release checklists
+  - Branching strategy (main, develop, feature, release, hotfix)
+  - Changelog management format and guidelines
+  - Version bumping procedures
+  - Deployment procedures (staging, production, rollback)
+  - Hotfix process for critical issues
+  - GitHub Actions release workflow example
+  - Emergency procedures (security vulnerabilities, data incidents)
+- Created long-term support policy (`docs/SUPPORT.md`):
+  - Version support lifecycle (Active: 12 months, Maintenance: 6 months, EOL)
+  - Support tiers (Community, Standard, Enterprise)
+  - Issue classification (Critical, High, Medium, Low)
+  - Security vulnerability handling process
+  - Security patch policy with timelines
+  - Upgrade policy and deprecation process
+  - Breaking changes policy
+  - Maintenance procedures (dependency updates, security scanning)
+  - Django LTS support alignment
+  - End of Life (EOL) procedures
+  - Contributing guidelines
+  - Documentation types and support
+
 #### 2026-02-08 - Phase 10: Production Readiness
 - Added automated security scanning:
   - Bandit for static security analysis

@@ -7,6 +7,48 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+#### 2026-02-08 - Internationalization (i18n) and SEO Enhancements
+- Implemented comprehensive internationalization across the application:
+  - Backend i18n configuration with `LocaleMiddleware` for language detection
+  - Support for 14 languages: English, Spanish, German, French, Italian, Simplified Chinese, Arabic, Persian, Urdu, Hindi, Hungarian, Norwegian, Japanese, Korean
+  - Created locale directory structure for all supported languages
+  - Added `/i18n/setlang/` endpoint for language switching
+- Template internationalization with Django i18n tags:
+  - Base templates (`base.html`, `app.html`, `auth.html`) with `{% translate %}` tags
+  - Account templates (login, register, password reset, profile, settings)
+  - Finance templates (dashboard, accounts list, transactions list)
+  - Social templates (contacts, debts, groups list/detail)
+  - Notification templates (list view)
+  - React dashboard wrapper template
+- API internationalization:
+  - Added `gettext_lazy` to all user-facing API error messages
+  - Internationalized validation errors in serializers (accounts, finance, social)
+  - Internationalized response messages in views (accounts, notifications, demo)
+- Language selector UI:
+  - Desktop: Globe icon dropdown in navigation header
+  - Mobile: Expandable language section in mobile menu
+  - Auth pages: Language selector in top-right corner
+  - Shows current language with checkmark indicator
+  - Persists selection via Django session cookie
+- SEO enhancements to base template:
+  - Comprehensive Open Graph meta tags for social sharing
+  - Twitter Card meta tags
+  - JSON-LD structured data (WebApplication schema)
+  - Theme-color and og:locale meta tags
+  - Accessibility improvements (skip link, focus styles)
+  - `{% block structured_data %}` for page-specific schema
+
+#### 2026-02-08 - Notification System UI
+- Added notification bell with real-time WebSocket updates:
+  - Unread count badge with live updates
+  - Dropdown panel with notification list
+  - Browser notification support (with permission)
+  - WebSocket connection with exponential backoff reconnection
+  - Fallback to polling when WebSocket unavailable
+  - Mark as read (single and bulk)
+  - Notification categorization with icons
+- Created notification list page at `/notifications/`
+
 #### 2026-02-08 - Phase 11: Release and Maintenance
 - Created release process documentation (`docs/RELEASE.md`):
   - Semantic versioning (SemVer) guidelines

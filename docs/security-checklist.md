@@ -181,15 +181,28 @@ This document provides a comprehensive security checklist for Django Finance pro
 
 ### Python Dependencies
 
-- [ ] Regular dependency updates
-- [ ] Vulnerability scanning (pip-audit, safety)
-- [ ] Pinned versions in requirements
+- [x] Regular dependency updates
+- [x] Vulnerability scanning configured:
+  - [x] Bandit (static security analysis)
+  - [x] Safety (known vulnerability check)
+  - [x] pip-audit (dependency audit)
+- [x] Pinned versions in pyproject.toml
+
+### Automated Security Scanning
+
+Run security scans with:
+```bash
+make security          # Run all security checks
+make security-bandit   # Bandit only
+make security-deps     # Safety + pip-audit
+make security-report   # Generate JSON/HTML reports
+```
 
 ### JavaScript Dependencies
 
 - [ ] npm audit clean
 - [ ] Regular updates
-- [ ] Lockfile committed
+- [x] Lockfile committed (package-lock.json)
 
 ## Deployment Security
 

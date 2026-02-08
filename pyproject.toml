@@ -86,6 +86,14 @@ dev = [
     "djangorestframework-stubs>=3.15",
     "celery-types>=0.22",
 
+    # Security Scanning
+    "bandit>=1.7,<2.0",
+    "safety>=3.0,<4.0",
+    "pip-audit>=2.7,<3.0",
+
+    # Performance Testing
+    "locust>=2.31,<3.0",
+
     # Pre-commit
     "pre-commit>=4.0",
 
@@ -285,3 +293,23 @@ show_missing = true
 
 [tool.coverage.html]
 directory = "htmlcov"
+
+# =============================================================================
+# Bandit - Security Linter
+# =============================================================================
+[tool.bandit]
+exclude_dirs = [
+    "tests",
+    ".venv",
+    "venv",
+    "migrations",
+    "node_modules",
+    "frontend",
+]
+skips = [
+    "B101",  # assert_used - OK in non-production code
+]
+targets = ["modules", "shared", "config"]
+
+[tool.bandit.assert_used]
+skips = ["*_test.py", "test_*.py", "conftest.py"]

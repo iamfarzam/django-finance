@@ -3,7 +3,8 @@
 
 .PHONY: help install up down restart logs migrate makemigrations \
         test test-cov test-unit test-integration lint lint-fix format typecheck \
-        security import-check contract-check ci shell runserver createsuperuser clean \
+        security security-bandit security-deps security-report \
+        import-check contract-check ci shell runserver createsuperuser clean \
         frontend-install frontend-dev frontend-build frontend-export frontend-clean
 
 # Default target
@@ -117,8 +118,36 @@ format: ## Format code with Black
 typecheck: ## Run mypy type checking
 	mypy modules/
 
-security: ## Run security checks
-	bandit -r modules/ -c pyproject.toml
+security: ## Run all security checks
+	@echo "Running Bandit (static security analysis)..."
+	bandit -r modules/ shared/ config/ -c pyproject.toml
+	@echo ""
+	@echo "Running Safety (dependency vulnerability check)..."
+	safety check --full-report || true
+	@echo ""
+	@echo "Running pip-audit (dependency audit)..."
+	pip-audit || true
+	@echo ""
+	@echo "Security scan complete!"
+
+security-bandit: ## Run Bandit security linter only
+	bandit -r modules/ shared/ config/ -c pyproject.toml -f json -o security-report.json || true
+	bandit -r modules/ shared/ config/ -c pyproject.toml
+
+security-deps: ## Check dependencies for vulnerabilities
+	@echo "Running Safety..."
+	safety check --full-report
+	@echo ""
+	@echo "Running pip-audit..."
+	pip-audit
+
+security-report: ## Generate security report (JSON)
+	@mkdir -p reports
+	bandit -r modules/ shared/ config/ -c pyproject.toml -f json -o reports/bandit-report.json || true
+	bandit -r modules/ shared/ config/ -c pyproject.toml -f html -o reports/bandit-report.html || true
+	safety check --output json > reports/safety-report.json 2>&1 || true
+	pip-audit --format json > reports/pip-audit-report.json 2>&1 || true
+	@echo "Security reports generated in reports/ directory"
 
 # =============================================================================
 # CI Checks

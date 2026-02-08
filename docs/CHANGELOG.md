@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 
 #### 2026-02-08 - Phase 10: Production Readiness
+- Added automated security scanning:
+  - Bandit for static security analysis
+  - Safety for dependency vulnerability checking
+  - pip-audit for dependency auditing
+  - Locust for performance testing
+  - Makefile targets: `security`, `security-bandit`, `security-deps`, `security-report`
+  - Bandit configuration in pyproject.toml
 - Created performance testing infrastructure:
   - `tests/performance/locustfile.py` - Locust load testing scenarios
   - `docs/performance.md` - Performance testing guide with baselines

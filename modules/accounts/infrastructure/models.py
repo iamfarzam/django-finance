@@ -140,6 +140,13 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
         help_text="User's last name.",
     )
 
+    # Preferences
+    default_currency = models.CharField(
+        max_length=3,
+        default="USD",
+        help_text="Default currency for new records and views.",
+    )
+
     # Role and status
     role = models.CharField(
         max_length=20,

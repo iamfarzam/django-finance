@@ -13,6 +13,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from modules.accounts.domain.services import default_password_policy
 from modules.accounts.infrastructure.models import User
+from modules.finance.domain.value_objects import Currency
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -29,6 +30,7 @@ class UserSerializer(serializers.ModelSerializer):
             "email",
             "first_name",
             "last_name",
+            "default_currency",
             "full_name",
             "role",
             "status",
@@ -245,4 +247,12 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["first_name", "last_name"]
+        fields = ["first_name", "last_name", "default_currency"]
+
+    def validate_default_currency(self, value: str) -> str:
+        """Validate currency code is supported."""
+        if not Currency.is_supported(value):
+            raise serializers.ValidationError(
+                _("Unsupported currency: %(currency)s") % {"currency": value}
+            )
+        return value.upper()

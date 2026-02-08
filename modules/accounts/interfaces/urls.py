@@ -13,6 +13,7 @@ from modules.accounts.interfaces.views import (
     ResendVerificationView,
     ResetPasswordView,
     UpdateProfileView,
+    DeleteAccountView,
     VerifyEmailView,
 )
 
@@ -35,4 +36,5 @@ urlpatterns = [
     # Profile
     path("profile/", ProfileView.as_view(), name="profile"),
     path("profile/update/", UpdateProfileView.as_view(), name="profile-update"),
+    path("account/delete/", DeleteAccountView.as_view(), name="account-delete"),
 ]

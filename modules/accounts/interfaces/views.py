@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import timedelta
 from typing import Any
 
+from django.contrib.auth import logout
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from rest_framework import status
@@ -379,3 +380,22 @@ class UpdateProfileView(GenericAPIView):
         serializer.save()
 
         return Response(UserSerializer(request.user).data)
+
+
+class DeleteAccountView(GenericAPIView):
+    """Soft delete the authenticated user account."""
+
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request: Request) -> Response:
+        """Soft delete the current user's account and end the session."""
+        user = request.user
+        user.is_deleted = True
+        user.deleted_at = timezone.now()
+        user.status = User.Status.DELETED
+        user.is_active = False
+        user.save(update_fields=["is_deleted", "deleted_at", "status", "is_active", "updated_at"])
+
+        logout(request)
+
+        return Response(status=status.HTTP_204_NO_CONTENT)

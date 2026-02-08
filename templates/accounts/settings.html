@@ -430,7 +430,7 @@
         </div>
 
         <!-- Currency Preferences -->
-        <div class="bg-white shadow-sm rounded-lg border border-gray-200">
+        <div class="bg-white shadow-sm rounded-lg border border-gray-200" x-data="currencyPreferenceForm()">
             <div class="p-6 border-b border-gray-200">
                 <h2 class="text-lg font-medium text-gray-900">{% translate "Preferences" %}</h2>
                 <p class="mt-1 text-sm text-gray-500">{% translate "Customize your experience." %}</p>
@@ -441,27 +441,35 @@
                         <p class="text-sm font-medium text-gray-900">{% translate "Default Currency" %}</p>
                         <p class="text-sm text-gray-500">{% translate "Currency used for new accounts and transactions." %}</p>
                     </div>
-                    <select class="mt-1 block w-32 rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm">
-                        <option value="USD" selected>USD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="GBP">GBP</option>
-                        <option value="INR">INR</option>
+                    <select x-model="currency"
+                            @change="save"
+                            class="mt-1 block w-32 rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm">
+                        <option value="USD" {% if user.default_currency|default:"USD" == "USD" %}selected{% endif %}>USD</option>
+                        <option value="EUR" {% if user.default_currency == "EUR" %}selected{% endif %}>EUR</option>
+                        <option value="GBP" {% if user.default_currency == "GBP" %}selected{% endif %}>GBP</option>
+                        <option value="INR" {% if user.default_currency == "INR" %}selected{% endif %}>INR</option>
                     </select>
                 </div>
+                <p x-show="saved" class="text-xs text-success-600">{% translate "Preference saved." %}</p>
+                <p x-show="error" x-text="error" class="text-xs text-danger-600"></p>
             </div>
         </div>
 
         <!-- Danger Zone -->
-        <div class="bg-white shadow-sm rounded-lg border border-danger-200">
+        <div class="bg-white shadow-sm rounded-lg border border-danger-200" x-data="deleteAccountForm()">
             <div class="p-6 border-b border-danger-200 bg-danger-50">
                 <h2 class="text-lg font-medium text-danger-900">{% translate "Danger Zone" %}</h2>
                 <p class="mt-1 text-sm text-danger-600">{% translate "Irreversible and destructive actions." %}</p>
             </div>
             <div class="p-6">
-                <button type="button" class="inline-flex items-center px-4 py-2 border border-danger-300 shadow-sm text-sm font-medium rounded-md text-danger-700 bg-white hover:bg-danger-50">
+                <button type="button"
+                        @click="confirmDelete()"
+                        :disabled="loading"
+                        class="inline-flex items-center px-4 py-2 border border-danger-300 shadow-sm text-sm font-medium rounded-md text-danger-700 bg-white hover:bg-danger-50 disabled:opacity-60">
                     {% translate "Delete Account" %}
                 </button>
                 <p class="mt-2 text-xs text-gray-500">{% translate "Once you delete your account, there is no going back. Please be certain." %}</p>
+                <p x-show="error" x-text="error" class="mt-2 text-xs text-danger-600"></p>
             </div>
         </div>
     </div>
@@ -697,6 +705,88 @@ function settingsPage() {
                 });
             } catch (error) {
                 console.error('Failed to update frequency:', error);
+            }
+        }
+    };
+}
+
+function deleteAccountForm() {
+    return {
+        loading: false,
+        error: '',
+
+        async confirmDelete() {
+            const message = '{{ _("Once you delete your account, there is no going back. Please be certain.")|escapejs }}';
+            if (!confirm(message)) {
+                return;
+            }
+
+            this.loading = true;
+            this.error = '';
+
+            try {
+                const response = await fetch('/api/v1/auth/account/delete/', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': window.CSRF_TOKEN,
+                        'Accept': 'application/json',
+                    },
+                    credentials: 'same-origin',
+                });
+
+                if (response.ok) {
+                    window.location.href = '/accounts/login/';
+                    return;
+                }
+
+                const data = await response.json().catch(() => ({}));
+                this.error = data.detail || data.error?.message || 'An error occurred. Please try again.';
+            } catch (err) {
+                console.error('Account delete error:', err);
+                this.error = 'An error occurred. Please try again.';
+            } finally {
+                this.loading = false;
+            }
+        }
+    };
+}
+
+function currencyPreferenceForm() {
+    return {
+        currency: '{{ user.default_currency|default:"USD" }}',
+        loading: false,
+        saved: false,
+        error: '',
+
+        async save() {
+            this.loading = true;
+            this.error = '';
+            this.saved = false;
+
+            try {
+                const response = await fetch('/api/v1/auth/profile/update/', {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': window.CSRF_TOKEN,
+                        'Accept': 'application/json',
+                    },
+                    credentials: 'same-origin',
+                    body: JSON.stringify({ default_currency: this.currency }),
+                });
+
+                if (response.ok) {
+                    this.saved = true;
+                    setTimeout(() => { this.saved = false; }, 2000);
+                } else {
+                    const data = await response.json().catch(() => ({}));
+                    this.error = data.detail || data.default_currency?.[0] || 'Failed to save preference.';
+                }
+            } catch (err) {
+                console.error('Default currency update error:', err);
+                this.error = 'An error occurred. Please try again.';
+            } finally {
+                this.loading = false;
             }
         }
     };

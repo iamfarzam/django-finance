@@ -94,7 +94,7 @@
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
         </svg>
-        {% trans "Back to Dashboard" %}
+        {% translate "Back to Dashboard" %}
     </a>
 
     <div class="audit-header">
@@ -103,46 +103,46 @@
     </div>
 
     <div class="info-box">
-        <h3>{% trans "About Audit Logs" %}</h3>
-        <p>{% trans "Audit logs are stored using structured logging (structlog) and can be viewed through your logging infrastructure." %}</p>
-        <p>{% trans "Retention policies:" %}</p>
+        <h3>{% translate "About Audit Logs" %}</h3>
+        <p>{% translate "Audit logs are stored using structured logging (structlog) and can be viewed through your logging infrastructure." %}</p>
+        <p>{% translate "Retention policies:" %}</p>
         <ul>
-            <li>{% trans "Financial operations: 7 years" %}</li>
-            <li>{% trans "Security operations: 2 years" %}</li>
-            <li>{% trans "Admin operations: 7 years" %}</li>
+            <li>{% translate "Financial operations: 7 years" %}</li>
+            <li>{% translate "Security operations: 2 years" %}</li>
+            <li>{% translate "Admin operations: 7 years" %}</li>
         </ul>
     </div>
 
-    <h3 class="section-title">{% trans "Audit Log Categories" %}</h3>
-    <p>{% trans "The following actions are automatically logged:" %}</p>
+    <h3 class="section-title">{% translate "Audit Log Categories" %}</h3>
+    <p>{% translate "The following actions are automatically logged:" %}</p>
 
-    <h4 style="margin-top: 1.5rem; font-weight: 600;">{% trans "Account Operations" %}</h4>
+    <h4 style="margin-top: 1.5rem; font-weight: 600;">{% translate "Account Operations" %}</h4>
     <div class="code-block">
         <code>account.create</code>, <code>account.update</code>, <code>account.close</code>, <code>account.delete</code>
     </div>
 
-    <h4 style="margin-top: 1rem; font-weight: 600;">{% trans "Transaction Operations" %}</h4>
+    <h4 style="margin-top: 1rem; font-weight: 600;">{% translate "Transaction Operations" %}</h4>
     <div class="code-block">
         <code>transaction.create</code>, <code>transaction.post</code>, <code>transaction.void</code>, <code>transaction.adjust</code>
     </div>
 
-    <h4 style="margin-top: 1rem; font-weight: 600;">{% trans "Security Operations" %}</h4>
+    <h4 style="margin-top: 1rem; font-weight: 600;">{% translate "Security Operations" %}</h4>
     <div class="code-block">
         <code>user.login</code>, <code>user.logout</code>, <code>user.login_failed</code>, <code>user.password_change</code>
     </div>
 
-    <h4 style="margin-top: 1rem; font-weight: 600;">{% trans "Admin Operations" %}</h4>
+    <h4 style="margin-top: 1rem; font-weight: 600;">{% translate "Admin Operations" %}</h4>
     <div class="code-block">
         <code>admin.data_export</code>, <code>admin.data_delete</code>
     </div>
 
-    <h3 class="section-title" style="margin-top: 2rem;">{% trans "Viewing Logs" %}</h3>
-    <p>{% trans "To view audit logs, check your application logs with the following filter:" %}</p>
+    <h3 class="section-title" style="margin-top: 2rem;">{% translate "Viewing Logs" %}</h3>
+    <p>{% translate "To view audit logs, check your application logs with the following filter:" %}</p>
     <div class="code-block">
         grep "audit_event" /var/log/django-finance/app.log | jq .
     </div>
 
-    <p style="margin-top: 1rem;">{% trans "Or use your centralized logging solution (e.g., ELK Stack, Datadog, CloudWatch) to search for events with:" %}</p>
+    <p style="margin-top: 1rem;">{% translate "Or use your centralized logging solution (e.g., ELK Stack, Datadog, CloudWatch) to search for events with:" %}</p>
     <div class="code-block">
         event: "audit_event" AND category: "financial"
     </div>

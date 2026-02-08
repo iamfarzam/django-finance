@@ -94,63 +94,63 @@
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
         </svg>
-        {% trans "Back to Dashboard" %}
+        {% translate "Back to Dashboard" %}
     </a>
 
     <div class="stats-header">
         <h1>{{ title }}</h1>
-        <p>{% trans "Financial statistics for your tenant" %}</p>
+        <p>{% translate "Financial statistics for your tenant" %}</p>
     </div>
 
-    <h2 class="section-title">{% trans "Accounts Overview" %}</h2>
+    <h2 class="section-title">{% translate "Accounts Overview" %}</h2>
     <div class="stats-grid">
         <div class="stat-card">
-            <h3>{% trans "Total Accounts" %}</h3>
+            <h3>{% translate "Total Accounts" %}</h3>
             <p class="value">{{ total_accounts|default:"0" }}</p>
-            <p class="description">{% trans "All financial accounts" %}</p>
+            <p class="description">{% translate "All financial accounts" %}</p>
         </div>
         <div class="stat-card">
-            <h3>{% trans "Active Accounts" %}</h3>
+            <h3>{% translate "Active Accounts" %}</h3>
             <p class="value">{{ active_accounts|default:"0" }}</p>
-            <p class="description">{% trans "Currently active accounts" %}</p>
+            <p class="description">{% translate "Currently active accounts" %}</p>
         </div>
     </div>
 
-    <h2 class="section-title">{% trans "Transaction Summary (Last 30 Days)" %}</h2>
+    <h2 class="section-title">{% translate "Transaction Summary (Last 30 Days)" %}</h2>
     <div class="stats-grid">
         <div class="stat-card">
-            <h3>{% trans "Recent Transactions" %}</h3>
+            <h3>{% translate "Recent Transactions" %}</h3>
             <p class="value">{{ recent_transaction_count|default:"0" }}</p>
-            <p class="description">{% trans "Transactions in the last 30 days" %}</p>
+            <p class="description">{% translate "Transactions in the last 30 days" %}</p>
         </div>
         <div class="stat-card">
-            <h3>{% trans "Total Income" %}</h3>
+            <h3>{% translate "Total Income" %}</h3>
             <p class="value positive">+${{ total_credits|floatformat:2 }}</p>
-            <p class="description">{% trans "Credits in the last 30 days" %}</p>
+            <p class="description">{% translate "Credits in the last 30 days" %}</p>
         </div>
         <div class="stat-card">
-            <h3>{% trans "Total Expenses" %}</h3>
+            <h3>{% translate "Total Expenses" %}</h3>
             <p class="value negative">-${{ total_debits|floatformat:2 }}</p>
-            <p class="description">{% trans "Debits in the last 30 days" %}</p>
+            <p class="description">{% translate "Debits in the last 30 days" %}</p>
         </div>
     </div>
 
-    <h2 class="section-title">{% trans "Social Finance" %}</h2>
+    <h2 class="section-title">{% translate "Social Finance" %}</h2>
     <div class="stats-grid">
         <div class="stat-card">
-            <h3>{% trans "Total Debts" %}</h3>
+            <h3>{% translate "Total Debts" %}</h3>
             <p class="value">{{ total_debts|default:"0" }}</p>
-            <p class="description">{% trans "Peer debt records" %}</p>
+            <p class="description">{% translate "Peer debt records" %}</p>
         </div>
         <div class="stat-card">
-            <h3>{% trans "Pending Debts" %}</h3>
+            <h3>{% translate "Pending Debts" %}</h3>
             <p class="value">{{ pending_debts|default:"0" }}</p>
-            <p class="description">{% trans "Awaiting settlement" %}</p>
+            <p class="description">{% translate "Awaiting settlement" %}</p>
         </div>
         <div class="stat-card">
-            <h3>{% trans "Settlements" %}</h3>
+            <h3>{% translate "Settlements" %}</h3>
             <p class="value">{{ total_settlements|default:"0" }}</p>
-            <p class="description">{% trans "Completed settlements" %}</p>
+            <p class="description">{% translate "Completed settlements" %}</p>
         </div>
     </div>
 </div>

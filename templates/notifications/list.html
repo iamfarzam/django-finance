@@ -1,20 +1,21 @@
 {% extends "base/app.html" %}
+{% load i18n %}
 
-{% block title %}Notifications{% endblock %}
+{% block title %}{% translate "Notifications" %}{% endblock %}
 
 {% block content %}
 <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8" x-data="notificationsPage()" x-init="init()">
     <!-- Header -->
     <div class="mb-8 flex items-center justify-between">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900">Notifications</h1>
-            <p class="mt-1 text-sm text-gray-500">Stay updated on your financial activity.</p>
+            <h1 class="text-2xl font-bold text-gray-900">{% translate "Notifications" %}</h1>
+            <p class="mt-1 text-sm text-gray-500">{% translate "Stay updated on your financial activity." %}</p>
         </div>
         <div class="flex items-center space-x-3">
             <button @click="markAllRead()"
                     x-show="unreadCount > 0"
                     class="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                Mark all as read
+                {% translate "Mark all as read" %}
             </button>
             <a href="{% url 'web:settings' %}#notifications"
                class="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
@@ -22,7 +23,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
-                Preferences
+                {% translate "Preferences" %}
             </a>
         </div>
     </div>
@@ -33,12 +34,12 @@
             <button @click="filter = 'all'; loadNotifications()"
                     :class="{ 'border-primary-500 text-primary-600': filter === 'all', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': filter !== 'all' }"
                     class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                All
+                {% translate "All" %}
             </button>
             <button @click="filter = 'unread'; loadNotifications()"
                     :class="{ 'border-primary-500 text-primary-600': filter === 'unread', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': filter !== 'unread' }"
                     class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                Unread
+                {% translate "Unread" %}
                 <span x-show="unreadCount > 0"
                       x-text="'(' + unreadCount + ')'"
                       class="ml-1 text-xs bg-primary-100 text-primary-600 rounded-full px-2 py-0.5">
@@ -47,12 +48,12 @@
             <button @click="filter = 'finance'; loadNotifications()"
                     :class="{ 'border-primary-500 text-primary-600': filter === 'finance', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': filter !== 'finance' }"
                     class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                Finance
+                {% translate "Finance" %}
             </button>
             <button @click="filter = 'social'; loadNotifications()"
                     :class="{ 'border-primary-500 text-primary-600': filter === 'social', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': filter !== 'social' }"
                     class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                Social
+                {% translate "Social" %}
             </button>
         </nav>
     </div>
@@ -80,12 +81,12 @@
             <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
             </svg>
-            <h3 class="mt-4 text-sm font-medium text-gray-900">No notifications</h3>
+            <h3 class="mt-4 text-sm font-medium text-gray-900">{% translate "No notifications" %}</h3>
             <p class="mt-1 text-sm text-gray-500">
-                <span x-show="filter === 'all'">You're all caught up!</span>
-                <span x-show="filter === 'unread'">No unread notifications.</span>
-                <span x-show="filter === 'finance'">No finance notifications.</span>
-                <span x-show="filter === 'social'">No social notifications.</span>
+                <span x-show="filter === 'all'">{% translate "You're all caught up!" %}</span>
+                <span x-show="filter === 'unread'">{% translate "No unread notifications." %}</span>
+                <span x-show="filter === 'finance'">{% translate "No finance notifications." %}</span>
+                <span x-show="filter === 'social'">{% translate "No social notifications." %}</span>
             </p>
         </div>
     </template>
@@ -148,16 +149,16 @@
                                    :href="notification.action_url"
                                    @click="markRead(notification.id)"
                                    class="text-sm font-medium text-primary-600 hover:text-primary-500">
-                                    View details
+                                    {% translate "View details" %}
                                 </a>
                                 <button x-show="!notification.read_at"
                                         @click="markRead(notification.id)"
                                         class="text-sm text-gray-500 hover:text-gray-700">
-                                    Mark as read
+                                    {% translate "Mark as read" %}
                                 </button>
                                 <button @click="archiveNotification(notification.id)"
                                         class="text-sm text-gray-500 hover:text-gray-700">
-                                    Archive
+                                    {% translate "Archive" %}
                                 </button>
                             </div>
                         </div>
@@ -171,8 +172,8 @@
             <button @click="loadMore()"
                     :disabled="loadingMore"
                     class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50">
-                <span x-show="!loadingMore">Load more</span>
-                <span x-show="loadingMore">Loading...</span>
+                <span x-show="!loadingMore">{% translate "Load more" %}</span>
+                <span x-show="loadingMore">{% translate "Loading..." %}</span>
             </button>
         </div>
     </div>
@@ -206,7 +207,7 @@ function notificationsPage() {
                 });
                 if (response.ok) {
                     const data = await response.json();
-                    this.unreadCount = data.count || 0;
+                    this.unreadCount = data.unread_count || data.count || 0;
                 }
             } catch (error) {
                 console.error('Failed to fetch unread count:', error);
@@ -229,9 +230,9 @@ function notificationsPage() {
                     credentials: 'same-origin',
                 });
                 if (response.ok) {
-                    const data = await response.json();
-                    this.notifications = data.results || data || [];
-                    this.hasMore = data.next || (this.notifications.length >= this.limit);
+                    const json = await response.json();
+                    this.notifications = json.data || json.results || (Array.isArray(json) ? json : []);
+                    this.hasMore = json.meta?.has_more || json.next || (this.notifications.length >= this.limit);
                 }
             } catch (error) {
                 console.error('Failed to load notifications:', error);
@@ -256,10 +257,10 @@ function notificationsPage() {
                     credentials: 'same-origin',
                 });
                 if (response.ok) {
-                    const data = await response.json();
-                    const newNotifications = data.results || data || [];
+                    const json = await response.json();
+                    const newNotifications = json.data || json.results || (Array.isArray(json) ? json : []);
                     this.notifications = [...this.notifications, ...newNotifications];
-                    this.hasMore = data.next || (newNotifications.length >= this.limit);
+                    this.hasMore = json.meta?.has_more || json.next || (newNotifications.length >= this.limit);
                 }
             } catch (error) {
                 console.error('Failed to load more notifications:', error);

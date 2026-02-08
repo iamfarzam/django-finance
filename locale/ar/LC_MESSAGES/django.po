@@ -1966,3 +1966,7 @@ msgstr "التسويات"
 #: .\templates\social\settlements\list.html:60
 msgid "Record settlements when debts are paid."
 msgstr "سجّل التسويات عند سداد الديون."
+
+#: templates/accounts/settings.html:0
+msgid "Preference saved."
+msgstr "تم حفظ التفضيلات."

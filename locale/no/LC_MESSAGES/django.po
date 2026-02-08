@@ -1972,3 +1972,7 @@ msgstr "Oppgjør"
 #: .\templates\social\settlements\list.html:60
 msgid "Record settlements when debts are paid."
 msgstr "Registrer oppgjør når gjeld er betalt."
+
+#: templates/accounts/settings.html:0
+msgid "Preference saved."
+msgstr "Innstilling lagret."

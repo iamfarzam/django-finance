@@ -1976,3 +1976,7 @@ msgstr "تصفیے"
 #: .\templates\social\settlements\list.html:60
 msgid "Record settlements when debts are paid."
 msgstr "جب قرض ادا ہو جائیں تو تصفیے ریکارڈ کریں۔"
+
+#: templates/accounts/settings.html:0
+msgid "Preference saved."
+msgstr "ترجیح محفوظ کر دی گئی ۔"

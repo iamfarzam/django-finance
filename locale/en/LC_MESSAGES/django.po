@@ -1977,3 +1977,7 @@ msgstr "Settlements"
 #: .\templates\social\settlements\list.html:60
 msgid "Record settlements when debts are paid."
 msgstr "Record settlements when debts are paid."
+
+#: templates/accounts/settings.html:0
+msgid "Preference saved."
+msgstr "Preference saved."

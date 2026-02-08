@@ -1953,3 +1953,7 @@ msgstr "结算"
 #: .\templates\social\settlements\list.html:60
 msgid "Record settlements when debts are paid."
 msgstr "在债务还清时记录结算。"
+
+#: templates/accounts/settings.html:0
+msgid "Preference saved."
+msgstr "偏好已保存。"

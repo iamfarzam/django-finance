@@ -1990,3 +1990,7 @@ msgstr "Règlements"
 #: .\templates\social\settlements\list.html:60
 msgid "Record settlements when debts are paid."
 msgstr "Enregistrez les règlements lorsque les dettes sont payées."
+
+#: templates/accounts/settings.html:0
+msgid "Preference saved."
+msgstr "Préférence enregistrée."

@@ -1966,3 +1966,7 @@ msgstr "精算"
 #: .\templates\social\settlements\list.html:60
 msgid "Record settlements when debts are paid."
 msgstr "負債が支払われたときに清算を記録します。"
+
+#: templates/accounts/settings.html:0
+msgid "Preference saved."
+msgstr "設定を保存しました。"

@@ -1965,3 +1965,7 @@ msgstr "निपटान"
 #: .\templates\social\settlements\list.html:60
 msgid "Record settlements when debts are paid."
 msgstr "जब ऋण चुकाए जाएँ तो निपटान दर्ज करें।"
+
+#: templates/accounts/settings.html:0
+msgid "Preference saved."
+msgstr "प्राथमिकता सहेज ली गई।"

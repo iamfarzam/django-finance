@@ -1962,3 +1962,7 @@ msgstr "정산"
 #: .\templates\social\settlements\list.html:60
 msgid "Record settlements when debts are paid."
 msgstr "부채가 상환되면 정산을 기록합니다."
+
+#: templates/accounts/settings.html:0
+msgid "Preference saved."
+msgstr "설정이 저장되었습니다."

@@ -1978,3 +1978,7 @@ msgstr "Elszámolások"
 #: .\templates\social\settlements\list.html:60
 msgid "Record settlements when debts are paid."
 msgstr "A rendezéseket rögzítse, amikor a tartozásokat kifizették."
+
+#: templates/accounts/settings.html:0
+msgid "Preference saved."
+msgstr "Beállítás mentve."

@@ -64,7 +64,48 @@
     </div>
 
     <!-- Right side - form -->
-    <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-20 xl:px-24">
+    <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-20 xl:px-24 relative">
+        <!-- Language selector -->
+        <div class="absolute top-4 right-4" x-data="{ langOpen: false }">
+            <button @click="langOpen = !langOpen"
+                    @click.away="langOpen = false"
+                    type="button"
+                    class="p-2 rounded-lg text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 flex items-center"
+                    aria-label="{% translate "Change language" %}">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                </svg>
+                <span class="ml-1 text-xs font-medium uppercase">{{ LANGUAGE_CODE|slice:":2" }}</span>
+            </button>
+
+            <div x-show="langOpen"
+                 x-cloak
+                 x-transition
+                 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none max-h-80 overflow-y-auto z-50"
+                 role="menu">
+                <div class="py-1">
+                    {% get_available_languages as languages %}
+                    {% for lang_code, lang_name in languages %}
+                    <form method="post" action="{% url 'set_language' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="language" value="{{ lang_code }}">
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button type="submit"
+                                class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 flex items-center justify-between {% if lang_code == LANGUAGE_CODE %}bg-primary-50 text-primary-700{% else %}text-gray-700{% endif %}"
+                                role="menuitem">
+                            <span>{{ lang_name }}</span>
+                            {% if lang_code == LANGUAGE_CODE %}
+                            <svg class="h-4 w-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            {% endif %}
+                        </button>
+                    </form>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
         <div class="mx-auto w-full max-w-sm lg:max-w-md">
             <!-- Mobile logo -->
             <div class="lg:hidden flex justify-center mb-8">

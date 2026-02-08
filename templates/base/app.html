@@ -48,8 +48,55 @@
 
             <!-- Right side -->
             <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                <!-- Language selector -->
+                <div class="relative" x-data="{ langOpen: false }">
+                    <button @click="langOpen = !langOpen"
+                            @click.away="langOpen = false"
+                            type="button"
+                            class="p-2 rounded-full text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 flex items-center"
+                            aria-label="{% translate "Change language" %}">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                        </svg>
+                        <span class="ml-1 text-xs font-medium uppercase">{{ LANGUAGE_CODE|slice:":2" }}</span>
+                    </button>
+
+                    <!-- Language dropdown -->
+                    <div x-show="langOpen"
+                         x-cloak
+                         x-transition:enter="transition ease-out duration-100"
+                         x-transition:enter-start="transform opacity-0 scale-95"
+                         x-transition:enter-end="transform opacity-100 scale-100"
+                         x-transition:leave="transition ease-in duration-75"
+                         x-transition:leave-start="transform opacity-100 scale-100"
+                         x-transition:leave-end="transform opacity-0 scale-95"
+                         class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none max-h-96 overflow-y-auto"
+                         role="menu">
+                        <div class="py-1">
+                            {% get_available_languages as languages %}
+                            {% for lang_code, lang_name in languages %}
+                            <form method="post" action="{% url 'set_language' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="language" value="{{ lang_code }}">
+                                <input type="hidden" name="next" value="{{ request.path }}">
+                                <button type="submit"
+                                        class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 flex items-center justify-between {% if lang_code == LANGUAGE_CODE %}bg-primary-50 text-primary-700{% else %}text-gray-700{% endif %}"
+                                        role="menuitem">
+                                    <span>{{ lang_name }}</span>
+                                    {% if lang_code == LANGUAGE_CODE %}
+                                    <svg class="h-4 w-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    {% endif %}
+                                </button>
+                            </form>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Notifications dropdown -->
-                <div class="relative" x-data="notificationBell()" x-init="init()">
+                <div class="ml-2 relative" x-data="notificationBell()" x-init="init()">
                     <button @click="open = !open; if(open) loadNotifications()"
                             @click.away="open = false"
                             type="button"
@@ -258,6 +305,41 @@
             <div class="mt-3 space-y-1">
                 <a href="{% url 'web:profile' %}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">{% translate "Your Profile" %}</a>
                 <a href="{% url 'web:settings' %}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">{% translate "Settings" %}</a>
+                <!-- Language selector for mobile -->
+                <div x-data="{ mobileLangOpen: false }" class="relative">
+                    <button @click="mobileLangOpen = !mobileLangOpen"
+                            type="button"
+                            class="w-full text-left px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 flex items-center justify-between">
+                        <span class="flex items-center">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                            </svg>
+                            {% translate "Language" %}
+                        </span>
+                        <svg class="h-5 w-5 transition-transform" :class="{ 'rotate-180': mobileLangOpen }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div x-show="mobileLangOpen" x-cloak class="bg-gray-50 border-t border-gray-200">
+                        {% get_available_languages as languages %}
+                        {% for lang_code, lang_name in languages %}
+                        <form method="post" action="{% url 'set_language' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="language" value="{{ lang_code }}">
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                            <button type="submit"
+                                    class="w-full text-left pl-11 pr-4 py-2 text-sm flex items-center justify-between {% if lang_code == LANGUAGE_CODE %}bg-primary-50 text-primary-700{% else %}text-gray-600 hover:bg-gray-100{% endif %}">
+                                <span>{{ lang_name }}</span>
+                                {% if lang_code == LANGUAGE_CODE %}
+                                <svg class="h-4 w-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                {% endif %}
+                            </button>
+                        </form>
+                        {% endfor %}
+                    </div>
+                </div>
                 <form method="post" action="{% url 'accounts:logout' %}">
                     {% csrf_token %}
                     <button type="submit" class="block w-full text-left px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">

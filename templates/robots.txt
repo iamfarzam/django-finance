@@ -1,9 +1,11 @@
 User-agent: *
 Allow: /
 
-# Disallow admin and API
+# Disallow admin, API, and auth flows
 Disallow: /admin/
 Disallow: /api/
+Disallow: /accounts/
+Disallow: /react/
 
 # Sitemap
 Sitemap: {{ request.scheme }}://{{ request.get_host }}/sitemap.xml

@@ -19,13 +19,13 @@
     <meta property="og:description" content="{% block og_description %}{% translate "Personal and social finance management platform" %}{% endblock %}">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
     <meta property="og:site_name" content="{% translate "Djanbe Finance" %}">
-    {% block og_image %}<meta property="og:image" content="{% static 'img/og-image.png' %}">{% endblock %}
+    {% block og_image %}<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/og-image.png' %}">{% endblock %}
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{% block twitter_title %}{% translate "Djanbe Finance" %}{% endblock %}">
     <meta name="twitter:description" content="{% block twitter_description %}{% translate "Personal and social finance management platform" %}{% endblock %}">
-    {% block twitter_image %}<meta name="twitter:image" content="{% static 'img/og-image.png' %}">{% endblock %}
+    {% block twitter_image %}<meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/og-image.png' %}">{% endblock %}
 
     <!-- Additional SEO -->
     <meta name="theme-color" content="#2563eb">

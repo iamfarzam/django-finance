@@ -67,6 +67,8 @@ mediafiles/
 # Static and media files (keep .gitkeep)
 static/*
 !static/.gitkeep
+!static/img/
+!static/img/**
 media/*
 !media/.gitkeep
 

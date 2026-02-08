@@ -1,6 +1,8 @@
 {% extends "base/base.html" %}
 {% load static i18n %}
 
+{% block meta_robots %}noindex, nofollow{% endblock %}
+
 {% block header %}
 <header class="bg-white border-b border-gray-200 sticky top-0 z-40" x-data="{ mobileMenuOpen: false, userMenuOpen: false }">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">

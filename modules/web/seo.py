@@ -14,7 +14,7 @@ class StaticViewSitemap(Sitemap):
 
     def items(self):
         """Return list of static pages."""
-        return ["web:dashboard"]
+        return []
 
     def location(self, item):
         """Return URL for each item."""

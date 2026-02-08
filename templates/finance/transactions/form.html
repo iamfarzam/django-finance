@@ -1,11 +1,12 @@
 {% extends "base/app.html" %}
+{% load i18n %}
 
-{% block title %}Add Transaction{% endblock %}
+{% block title %}{% translate "Add Transaction" %}{% endblock %}
 
 {% block content %}
 <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="mb-8">
-        <h1 class="text-2xl font-bold text-gray-900">Add Transaction</h1>
+        <h1 class="text-2xl font-bold text-gray-900">{% translate "Add Transaction" %}</h1>
     </div>
 
     <div class="bg-white shadow-sm rounded-lg border border-gray-200">
@@ -13,10 +14,10 @@
             {% csrf_token %}
 
             <div>
-                <label for="id_account" class="block text-sm font-medium text-gray-700">Account</label>
+                <label for="id_account" class="block text-sm font-medium text-gray-700">{% translate "Account" %}</label>
                 <select name="account" id="id_account" required
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm">
-                    <option value="">Select account...</option>
+                    <option value="">{% translate "Select account..." %}</option>
                     {% for account in form.fields.account.queryset %}
                     <option value="{{ account.pk }}" {% if form.account.value == account.pk|stringformat:"s" %}selected{% endif %}>{{ account.name }}</option>
                     {% endfor %}
@@ -24,16 +25,16 @@
             </div>
 
             <div>
-                <label for="id_transaction_type" class="block text-sm font-medium text-gray-700">Type</label>
+                <label for="id_transaction_type" class="block text-sm font-medium text-gray-700">{% translate "Type" %}</label>
                 <select name="transaction_type" id="id_transaction_type" required
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm">
-                    <option value="debit" {% if form.transaction_type.value == 'debit' %}selected{% endif %}>Expense (Debit)</option>
-                    <option value="credit" {% if form.transaction_type.value == 'credit' %}selected{% endif %}>Income (Credit)</option>
+                    <option value="debit" {% if form.transaction_type.value == 'debit' %}selected{% endif %}>{% translate "Expense (Debit)" %}</option>
+                    <option value="credit" {% if form.transaction_type.value == 'credit' %}selected{% endif %}>{% translate "Income (Credit)" %}</option>
                 </select>
             </div>
 
             <div>
-                <label for="id_amount" class="block text-sm font-medium text-gray-700">Amount</label>
+                <label for="id_amount" class="block text-sm font-medium text-gray-700">{% translate "Amount" %}</label>
                 <div class="mt-1 relative rounded-md shadow-sm">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <span class="text-gray-500 sm:text-sm">$</span>
@@ -46,18 +47,18 @@
             </div>
 
             <div>
-                <label for="id_description" class="block text-sm font-medium text-gray-700">Description</label>
+                <label for="id_description" class="block text-sm font-medium text-gray-700">{% translate "Description" %}</label>
                 <input type="text" name="description" id="id_description"
                        value="{{ form.description.value|default:'' }}"
                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
-                       placeholder="What was this for?">
+                       placeholder="{% translate "What was this for?" %}">
             </div>
 
             <div>
-                <label for="id_category" class="block text-sm font-medium text-gray-700">Category (optional)</label>
+                <label for="id_category" class="block text-sm font-medium text-gray-700">{% translate "Category (optional)" %}</label>
                 <select name="category" id="id_category"
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm">
-                    <option value="">No category</option>
+                    <option value="">{% translate "No category" %}</option>
                     {% for category in form.fields.category.queryset %}
                     <option value="{{ category.pk }}" {% if form.category.value == category.pk|stringformat:"s" %}selected{% endif %}>{{ category.name }}</option>
                     {% endfor %}
@@ -65,7 +66,7 @@
             </div>
 
             <div>
-                <label for="id_transaction_date" class="block text-sm font-medium text-gray-700">Date</label>
+                <label for="id_transaction_date" class="block text-sm font-medium text-gray-700">{% translate "Date" %}</label>
                 <input type="date" name="transaction_date" id="id_transaction_date" required
                        value="{{ form.transaction_date.value|date:'Y-m-d'|default:'' }}"
                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm">
@@ -73,10 +74,10 @@
 
             <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
                 <a href="{% url 'web:transactions_list' %}" class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-                    Cancel
+                    {% translate "Cancel" %}
                 </a>
                 <button type="submit" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700">
-                    Add Transaction
+                    {% translate "Add Transaction" %}
                 </button>
             </div>
         </form>

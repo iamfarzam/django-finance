@@ -1,13 +1,14 @@
 {% extends "base/app.html" %}
+{% load i18n %}
 
 {% block title %}{{ account.name }}{% endblock %}
 
 {% block content %}
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Breadcrumb -->
-    <nav class="mb-4" aria-label="Breadcrumb">
+    <nav class="mb-4" aria-label="{% translate "Breadcrumb" %}">
         <ol class="flex items-center space-x-2 text-sm text-gray-500">
-            <li><a href="{% url 'web:accounts_list' %}" class="hover:text-gray-700">Accounts</a></li>
+            <li><a href="{% url 'web:accounts_list' %}" class="hover:text-gray-700">{% translate "Accounts" %}</a></li>
             <li><span class="mx-2">/</span></li>
             <li class="text-gray-900">{{ account.name }}</li>
         </ol>
@@ -21,17 +22,17 @@
         </div>
         <div class="mt-4 sm:mt-0 space-x-3">
             <a href="{% url 'web:account_update' account.pk %}" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                Edit
+                {% translate "Edit" %}
             </a>
             <a href="{% url 'web:transaction_create' %}?account={{ account.pk }}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700">
-                Add Transaction
+                {% translate "Add Transaction" %}
             </a>
         </div>
     </div>
 
     <!-- Balance card -->
     <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
-        <p class="text-sm text-gray-500">Current Balance</p>
+        <p class="text-sm text-gray-500">{% translate "Current Balance" %}</p>
         <p class="text-3xl font-bold {% if account.calculate_balance >= 0 %}text-gray-900{% else %}text-danger-600{% endif %}">
             ${{ account.calculate_balance|floatformat:2 }}
         </p>
@@ -43,13 +44,13 @@
     <!-- Recent transactions -->
     <div class="bg-white rounded-lg shadow-sm border border-gray-200">
         <div class="p-6 border-b border-gray-200">
-            <h2 class="text-lg font-semibold text-gray-900">Recent Transactions</h2>
+            <h2 class="text-lg font-semibold text-gray-900">{% translate "Recent Transactions" %}</h2>
         </div>
         <div class="divide-y divide-gray-200">
             {% for txn in account.transactions.all|slice:":10" %}
             <div class="p-4 flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-gray-900">{{ txn.description|default:"Transaction" }}</p>
+                    <p class="text-sm font-medium text-gray-900">{{ txn.description|default:_("Transaction") }}</p>
                     <p class="text-xs text-gray-500">{{ txn.transaction_date|date:"M d, Y" }}</p>
                 </div>
                 <span class="text-sm font-medium {% if txn.transaction_type == 'credit' %}text-success-600{% else %}text-danger-600{% endif %}">
@@ -58,7 +59,7 @@
             </div>
             {% empty %}
             <div class="p-8 text-center text-gray-500">
-                No transactions yet.
+                {% translate "No transactions yet." %}
             </div>
             {% endfor %}
         </div>

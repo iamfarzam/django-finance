@@ -71,7 +71,7 @@ PROJECT_APPS = [
     "modules.finance.infrastructure",
     "modules.social.infrastructure",
     "modules.subscriptions.infrastructure",
-    # "modules.notifications.infrastructure",
+    "modules.notifications.infrastructure",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS

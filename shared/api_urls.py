@@ -22,4 +22,6 @@ urlpatterns = [
     path("social/", include("modules.social.interfaces.urls", namespace="social")),
     # Subscriptions module
     path("subscriptions/", include("modules.subscriptions.interfaces.urls", namespace="subscriptions")),
+    # Notifications module
+    path("notifications/", include("modules.notifications.interfaces.urls", namespace="notifications")),
 ]

@@ -1,34 +1,35 @@
 {% extends "base/app.html" %}
+{% load i18n %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}{% translate "Dashboard" %}{% endblock %}
 
 {% block content %}
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Page header -->
     <div class="mb-8">
-        <h1 class="text-2xl font-bold text-gray-900">Dashboard</h1>
+        <h1 class="text-2xl font-bold text-gray-900">{% translate "Dashboard" %}</h1>
         <p class="mt-1 text-sm text-gray-500">
-            Welcome back, {{ user.first_name|default:user.email }}! Here's your financial overview.
+            {% blocktranslate with name=user.first_name|default:user.email %}Welcome back, {{ name }}! Here's your financial overview.{% endblocktranslate %}
         </p>
     </div>
 
     <!-- Net Worth Summary -->
     <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
         <div class="flex items-center justify-between mb-4">
-            <h2 class="text-lg font-semibold text-gray-900">Net Worth</h2>
-            <a href="{% url 'web:net_worth' %}" class="text-sm text-primary-600 hover:text-primary-500">View details</a>
+            <h2 class="text-lg font-semibold text-gray-900">{% translate "Net Worth" %}</h2>
+            <a href="{% url 'web:net_worth' %}" class="text-sm text-primary-600 hover:text-primary-500">{% translate "View details" %}</a>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-                <p class="text-sm text-gray-500">Total Assets</p>
+                <p class="text-sm text-gray-500">{% translate "Total Assets" %}</p>
                 <p class="text-2xl font-bold text-success-600">{{ total_assets|default:"$0.00" }}</p>
             </div>
             <div>
-                <p class="text-sm text-gray-500">Total Liabilities</p>
+                <p class="text-sm text-gray-500">{% translate "Total Liabilities" %}</p>
                 <p class="text-2xl font-bold text-danger-600">{{ total_liabilities|default:"$0.00" }}</p>
             </div>
             <div>
-                <p class="text-sm text-gray-500">Net Worth</p>
+                <p class="text-sm text-gray-500">{% translate "Net Worth" %}</p>
                 <p class="text-2xl font-bold {% if net_worth_positive %}text-success-600{% else %}text-danger-600{% endif %}">
                     {{ net_worth|default:"$0.00" }}
                 </p>
@@ -47,12 +48,12 @@
                     </svg>
                 </div>
                 <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-500">Accounts</p>
+                    <p class="text-sm font-medium text-gray-500">{% translate "Accounts" %}</p>
                     <p class="text-2xl font-semibold text-gray-900">{{ accounts_count|default:0 }}</p>
                 </div>
             </div>
             <a href="{% url 'web:accounts_list' %}" class="mt-4 block text-sm text-primary-600 hover:text-primary-500">
-                View all accounts &rarr;
+                {% translate "View all accounts" %} &rarr;
             </a>
         </div>
 
@@ -65,12 +66,12 @@
                     </svg>
                 </div>
                 <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-500">Transactions (This Month)</p>
+                    <p class="text-sm font-medium text-gray-500">{% translate "Transactions (This Month)" %}</p>
                     <p class="text-2xl font-semibold text-gray-900">{{ transactions_this_month|default:0 }}</p>
                 </div>
             </div>
             <a href="{% url 'web:transactions_list' %}" class="mt-4 block text-sm text-primary-600 hover:text-primary-500">
-                View all transactions &rarr;
+                {% translate "View all transactions" %} &rarr;
             </a>
         </div>
 
@@ -83,12 +84,12 @@
                     </svg>
                 </div>
                 <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-500">Contacts</p>
+                    <p class="text-sm font-medium text-gray-500">{% translate "Contacts" %}</p>
                     <p class="text-2xl font-semibold text-gray-900">{{ contacts_count|default:0 }}</p>
                 </div>
             </div>
             <a href="{% url 'web:contacts_list' %}" class="mt-4 block text-sm text-primary-600 hover:text-primary-500">
-                Manage contacts &rarr;
+                {% translate "Manage contacts" %} &rarr;
             </a>
         </div>
 
@@ -101,12 +102,12 @@
                     </svg>
                 </div>
                 <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-500">Active Debts</p>
+                    <p class="text-sm font-medium text-gray-500">{% translate "Active Debts" %}</p>
                     <p class="text-2xl font-semibold text-gray-900">{{ active_debts_count|default:0 }}</p>
                 </div>
             </div>
             <a href="{% url 'web:debts_list' %}" class="mt-4 block text-sm text-primary-600 hover:text-primary-500">
-                View debts &rarr;
+                {% translate "View debts" %} &rarr;
             </a>
         </div>
     </div>
@@ -117,8 +118,8 @@
         <div class="bg-white rounded-lg shadow-sm border border-gray-200">
             <div class="p-6 border-b border-gray-200">
                 <div class="flex items-center justify-between">
-                    <h2 class="text-lg font-semibold text-gray-900">Recent Transactions</h2>
-                    <a href="{% url 'web:transactions_list' %}" class="text-sm text-primary-600 hover:text-primary-500">View all</a>
+                    <h2 class="text-lg font-semibold text-gray-900">{% translate "Recent Transactions" %}</h2>
+                    <a href="{% url 'web:transactions_list' %}" class="text-sm text-primary-600 hover:text-primary-500">{% translate "View all" %}</a>
                 </div>
             </div>
             <div class="divide-y divide-gray-200">
@@ -150,14 +151,14 @@
                     <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                     </svg>
-                    <h3 class="mt-2 text-sm font-medium text-gray-900">No transactions yet</h3>
-                    <p class="mt-1 text-sm text-gray-500">Get started by adding your first transaction.</p>
+                    <h3 class="mt-2 text-sm font-medium text-gray-900">{% translate "No transactions yet" %}</h3>
+                    <p class="mt-1 text-sm text-gray-500">{% translate "Get started by adding your first transaction." %}</p>
                     <div class="mt-6">
                         <a href="{% url 'web:transaction_create' %}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700">
                             <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                             </svg>
-                            Add Transaction
+                            {% translate "Add Transaction" %}
                         </a>
                     </div>
                 </div>
@@ -169,8 +170,8 @@
         <div class="bg-white rounded-lg shadow-sm border border-gray-200">
             <div class="p-6 border-b border-gray-200">
                 <div class="flex items-center justify-between">
-                    <h2 class="text-lg font-semibold text-gray-900">Social Finance</h2>
-                    <a href="{% url 'web:balances_summary' %}" class="text-sm text-primary-600 hover:text-primary-500">View all</a>
+                    <h2 class="text-lg font-semibold text-gray-900">{% translate "Social Finance" %}</h2>
+                    <a href="{% url 'web:balances_summary' %}" class="text-sm text-primary-600 hover:text-primary-500">{% translate "View all" %}</a>
                 </div>
             </div>
 
@@ -178,11 +179,11 @@
             <div class="p-6 border-b border-gray-200 bg-gray-50">
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <p class="text-sm text-gray-500">Others Owe You</p>
+                        <p class="text-sm text-gray-500">{% translate "Others Owe You" %}</p>
                         <p class="text-xl font-semibold text-success-600">{{ others_owe_you|default:"$0.00" }}</p>
                     </div>
                     <div>
-                        <p class="text-sm text-gray-500">You Owe Others</p>
+                        <p class="text-sm text-gray-500">{% translate "You Owe Others" %}</p>
                         <p class="text-xl font-semibold text-danger-600">{{ you_owe_others|default:"$0.00" }}</p>
                     </div>
                 </div>
@@ -212,14 +213,14 @@
                     <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
                     </svg>
-                    <h3 class="mt-2 text-sm font-medium text-gray-900">No social activity</h3>
-                    <p class="mt-1 text-sm text-gray-500">Start tracking debts with friends and family.</p>
+                    <h3 class="mt-2 text-sm font-medium text-gray-900">{% translate "No social activity" %}</h3>
+                    <p class="mt-1 text-sm text-gray-500">{% translate "Start tracking debts with friends and family." %}</p>
                     <div class="mt-6 space-x-3">
                         <a href="{% url 'web:debt_create' %}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700">
-                            Record Debt
+                            {% translate "Record Debt" %}
                         </a>
                         <a href="{% url 'web:groups_list' %}" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                            Create Group
+                            {% translate "Create Group" %}
                         </a>
                     </div>
                 </div>

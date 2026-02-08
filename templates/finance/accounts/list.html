@@ -1,21 +1,22 @@
 {% extends "base/app.html" %}
+{% load i18n %}
 
-{% block title %}Accounts{% endblock %}
+{% block title %}{% translate "Accounts" %}{% endblock %}
 
 {% block content %}
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Header -->
     <div class="sm:flex sm:items-center sm:justify-between mb-8">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900">Accounts</h1>
-            <p class="mt-1 text-sm text-gray-500">Manage your financial accounts and wallets.</p>
+            <h1 class="text-2xl font-bold text-gray-900">{% translate "Accounts" %}</h1>
+            <p class="mt-1 text-sm text-gray-500">{% translate "Manage your financial accounts and wallets." %}</p>
         </div>
         <div class="mt-4 sm:mt-0">
             <a href="{% url 'web:account_create' %}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
                 <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                 </svg>
-                Add Account
+                {% translate "Add Account" %}
             </a>
         </div>
     </div>
@@ -58,7 +59,7 @@
                     <p class="text-2xl font-bold {% if account.calculate_balance >= 0 %}text-gray-900{% else %}text-danger-600{% endif %}">
                         ${{ account.calculate_balance|floatformat:2 }}
                     </p>
-                    <p class="text-xs text-gray-500 mt-1">Current balance</p>
+                    <p class="text-xs text-gray-500 mt-1">{% translate "Current balance" %}</p>
                 </div>
             </div>
         </a>
@@ -70,14 +71,14 @@
         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
         </svg>
-        <h3 class="mt-2 text-sm font-medium text-gray-900">No accounts</h3>
-        <p class="mt-1 text-sm text-gray-500">Get started by creating your first account.</p>
+        <h3 class="mt-2 text-sm font-medium text-gray-900">{% translate "No accounts" %}</h3>
+        <p class="mt-1 text-sm text-gray-500">{% translate "Get started by creating your first account." %}</p>
         <div class="mt-6">
             <a href="{% url 'web:account_create' %}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700">
                 <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                 </svg>
-                Add Account
+                {% translate "Add Account" %}
             </a>
         </div>
     </div>

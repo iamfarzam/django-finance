@@ -1,20 +1,21 @@
 {% extends "base/app.html" %}
+{% load i18n %}
 
-{% block title %}Peer Debts{% endblock %}
+{% block title %}{% translate "Peer Debts" %}{% endblock %}
 
 {% block content %}
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="sm:flex sm:items-center sm:justify-between mb-8">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900">Peer Debts</h1>
-            <p class="mt-1 text-sm text-gray-500">Track money lent and borrowed.</p>
+            <h1 class="text-2xl font-bold text-gray-900">{% translate "Peer Debts" %}</h1>
+            <p class="mt-1 text-sm text-gray-500">{% translate "Track money lent and borrowed." %}</p>
         </div>
         <div class="mt-4 sm:mt-0">
             <a href="{% url 'web:debt_create' %}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700">
                 <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                 </svg>
-                Record Debt
+                {% translate "Record Debt" %}
             </a>
         </div>
     </div>
@@ -22,15 +23,15 @@
     <!-- Summary -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <p class="text-sm text-gray-500">You Lent (They Owe)</p>
+            <p class="text-sm text-gray-500">{% translate "You Lent (They Owe)" %}</p>
             <p class="text-2xl font-bold text-success-600">{{ lent_total }}</p>
         </div>
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <p class="text-sm text-gray-500">You Borrowed (You Owe)</p>
+            <p class="text-sm text-gray-500">{% translate "You Borrowed (You Owe)" %}</p>
             <p class="text-2xl font-bold text-danger-600">{{ borrowed_total }}</p>
         </div>
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <p class="text-sm text-gray-500">Net Balance</p>
+            <p class="text-sm text-gray-500">{% translate "Net Balance" %}</p>
             <p class="text-2xl font-bold text-primary-600">{{ net_balance }}</p>
         </div>
     </div>
@@ -55,7 +56,7 @@
                         </div>
                         <div class="text-right">
                             <p class="text-sm font-medium {% if debt.direction == 'lent' %}text-success-600{% else %}text-danger-600{% endif %}">
-                                {% if debt.direction == 'lent' %}They owe{% else %}You owe{% endif %} ${{ debt.remaining_amount|floatformat:2 }}
+                                {% if debt.direction == 'lent' %}{% translate "They owe" %}{% else %}{% translate "You owe" %}{% endif %} ${{ debt.remaining_amount|floatformat:2 }}
                             </p>
                             <p class="text-xs text-gray-500">{{ debt.status|title }}</p>
                         </div>
@@ -70,11 +71,11 @@
         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
         </svg>
-        <h3 class="mt-2 text-sm font-medium text-gray-900">No debts</h3>
-        <p class="mt-1 text-sm text-gray-500">Start tracking money lent or borrowed.</p>
+        <h3 class="mt-2 text-sm font-medium text-gray-900">{% translate "No debts" %}</h3>
+        <p class="mt-1 text-sm text-gray-500">{% translate "Start tracking money lent or borrowed." %}</p>
         <div class="mt-6">
             <a href="{% url 'web:debt_create' %}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700">
-                Record Debt
+                {% translate "Record Debt" %}
             </a>
         </div>
     </div>

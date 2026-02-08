@@ -1,21 +1,22 @@
 {% extends "base/app.html" %}
+{% load i18n %}
 
-{% block title %}Contacts{% endblock %}
+{% block title %}{% translate "Contacts" %}{% endblock %}
 
 {% block content %}
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Header -->
     <div class="sm:flex sm:items-center sm:justify-between mb-8">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900">Contacts</h1>
-            <p class="mt-1 text-sm text-gray-500">People you track debts and expenses with.</p>
+            <h1 class="text-2xl font-bold text-gray-900">{% translate "Contacts" %}</h1>
+            <p class="mt-1 text-sm text-gray-500">{% translate "People you track debts and expenses with." %}</p>
         </div>
         <div class="mt-4 sm:mt-0">
             <a href="{% url 'web:contact_create' %}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
                 <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                 </svg>
-                Add Contact
+                {% translate "Add Contact" %}
             </a>
         </div>
     </div>
@@ -35,7 +36,7 @@
                             </div>
                             <div class="ml-4">
                                 <p class="text-sm font-medium text-gray-900">{{ contact.name }}</p>
-                                <p class="text-sm text-gray-500">{{ contact.email|default:"No email" }}</p>
+                                <p class="text-sm text-gray-500">{{ contact.email|default:_("No email") }}</p>
                             </div>
                         </div>
                         <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -52,10 +53,10 @@
     <nav class="mt-6 flex items-center justify-between" aria-label="Pagination">
         <div class="flex-1 flex justify-between sm:hidden">
             {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Previous</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">{% translate "Previous" %}</a>
             {% endif %}
             {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Next</a>
+            <a href="?page={{ page_obj.next_page_number }}" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">{% translate "Next" %}</a>
             {% endif %}
         </div>
     </nav>
@@ -66,14 +67,14 @@
         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
         </svg>
-        <h3 class="mt-2 text-sm font-medium text-gray-900">No contacts</h3>
-        <p class="mt-1 text-sm text-gray-500">Add people you share expenses or debts with.</p>
+        <h3 class="mt-2 text-sm font-medium text-gray-900">{% translate "No contacts" %}</h3>
+        <p class="mt-1 text-sm text-gray-500">{% translate "Add people you share expenses or debts with." %}</p>
         <div class="mt-6">
             <a href="{% url 'web:contact_create' %}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700">
                 <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                 </svg>
-                Add Contact
+                {% translate "Add Contact" %}
             </a>
         </div>
     </div>

@@ -1,20 +1,21 @@
 {% extends "base/app.html" %}
+{% load i18n %}
 
-{% block title %}Expense Groups{% endblock %}
+{% block title %}{% translate "Expense Groups" %}{% endblock %}
 
 {% block content %}
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="sm:flex sm:items-center sm:justify-between mb-8">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900">Expense Groups</h1>
-            <p class="mt-1 text-sm text-gray-500">Split expenses with groups of people.</p>
+            <h1 class="text-2xl font-bold text-gray-900">{% translate "Expense Groups" %}</h1>
+            <p class="mt-1 text-sm text-gray-500">{% translate "Split expenses with groups of people." %}</p>
         </div>
         <div class="mt-4 sm:mt-0">
             <a href="{% url 'web:group_create' %}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700">
                 <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                 </svg>
-                Create Group
+                {% translate "Create Group" %}
             </a>
         </div>
     </div>
@@ -36,7 +37,7 @@
                 {% if group.description %}
                 <p class="mt-1 text-sm text-gray-500 line-clamp-2">{{ group.description }}</p>
                 {% endif %}
-                <p class="mt-2 text-xs text-gray-500">Created {{ group.created_at|date:"M d, Y" }}</p>
+                <p class="mt-2 text-xs text-gray-500">{% translate "Created" %} {{ group.created_at|date:"M d, Y" }}</p>
             </div>
         </a>
         {% endfor %}
@@ -46,11 +47,11 @@
         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
         </svg>
-        <h3 class="mt-2 text-sm font-medium text-gray-900">No expense groups</h3>
-        <p class="mt-1 text-sm text-gray-500">Create a group to start splitting expenses.</p>
+        <h3 class="mt-2 text-sm font-medium text-gray-900">{% translate "No expense groups" %}</h3>
+        <p class="mt-1 text-sm text-gray-500">{% translate "Create a group to start splitting expenses." %}</p>
         <div class="mt-6">
             <a href="{% url 'web:group_create' %}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700">
-                Create Group
+                {% translate "Create Group" %}
             </a>
         </div>
     </div>

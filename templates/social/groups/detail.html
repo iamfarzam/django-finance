@@ -20,9 +20,15 @@
             {% endif %}
         </div>
         <div class="mt-4 sm:mt-0">
-            <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700">
+            <button type="button" disabled
+                    class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-400 cursor-not-allowed"
+                    title="Coming soon">
+                <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                </svg>
                 Add Expense
-            </a>
+                <span class="ml-2 text-xs bg-primary-500 px-1.5 py-0.5 rounded">Soon</span>
+            </button>
         </div>
     </div>
 

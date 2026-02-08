@@ -6,6 +6,7 @@ from datetime import timedelta
 from typing import Any
 
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -83,7 +84,7 @@ class RegisterView(GenericAPIView):
 
         return Response(
             {
-                "message": "Registration successful. Please check your email to verify your account.",
+                "message": _("Registration successful. Please check your email to verify your account."),
                 "user": UserSerializer(user).data,
             },
             status=status.HTTP_201_CREATED,
@@ -114,7 +115,7 @@ class LogoutView(APIView):
             refresh_token = request.data.get("refresh")
             if not refresh_token:
                 return Response(
-                    {"error": {"code": "MISSING_TOKEN", "message": "Refresh token is required."}},
+                    {"error": {"code": "MISSING_TOKEN", "message": _("Refresh token is required.")}},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
 
@@ -127,10 +128,10 @@ class LogoutView(APIView):
                 expires_at=timezone.now() + timedelta(days=7),
             )
 
-            return Response({"message": "Successfully logged out."})
+            return Response({"message": _("Successfully logged out.")})
         except TokenError:
             return Response(
-                {"error": {"code": "INVALID_TOKEN", "message": "Invalid token."}},
+                {"error": {"code": "INVALID_TOKEN", "message": _("Invalid token.")}},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -153,13 +154,13 @@ class VerifyEmailView(GenericAPIView):
             token = EmailVerificationToken.objects.get(token=token_str)
         except EmailVerificationToken.DoesNotExist:
             return Response(
-                {"error": {"code": "INVALID_TOKEN", "message": "Invalid verification token."}},
+                {"error": {"code": "INVALID_TOKEN", "message": _("Invalid verification token.")}},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
         if not token.is_valid:
             return Response(
-                {"error": {"code": "TOKEN_EXPIRED", "message": "Verification token has expired."}},
+                {"error": {"code": "TOKEN_EXPIRED", "message": _("Verification token has expired.")}},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -173,7 +174,7 @@ class VerifyEmailView(GenericAPIView):
 
         return Response(
             {
-                "message": "Email verified successfully.",
+                "message": _("Email verified successfully."),
                 "user": UserSerializer(user).data,
             }
         )
@@ -191,7 +192,7 @@ class ResendVerificationView(APIView):
 
         if user.is_email_verified:
             return Response(
-                {"error": {"code": "ALREADY_VERIFIED", "message": "Email is already verified."}},
+                {"error": {"code": "ALREADY_VERIFIED", "message": _("Email is already verified.")}},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -217,7 +218,7 @@ class ResendVerificationView(APIView):
             first_name=user.first_name,
         )
 
-        return Response({"message": "Verification email sent."})
+        return Response({"message": _("Verification email sent.")})
 
 
 class RequestPasswordResetView(GenericAPIView):
@@ -266,7 +267,7 @@ class RequestPasswordResetView(GenericAPIView):
             pass
 
         return Response(
-            {"message": "If an account exists with this email, a password reset link has been sent."}
+            {"message": _("If an account exists with this email, a password reset link has been sent.")}
         )
 
 
@@ -289,13 +290,13 @@ class ResetPasswordView(GenericAPIView):
             token = PasswordResetToken.objects.get(token=token_str)
         except PasswordResetToken.DoesNotExist:
             return Response(
-                {"error": {"code": "INVALID_TOKEN", "message": "Invalid reset token."}},
+                {"error": {"code": "INVALID_TOKEN", "message": _("Invalid reset token.")}},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
         if not token.is_valid:
             return Response(
-                {"error": {"code": "TOKEN_EXPIRED", "message": "Reset token has expired."}},
+                {"error": {"code": "TOKEN_EXPIRED", "message": _("Reset token has expired.")}},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -324,7 +325,7 @@ class ResetPasswordView(GenericAPIView):
             first_name=user.first_name,
         )
 
-        return Response({"message": "Password reset successfully."})
+        return Response({"message": _("Password reset successfully.")})
 
 
 class ChangePasswordView(GenericAPIView):
@@ -350,7 +351,7 @@ class ChangePasswordView(GenericAPIView):
             first_name=user.first_name,
         )
 
-        return Response({"message": "Password changed successfully."})
+        return Response({"message": _("Password changed successfully.")})
 
 
 class ProfileView(GenericAPIView):

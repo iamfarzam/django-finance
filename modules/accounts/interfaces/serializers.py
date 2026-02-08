@@ -7,6 +7,7 @@ from typing import Any
 from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError as DjangoValidationError
+from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
@@ -62,7 +63,7 @@ class RegisterSerializer(serializers.Serializer):
     def validate_email(self, value: str) -> str:
         """Validate email is not already registered."""
         if User.objects.filter(email__iexact=value).exists():
-            raise serializers.ValidationError("Email is already registered.")
+            raise serializers.ValidationError(_("Email is already registered."))
         return value.lower()
 
     def validate_password(self, value: str) -> str:
@@ -76,7 +77,7 @@ class RegisterSerializer(serializers.Serializer):
         """Validate password confirmation matches."""
         if attrs["password"] != attrs["password_confirm"]:
             raise serializers.ValidationError(
-                {"password_confirm": "Passwords do not match."}
+                {"password_confirm": _("Passwords do not match.")}
             )
         return attrs
 
@@ -107,14 +108,14 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             user = User.objects.get(email__iexact=email)
         except User.DoesNotExist:
             raise serializers.ValidationError(
-                {"detail": "Invalid email or password."},
+                {"detail": _("Invalid email or password.")},
                 code="invalid_credentials",
             )
 
         # Check if account is locked
         if user.is_locked:
             raise serializers.ValidationError(
-                {"detail": "Account is locked. Please try again later."},
+                {"detail": _("Account is locked. Please try again later.")},
                 code="account_locked",
             )
 
@@ -122,11 +123,11 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         if user.status != User.Status.ACTIVE:
             if user.status == User.Status.PENDING:
                 raise serializers.ValidationError(
-                    {"detail": "Please verify your email address."},
+                    {"detail": _("Please verify your email address.")},
                     code="email_not_verified",
                 )
             raise serializers.ValidationError(
-                {"detail": "Account is not active."},
+                {"detail": _("Account is not active.")},
                 code="account_not_active",
             )
 
@@ -146,7 +147,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
                 pass
 
             raise serializers.ValidationError(
-                {"detail": "Invalid email or password."},
+                {"detail": _("Invalid email or password.")},
                 code="invalid_credentials",
             )
 
@@ -204,7 +205,7 @@ class ResetPasswordSerializer(serializers.Serializer):
         """Validate password confirmation matches."""
         if attrs["password"] != attrs["password_confirm"]:
             raise serializers.ValidationError(
-                {"password_confirm": "Passwords do not match."}
+                {"password_confirm": _("Passwords do not match.")}
             )
         return attrs
 
@@ -227,13 +228,13 @@ class ChangePasswordSerializer(serializers.Serializer):
         """Validate passwords."""
         if attrs["new_password"] != attrs["new_password_confirm"]:
             raise serializers.ValidationError(
-                {"new_password_confirm": "Passwords do not match."}
+                {"new_password_confirm": _("Passwords do not match.")}
             )
 
         user = self.context["request"].user
         if not user.check_password(attrs["current_password"]):
             raise serializers.ValidationError(
-                {"current_password": "Current password is incorrect."}
+                {"current_password": _("Current password is incorrect.")}
             )
 
         return attrs

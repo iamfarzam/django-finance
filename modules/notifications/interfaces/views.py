@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from django.utils.translation import gettext_lazy as _
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -75,7 +76,7 @@ class NotificationDetailView(APIView):
             notification = repo.get_by_id(UUID(notification_id))
             if notification is None or notification.user_id != request.user.id:
                 return Response(
-                    {"error": {"code": "NOT_FOUND", "message": "Notification not found."}},
+                    {"error": {"code": "NOT_FOUND", "message": _("Notification not found.")}},
                     status=status.HTTP_404_NOT_FOUND,
                 )
 
@@ -83,7 +84,7 @@ class NotificationDetailView(APIView):
 
         except ValueError:
             return Response(
-                {"error": {"code": "INVALID_ID", "message": "Invalid notification ID."}},
+                {"error": {"code": "INVALID_ID", "message": _("Invalid notification ID.")}},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -103,15 +104,15 @@ class MarkNotificationReadView(APIView):
             success = repo.mark_read(UUID(notification_id), request.user.id)
             if not success:
                 return Response(
-                    {"error": {"code": "NOT_FOUND", "message": "Notification not found."}},
+                    {"error": {"code": "NOT_FOUND", "message": _("Notification not found.")}},
                     status=status.HTTP_404_NOT_FOUND,
                 )
 
-            return Response({"message": "Notification marked as read."})
+            return Response({"message": _("Notification marked as read.")})
 
         except ValueError:
             return Response(
-                {"error": {"code": "INVALID_ID", "message": "Invalid notification ID."}},
+                {"error": {"code": "INVALID_ID", "message": _("Invalid notification ID.")}},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -133,7 +134,7 @@ class MarkAllReadView(APIView):
         count = repo.mark_all_read(request.user.id, category)
 
         return Response({
-            "message": f"{count} notifications marked as read.",
+            "message": _("%(count)s notifications marked as read.") % {"count": count},
             "count": count,
         })
 
@@ -153,15 +154,15 @@ class ArchiveNotificationView(APIView):
             success = repo.archive(UUID(notification_id), request.user.id)
             if not success:
                 return Response(
-                    {"error": {"code": "NOT_FOUND", "message": "Notification not found."}},
+                    {"error": {"code": "NOT_FOUND", "message": _("Notification not found.")}},
                     status=status.HTTP_404_NOT_FOUND,
                 )
 
-            return Response({"message": "Notification archived."})
+            return Response({"message": _("Notification archived.")})
 
         except ValueError:
             return Response(
-                {"error": {"code": "INVALID_ID", "message": "Invalid notification ID."}},
+                {"error": {"code": "INVALID_ID", "message": _("Invalid notification ID.")}},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -205,7 +206,7 @@ class PreferenceUpdateView(APIView):
         valid_categories = [c.value for c in Notification.Category]
         if category not in valid_categories:
             return Response(
-                {"error": {"code": "INVALID_CATEGORY", "message": f"Invalid category. Must be one of: {valid_categories}"}},
+                {"error": {"code": "INVALID_CATEGORY", "message": _("Invalid category. Must be one of: %(categories)s") % {"categories": valid_categories}}},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from django.utils.translation import gettext_lazy as _
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -59,10 +60,10 @@ class MarkNotificationReadView(APIView):
                 user_id=request.user.id,
             )
             notification.mark_as_read()
-            return Response({"message": "Notification marked as read."})
+            return Response({"message": _("Notification marked as read.")})
         except (Notification.DoesNotExist, ValueError):
             return Response(
-                {"error": {"code": "NOT_FOUND", "message": "Notification not found."}},
+                {"error": {"code": "NOT_FOUND", "message": _("Notification not found.")}},
                 status=status.HTTP_404_NOT_FOUND,
             )
 
@@ -84,7 +85,7 @@ class MarkAllNotificationsReadView(APIView):
             read_at=timezone.now(),
         )
 
-        return Response({"message": f"{updated} notifications marked as read."})
+        return Response({"message": _("%(count)s notifications marked as read.") % {"count": updated}})
 
 
 class OutboxStatusView(APIView):
@@ -96,7 +97,7 @@ class OutboxStatusView(APIView):
         """Get outbox statistics."""
         if not request.user.is_staff:
             return Response(
-                {"error": {"code": "FORBIDDEN", "message": "Admin access required."}},
+                {"error": {"code": "FORBIDDEN", "message": _("Admin access required.")}},
                 status=status.HTTP_403_FORBIDDEN,
             )
 
@@ -162,6 +163,6 @@ class TriggerDemoEventView(APIView):
             )
 
         return Response({
-            "message": "Demo event created.",
+            "message": _("Demo event created."),
             "event_id": str(outbox_event.event_id),
         }, status=status.HTTP_201_CREATED)

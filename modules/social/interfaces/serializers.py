@@ -6,6 +6,7 @@ from decimal import Decimal
 from typing import Any, ClassVar
 from uuid import UUID
 
+from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
 from shared.serializers import FieldPermissionMixin
@@ -263,7 +264,7 @@ class CreateGroupExpenseSerializer(serializers.Serializer):
         """Validate the expense creation data."""
         if not data.get("paid_by_owner") and not data.get("paid_by_contact_id"):
             raise serializers.ValidationError(
-                "Either paid_by_owner must be True or paid_by_contact_id must be provided"
+                _("Either paid_by_owner must be True or paid_by_contact_id must be provided.")
             )
         return data
 
@@ -318,11 +319,11 @@ class CreateSettlementSerializer(serializers.Serializer):
         """Validate the settlement creation data."""
         if data.get("owner_pays") and data.get("owner_receives"):
             raise serializers.ValidationError(
-                "Cannot set both owner_pays and owner_receives to True"
+                _("Cannot set both owner_pays and owner_receives to True.")
             )
         if not data.get("owner_pays") and not data.get("owner_receives"):
             raise serializers.ValidationError(
-                "Must set either owner_pays or owner_receives to True"
+                _("Must set either owner_pays or owner_receives to True.")
             )
         return data
 

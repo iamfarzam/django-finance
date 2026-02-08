@@ -3,6 +3,7 @@
 from decimal import Decimal
 from typing import Any, ClassVar
 
+from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
 from modules.finance.domain.value_objects import Currency
@@ -29,7 +30,7 @@ class CurrencyField(serializers.CharField):
     def to_internal_value(self, data):
         value = super().to_internal_value(data).upper()
         if not Currency.is_supported(value):
-            raise serializers.ValidationError(f"Unsupported currency: {value}")
+            raise serializers.ValidationError(_("Unsupported currency: %(currency)s") % {"currency": value})
         return value
 
 
@@ -316,7 +317,7 @@ class CreateTransferSerializer(serializers.Serializer):
         """Validate that accounts are different."""
         if data["from_account_id"] == data["to_account_id"]:
             raise serializers.ValidationError(
-                {"to_account_id": "Cannot transfer to the same account"}
+                {"to_account_id": _("Cannot transfer to the same account.")}
             )
         return data
 
